@@ -1,15 +1,14 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'vim-scripts/indentpython.vim'
+Plug 'derekwyatt/vim-scala'
+Plug 'ktvoleker/sbt-vim'
 
 call plug#end()
 
-" Python specific settings.
-setlocal tabstop=4
-setlocal shiftwidth=4
+setlocal tabstop=2
+setlocal shiftwidth=2
 setlocal expandtab
 setlocal autoindent
 setlocal smarttab
 setlocal formatoptions=croql
-let python_highlight_all=1
 syntax on
