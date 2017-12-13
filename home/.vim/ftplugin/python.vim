@@ -1,9 +1,3 @@
-call plug#begin('~/.vim/plugged')
-
-Plug 'vim-scripts/indentpython.vim'
-
-call plug#end()
-
 " Python specific settings.
 setlocal tabstop=4
 setlocal shiftwidth=4
