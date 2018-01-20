@@ -16,6 +16,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'ktvoelker/sbt-vim'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'ensime/ensime-vim'
+Plug 'vim-latex/vim-latex'
 
 call plug#end()
 
