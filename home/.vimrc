@@ -64,9 +64,11 @@ set showmatch
 set splitright
 set splitbelow
 
-nnoremap <C-h> <C-w>h
+" get <C-j> to work
+let g:BASH_Ctrl_j = 'off'
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 let NERDTreeQuitOnOpen = 1
