@@ -17,12 +17,21 @@ Plug 'ktvoelker/sbt-vim'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'ensime/ensime-vim'
 Plug 'vim-latex/vim-latex'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
+
+" to be safe
+set nocompatible
 
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
 
 " Enable syntax highlighting
 syntax enable 
@@ -71,9 +80,13 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" NERDTree specific config
 let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+
+" vimwiki specific config
+let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/html/'}]
 
 augroup Defaults
 	au!
