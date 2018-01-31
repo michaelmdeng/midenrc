@@ -5,3 +5,5 @@ setlocal autoindent
 setlocal smarttab
 setlocal formatoptions=croql
 syntax on
+
+nnoremap <localleader>t :EnType<CR>
