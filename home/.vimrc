@@ -1,22 +1,24 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-fugitive'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'myusuf3/numbers.vim'
-Plug 'ervandew/supertab'
-Plug 'vim-syntastic/syntastic'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'derekwyatt/vim-scala'
 Plug 'elzr/vim-json'
+Plug 'ensime/ensime-vim'
+Plug 'ervandew/supertab'
+Plug 'ktvoelker/sbt-vim'
 Plug 'moll/vim-node'
+Plug 'myusuf3/numbers.vim'
+Plug 'roxma/vim-tmux-clipboard'
+Plug 'scrooloose/nerdtree'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'valloric/youcompleteme'
-Plug 'derekwyatt/vim-scala'
-Plug 'ktvoelker/sbt-vim'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'ensime/ensime-vim'
 Plug 'vim-latex/vim-latex'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'vim-syntastic/syntastic'
 Plug 'vimwiki/vimwiki'
 
 call plug#end()
@@ -87,6 +89,18 @@ let NERDTreeDirArrows = 1
 
 " vimwiki specific config
 let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/html/'}]
+
+" syntastic config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Ensime config
+nnoremap <localleader>t :EnType<CR>
 
 augroup Defaults
 	au!
