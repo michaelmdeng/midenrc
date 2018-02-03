@@ -16,6 +16,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'valloric/youcompleteme'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-latex/vim-latex'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'vim-syntastic/syntastic'
@@ -91,9 +92,6 @@ let NERDTreeDirArrows = 1
 let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/html/'}]
 
 " syntastic config
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
