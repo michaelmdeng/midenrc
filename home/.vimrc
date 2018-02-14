@@ -15,6 +15,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-latex/vim-latex'
@@ -82,6 +83,13 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+" persistent undo
+try
+	set undodir=~/.vim/temp/undo
+	set undofile
+catch
+endtry
 
 " NERDTree specific config
 let NERDTreeQuitOnOpen = 1
