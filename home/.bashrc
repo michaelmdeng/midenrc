@@ -120,3 +120,5 @@ fi
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
+
+[ -f "/home/miden/Documents/AristoDevEnv/spark-config.sh" ] && source "/home/miden/Documents/AristoDevEnv/spark-config.sh"
