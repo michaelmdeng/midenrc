@@ -1,5 +1,5 @@
+" VimPlug stuff
 call plug#begin('~/.vim/plugged')
-
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala'
@@ -22,7 +22,6 @@ Plug 'vim-latex/vim-latex'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'vimwiki/vimwiki'
-
 call plug#end()
 
 " to be safe
@@ -48,7 +47,7 @@ set autoread
 command W w !sudo tee % > /dev/null
 
 set wildmenu
-set wildmode=longest,list,full
+set wildmode=longest,list
 
 " Height of the command bar
 set cmdheight=2
@@ -74,6 +73,7 @@ set magic
 " Show matching brackets when text indicator is over them
 set showmatch 
 
+" Window split settings
 set splitright
 set splitbelow
 
