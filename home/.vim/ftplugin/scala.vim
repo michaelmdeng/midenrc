@@ -8,5 +8,5 @@ setlocal colorcolumn=90
 setlocal formatoptions=croql
 syntax on
 
-nnoremap <localleader>t :EnType<CR>
+nnoremap <leader>t :EnType<CR>
 nnoremap <C-r>r :EnRename<CR>

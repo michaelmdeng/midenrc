@@ -91,6 +91,11 @@ try
 catch
 endtry
 
+" leader<o> and leader<CR> for inserting lines without entering insert mode
+nmap <leader>o o<Esc>
+nmap <leader>O O<Esc>
+nmap <leader><CR> o<Esc>
+
 " NERDTree specific config
 let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
