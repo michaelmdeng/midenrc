@@ -2,6 +2,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'ajmwagar/vim-deus'
+Plug 'altercation/vim-colors-solarized'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'editorconfig/editorconfig-vim'
@@ -31,7 +32,7 @@ set nocompatible
 
 " colorscheme
 set background=dark
-colorscheme deus
+colorscheme solarized
 
 " Enable filetype plugins
 filetype plugin on
