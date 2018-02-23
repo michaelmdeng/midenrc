@@ -16,7 +16,6 @@ Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme'
@@ -37,6 +36,10 @@ colorscheme deus
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
+
+" Remove backup
+set nobackup
+set noswapfile
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
