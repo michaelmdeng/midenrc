@@ -1,6 +1,7 @@
 " VimPlug stuff
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
+Plug 'ajmwagar/vim-deus'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'editorconfig/editorconfig-vim'
@@ -27,6 +28,10 @@ call plug#end()
 
 " to be safe
 set nocompatible
+
+" colorscheme
+set background=dark
+colorscheme deus
 
 " Enable filetype plugins
 filetype plugin on
