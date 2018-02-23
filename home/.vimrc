@@ -8,6 +8,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
 Plug 'ensime/ensime-vim'
 Plug 'ervandew/supertab'
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'ktvoelker/sbt-vim'
 Plug 'moll/vim-node'
 Plug 'myusuf3/numbers.vim'
@@ -118,6 +119,18 @@ let g:syntastic_check_on_wq = 0
 
 " Editorconfig config
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" Rainbow Parens
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" GitGutter
+nmap <leader>nh :GitGutterNextHunk<CR>
+nmap <leader>ph :GitGutterPrevHunk<CR>
+nmap <leader>sh :GitGutterStageHunk<CR>
+nmap <leader>uh :GitGutterUndoHunk<CR>
 
 augroup Defaults
 	au!
