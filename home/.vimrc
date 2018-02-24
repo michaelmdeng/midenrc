@@ -125,10 +125,12 @@ let g:syntastic_check_on_wq = 0
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " Rainbow Parens
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+augroup RainbowParens
+	au VimEnter * RainbowParenthesesToggle
+	au Syntax * RainbowParenthesesLoadRound
+	au Syntax * RainbowParenthesesLoadSquare
+	au Syntax * RainbowParenthesesLoadBraces
+augroup end
 
 " GitGutter
 nmap <leader>nh :GitGutterNextHunk<CR>
@@ -137,7 +139,6 @@ nmap <leader>sh :GitGutterStageHunk<CR>
 nmap <leader>uh :GitGutterUndoHunk<CR>
 
 augroup Defaults
-	au!
 	au BufWinEnter * set number
 	au StdinReadPre * let s:std_in=1
 	au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
