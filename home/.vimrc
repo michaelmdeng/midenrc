@@ -113,7 +113,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
 " vimwiki specific config
-let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/html/'}]
+let g:vimwiki_list = [{'path':'~/Dropbox/Personal/vimwiki/wiki', 'path_html':'~/Dropbox/Personal/vimwiki/html/'}]
 
 " syntastic config
 let g:syntastic_always_populate_loc_list = 1
