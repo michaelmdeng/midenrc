@@ -111,6 +111,8 @@ nmap <leader><CR> o<Esc>
 let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDTreeShowHidden = 1
+let NERDTreeShowLineNumbers = 1
 
 " vimwiki specific config
 let g:vimwiki_list = [{'path':'~/Dropbox/Personal/vimwiki/wiki', 'path_html':'~/Dropbox/Personal/vimwiki/html/'}]
