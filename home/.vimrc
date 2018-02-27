@@ -111,9 +111,11 @@ nmap <leader><CR> o<Esc>
 let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDTreeShowHidden = 1
+let NERDTreeShowLineNumbers = 1
 
 " vimwiki specific config
-let g:vimwiki_list = [{'path':'~/vimwiki/wiki', 'path_html':'~/vimwiki/html/'}]
+let g:vimwiki_list = [{'path':'~/Dropbox/Personal/vimwiki/wiki', 'path_html':'~/Dropbox/Personal/vimwiki/html/'}]
 
 " syntastic config
 let g:syntastic_always_populate_loc_list = 1
@@ -125,10 +127,12 @@ let g:syntastic_check_on_wq = 0
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " Rainbow Parens
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+augroup RainbowParens
+	au VimEnter * RainbowParenthesesToggle
+	au Syntax * RainbowParenthesesLoadRound
+	au Syntax * RainbowParenthesesLoadSquare
+	au Syntax * RainbowParenthesesLoadBraces
+augroup end
 
 " GitGutter
 nmap <leader>nh :GitGutterNextHunk<CR>
@@ -137,7 +141,6 @@ nmap <leader>sh :GitGutterStageHunk<CR>
 nmap <leader>uh :GitGutterUndoHunk<CR>
 
 augroup Defaults
-	au!
 	au BufWinEnter * set number
 	au StdinReadPre * let s:std_in=1
 	au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
