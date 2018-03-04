@@ -118,7 +118,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export EDITOR='nvim'
+
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
+
+source ~/.bin/tmuxinator.bash
 
 [ -f "/home/miden/Documents/AristoDevEnv/spark-config.sh" ] && source "/home/miden/Documents/AristoDevEnv/spark-config.sh"
