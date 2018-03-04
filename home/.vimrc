@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'ajmwagar/vim-deus'
 Plug 'altercation/vim-colors-solarized'
+Plug 'cazador481/fakeclip.neovim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'editorconfig/editorconfig-vim'
@@ -17,6 +18,7 @@ Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme'
@@ -64,9 +66,8 @@ set wildmode=longest,list
 set cmdheight=2
 
 " Ignore case when searching
-set ignorecase
-
 " When searching try to be smart about cases
+set ignorecase
 set smartcase
 
 " Highlight search results
@@ -87,6 +88,10 @@ set showmatch
 " Window split settings
 set splitright
 set splitbelow
+
+" number settings
+set number
+set relativenumber
 
 " get <C-j> to work
 let g:BASH_Ctrl_j = 'off'
@@ -140,11 +145,28 @@ nmap <leader>ph :GitGutterPrevHunk<CR>
 nmap <leader>sh :GitGutterStageHunk<CR>
 nmap <leader>uh :GitGutterUndoHunk<CR>
 
-augroup Defaults
-	au BufWinEnter * set number
-	au StdinReadPre * let s:std_in=1
-	au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-augroup end
+"fake clip
+let g:vim_fakeclip_tmux_plus=1
+
+" ctrlp
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+let g:ctrlp_custom_ignore = {
+  \ 'file': '\v(\.cpp|\.h|\.hh|\.cxx)@<!$'
+  \ }
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files --cached --exclude-standard --others'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
 
 function ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
