@@ -35,7 +35,7 @@ set nocompatible
 
 " colorscheme
 set background=dark
-colorscheme solarized
+colorscheme deus
 
 " Enable filetype plugins
 filetype plugin on
@@ -96,10 +96,10 @@ set relativenumber
 
 " get <C-j> to work
 let g:BASH_Ctrl_j = 'off'
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-l> <C-w>l
 
 " persistent undo
 try
