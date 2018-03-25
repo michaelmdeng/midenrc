@@ -18,6 +18,7 @@ Plug 'myusuf3/numbers.vim'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
@@ -62,6 +63,9 @@ command W w !sudo tee % > /dev/null
 
 set wildmenu
 set wildmode=longest,list
+set wildignore+=*swp,*.class,*.pyc,*.png,*.jpg,*.gif,*.zip
+set wildignore+=*/tmp/*,*.o,*.obj,*.so     " Unix
+set wildignore+=*\\tmp\\*,*.exe            " Windows
 
 " Height of the command bar
 set cmdheight=2
@@ -113,6 +117,31 @@ nmap <leader>o o<Esc>
 nmap <leader>O O<Esc>
 nmap <leader><CR> o<Esc>
 
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+" Treat long lines as break lines (useful when moving around in them)
+nmap j gj
+nmap k gk
+vmap j gj
+vmap k gk
+
+" Insert mode shortcut
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+" Command mode shortcut
+cnoremap <C-h> <Left>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-l> <Right>
+" Move to the start of line
+nnoremap H ^
+" Move to the end of line
+nnoremap L $
+
+cnoremap <C-d> <Delete>
 " NERDTree specific config
 let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
@@ -150,8 +179,6 @@ nmap <leader>uh :GitGutterUndoHunk<CR>
 let g:vim_fakeclip_tmux_plus=1
 
 " ctrlp
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
