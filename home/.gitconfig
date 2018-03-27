@@ -3,3 +3,6 @@
 	name = Michael Deng
 [core]
 	editor = nvim
+	excludesfile = ~/.gitignore
+[rerere]
+	enabled = true

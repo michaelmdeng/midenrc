@@ -138,8 +138,10 @@ cnoremap <C-k> <Up>
 cnoremap <C-l> <Right>
 " Move to the start of line
 nnoremap H ^
+vnoremap H ^
 " Move to the end of line
 nnoremap L $
+vnoremap L $
 
 cnoremap <C-d> <Delete>
 " NERDTree specific config
