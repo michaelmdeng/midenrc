@@ -120,11 +120,6 @@ nmap <leader><CR> o<Esc>
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
-" Treat long lines as break lines (useful when moving around in them)
-nmap j gj
-nmap k gk
-vmap j gj
-vmap k gk
 
 " Insert mode shortcut
 inoremap <C-h> <Left>
@@ -142,6 +137,12 @@ vnoremap H ^
 " Move to the end of line
 nnoremap L $
 vnoremap L $
+" D to line ends
+nnoremap dH d^
+nnoremap dL d$
+" Y to line ends
+nnoremap yH y^
+nnoremap yL y$
 
 cnoremap <C-d> <Delete>
 " NERDTree specific config
