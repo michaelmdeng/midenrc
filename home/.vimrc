@@ -11,6 +11,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
 Plug 'ensime/ensime-vim'
 Plug 'ervandew/supertab'
+Plug 'haya14busa/incsearch.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ktvoelker/sbt-vim'
 Plug 'moll/vim-node'
@@ -198,6 +199,21 @@ let g:ctrlp_user_command = {
     \ },
   \ 'fallback': 'find %s -type f'
   \ }
+
+" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+map <Tab> <Over>(incsearch-next)
+map <S-Tab> <Over>(incsearch-prev)
 
 function ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
