@@ -21,3 +21,6 @@
 	pl = pull
 	ph = push
 	graph = log --oneline --decorate --graph --all
+
+[push]
+	default = simple
