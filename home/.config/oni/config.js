@@ -16,6 +16,6 @@ module.exports = {
   "oni.useDefaultConfig": false, // Do not load Oni's init.vim
   "sidebar.enabled": true,
   "statusbar.enabled": false,
-  "tabs.mode": "buffers",
+  "tabs.mode": "tabs",
   "wildmenu.mode": false, // Do not override wildmenu UI,
 }

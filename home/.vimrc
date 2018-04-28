@@ -4,6 +4,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ajmwagar/vim-deus'
 Plug 'altercation/vim-colors-solarized'
 Plug 'cazador481/fakeclip.neovim'
+Plug 'chrisbra/csv.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala'
@@ -111,8 +112,8 @@ map <C-S-Tab> :bprevious<cr>
 
 " persistent undo
 try
-	set undodir=~/.vim/temp/undo
-	set undofile
+        set undodir=~/.vim/temp/undo
+        set undofile
 catch
 endtry
 
@@ -223,6 +224,10 @@ augroup indentLine
 augroup end
 
 let g:vim_json_syntax_conceal = 0
+
+" airline
+let g:airline#extensions#hunks#enabled=0
+let g:airline_section_z = '%#__accent_bold#%{g:airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__# :%3v'
 
 function ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
