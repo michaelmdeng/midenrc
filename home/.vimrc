@@ -30,6 +30,7 @@ Plug 'vim-latex/vim-latex'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'vimwiki/vimwiki'
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 " to be safe
