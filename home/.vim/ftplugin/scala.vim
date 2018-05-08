@@ -3,8 +3,8 @@ setlocal shiftwidth=2
 setlocal expandtab
 setlocal autoindent
 setlocal smarttab
-setlocal textwidth=99
-setlocal colorcolumn=100
+setlocal textwidth=89
+setlocal colorcolumn=90
 setlocal formatoptions=croql
 syntax on
 
