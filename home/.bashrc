@@ -125,4 +125,8 @@ source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
 source ~/.bin/tmuxinator.bash
 
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Documents
+source /usr/local/bin/virtualenvwrapper.sh
+
 [ -f "/home/miden/Documents/AristoDevEnv/spark-config.sh" ] && source "/home/miden/Documents/AristoDevEnv/spark-config.sh"
