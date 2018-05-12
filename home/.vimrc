@@ -171,10 +171,10 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " Rainbow Parens
 augroup RainbowParens
-	au VimEnter * RainbowParenthesesActivate
-	au Syntax * RainbowParenthesesLoadRound
-	au Syntax * RainbowParenthesesLoadSquare
-	au Syntax * RainbowParenthesesLoadBraces
+        au VimEnter * RainbowParenthesesActivate
+        au Syntax * RainbowParenthesesLoadRound
+        au Syntax * RainbowParenthesesLoadSquare
+        au Syntax * RainbowParenthesesLoadBraces
 augroup end
 
 " GitGutter
@@ -220,7 +220,7 @@ map <Tab> <Over>(incsearch-next)
 map <S-Tab> <Over>(incsearch-prev)
 
 augroup indentLine
-	au BufEnter * IndentLinesEnable
+        au BufEnter * IndentLinesEnable
 augroup end
 
 let g:vim_json_syntax_conceal = 0
