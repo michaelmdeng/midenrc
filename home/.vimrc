@@ -63,6 +63,7 @@ set autoread
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
+nmap <C-s> :w<cr>
 
 set wildmenu
 set wildmode=longest,list
@@ -107,8 +108,8 @@ let g:BASH_Ctrl_j = 'off'
 " nnoremap <C-k> <C-w>k
 " nnoremap <C-h> <C-w>h
 " nnoremap <C-l> <C-w>l
-map <C-Tab> :bnext<cr>
-map <C-S-Tab> :bprevious<cr>
+map gb :bnext<cr>
+map Gb :bprevious<cr>
 
 " persistent undo
 try
