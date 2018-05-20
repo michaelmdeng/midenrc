@@ -13,6 +13,7 @@ Plug 'elzr/vim-json'
 Plug 'ensime/ensime-vim'
 Plug 'ervandew/supertab'
 Plug 'haya14busa/incsearch.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ktvoelker/sbt-vim'
 Plug 'moll/vim-node'
@@ -64,6 +65,8 @@ set autoread
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 nmap <C-s> :w<cr>
+nmap <leader>w :w<cr>
+nmap <leader>W :W<cr>
 
 set wildmenu
 set wildmode=longest,list
