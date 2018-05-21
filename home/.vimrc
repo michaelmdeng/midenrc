@@ -112,7 +112,7 @@ let g:BASH_Ctrl_j = 'off'
 " nnoremap <C-h> <C-w>h
 " nnoremap <C-l> <C-w>l
 map gb :bnext<cr>
-map Gb :bprevious<cr>
+map gB :bprevious<cr>
 
 " persistent undo
 try
