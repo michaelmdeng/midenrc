@@ -3,20 +3,19 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'ajmwagar/vim-deus'
 Plug 'altercation/vim-colors-solarized'
-Plug 'cazador481/fakeclip.neovim'
 Plug 'chrisbra/csv.vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
 Plug 'ensime/ensime-vim'
 Plug 'ervandew/supertab'
 Plug 'haya14busa/incsearch.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ktvoelker/sbt-vim'
-Plug 'moll/vim-node'
 Plug 'myusuf3/numbers.vim'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
@@ -28,7 +27,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-latex/vim-latex'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'vimwiki/vimwiki'
@@ -187,27 +185,6 @@ nmap <leader>ph :GitGutterPrevHunk<CR>
 nmap <leader>sh :GitGutterStageHunk<CR>
 nmap <leader>uh :GitGutterUndoHunk<CR>
 
-"fake clip
-let g:vim_fakeclip_tmux_plus=1
-
-" ctrlp
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-let g:ctrlp_custom_ignore = {
-  \ 'file': '\v(\.cpp|\.h|\.hh|\.cxx)@<!$'
-  \ }
-let g:ctrlp_user_command = {
-  \ 'types': {
-    \ 1: ['.git', 'cd %s && git ls-files --cached --exclude-standard --others'],
-    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-    \ },
-  \ 'fallback': 'find %s -type f'
-  \ }
-
 " incsearch
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
@@ -236,6 +213,26 @@ let g:airline_section_z = '%#__accent_bold#%{g:airline_symbols.linenr}%4l%#__res
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" vim-scala
+let g:scala_sort_across_groups=1
+let g:scala_user_default_keymappings=0
+
+" fzf
+nmap <C-p> :GFiles<cr> 
+nmap <C-f> :Rg<cr> 
+let g:fzf_action = {
+\ 'ctrl-t': 'tab split',
+\ 'ctrl-s': 'split',
+\ 'ctrl-v': 'vsplit' }
+let g:fzf_layout = { 'down': '~25%' }
+" add command for ripgrep
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
 function ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'

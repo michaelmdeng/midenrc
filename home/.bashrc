@@ -130,3 +130,5 @@ export PROJECT_HOME=$HOME/Documents
 source /usr/local/bin/virtualenvwrapper.sh
 
 [ -f "/home/miden/Documents/AristoDevEnv/spark-config.sh" ] && source "/home/miden/Documents/AristoDevEnv/spark-config.sh"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

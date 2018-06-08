@@ -10,7 +10,8 @@ syntax on
 
 nnoremap <leader>t :EnType<CR>
 nnoremap <C-r>r :EnRename<CR>
-nmap <leader>si :EnSuggestImport<CR>
+nmap <leader>ai :EnSuggestImport<CR>
 nmap <leader>df :EnDeclaration<CR>
 nmap <leader>dc :EnUsages<CR>
 nmap <leader>c :EnTypeCheck<CR>
+nmap <leader>si :SortScalaImports<CR>
