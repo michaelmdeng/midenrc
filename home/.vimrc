@@ -25,9 +25,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-scripts/indentpython.vim'
+Plug 'vim-syntastic/syntastic'
 Plug 'vimwiki/vimwiki'
 Plug 'Yggdroot/indentLine'
 
@@ -247,6 +247,9 @@ let g:deoplete#sources={}
 let g:deoplete#sources._=['buffer', 'member', 'tag', 'file', 'omni', 'ultisnips'] 
 let g:deoplete#omni#input_patterns={} 
 let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
+
+" supertab
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 function ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
