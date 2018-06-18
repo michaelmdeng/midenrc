@@ -28,9 +28,16 @@ Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-scripts/indentpython.vim'
-Plug 'vim-syntastic/syntastic'
 Plug 'vimwiki/vimwiki'
 Plug 'Yggdroot/indentLine'
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 call plug#end()
 
 " to be safe
@@ -233,6 +240,13 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:20%:hidden', '?'),
   \   <bang>0)
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources={} 
+let g:deoplete#sources._=['buffer', 'member', 'tag', 'file', 'omni', 'ultisnips'] 
+let g:deoplete#omni#input_patterns={} 
+let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
 
 function ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
