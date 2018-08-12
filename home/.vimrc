@@ -158,6 +158,12 @@ nnoremap dL d$
 nnoremap yH y^
 nnoremap yL y$
 
+" window resize shortcuts
+nnoremap <C-w>+ :res +5<CR>
+nnoremap <C-w>- :res -5<CR>
+nnoremap <C-w>> :vert res +5<CR>
+nnoremap <C-w>< :vert res -5<CR>
+
 cnoremap <C-d> <Delete>
 " NERDTree specific config
 let NERDTreeQuitOnOpen = 1
@@ -226,8 +232,8 @@ let g:scala_sort_across_groups=1
 let g:scala_user_default_keymappings=0
 
 " fzf
-nmap <C-p> :GFiles<cr> 
-nmap <C-f> :Rg<cr> 
+nmap <C-p> :GFiles<cr>
+nmap <C-f> :Rg<cr>
 let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
 \ 'ctrl-s': 'split',
@@ -243,9 +249,9 @@ command! -bang -nargs=* Rg
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources={} 
-let g:deoplete#sources._=['buffer', 'member', 'tag', 'file', 'omni', 'ultisnips'] 
-let g:deoplete#omni#input_patterns={} 
+let g:deoplete#sources={}
+let g:deoplete#sources._=['buffer', 'member', 'tag', 'file', 'omni', 'ultisnips']
+let g:deoplete#omni#input_patterns={}
 let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
 
 " supertab
