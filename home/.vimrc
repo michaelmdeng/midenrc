@@ -16,6 +16,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ktvoelker/sbt-vim'
+Plug 'mhartington/oceanic-next'
 Plug 'myusuf3/numbers.vim'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
@@ -44,8 +45,11 @@ call plug#end()
 set nocompatible
 
 " colorscheme
+if (has("termguicolors"))
+  set termguicolors
+endif
 set background=dark
-colorscheme deus
+colorscheme OceanicNext
 
 " Enable filetype plugins
 filetype plugin on

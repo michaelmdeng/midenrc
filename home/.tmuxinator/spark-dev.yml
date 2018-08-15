@@ -50,5 +50,5 @@ windows:
       # synchronize: after
       panes:
         - nvim .
-        - sbt
+        - source .env && export ADLS_CLIENT_ID && export ADLS_CLIENT_SECRET && export ADLS_DOMAIN_NAME && export SERVICE_PRINCIPAL_ENDPOINT && sbt
         -
