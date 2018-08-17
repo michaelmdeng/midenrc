@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh -X miden@52.183.12.84
