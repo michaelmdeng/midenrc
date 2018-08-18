@@ -144,11 +144,15 @@ inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
+inoremap <C-b> <BS>
+inoremap <C-d> <Del>
 " Command mode shortcut
 cnoremap <C-h> <Left>
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 cnoremap <C-l> <Right>
+cnoremap <C-b> <BS>
+cnoremap <C-d> <Del>
 " Move to the start of line
 nnoremap H ^
 vnoremap H ^
