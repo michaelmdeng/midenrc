@@ -26,8 +26,8 @@ ZSH_THEME_VIRTUALENV_PREFIX="("
 ZSH_THEME_VIRTUALENV_SUFFIX=")"
 
 PROMPT='
-$(virtualenv_prompt_info)%~ %{$fg_bold[magenta]%}$(git_prompt_info) $(git_prompt_status)%{$reset_color%}
-%{$fg_bold[cyan]%}%!%{$reset_color%} $ '
-RPROMPT='%n@%m %{$fg_bold[white]%}[%*]%{$reset_color%}'
+%{$fg_bold[white]%}[%T]%{$reset_color%} $(virtualenv_prompt_info)%n@%m:%~ %{$fg_bold[magenta]%}$(git_prompt_info) $(git_prompt_status)%{$reset_color%}
+${vim_mode}%{$fg_bold[cyan]%}%!%{$reset_color%} $ '
+RPROMPT=''
 
 add-zsh-hook precmd bureau_precmd
