@@ -46,3 +46,7 @@ echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO 
 curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo apt update
 sudo apt install apt-transport-https azure-cli
+
+# jupyter
+sudo apt install libkrb5-dev
+sudo pip3 install jupyter

@@ -36,7 +36,7 @@ ZSH_THEME="miden"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -111,3 +111,7 @@ export PROJECT_HOME=$HOME/Documents
 [ -f "/home/miden/Documents/AristoDevEnv/spark-config.sh" ] && source "/home/miden/Documents/AristoDevEnv/spark-config.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+PATH="$HOME/um/bin:$PATH"
+
+source /usr/local/bin/virtualenvwrapper.sh

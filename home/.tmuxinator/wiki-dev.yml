@@ -31,5 +31,5 @@ windows:
   - editor:
       layout: main-vertical
       panes:
-        - nvim
+        - nvim .
         - 
