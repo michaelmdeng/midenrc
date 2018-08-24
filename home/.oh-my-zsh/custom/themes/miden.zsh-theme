@@ -18,14 +18,16 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_GIT_PROMPT_ADDED="%{$FG[082]%}+%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_MODIFIED="%{$FG[166]%}*%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DELETED="%{$FG[160]%}x%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_RENAMED="%{$FG[220]%}➜%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_RENAMED="%{$FG[220]%}>%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$FG[082]%}x%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$FG[190]%}o%{$reset_color%}"
 
 ZSH_THEME_VIRTUALENV_PREFIX="("
 ZSH_THEME_VIRTUALENV_SUFFIX=")"
 
+MODE_INDICATOR="%{$fg_bold[white]%}--NORMAL--%{$reset_color%}"
+
 PROMPT='
-%{$fg_bold[white]%}[%T]%{$reset_color%} $(virtualenv_prompt_info)%n@%m:%~ %{$fg_bold[magenta]%}$(git_prompt_info) $(git_prompt_status)%{$reset_color%}
-${vim_mode}%{$fg_bold[cyan]%}%!%{$reset_color%} $ '
+%{$fg_bold[white]%}[%T]%{$reset_color%} $(virtualenv_prompt_info)%n@%m:%~ %{$fg_bold[magenta]%}$(git_prompt_info) $(git_prompt_status)%{$reset_color%}    $(vi_mode_prompt_info)
+%{$fg_bold[cyan]%}%!%{$reset_color%} $ '
 RPROMPT=''
