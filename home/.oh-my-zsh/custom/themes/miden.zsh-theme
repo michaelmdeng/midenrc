@@ -28,6 +28,6 @@ ZSH_THEME_VIRTUALENV_SUFFIX=")"
 MODE_INDICATOR="%{$fg_bold[white]%}--NORMAL--%{$reset_color%}"
 
 PROMPT='
-%{$fg_bold[white]%}[%T]%{$reset_color%} $(virtualenv_prompt_info)%n@%m:%~ %{$fg_bold[magenta]%}$(git_prompt_info) $(git_prompt_status)%{$reset_color%}
-%{$fg_bold[cyan]%}%!%{$reset_color%} $ '
+%{$fg_bold[white]%}[%T]%{$reset_color%} %n@%m:%~ %{$fg_bold[magenta]%}$(git_prompt_info) $(git_prompt_status)%{$reset_color%}
+%{$fg_bold[cyan]%}%!%{$reset_color%} $(virtualenv_prompt_info)$ '
 RPROMPT='%{$fg_bold[white]%}${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}%{$reset_color%}'

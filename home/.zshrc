@@ -67,6 +67,7 @@ DISABLE_AUTO_TITLE="true"
 plugins=(
   dotenv
   git
+  virtualenv
   vi-mode
 )
 
@@ -100,6 +101,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias cat='bat'
 
 function zle-line-init zle-keymap-select {
     zle reset-prompt

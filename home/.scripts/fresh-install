@@ -50,3 +50,7 @@ sudo apt install apt-transport-https azure-cli
 # jupyter
 sudo apt install libkrb5-dev
 sudo pip3 install jupyter
+
+# bat
+wget https://github.com/sharkdp/bat/releases/download/v0.6.0/bat_0.6.0_amd64.deb
+sudo dpkg -i bat_0.6.0_amd64.deb
