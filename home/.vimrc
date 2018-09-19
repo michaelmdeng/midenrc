@@ -172,6 +172,10 @@ nnoremap <C-w>- :res -5<CR>
 nnoremap <C-w>> :vert res +5<CR>
 nnoremap <C-w>< :vert res -5<CR>
 
+" insert/normal cursor
+:autocmd InsertEnter * set cul
+:autocmd InsertLeave * set nocul
+
 cnoremap <C-d> <Delete>
 " NERDTree specific config
 let NERDTreeQuitOnOpen = 1
