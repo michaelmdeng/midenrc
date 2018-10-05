@@ -32,4 +32,4 @@ windows:
       layout: main-vertical
       panes:
         - nvim .
-        - 
+        - python ~/.dropbox/dropbox.py start; python ~/.dropbox/dropbox.py status
