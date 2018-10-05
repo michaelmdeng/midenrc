@@ -18,6 +18,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'ktvoelker/sbt-vim'
 Plug 'mhartington/oceanic-next'
 Plug 'myusuf3/numbers.vim'
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -185,7 +186,7 @@ let NERDTreeShowHidden = 1
 let NERDTreeShowLineNumbers = 1
 
 " vimwiki specific config
-let g:vimwiki_list = [{'path':'~/Dropbox/Personal/vimwiki/wiki', 'path_html':'~/Dropbox/Personal/vimwiki/html/'}]
+let g:vimwiki_list = [{'path':'~/Dropbox/Personal/vimwiki/wiki', 'path_html':'~/Dropbox/Personal/vimwiki/html/', 'syntax': 'markdown', 'ext': '.md'}]
 
 " syntastic config
 let g:syntastic_always_populate_loc_list = 1
