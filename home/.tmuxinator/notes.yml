@@ -1,6 +1,6 @@
 # ~/.tmuxinator/wiki-dev.yml
 
-name: wiki-dev
+name: notes
 root: ~/Dropbox/Personal/vimwiki
 
 # Optional tmux socket

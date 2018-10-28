@@ -52,8 +52,8 @@ windows:
   - dev-cluster:
       layout: main-vertical
       panes:
-        - ssh miden@devcluster4-ssh.azurehdinsight.net -t "cd ~/Documents/AristoSpark ; /bin/bash"
-        - ssh miden@devcluster4-ssh.azurehdinsight.net -t "cd /var/log/sparkapp/miden ; /bin/bash"
+        - ssh miden@aristosparkdev23-ssh.azurehdinsight.net -t "cd ~/Documents/AristoSpark; zsh"
+        - ssh miden@aristosparkdev23-ssh.azurehdinsight.net -t "cd /var/log/sparkapp/miden; zsh"
   - prod-cluster:
       layout: main-vertical
       panes:

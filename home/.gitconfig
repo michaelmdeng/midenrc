@@ -10,6 +10,7 @@
 	co = checkout
 	st = status
 	ci = commit
+	cia = commit -a
 	br = branch
 	rb = rebase
 	lo = log
