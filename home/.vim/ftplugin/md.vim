@@ -9,3 +9,5 @@ setlocal spell
 setlocal wrap
 setlocal linebreak
 setlocal formatoptions+=bl
+set conceallevel=0
+let g:indentLine_enabled=0
