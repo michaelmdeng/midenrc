@@ -47,7 +47,7 @@ windows:
       layout: main-vertical
       panes:
         - nvim .
-        - source .env && export ADLS_ROOT_URL && export ADLS_CLIENT_ID && export ADLS_CLIENT_SECRET && export ADLS_DOMAIN_NAME && export SERVICE_PRINCIPAL_ENDPOINT && sbt
+        - export ENV_NAME=localenv && export ENV_PROPERTIES_PATH=./tmp/env_properties.json && sbt
         -
   - dev-cluster:
       layout: main-vertical
