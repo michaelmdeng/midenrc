@@ -178,6 +178,8 @@ nnoremap <C-w>< :vert res -5<CR>
 :autocmd InsertEnter * set cul
 :autocmd InsertLeave * set nocul
 
+set listchars=eol:$,tab:->,trail:~,extends:>,precedes:<,space:␣
+
 cnoremap <C-d> <Delete>
 " NERDTree specific config
 let NERDTreeQuitOnOpen = 1
