@@ -1,0 +1,53 @@
+# snippet package "package header" b
+# package ${0:namespace}
+# endsnippet
+
+# CLASS DEFINITIONS
+
+snippet class "class definition" b
+${1:case }class ${2:ClassName}${3:(args)}${4: extends }${5: with } \{
+\}
+endsnippet
+
+snippet object "object definition" b
+${1:case }object ${2:ObjectName}${3:(args)}${4: extends }${5: with } \{
+\}
+endsnippet
+
+snippet trait "trait definition" b
+trait ${1:TraitName}${2: extends }${5: with } \{
+\}
+endsnippet
+
+
+# CONDITIONALS
+snippet ife "if else" b
+if (${1:conditional}) {
+} else {
+}
+endsnippet
+
+snippet elif "else if" b
+} else if (${1:conditional}) {
+endsnippet
+
+snippet match "pattern match"
+${1:${VISUAL}}match \{
+  case ${2} => ${3}
+\}
+endsnippet
+
+snippet fory "for yield" b
+for {
+  ${1:item} <- ${2:obj}
+} yield {
+}
+endsnippet
+
+
+# FUNCTIONS AND METHODS
+
+snippet main "main method" b
+def main(args: Array[String]): Unit = \{
+\}
+endsnippet
