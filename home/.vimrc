@@ -17,10 +17,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ktvoelker/sbt-vim'
+Plug 'lervag/vimtex'
 Plug 'mhartington/oceanic-next'
 Plug 'myusuf3/numbers.vim'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
@@ -272,6 +274,13 @@ let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
 
 " supertab
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
+" ultisnips
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/ultisnips']
+let g:UltiSnipsEditSplit='context'
+let g:UltiSnipsEnableSnipMate=0
+let g:UltiSnipsJumpBackwardTrigger='<c-p>'
+let g:UltiSnipsJumpForwardTrigger='<c-n>'
 
 function ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
