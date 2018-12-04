@@ -25,12 +25,12 @@ Plug 'roxma/vim-tmux-clipboard'
 Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'vimwiki/vimwiki'
@@ -138,11 +138,9 @@ endtry
 nmap <leader>o o<Esc>
 nmap <leader>O O<Esc>
 nmap <leader><CR> o<Esc>
-
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
-
 " Insert mode shortcut
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
@@ -169,20 +167,17 @@ nnoremap dL d$
 " Y to line ends
 nnoremap yH y^
 nnoremap yL y$
-
 " window resize shortcuts
 nnoremap <C-w>+ :res +5<CR>
 nnoremap <C-w>- :res -5<CR>
 nnoremap <C-w>> :vert res +5<CR>
 nnoremap <C-w>< :vert res -5<CR>
-
 " insert/normal cursor
 :autocmd InsertEnter * set cul
 :autocmd InsertLeave * set nocul
 
 set listchars=eol:$,tab:->,trail:~,extends:>,precedes:<,space:␣
 
-cnoremap <C-d> <Delete>
 " NERDTree specific config
 let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
@@ -237,9 +232,15 @@ augroup end
 
 let g:vim_json_syntax_conceal = 0
 
-" airline
-let g:airline#extensions#hunks#enabled=0
-let g:airline_section_z = '%#__accent_bold#%{g:airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__# :%3v'
+" lightline
+let g:lightline = {
+    \ 'colorscheme': 'seoul256',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ] },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head' }
+    \ }
 
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)

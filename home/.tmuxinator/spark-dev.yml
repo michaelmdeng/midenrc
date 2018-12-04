@@ -52,10 +52,10 @@ windows:
   - dev-cluster:
       layout: main-vertical
       panes:
-        - ssh miden@aristosparkdev23-ssh.azurehdinsight.net -t "cd ~/Documents/AristoSpark; zsh"
-        - ssh miden@aristosparkdev23-ssh.azurehdinsight.net -t "cd /var/log/sparkapp/miden; zsh"
+        - ssh miden@aristosparkdev23-ssh.azurehdinsight.net -t "cd ~/Documents/AristoSpark; export ENV_PROPERTIES_PATH=/var/props/env_properties.json; zsh"
+        - ssh miden@aristosparkdev23-ssh.azurehdinsight.net -t "cd /var/log/sparkapp/miden; export ENV_PROPERTIES_PATH=/var/props/env_properties.json; zsh"
   - prod-cluster:
       layout: main-vertical
       panes:
-        - ssh sshuser@aristospark-ssh.azurehdinsight.net -t "/bin/bash"
-        - ssh sshuser@aristospark-ssh.azurehdinsight.net -t "cd /var/log/sparkapp/; /bin/bash"
+        - ssh aristo@aristosparkprod23-ssh.azurehdinsight.net -t "cd ~/Documents/AristoSpark; zsh"
+        - ssh aristo@aristosparkprod23-ssh.azurehdinsight.net -t "cd /var/log/sparkapp/miden; zsh"
