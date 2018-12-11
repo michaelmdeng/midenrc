@@ -27,6 +27,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
@@ -49,6 +50,9 @@ call plug#end()
 set nocompatible
 
 " colorscheme
+if !has('gui_running')
+  set t_Co=256
+endif
 if (has("termguicolors"))
   set termguicolors
 endif

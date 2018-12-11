@@ -132,3 +132,5 @@ source /usr/local/bin/virtualenvwrapper.sh
 [ -f "/home/miden/Documents/AristoDevEnv/spark-config.sh" ] && source "/home/miden/Documents/AristoDevEnv/spark-config.sh"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
