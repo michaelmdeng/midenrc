@@ -82,17 +82,12 @@ set autoread
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 nmap <C-s> :w<cr>
-nmap <leader>w :w<cr>
-nmap <leader>W :W<cr>
 
 set wildmenu
 set wildmode=longest,list
 set wildignore+=*swp,*.class,*.pyc,*.png,*.jpg,*.gif,*.zip
 set wildignore+=*/tmp/*,*.o,*.obj,*.so     " Unix
 set wildignore+=*\\tmp\\*,*.exe            " Windows
-
-" Height of the command bar
-set cmdheight=2
 
 " Ignore case when searching
 " When searching try to be smart about cases
@@ -182,10 +177,18 @@ nnoremap <C-w>< :vert res -5<CR>
 
 set listchars=eol:$,tab:->,trail:~,extends:>,precedes:<,space:␣
 
+" ctags stuff
+set tags=./tags;,tags;
+map <leader><leader>* :!ctags -R -f ./.git/tags .<cr><cr>
+
+set showcmd
+
 " NERDTree specific config
-let NERDTreeQuitOnOpen = 1
-let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDTreeHighlightCursorline = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeMouseMode = 2
+let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden = 1
 let NERDTreeShowLineNumbers = 1
 
@@ -257,6 +260,7 @@ let g:scala_user_default_keymappings=0
 " fzf
 nmap <C-p> :GFiles<cr>
 nmap <C-f> :Rg<cr>
+nmap <leader>* :Tags<cr>
 let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
 \ 'ctrl-s': 'split',

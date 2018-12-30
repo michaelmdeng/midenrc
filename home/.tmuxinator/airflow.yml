@@ -55,10 +55,10 @@ windows:
   - dev-cluster:
       layout: main-vertical
       panes:
-        - ssh sshuser@aristosparkdev23-ssh.azurehdinsight.net -t "cd ~/Documents/AristoAirflow; zsh"
         - ssh sshuser@aristosparkdev23-ssh.azurehdinsight.net -t "cd $AIRFLOW_HOME; zsh"
+        - ssh -L 8081:localhost:8081 sshuser@aristosparkdev23-ssh.azurehdinsight.net -N
   - prod-cluster:
       layout: main-vertical
       panes:
         - ssh aristo@aristosparkprod23-ssh.azurehdinsight.net -t "exec /bin/bash"
-        - ssh aristo@aristosparkprod23-ssh.azurehdinsight.net -t "exec /bin/bash"
+        - ssh -L 8081:localhost:8081 sshuser@aristosparkprod23-ssh.azurehdinsight.net -N

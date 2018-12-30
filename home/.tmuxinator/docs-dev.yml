@@ -32,7 +32,7 @@ windows:
       layout: main-vertical
       panes:
         - nvim .
-        - 
+        -
   - serve:
       layout: main:vertical
       panes:
