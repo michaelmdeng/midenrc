@@ -65,10 +65,18 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  autopep8
+  bgnotify
   dotenv
+  fzf
   git
-  virtualenv
+  safe-paste
+  sbt
+  scala
+  themes
   vi-mode
+  virtualenv
+  virtualenvwrapper
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -101,6 +109,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# safer fileops
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
 
 alias cat='bat'
 alias grep='rg'

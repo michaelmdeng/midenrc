@@ -118,6 +118,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# safer fileops
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
 export EDITOR='nvim'
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
