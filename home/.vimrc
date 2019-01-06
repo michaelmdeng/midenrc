@@ -18,6 +18,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ktvoelker/sbt-vim'
 Plug 'lervag/vimtex'
+Plug 'majutsushi/tagbar'
 Plug 'mhartington/oceanic-next'
 Plug 'myusuf3/numbers.vim'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
@@ -193,7 +194,16 @@ let NERDTreeShowHidden = 1
 let NERDTreeShowLineNumbers = 1
 
 " vimwiki specific config
-let g:vimwiki_list = [{'path':'~/Dropbox/Personal/vimwiki/wiki', 'path_html':'~/Dropbox/Personal/vimwiki/html/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{
+\ 'path':'~/Dropbox/Personal/vimwiki/wiki',
+\ 'path_html':'~/Dropbox/Personal/vimwiki/html/',
+\ 'syntax': 'markdown',
+\ 'ext': '.md',
+\ 'auto_tags': 1,
+\ 'auto_toc': 1
+\ }]
+let g:vimwiki_hl_cb_checked=1
+let g:vimwiki_conceallevel=0
 
 " syntastic config
 let g:syntastic_always_populate_loc_list = 1
@@ -219,11 +229,10 @@ nmap <leader>sh :GitGutterStageHunk<CR>
 nmap <leader>uh :GitGutterUndoHunk<CR>
 
 " incsearch
+let g:incsearch#auto_nohlsearch = 1
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-set hlsearch
-let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
 map *  <Plug>(incsearch-nohl-*)
@@ -259,6 +268,7 @@ let g:scala_user_default_keymappings=0
 
 " fzf
 nmap <C-p> :GFiles<cr>
+nmap <leader>p :Files<cr>
 nmap <C-f> :Rg<cr>
 nmap <leader>* :Tags<cr>
 let g:fzf_action = {
