@@ -80,7 +80,7 @@ set autoread
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
+command! W w !sudo tee % > /dev/null
 nmap <C-s> :w<cr>
 
 set wildmenu
@@ -291,7 +291,7 @@ let g:UltiSnipsEnableSnipMate=0
 let g:UltiSnipsJumpBackwardTrigger='<c-p>'
 let g:UltiSnipsJumpForwardTrigger='<c-n>'
 
-function ShowSpaces(...)
+function! ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
   let oldhlsearch=&hlsearch
   if !a:0
@@ -302,11 +302,11 @@ function ShowSpaces(...)
   return oldhlsearch
 endfunction
 
-function TrimSpaces() range
+function! TrimSpaces() range
   let oldhlsearch=ShowSpaces(1)
   execute a:firstline.",".a:lastline."substitute ///gec"
   let &hlsearch=oldhlsearch
 endfunction
 
-command -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
-command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
+command! -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
+command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
