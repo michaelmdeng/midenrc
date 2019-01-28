@@ -123,6 +123,12 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
+mkcdir ()
+{
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
+}
+
 export EDITOR='nvim'
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"

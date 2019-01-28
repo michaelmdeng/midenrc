@@ -151,6 +151,12 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+mkcdir ()
+{
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
+}
+
 export EDITOR='nvim'
 
 source ~/.bin/tmuxinator.zsh
