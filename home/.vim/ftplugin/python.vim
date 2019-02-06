@@ -4,8 +4,10 @@ setlocal shiftwidth=4
 setlocal expandtab
 setlocal autoindent
 setlocal smarttab
-setlocal textwidth=89
-setlocal colorcolumn=90
+setlocal textwidth=80
+setlocal colorcolumn=81
 setlocal formatoptions=croql
+setlocal foldmethod=indent
+setlocal foldlevel=99
 let python_highlight_all=1
 syntax on

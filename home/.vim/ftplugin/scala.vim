@@ -6,6 +6,8 @@ setlocal smarttab
 setlocal textwidth=80
 setlocal colorcolumn=81
 setlocal formatoptions=croql
+setlocal foldmethod=syntax
+setlocal foldlevel=99
 syntax on
 
 nnoremap <leader>t :EnType<CR>

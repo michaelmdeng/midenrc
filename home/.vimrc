@@ -2,16 +2,19 @@
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'ajmwagar/vim-deus'
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'SirVer/ultisnips'
+Plug 'Yggdroot/indentLine'
 Plug 'altercation/vim-colors-solarized'
 Plug 'chrisbra/csv.vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'derekwyatt/vim-scala'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
 Plug 'ensime/ensime-vim'
 Plug 'ervandew/supertab'
 Plug 'haya14busa/incsearch.vim'
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -23,10 +26,8 @@ Plug 'mhartington/oceanic-next'
 Plug 'myusuf3/numbers.vim'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'roxma/vim-tmux-clipboard'
-Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
@@ -36,7 +37,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'vimwiki/vimwiki'
-Plug 'Yggdroot/indentLine'
+Plug 'zchee/deoplete-jedi'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -208,8 +209,9 @@ let g:vimwiki_conceallevel=0
 " syntastic config
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers=['pylint', 'python', 'pep8']
+let g:syntastic_scala_checkers=['ensime']
 
 " Editorconfig config
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
@@ -263,7 +265,9 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " vim-scala
+let g:scala_scaladoc_indent = 1
 let g:scala_sort_across_groups=1
+let g:scala_use_default_keymappings = 0
 let g:scala_user_default_keymappings=0
 
 " fzf
@@ -272,17 +276,17 @@ nmap <leader>p :Files<cr>
 nmap <C-f> :Rg<cr>
 nmap <leader>* :Tags<cr>
 let g:fzf_action = {
-\ 'ctrl-t': 'tab split',
-\ 'ctrl-s': 'split',
-\ 'ctrl-v': 'vsplit' }
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-s': 'split',
+    \ 'ctrl-v': 'vsplit' }
 let g:fzf_layout = { 'down': '~20%' }
 " add command for ripgrep
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:20%:hidden', '?'),
-  \   <bang>0)
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+    \   <bang>0 ? fzf#vim#with_preview('up:60%')
+    \           : fzf#vim#with_preview('right:20%:hidden', '?'),
+    \   <bang>0)
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
