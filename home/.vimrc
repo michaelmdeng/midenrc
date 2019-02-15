@@ -24,6 +24,7 @@ Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
 Plug 'mhartington/oceanic-next'
 Plug 'myusuf3/numbers.vim'
+Plug 'neomake/neomake'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
@@ -35,7 +36,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/indentpython.vim'
-Plug 'vim-syntastic/syntastic'
 Plug 'vimwiki/vimwiki'
 Plug 'zchee/deoplete-jedi'
 
@@ -119,6 +119,9 @@ set splitbelow
 set number
 set relativenumber
 
+" update quickly
+set updatetime=1000
+
 " get <C-j> to work
 let g:BASH_Ctrl_j = 'off'
 " nnoremap <C-j> <C-w>j
@@ -176,6 +179,9 @@ nnoremap <C-w>< :vert res -5<CR>
 " insert/normal cursor
 :autocmd InsertEnter * set cul
 :autocmd InsertLeave * set nocul
+" maintain folds
+autocmd InsertLeave,WinEnter * let &l:foldmethod=g:oldfoldmethod
+autocmd InsertEnter,WinLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
 
 set listchars=eol:$,tab:->,trail:~,extends:>,precedes:<,space:␣
 
@@ -195,6 +201,7 @@ let NERDTreeShowHidden = 1
 let NERDTreeShowLineNumbers = 1
 
 " vimwiki specific config
+au FileType vimwiki set filetype=vimwiki.markdown
 let g:vimwiki_list = [{
 \ 'path':'~/Dropbox/Personal/vimwiki/wiki',
 \ 'path_html':'~/Dropbox/Personal/vimwiki/html/',
@@ -205,6 +212,7 @@ let g:vimwiki_list = [{
 \ }]
 let g:vimwiki_hl_cb_checked=1
 let g:vimwiki_conceallevel=0
+let g:vimwiki_folding='expr:quick'
 
 " syntastic config
 let g:syntastic_always_populate_loc_list = 1
@@ -304,6 +312,14 @@ let g:UltiSnipsEditSplit='context'
 let g:UltiSnipsEnableSnipMate=0
 let g:UltiSnipsJumpBackwardTrigger='<c-p>'
 let g:UltiSnipsJumpForwardTrigger='<c-n>'
+
+" neomake
+call neomake#configure#automake('w')
+let g:neomake_open_list = 2
+let g:neomake_python_enabled_makers=['pylint']
+
+" vim-markdown
+let g:vim_markdown_conceal = 0
 
 function! ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'

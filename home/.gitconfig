@@ -30,7 +30,9 @@
 [push]
 	default = simple
 [merge]
-	tool = vimdiff
+	tool = nvim
 	conflictstyle = diff3
-[mergetool]
+[mergetool "nvim"]
+	cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+	tool = nvim
 	prompt = false

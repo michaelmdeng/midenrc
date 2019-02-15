@@ -1,7 +1,7 @@
-# ~/.tmuxinator/spark-dev.yml
+# /Users/michaeldeng/.tmuxinator/aristo-sis.yml
 
-name: spark-dev
-root: ~/Documents/AristoSpark
+name: aristo-sis
+root: ~/Documents/aristo-sis
 
 # Optional tmux socket
 # socket_name: foo
@@ -40,22 +40,14 @@ root: ~/Documents/AristoSpark
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t spark-dev
+# post: tmux -CC attach -t aristo-sis
 
 windows:
   - editor:
       layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
       panes:
         - nvim .
-        - export ENV_NAME=localenv && export ENV_PROPERTIES_PATH=./tmp/env_properties.json && sbt
         -
-  - dev-cluster:
-      layout: main-vertical
-      panes:
-        - ssh miden@aristosparkdev23v2-ssh.azurehdinsight.net -t "cd ~/Documents/AristoSpark; export ENV_PROPERTIES_PATH=/var/props/env_properties.json; zsh"
-        - ssh miden@aristosparkdev23v2-ssh.azurehdinsight.net -t "cd /var/log/sparkapp/miden; export ENV_PROPERTIES_PATH=/var/props/env_properties.json; zsh"
-  - prod-cluster:
-      layout: main-vertical
-      panes:
-        - ssh aristo@aristosparkprod23-ssh.azurehdinsight.net -t "cd ~/Documents/AristoSpark; zsh"
-        - ssh aristo@aristosparkprod23-ssh.azurehdinsight.net -t "cd /var/log/sparkapp/miden; zsh"

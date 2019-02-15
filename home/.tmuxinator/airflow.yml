@@ -49,14 +49,14 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - nvim .
+        - cd dags && workon airflow && nvim .
         - workon airflow && airflow webserver
         - workon airflow
   - dev-cluster:
       layout: main-vertical
       panes:
         - ssh sshuser@aristosparkdev23-ssh.azurehdinsight.net -t "cd $AIRFLOW_HOME; zsh"
-        - ssh -L 8081:localhost:8081 sshuser@aristosparkdev23-ssh.azurehdinsight.net -N
+        - ssh -L 8081:localhost:8081 sshuser@aristosparkdev23v2-ssh.azurehdinsight.net -N
   - prod-cluster:
       layout: main-vertical
       panes:

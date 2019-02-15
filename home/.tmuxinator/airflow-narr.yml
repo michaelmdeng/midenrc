@@ -1,7 +1,7 @@
-# ~/.tmuxinator/spark-dev.yml
+# /Users/michaeldeng/.config/tmuxinator/airflow.yml
 
-name: spark-dev
-root: ~/Documents/AristoSpark
+name: airflow
+root: ~/Documents/AristoAirflow
 
 # Optional tmux socket
 # socket_name: foo
@@ -40,22 +40,25 @@ root: ~/Documents/AristoSpark
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t spark-dev
+# post: tmux -CC attach -t airflow
 
 windows:
   - editor:
       layout: main-vertical
       panes:
-        - nvim .
-        - export ENV_NAME=localenv && export ENV_PROPERTIES_PATH=./tmp/env_properties.json && sbt
-        -
+        - cd dags && workon airflow && nvim .
+  - server:
+      layout: main-vertical
+      panes:
+        - workon airflow && airflow webserver
+        - workon airflow
   - dev-cluster:
       layout: main-vertical
       panes:
-        - ssh miden@aristosparkdev23v2-ssh.azurehdinsight.net -t "cd ~/Documents/AristoSpark; export ENV_PROPERTIES_PATH=/var/props/env_properties.json; zsh"
-        - ssh miden@aristosparkdev23v2-ssh.azurehdinsight.net -t "cd /var/log/sparkapp/miden; export ENV_PROPERTIES_PATH=/var/props/env_properties.json; zsh"
+        - ssh sshuser@aristosparkdev23-ssh.azurehdinsight.net -t "cd $AIRFLOW_HOME; zsh"
+        - ssh -L 8081:localhost:8081 sshuser@aristosparkdev23v2-ssh.azurehdinsight.net -N
   - prod-cluster:
       layout: main-vertical
       panes:
-        - ssh aristo@aristosparkprod23-ssh.azurehdinsight.net -t "cd ~/Documents/AristoSpark; zsh"
-        - ssh aristo@aristosparkprod23-ssh.azurehdinsight.net -t "cd /var/log/sparkapp/miden; zsh"
+        - ssh aristo@aristosparkprod23-ssh.azurehdinsight.net -t "exec /bin/bash"
+        - ssh -L 8081:localhost:8081 sshuser@aristosparkprod23-ssh.azurehdinsight.net -N
