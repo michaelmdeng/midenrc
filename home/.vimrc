@@ -84,6 +84,7 @@ set autoread
 " (useful for handling the permission-denied error)
 command! W w !sudo tee % > /dev/null
 nmap <C-s> :w<cr>
+nmap <C-a> ggvG$
 
 set wildmenu
 set wildmode=longest,list
