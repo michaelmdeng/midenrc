@@ -322,6 +322,9 @@ let g:neomake_python_enabled_makers=['pylint']
 " vim-markdown
 let g:vim_markdown_conceal = 0
 
+nmap <leader>pf :set nonu nornu <bar> GitGutterSignsDisable <bar> IndentLinesDisable<CR>
+nmap <leader>fp :set nu rnu <bar> GitGutterSignsEnable <bar> IndentLinesEnable<CR>
+
 function! ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
   let oldhlsearch=&hlsearch

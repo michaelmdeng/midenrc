@@ -49,7 +49,7 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - cd dags && workon airflow && nvim .
+        - cd dags && nvim .
         - workon airflow && airflow webserver
         - workon airflow
   - dev-cluster:
