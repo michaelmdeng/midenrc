@@ -15,7 +15,40 @@
                 },
                 "rules": [
                     {
-                        "description": "Caps lock to ctrl in Terminal",
+                        "description": "Cmd to Ctl in Terminal",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.googlecode\\.iterm2$",
+                                            "^co\\.zeit\\.hyperterm$",
+                                            "^co\\.zeit\\.hyper$",
+                                            "^io\\.alacritty$",
+                                            "^net\\.kovidgoyal\\.kitty$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_command",
+                                    "modifiers": {
+                                        "optional": []
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": []
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Caps to Ctl in Terminal",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -34,14 +67,13 @@
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
+                                        "optional": []
                                     }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_control"
+                                        "key_code": "left_control",
+                                        "modifiers": []
                                     }
                                 ],
                                 "type": "basic"

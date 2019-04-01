@@ -110,6 +110,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# bash completions
+autoload -U +X bashcompinit && bashcompinit
+
 # FZF stuff
 # fzf into history
 fh() {

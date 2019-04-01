@@ -85,6 +85,8 @@ set autoread
 command! W w !sudo tee % > /dev/null
 nmap <C-s> :w<cr>
 nmap <C-a> ggvG$
+nmap <leader>w :w<cr>
+nmap <leader>a ggvG$
 
 set wildmenu
 set wildmode=longest,list
