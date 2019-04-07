@@ -206,8 +206,8 @@ let NERDTreeShowLineNumbers = 1
 " vimwiki specific config
 au FileType vimwiki set filetype=vimwiki.markdown
 let g:vimwiki_list = [{
-\ 'path':'~/Dropbox/Personal/vimwiki/wiki',
-\ 'path_html':'~/Dropbox/Personal/vimwiki/html/',
+\ 'path':'~/Dropbox/vimwiki/wiki',
+\ 'path_html':'~/Dropbox/vimwiki/html/',
 \ 'syntax': 'markdown',
 \ 'ext': '.md',
 \ 'auto_tags': 1,
