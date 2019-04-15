@@ -125,6 +125,11 @@ fcd() {
   dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
 }
 
+# fzf file content
+ff() {
+  grep --color=never -r "" * | fzf
+}
+
 # fkill - kill processes - list only the ones you can kill. Modified the earlier script.
 fkill() {
     local pid
