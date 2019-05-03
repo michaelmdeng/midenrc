@@ -11,8 +11,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
-Plug 'ensime/ensime-vim'
-Plug 'ervandew/supertab'
 Plug 'haya14busa/incsearch.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -24,6 +22,7 @@ Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
 Plug 'mhartington/oceanic-next'
 Plug 'myusuf3/numbers.vim'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'neomake/neomake'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'roxma/vim-tmux-clipboard'
@@ -362,6 +361,20 @@ let g:vim_markdown_conceal = 0
 
 nmap <leader>pf :set nonu nornu <bar> GitGutterSignsDisable <bar> IndentLinesDisable<CR>
 nmap <leader>fp :set nu rnu <bar> GitGutterSignsEnable <bar> IndentLinesEnable<CR>
+
+" CoC settings
+
+nmap <C-r>r <Plug>(coc-rename)
+nmap <leader>t :call CocAction('doHover')<CR>
+nmap <leader>df <Plug>(coc-definition)
+nmap <leader>rs <Plug>(coc-references)
+nmap <leader>oo :<C-u>CocList outline<cr>
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" personal plugin
 
 function! ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'

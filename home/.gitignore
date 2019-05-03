@@ -1,2 +1,4 @@
 .ensime*
 tags
+.metals/
+.bloop/
