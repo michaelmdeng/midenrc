@@ -55,10 +55,13 @@ set nocompatible
 if !has('gui_running')
   set t_Co=256
 endif
+
 if (has("termguicolors"))
   set termguicolors
 endif
+
 set background=dark
+
 colorscheme OceanicNext
 
 " Enable filetype plugins
@@ -123,7 +126,7 @@ set number
 set relativenumber
 
 " update quickly
-set updatetime=1000
+set updatetime=500
 
 " get <C-j> to work
 let g:BASH_Ctrl_j = 'off'
@@ -192,7 +195,21 @@ set listchars=eol:$,tab:->,trail:~,extends:>,precedes:<,space:␣
 set tags=./tags;,tags;
 map <leader><leader>* :!ctags -R -f ./.git/tags .<cr><cr>
 
-set showcmd
+" always show SignColumn
+set signcolumn=yes
+
+" more cmd
+set cmdheight=2
+
+" customize completion menu
+set completeopt="menu,noinsert,noselect"
+
+set shortmess+=c
+
+" we have a statusline
+set noshowmode
+
+set timeoutlen=300
 
 " NERDTree specific config
 let NERDTreeDirArrows = 1
@@ -221,8 +238,8 @@ let g:vimwiki_folding='expr:quick'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers=['pylint', 'python', 'pep8']
-let g:syntastic_scala_checkers=['ensime']
+let g:syntastic_python_checkers = ['pylint', 'python', 'pep8']
+let g:syntastic_scala_checkers = ['ensime']
 
 " Editorconfig config
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
@@ -263,13 +280,31 @@ let g:vim_json_syntax_conceal = 0
 
 " lightline
 let g:lightline = {
-    \ 'colorscheme': 'seoul256',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ] },
-    \ 'component_function': {
-    \   'gitbranch': 'fugitive#head' }
-    \ }
+\ 'colorscheme': 'seoul256',
+\ 'active': {
+\   'left': [
+\     ['mode', 'paste', 'spell'],
+\     ['readonly', 'modified', 'gitbranch'],
+\     ['relativepath']
+\   ],
+\   'right': [
+\     ['lineinfo'],
+\     [ 'fileformat', 'fileencoding', 'filetype']
+\   ]
+\ },
+\ 'component_function': {
+\   'gitbranch': 'LightGitbranch',
+\   'fileformat': 'LightFileformat',
+\   'filetype': 'LightFiletype' }
+\ }
+
+function! LightGitbranch()
+  return winwidth(0) > 100 ? fugitive#head() : ''
+endfunction
+
+function! LightFiletype()
+  return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
 
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
@@ -286,40 +321,41 @@ nmap <C-p> :GFiles<cr>
 nmap <leader>p :Files<cr>
 nmap <C-f> :Rg<cr>
 nmap <leader>* :Tags<cr>
+
 let g:fzf_action = {
-    \ 'ctrl-t': 'tab split',
-    \ 'ctrl-s': 'split',
-    \ 'ctrl-v': 'vsplit' }
+\ 'ctrl-t': 'tab split',
+\ 'ctrl-s': 'split',
+\ 'ctrl-v': 'vsplit' 
+\ }
+
 let g:fzf_layout = { 'down': '~20%' }
+
 " add command for ripgrep
 command! -bang -nargs=* Rg
-    \ call fzf#vim#grep(
-    \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-    \   <bang>0 ? fzf#vim#with_preview('up:60%')
-    \           : fzf#vim#with_preview('right:20%:hidden', '?'),
-    \   <bang>0)
+\ call fzf#vim#grep(
+\   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+\   <bang>0 ? fzf#vim#with_preview('up:60%')
+\           : fzf#vim#with_preview('right:20%:hidden', '?'),
+\   <bang>0)
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources={}
-let g:deoplete#sources._=['buffer', 'member', 'tag', 'file', 'omni', 'ultisnips']
-let g:deoplete#omni#input_patterns={}
-let g:deoplete#omni#input_patterns.scala='[^. *\t]\.\w*'
-
-" supertab
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = ['buffer', 'member', 'tag', 'file', 'omni', 'ultisnips']
+let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns.scala = '[^. *\t]\.\w*'
 
 " ultisnips
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/ultisnips']
-let g:UltiSnipsEditSplit='context'
-let g:UltiSnipsEnableSnipMate=0
-let g:UltiSnipsJumpBackwardTrigger='<c-p>'
-let g:UltiSnipsJumpForwardTrigger='<c-n>'
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
+let g:UltiSnipsEditSplit = 'context'
+let g:UltiSnipsEnableSnipMate = 0
+let g:UltiSnipsJumpBackwardTrigger = '<c-p>'
+let g:UltiSnipsJumpForwardTrigger = '<c-n>'
 
 " neomake
 call neomake#configure#automake('w')
 let g:neomake_open_list = 2
-let g:neomake_python_enabled_makers=['pylint']
+let g:neomake_python_enabled_makers = ['pylint']
 
 " vim-markdown
 let g:vim_markdown_conceal = 0
