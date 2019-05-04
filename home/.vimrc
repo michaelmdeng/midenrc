@@ -21,6 +21,7 @@ Plug 'ktvoelker/sbt-vim'
 Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
 Plug 'mhartington/oceanic-next'
+Plug 'michaelmdeng/ensime-vim', { 'branch': 'miden/master' , 'do': ':UpdateRemotePlugins' }
 Plug 'myusuf3/numbers.vim'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'neomake/neomake'
