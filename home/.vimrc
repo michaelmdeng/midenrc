@@ -20,6 +20,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'ktvoelker/sbt-vim'
 Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
+Plug 'mbbill/undotree'
 Plug 'mhartington/oceanic-next'
 Plug 'michaelmdeng/ensime-vim', { 'branch': 'miden/master' , 'do': ':UpdateRemotePlugins' }
 Plug 'myusuf3/numbers.vim'
@@ -469,4 +470,4 @@ command! -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
 command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 
 command! -bar -nargs=0 VimrcEdit :vs ~/.vimrc
-command! -bar -nargs=0 VimrcReload :vs $MYVIMRC
+command! -bar -nargs=0 VimrcReload :so $MYVIMRC
