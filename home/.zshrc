@@ -115,6 +115,8 @@ fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 
 source "$HOME/.az.completion"
 
+. /usr/local/etc/profile.d/z.sh
+
 # FZF stuff
 # fzf into history
 fh() {
@@ -152,8 +154,13 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
-alias cat='bat'
-alias grep='rg'
+if type "bat" > /dev/null; then
+	alias cat='bat'
+fi
+
+if type "rg" > /dev/null; then
+	alias grep='rg'
+fi
 
 function zle-line-init zle-keymap-select {
     zle reset-prompt

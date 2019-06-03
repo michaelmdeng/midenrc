@@ -1,6 +1,6 @@
-# /Users/michaeldeng/.config/tmuxinator/airflow.yml
+# /Users/michaeldeng/.tmuxinator/aristoairflow.yml
 
-name: airflow
+name: aristoairflow
 root: ~/Documents/AristoAirflow
 
 # Optional tmux socket
@@ -13,7 +13,8 @@ root: ~/Documents/AristoAirflow
 # Runs on project start, always
 # on_project_start: command
 # Run on project start, the first time
-# on_project_first_start: command
+on_project_first_start:
+- tmuxinator start aristo
 # Run on project start, after the first time
 # on_project_restart: command
 # Run on project exit ( detaching from tmux session )
@@ -37,28 +38,20 @@ root: ~/Documents/AristoAirflow
 # startup_pane: 1
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
-# attach: false
+attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t airflow
+post:
+- tmux link-window -s aristo:devanalyticsairflow
+- tmux link-window -s aristo:prodanalyticsairflow
+- tmux a -taristoairflow:main
 
 windows:
-  - editor:
+  - main:
       layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
       panes:
-        - cd dags && nvim .
-        - workon airflow && airflow webserver
+        - nvim .
+        - webserver:
+          - workon airflow
+          - airflow webserver
         - workon airflow
-  - dev-cluster:
-      layout: main-vertical
-      panes:
-        - ssh sshuser@aristosparkdev23-ssh.azurehdinsight.net -t "cd $AIRFLOW_HOME; zsh"
-        - ssh -L 8081:localhost:8081 sshuser@aristosparkdev23v2-ssh.azurehdinsight.net -N
-  - prod-cluster:
-      layout: main-vertical
-      panes:
-        - ssh aristo@aristosparkprod23-ssh.azurehdinsight.net -t "exec /bin/bash"
-        - ssh -L 8081:localhost:8081 sshuser@aristosparkprod23-ssh.azurehdinsight.net -N

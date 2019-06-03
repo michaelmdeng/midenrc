@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ssh -p 22 -X aristo@52.250.106.89

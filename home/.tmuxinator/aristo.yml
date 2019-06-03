@@ -1,7 +1,7 @@
-# ~/.tmuxinator/spark-dev.yml
+# /Users/michaeldeng/.tmuxinator/aristo.yml
 
-name: spark-dev
-root: ~/Documents/AristoSpark
+name: aristo
+root: ~/Documents
 
 # Optional tmux socket
 # socket_name: foo
@@ -37,25 +37,38 @@ root: ~/Documents/AristoSpark
 # startup_pane: 1
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
-# attach: false
+attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t spark-dev
+# post: tmux -CC attach -t aristo
 
 windows:
-  - editor:
+  - devanalyticsspark:
       layout: main-vertical
       panes:
-        - nvim .
-        - export ENV_NAME=localenv && export ENV_PROPERTIES_PATH=./tmp/env_properties.json && sbt
+        - ssh sshuser@devanalyticsspark-ssh.azurehdinsight.net
         -
-  - dev-cluster:
+  - devanalyticsairflow:
+      layout: tiled
+      panes:
+        - DevAnalyticsAirflow
+          - ssh aristo@52.176.47.219
+          - tmux a -t miden
+        - ssh -L 8081:localhost:8081 aristo@52.176.47.219 -N
+        - ssh aristo@168.61.179.88
+        - ssh -L 8082:localhost:8081 aristo@168.61.179.88 -N
+  - prodanalyticsspark:
       layout: main-vertical
       panes:
-        - ssh miden@aristosparkdev23v2-ssh.azurehdinsight.net -t "cd ~/Documents/AristoSpark; export ENV_PROPERTIES_PATH=/var/props/env_properties.json; zsh"
-        - ssh miden@aristosparkdev23v2-ssh.azurehdinsight.net -t "cd /var/log/sparkapp/miden; export ENV_PROPERTIES_PATH=/var/props/env_properties.json; zsh"
-  - prod-cluster:
+        - ssh sshuser@prodanalyticsspark-ssh.azurehdinsight.net
+        -
+  - prodanalyticsairflow:
+      layout: tiled
+      panes:
+        - ssh aristo@192.168.121.4
+        - ssh -L 8091:localhost:8080 aristo@192.168.121.4 -N
+  - prodreporting:
       layout: main-vertical
       panes:
-        - ssh aristo@aristosparkprod23-ssh.azurehdinsight.net -t "cd ~/Documents/AristoSpark; zsh"
-        - ssh aristo@aristosparkprod23-ssh.azurehdinsight.net -t "cd /var/log/sparkapp/miden; zsh"
+        - ssh aristo@aristosparkreporting-ssh.azurehdinsight.net
+        -

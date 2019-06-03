@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ssh -X sshuser@AristoSpark-ssh.azurehdinsight.net

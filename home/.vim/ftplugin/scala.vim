@@ -10,6 +10,7 @@ setlocal foldmethod=indent
 setlocal foldlevel=99
 syntax on
 
+nmap <leader>si :SortScalaImports<CR>
 nmap <F5> :EnDebugContinue<CR>
 nmap <C-F5> :EnDebugContinue<CR>
 nmap <F9> :EnDebugSetBreak<CR>

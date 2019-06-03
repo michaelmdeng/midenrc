@@ -239,6 +239,9 @@ cnoremap <C-l> <Right>
 cnoremap <C-b> <BS>
 cnoremap <C-d> <Del>
 
+" Close list windows
+nmap <leader>cl :windo lcl<bar>ccl<CR>:windo lcl<bar>ccl<CR>
+
 " ---------
 " Autocmds
 " ---------
@@ -398,8 +401,8 @@ let g:neomake_python_enabled_makers = ['pylint']
 " vim-markdown
 let g:vim_markdown_conceal = 0
 
-nmap <leader>pf :set nonu nornu <bar> GitGutterSignsDisable <bar> IndentLinesDisable<CR>
-nmap <leader>fp :set nu rnu <bar> GitGutterSignsEnable <bar> IndentLinesEnable<CR>
+nmap <leader>pf :set nonu nornu scl=no <bar> GitGutterSignsDisable <bar> IndentLinesDisable<CR>
+nmap <leader>fp :set nu rnu scl=yes <bar> GitGutterSignsEnable <bar> IndentLinesEnable<CR>
 
 " CoC settings
 

@@ -4,6 +4,6 @@ resolvers ++= Seq(
 )
 
 addSbtPlugin("net.ceedubs" %% "sbt-ctags" % "0.3.0")
-addSbtPlugin("org.ensime" % "sbt-ensime" % "2.5.1")
+addSbtPlugin("org.ensime" % "sbt-ensime" % "2.6.1")
 addSbtPlugin("org.scalameta" % "sbt-metals" % "0.5.1")
 addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.2.5")
