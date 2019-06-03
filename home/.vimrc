@@ -194,6 +194,10 @@ nmap <leader>o o<Esc>
 nmap <leader>O O<Esc>
 nmap <leader><CR> o<Esc>
 
+" Move within visual lines
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+
 " Move to the start of line
 nnoremap H ^
 vnoremap H ^
@@ -241,6 +245,9 @@ cnoremap <C-d> <Del>
 
 " Close list windows
 nmap <leader>cl :windo lcl<bar>ccl<CR>:windo lcl<bar>ccl<CR>
+
+" GTFO Ex mode
+nnoremap Q <Nop>
 
 " ---------
 " Autocmds
@@ -460,3 +467,6 @@ endfunction
 
 command! -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
 command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
+
+command! -bar -nargs=0 VimrcEdit :vs ~/.vimrc
+command! -bar -nargs=0 VimrcReload :vs $MYVIMRC
