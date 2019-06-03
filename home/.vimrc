@@ -436,6 +436,13 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" Undotree
+let g:undotree_SplitWidth = 35
+let g:undotree_DiffpanelHeight = 15
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_RelativeTimestamp = 1
+let g:undotree_ShortIndicators = 1
+
 " -----------------
 " Custom Functions
 " -----------------
