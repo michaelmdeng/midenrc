@@ -19,3 +19,8 @@ nmap <F10> :EnDebugNext<CR>
 nmap <F11> :EnDebugStep<CR>
 nmap <leader><F11> :EnDebugStepOut<CR>
 nmap <leader>bs :EnDebugBacktrace<CR>
+
+nmap <leader>ap :ScAddPackage<CR>
+nmap <leader>ac :ScAddClass<CR>
+nmap <leader>at :ScAddTrait<CR>
+nmap <leader>ao :ScAddObject<CR>

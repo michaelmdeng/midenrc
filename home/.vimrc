@@ -23,6 +23,7 @@ Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
 Plug 'mhartington/oceanic-next'
 Plug 'michaelmdeng/ensime-vim', { 'branch': 'miden/master' , 'do': ':UpdateRemotePlugins' }
+Plug 'michaelmdeng/miden-vim'
 Plug 'myusuf3/numbers.vim'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'neomake/neomake'
