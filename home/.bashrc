@@ -118,30 +118,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# safer fileops
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
+# shared bashrc/zshrc commands
+source "$HOME/.sharedshrc"
 
-mkcdir ()
-{
-    mkdir -p -- "$1" &&
-      cd -P -- "$1"
-}
-
-export EDITOR='nvim'
-
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
-
-source ~/.bin/tmuxinator.bash
-
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Documents
-source /usr/local/bin/virtualenvwrapper.sh
-
-[ -f "/home/miden/Documents/AristoDevEnv/spark-config.sh" ] && source "/home/miden/Documents/AristoDevEnv/spark-config.sh"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+# bash completions
+[ -f "$HOME/.completion/tmuxinator.bash" ] && source "$HOME/.completion/tmuxinator.bash"
+[ -f "$HOME/.completion/.fzf.bash" ] && source "$HOME/.completion/.fzf.bash"
+[ -f "${HOME}/.completion/.iterm2_shell_integration.bash" ] && source "${HOME}/.completion/.iterm2_shell_integration.bash"

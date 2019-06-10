@@ -110,84 +110,18 @@ source $ZSH/oh-my-zsh.sh
 # bash completions
 autoload -U +X bashcompinit && bashcompinit
 
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+# shared bashrc/zshrc commands
+source "$HOME/.sharedshrc"
 
-source "$HOME/.az.completion"
+# zsh completions
+[ -f "$HOME/.completion/tmuxinator.zsh" ] && source "$HOME/.completion/tmuxinator.zsh"
+[ -f "$HOME/.completion/.fzf.zsh" ] && source "$HOME/.completion/.fzf.zsh"
+[ -f "${HOME}/.completion/.iterm2_shell_integration.zsh" ] && source "${HOME}/.completion/.iterm2_shell_integration.zsh"
 
-. /usr/local/etc/profile.d/z.sh
-
-# FZF stuff
-# fzf into history
-fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
-}
-
-# fzf cd into dir
-fcd() {
-  local dir
-  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
-}
-
-# fzf file content
-ff() {
-  grep --color=never -r "" * | fzf
-}
-
-# fkill - kill processes - list only the ones you can kill. Modified the earlier script.
-fkill() {
-    local pid
-    if [ "$UID" != "0" ]; then
-        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
-    else
-        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-    fi
-
-    if [ "x$pid" != "x" ]
-    then
-        echo $pid | xargs kill -${1:-9}
-    fi
-}
-
-# safer fileops
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
-
-if type "bat" > /dev/null; then
-	alias cat='bat'
-fi
-
-if type "rg" > /dev/null; then
-	alias grep='rg'
-fi
-
+# zsh functions
 function zle-line-init zle-keymap-select {
     zle reset-prompt
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-mkcdir ()
-{
-    mkdir -p -- "$1" &&
-      cd -P -- "$1"
-}
-
-export EDITOR='nvim'
-export TERM=xterm-256color
-
-source ~/.bin/tmuxinator.zsh
-
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Documents
-
-[ -f "/home/miden/Documents/AristoDevEnv/spark-config.sh" ] && source "/home/miden/Documents/AristoDevEnv/spark-config.sh"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-PATH="$HOME/um/bin:$PATH"
-
-source /usr/local/bin/virtualenvwrapper.sh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

@@ -1,0 +1,92 @@
+# --------
+# Aliases
+# --------
+
+# safer fileops
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
+# use better cmd-line tools if they are installed
+if type "bat" > /dev/null; then
+	alias cat='bat'
+fi
+
+if type "rg" > /dev/null; then
+	alias grep='rg'
+fi
+
+if type "python3" > /dev/null; then
+	alias python='python3'
+fi
+
+# ----------
+# Functions
+# ----------
+
+# Custom functions
+mkcdir ()
+{
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
+}
+
+# fzf functions
+# fzf into history
+fh() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
+# fzf cd into dir
+fcd() {
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+# fzf file content
+ff() {
+  grep --color=never -r "" * | fzf
+}
+
+# fkill - kill processes - list only the ones you can kill. Modified the earlier script.
+fkill() {
+    local pid
+    if [ "$UID" != "0" ]; then
+        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
+    else
+        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+    fi
+
+    if [ "x$pid" != "x" ]
+    then
+        echo $pid | xargs kill -${1:-9}
+    fi
+}
+
+# --------
+# Sources
+# --------
+
+if [ -f "$HOME/.scripts/z.sh" ]; then
+    . "$HOME/.scripts/z.sh"
+else
+    echo "warning: z.sh not found. Is it installed?"
+fi
+
+if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+else
+    echo "warning: virtualenvwrapper.sh not found. Is it installed?"
+fi
+
+if [ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ]; then
+    source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+    fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+else
+    echo "warning: homeshick.sh not found. Is it installed?"
+fi
+
+# ------------
+# Completions
+# ------------
+[ -f "$HOME/.completion/.az.completion" ] && source "$HOME/.completion/.az.completion"

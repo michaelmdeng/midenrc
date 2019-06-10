@@ -27,3 +27,9 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 PATH="$HOME/um/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export EDITOR='nvim'
+export PROJECT_HOME=$HOME/Documents
+export TERM=xterm-256color
+export WORKON_HOME=$HOME/.virtualenvs
