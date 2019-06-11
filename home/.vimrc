@@ -77,8 +77,8 @@ set nobackup
 set noswapfile
 
 " Comma leader
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = " "
+let g:mapleader = " "
 
 syntax enable
 
@@ -250,6 +250,9 @@ nmap <leader>cl :windo lcl<bar>ccl<CR>:windo lcl<bar>ccl<CR>
 
 " GTFO Ex mode
 nnoremap Q <Nop>
+
+nmap <leader>ve :VimrcEdit<cr>
+nmap <leader>vr :VimrcReload<cr>
 
 " ---------
 " Autocmds
