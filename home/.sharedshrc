@@ -20,6 +20,10 @@ if type "python3" > /dev/null; then
 	alias python='python3'
 fi
 
+if type "nvim" > /dev/null; then
+	alias vim='nvim'
+fi
+
 # ----------
 # Functions
 # ----------

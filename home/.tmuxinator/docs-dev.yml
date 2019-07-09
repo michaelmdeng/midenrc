@@ -34,7 +34,7 @@ windows:
         - nvim .
         -
   - serve:
-      layout: main:vertical
+      layout: main-vertical
       panes:
         - workon aristodocs && mkdocs serve
         - workon aristodocs && mkdocs serve -f mkdocs-internal.yml -a localhost:8001

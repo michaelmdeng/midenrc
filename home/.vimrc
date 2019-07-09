@@ -424,8 +424,6 @@ nmap <leader>df <Plug>(coc-definition)
 nmap <leader>rs <Plug>(coc-references)
 nmap <leader>oo :<C-u>CocList outline<cr>
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
