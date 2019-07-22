@@ -29,7 +29,6 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'neomake/neomake'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'roxma/vim-tmux-clipboard'
-Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -37,17 +36,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'vimwiki/vimwiki'
-" Plug 'zchee/deoplete-jedi'
 
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
 call plug#end()
 
 " ---------
@@ -270,15 +262,6 @@ autocmd InsertEnter,WinLeave * let g:oldfoldmethod=&l:foldmethod | setlocal fold
 " Plugin Config
 " --------------
 
-" NERDTree specific config
-let NERDTreeDirArrows = 1
-let NERDTreeHighlightCursorline = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeMouseMode = 2
-let NERDTreeQuitOnOpen = 1
-let NERDTreeShowHidden = 1
-let NERDTreeShowLineNumbers = 1
-
 " Vimwiki specific config
 au FileType vimwiki set filetype=vimwiki.markdown
 let g:vimwiki_list = [{
@@ -444,6 +427,11 @@ let g:undotree_DiffpanelHeight = 15
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_RelativeTimestamp = 1
 let g:undotree_ShortIndicators = 1
+
+" Netwr settings
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+
 
 " -----------------
 " Custom Functions
