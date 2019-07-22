@@ -1,10 +1,10 @@
 " VimPlug stuff
 call plug#begin('~/.vim/plugged')
-Plug 'airblade/vim-gitgutter'
-Plug 'ajmwagar/vim-deus'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'SirVer/ultisnips'
 Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
+Plug 'ajmwagar/vim-deus'
 Plug 'altercation/vim-colors-solarized'
 Plug 'chrisbra/csv.vim'
 Plug 'christoomey/vim-tmux-navigator'
@@ -17,7 +17,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'ktvoelker/sbt-vim'
 Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
@@ -39,7 +38,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'vimwiki/vimwiki'
-
 call plug#end()
 
 " ---------
