@@ -24,10 +24,11 @@ Plug 'mhartington/oceanic-next'
 Plug 'michaelmdeng/ensime-vim', { 'branch': 'miden/master' , 'do': ':UpdateRemotePlugins' }
 Plug 'michaelmdeng/miden-vim'
 Plug 'myusuf3/numbers.vim'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neomake/neomake'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'scrooloose/nerdtree'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -372,17 +373,11 @@ let g:fzf_action = {
 
 let g:fzf_layout = { 'down': '~20%' }
 
-" deoplete
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#sources = {}
-" let g:deoplete#sources._ = ['buffer', 'member', 'tag', 'file', 'omni', 'ultisnips']
-" let g:deoplete#omni#input_patterns = {}
-" let g:deoplete#omni#input_patterns.scala = '[^. *\t]\.\w*'
-
 " ultisnips
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
 let g:UltiSnipsEditSplit = 'context'
 let g:UltiSnipsEnableSnipMate = 0
+let g:UltiSnipsExpandTrigger="<m-q>"
 let g:UltiSnipsJumpBackwardTrigger = '<c-p>'
 let g:UltiSnipsJumpForwardTrigger = '<c-n>'
 
@@ -407,12 +402,18 @@ nmap <leader>oo :<C-u>CocList outline<cr>
 
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -430,6 +431,17 @@ let g:undotree_ShortIndicators = 1
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 
+" Nerdtree settings
+let NERDTreeDirArrows = 1
+let NERDTreeHighlightCursorline = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeMouseMode = 2
+let NERDTreeQuitOnOpen = 1
+let NERDTreeShowHidden = 1
+let NERDTreeShowLineNumbers = 1
+let NERDTreeMapOpenSplit='s'
+let NERDTreeMapOpenInVSplit='v'
+nnoremap gp :NERDTreeToggle<CR>
 
 " -----------------
 " Custom Functions
@@ -466,3 +478,5 @@ command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 
 command! -bar -nargs=0 VimrcEdit :vs ~/.vimrc
 command! -bar -nargs=0 VimrcReload :so $MYVIMRC
+nnoremap <leader>ve :VimrcEdit<CR>
+nnoremap <leader>vr :VimrcReload<CR>

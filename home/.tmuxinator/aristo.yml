@@ -44,6 +44,7 @@ attach: false
 
 windows:
   - devanalyticsspark:
+      name: devanalyticsspark
       layout: main-vertical
       panes:
         - ssh sshuser@devanalyticsspark-ssh.azurehdinsight.net

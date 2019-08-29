@@ -33,7 +33,10 @@
 [merge]
 	tool = nvim
 	conflictstyle = diff3
+[mergetool "vimdiff"]
+	tool = vimdiff
+	prompt = false
 [mergetool "nvim"]
 	cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
-	tool = nvim
+	tool = vimdiff
 	prompt = false

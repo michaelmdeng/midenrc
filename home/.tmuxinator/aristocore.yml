@@ -1,7 +1,7 @@
-# /Users/michaeldeng/.tmuxinator/aristospark.yml
-#
-name: aristospark
-root: ~/Documents/AristoSpark
+# /Users/michaeldeng/.tmuxinator/aristocore.yml
+
+name: aristocore
+root: ~/Source/AristoCore
 
 # Optional tmux socket
 # socket_name: foo
@@ -18,7 +18,12 @@ on_project_first_start:
 # Run on project start, after the first time
 # on_project_restart: command
 # Run on project exit ( detaching from tmux session )
-# on_project_exit: command
+on_project_exit:
+- "tmux list-windows -taristo -F \"#W #I\" | grep devanalyticsspark | awk '{print \"aristo:\" $2}' | xargs tmux link-window -s"
+- "tmux list-windows -taristo -F \"#W #I\" | grep prodanalyticsspark | awk '{print \"aristo:\" $2}' | xargs tmux link-window -s"
+- "tmux list-windows -taristo -F \"#W #I\" | grep devanalyticsairflow | awk '{print \"aristo:\" $2}' | xargs tmux link-window -s"
+- "tmux list-windows -taristo -F \"#W #I\" | grep prodanalyticsairflow | awk '{print \"aristo:\" $2}' | xargs tmux link-window -s"
+- tmux a -taristocore:mantis
 # Run on project stop
 # on_project_stop: command
 
@@ -41,19 +46,48 @@ on_project_first_start:
 attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux link-window -s aristo:devanalytics && tmux link-window -s aristo:prodanalytics  && tmux a -tspark-dev
-post:
-- tmux link-window -s aristo:devanalyticsspark
-- tmux link-window -s aristo:prodanalyticsspark
-- tmux a -taristospark:main
+# post:
 
 windows:
-  - main:
+  - mantis:
       layout: main-vertical
       panes:
-        - nvim .
+        - editor:
+          - cd mantis
+          - workon nvim3
+          - vim .
         - build-server:
+          - cd mantis
           - export ENV_NAME=localenv
           - export ENV_PROPERTIES_PATH=./tmp/env_properties.json 
           - sbt
-        - git st
+        - shell:
+          - cd mantis
+          - git st
+  - dragonfly:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd dragonfly
+          - workon nvim3
+          - vim .
+        - webserver:
+          - cd dragonfly
+          - workon airflow
+          - airflow webserver
+        - shell:
+          - cd dragonfly
+          - workon airflow
+  - mollusk:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd mollusk
+          - workon nvim3
+          - vim .
+        - build-server:
+          - cd mollusk
+          - sbt
+        - shell:
+          - cd mollusk
+          - git st

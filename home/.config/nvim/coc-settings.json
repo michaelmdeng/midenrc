@@ -1,4 +1,8 @@
 {
+  "coc.preferences.jumpCommand": "drop",
+  "coc.preferences.hoverTarget": "float",
+  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.extensionUpdateCheck": "weekly",
   "languageserver": {
     "metals": {
       "command": "metals-vim",
@@ -15,5 +19,16 @@
     "<C-t>": "action:tabe",
     "<C-v>": "action:vsplit"
   },
-  "highlight.document.enable": true
+  "highlight.document.enable": true,
+  "suggest.noselect": false,
+  "suggest.enablePreview": true,
+  "suggest.detailField": "preview",
+  "suggest.maxCompleteItemCount": 15,
+  "suggest.minTriggerInputLength": 2,
+  "signature.hideOnTextChange": true,
+  "python.linting.enabled": false,
+  "python.autoComplete.addBrackets": true,
+  "snippets.snipmate.enable": false,
+  "snippets.loadFromExtensions": false,
+  "snippets.userSnippetsDirectory": "~/.vim/ultisnips"
 }
