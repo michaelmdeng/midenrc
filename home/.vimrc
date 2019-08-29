@@ -395,10 +395,14 @@ nmap <leader>fp :set nu rnu scl=yes <bar> GitGutterSignsEnable <bar> IndentLines
 " CoC settings
 
 nmap <C-r>r <Plug>(coc-rename)
-nmap <leader>t :call CocAction('doHover')<CR>
 nmap <leader>df <Plug>(coc-definition)
+nmap <leader>dfs :call CocAction('jumpDefinition', 'split')<CR>
+nmap <leader>dfv :call CocAction('jumpDefinition', 'vsplit')<CR>
 nmap <leader>rs <Plug>(coc-references)
-nmap <leader>oo :<C-u>CocList outline<cr>
+nmap <leader>t :call CocAction('doHover')<CR>
+nmap <leader>cc :CocCommand<CR>
+nmap <leader>cl :CocList<CR>
+nmap <leader>cA :CocAction<CR>
 
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Use tab for trigger completion with characters ahead and navigate.
