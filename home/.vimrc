@@ -21,7 +21,6 @@ Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
 Plug 'mhartington/oceanic-next'
-Plug 'michaelmdeng/ensime-vim', { 'branch': 'miden/master' , 'do': ':UpdateRemotePlugins' }
 Plug 'michaelmdeng/miden-vim'
 Plug 'myusuf3/numbers.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -37,7 +36,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
-Plug 'vim-scripts/indentpython.vim'
 Plug 'vimwiki/vimwiki'
 call plug#end()
 
@@ -67,7 +65,7 @@ filetype indent on
 set nobackup
 set noswapfile
 
-" Comma leader
+" Space leader
 let mapleader = " "
 let g:mapleader = " "
 
@@ -149,28 +147,9 @@ set shortmess+=c
 " Mappings
 " ---------
 
-" :W sudo saves the file
-command! W w !sudo tee % > /dev/null
-
-" Windows-style save
-nmap <C-s> :w<cr>
-
-" Leader-based save
-nmap <leader>w :w<cr>
-
-" Windows-style Select-All
+" Windows mappings
 nmap <C-a> ggvG$
-
-" Leader-based Select-All
-nmap <leader>a ggvG$
-
-" Window movement mappings
-" Removed due to vim-tmux-navigator plugin
-let g:BASH_Ctrl_j = 'off'
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-l> <C-w>l
+nmap <C-s> :w<cr>
 
 " window resize shortcuts
 nnoremap <C-w>+ :res +5<CR>
@@ -178,14 +157,9 @@ nnoremap <C-w>- :res -5<CR>
 nnoremap <C-w>> :vert res +5<CR>
 nnoremap <C-w>< :vert res -5<CR>
 
-" Buffer navigation (like tab navigation)
-map gb :bnext<cr>
-map gB :bprevious<cr>
-
 " leader<o> and leader<CR> for inserting lines without entering insert mode
 nmap <leader>o o<Esc>
 nmap <leader>O O<Esc>
-nmap <leader><CR> o<Esc>
 
 " Move within visual lines
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -245,6 +219,36 @@ nnoremap Q <Nop>
 nmap <leader>ve :VimrcEdit<cr>
 nmap <leader>vr :VimrcReload<cr>
 
+" Previous/next mappings
+" jumps
+nnoremap [j <C-o>
+nnoremap ]j <C-i>
+" changes handled by GitGutter
+" quickfix
+nnoremap [q :cp<CR>
+nnoremap ]q :cn<CR>
+nnoremap [Q :cfir<CR>
+nnoremap ]Q :cla<CR>
+" locations
+nnoremap [l :lp<CR>
+nnoremap ]l :lne<CR>
+nnoremap [L :lfir<CR>
+nnoremap ]L :lla<CR>
+" tagstack
+nnoremap [t <C-t>
+nnoremap ]t :tag<CR>
+" buffers
+nmap [b :bprevious<cr>
+nmap ]b :bnext<cr>
+nmap [B :bfirst<cr>
+nmap ]B :blast<cr>
+" tab page
+nmap [p :tablast<cr>
+nmap ]p :tabN<cr>
+nmap [P :tabfirst<cr>
+nmap ]P :tablast<cr>
+
+
 " ---------
 " Autocmds
 " ---------
@@ -260,6 +264,9 @@ autocmd InsertEnter,WinLeave * let g:oldfoldmethod=&l:foldmethod | setlocal fold
 " --------------
 " Plugin Config
 " --------------
+
+" Vim-tmux-navigator
+let g:BASH_Ctrl_j = 'off'
 
 " Vimwiki specific config
 au FileType vimwiki set filetype=vimwiki.markdown
@@ -294,8 +301,6 @@ augroup RainbowParens
 augroup end
 
 " GitGutter
-nmap <leader>nh :GitGutterNextHunk<CR>
-nmap <leader>ph :GitGutterPrevHunk<CR>
 nmap <leader>sh :GitGutterStageHunk<CR>
 nmap <leader>uh :GitGutterUndoHunk<CR>
 
@@ -310,8 +315,6 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
-map <Tab> <Over>(incsearch-next)
-map <S-Tab> <Over>(incsearch-prev)
 
 " IndentLines config
 augroup indentLine
@@ -372,6 +375,23 @@ let g:fzf_action = {
 \ }
 
 let g:fzf_layout = { 'down': '~20%' }
+"
+" Customize fzf colors to match your color scheme
+let g:fzf_colors = {
+\ 'fg':      ['fg', 'Normal'],
+\ 'bg':      ['bg', 'Normal'],
+\ 'hl':      ['fg', 'Comment'],
+\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+\ 'hl+':     ['fg', 'Statement'],
+\ 'info':    ['fg', 'PreProc'],
+\ 'border':  ['fg', 'Ignore'],
+\ 'prompt':  ['fg', 'Conditional'],
+\ 'pointer': ['fg', 'Exception'],
+\ 'marker':  ['fg', 'Keyword'],
+\ 'spinner': ['fg', 'Label'],
+\ 'header':  ['fg', 'Comment']
+\ }
 
 " ultisnips
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
@@ -382,7 +402,6 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-p>'
 let g:UltiSnipsJumpForwardTrigger = '<c-n>'
 
 " neomake
-call neomake#configure#automake('w')
 let g:neomake_open_list = 2
 let g:neomake_python_enabled_makers = ['pylint']
 
@@ -450,6 +469,9 @@ nnoremap gp :NERDTreeToggle<CR>
 " -----------------
 " Custom Functions
 " -----------------
+
+" :W sudo saves the file
+command! W w !sudo tee % > /dev/null
 
 " Command for ripgrep
 command! -bang -nargs=* Rg
