@@ -79,8 +79,8 @@ set autoread
 set wildmenu
 set wildmode=longest,list
 set wildignore+=*swp,*.class,*.pyc,*.png,*.jpg,*.gif,*.zip
-set wildignore+=*/tmp/*,*.o,*.obj,*.so     " Unix
-set wildignore+=*\\tmp\\*,*.exe            " Windows
+set wildignore+=*.o,*.obj,*.so     " Unix
+set wildignore+=*.exe            " Windows
 
 " Case settings for search
 set ignorecase
@@ -326,7 +326,7 @@ let g:vim_json_syntax_conceal = 0
 
 " Lightline
 let g:lightline = {
-\ 'colorscheme': 'seoul256',
+\ 'colorscheme': 'wombat',
 \ 'active': {
 \   'left': [
 \     ['mode', 'paste', 'spell'],
@@ -420,8 +420,8 @@ nmap <leader>dfv :call CocAction('jumpDefinition', 'vsplit')<CR>
 nmap <leader>rs <Plug>(coc-references)
 nmap <leader>t :call CocAction('doHover')<CR>
 nmap <leader>cc :CocCommand<CR>
-nmap <leader>cl :CocList<CR>
-nmap <leader>cA :CocAction<CR>
+nmap <leader>ci :CocList<CR>
+nmap <leader>ca :CocAction<CR>
 
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Use tab for trigger completion with characters ahead and navigate.
@@ -464,6 +464,8 @@ let NERDTreeShowHidden = 1
 let NERDTreeShowLineNumbers = 1
 let NERDTreeMapOpenSplit='s'
 let NERDTreeMapOpenInVSplit='v'
+let g:NERDTreeMapJumpNextSibling=''
+let g:NERDTreeMapJumpPrevSibling=''
 nnoremap gp :NERDTreeToggle<CR>
 
 " -----------------
