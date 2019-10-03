@@ -1,7 +1,7 @@
-# /Users/michaeldeng/.tmuxinator/aristocore.yml
+# /Users/michaeldeng/.tmuxinator/aristomantis.yml
 
-name: aristocore
-root: ~/Source/AristoCore
+name: aristomantis
+root: ~/Source/AristoCore/mantis
 
 # Optional tmux socket
 # socket_name: foo
@@ -12,18 +12,20 @@ root: ~/Source/AristoCore
 # Project hooks
 # Runs on project start, always
 # on_project_start: command
+
 # Run on project start, the first time
 on_project_first_start:
 - tmuxinator start aristo
+
 # Run on project start, after the first time
 # on_project_restart: command
+
 # Run on project exit ( detaching from tmux session )
 on_project_exit:
 - "tmux list-windows -taristo -F \"#W #I\" | grep devanalyticsspark | awk '{print \"aristo:\" $2}' | xargs tmux link-window -s"
 - "tmux list-windows -taristo -F \"#W #I\" | grep prodanalyticsspark | awk '{print \"aristo:\" $2}' | xargs tmux link-window -s"
-- "tmux list-windows -taristo -F \"#W #I\" | grep devanalyticsairflow | awk '{print \"aristo:\" $2}' | xargs tmux link-window -s"
-- "tmux list-windows -taristo -F \"#W #I\" | grep prodanalyticsairflow | awk '{print \"aristo:\" $2}' | xargs tmux link-window -s"
-- tmux a -taristocore:mantis
+- tmux a -taristomantis:ide
+
 # Run on project stop
 # on_project_stop: command
 
@@ -49,45 +51,15 @@ attach: false
 # post:
 
 windows:
-  - mantis:
+  - ide:
       layout: main-vertical
       panes:
         - editor:
-          - cd mantis
           - workon nvim3
           - vim .
         - build-server:
-          - cd mantis
           - export ENV_NAME=localenv
           - export ENV_PROPERTIES_PATH=./tmp/env_properties.json 
           - sbt
         - shell:
-          - cd mantis
-          - git st
-  - dragonfly:
-      layout: main-vertical
-      panes:
-        - editor:
-          - cd dragonfly
-          - workon nvim3
-          - vim .
-        - webserver:
-          - cd dragonfly
-          - workon airflow
-          - airflow webserver
-        - shell:
-          - cd dragonfly
-          - workon airflow
-  - mollusk:
-      layout: main-vertical
-      panes:
-        - editor:
-          - cd mollusk
-          - workon nvim3
-          - vim .
-        - build-server:
-          - cd mollusk
-          - sbt
-        - shell:
-          - cd mollusk
           - git st

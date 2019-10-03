@@ -1,13 +1,25 @@
-# ~/.tmuxinator/df-dev.yml
+# /Users/michaeldeng/.tmuxinator/aristowiki.yml
 
-name: df-dev
-root: ~/Documents/AristoDataFactory
+name: aristowiki
+root: ~/Source/AristoWiki
 
 # Optional tmux socket
 # socket_name: foo
 
 # Runs before everything. Use it to start daemons etc.
 # pre: sudo /etc/rc.d/mysqld start
+
+# Project hooks
+# Runs on project start, always
+# on_project_start: command
+# Run on project start, the first time
+# on_project_first_start: command
+# Run on project start, after the first time
+# on_project_restart: command
+# Run on project exit ( detaching from tmux session )
+# on_project_exit: command
+# Run on project stop
+# on_project_stop: command
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: rbenv shell 2.0.0-p247
@@ -19,17 +31,29 @@ root: ~/Documents/AristoDataFactory
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-# startup_window: logs
+# startup_window: editor
+
+# Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
+# startup_pane: 1
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t df-dev
+# post: tmux -CC attach -t aristowiki
 
 windows:
   - editor:
       layout: main-vertical
       panes:
-        - nvim .
-        - workon wonka
+        - editor:
+          - workon nvim3
+          - vim .
+        -
+  - serve:
+      layout: main-vertical
+      panes:
+        - server:
+          - workon aristodocs
+          - mkdocs serve
+        -
