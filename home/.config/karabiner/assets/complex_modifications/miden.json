@@ -1,0 +1,34 @@
+{
+  "title": "Miden Personal",
+  "rules": [
+    {
+      "description": "Change caps_lock to left_ctrl in kitty",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "caps_lock",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_control"
+            }
+          ],
+          "conditions": [
+						{
+							"type": "frontmost_application_if",
+							"bundle_identifiers": [
+								"net.kovidgoyal.kitty"
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
