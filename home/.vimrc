@@ -281,6 +281,7 @@ let g:vimwiki_list = [{
 let g:vimwiki_hl_cb_checked=1
 let g:vimwiki_conceallevel=0
 let g:vimwiki_folding='expr:quick'
+let g:vimwiki_table_mappings=0
 
 " Syntastic config
 let g:syntastic_always_populate_loc_list = 1
@@ -424,6 +425,7 @@ nmap <leader>ci :CocList<CR>
 nmap <leader>ca :CocAction<CR>
 
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
@@ -462,8 +464,8 @@ let NERDTreeMouseMode = 2
 let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden = 1
 let NERDTreeShowLineNumbers = 1
-let NERDTreeMapOpenSplit='s'
-let NERDTreeMapOpenInVSplit='v'
+let NERDTreeMapOpenSplit='gs'
+let NERDTreeMapOpenVSplit='gv'
 let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 nnoremap gp :NERDTreeToggle<CR>
