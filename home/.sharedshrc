@@ -90,18 +90,16 @@ else
     echo "warning: homeshick.sh not found. Is it installed?"
 fi
 
+export PATH="$HOME/.pyenv/bin:$PATH"
 if type "pyenv" > /dev/null; then
-    source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-    fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
-    export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 else
     echo "warning: pyenv not found. Is it installed?"
 fi
 
+export PATH="$HOME/.jenv/bin:$PATH"
 if type "jenv" > /dev/null; then
-    export PATH="$HOME/.jenv/bin:$PATH"
     eval "$(jenv init -)"
 else
     echo "warning: jenv not found. Is it installed?"
