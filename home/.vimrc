@@ -254,12 +254,16 @@ nmap ]P :tablast<cr>
 " ---------
 
 " insert/normal cursor
-:autocmd InsertEnter * set cul
-:autocmd InsertLeave * set nocul
+augroup InsertCursor
+  autocmd InsertEnter * set cul
+  autocmd InsertLeave * set nocul
+augroup end
 
 " maintain folds
-autocmd InsertLeave,WinEnter * let &l:foldmethod=g:oldfoldmethod
-autocmd InsertEnter,WinLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
+augroup MaintainFolds
+  autocmd InsertLeave,WinEnter * let &l:foldmethod=g:oldfoldmethod
+  autocmd InsertEnter,WinLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
+augroup end
 
 " --------------
 " Plugin Config
@@ -404,7 +408,12 @@ let g:UltiSnipsJumpForwardTrigger = '<c-n>'
 
 " neomake
 let g:neomake_open_list = 2
-let g:neomake_python_enabled_makers = ['pylint']
+let g:neomake_python_enabled_makers = ['pylint', 'airflow']
+let g:neomake_python_airflow_maker = {
+\ 'exe': '/Users/michaeldeng/.virtualenvs/airflow/bin/pylint',
+\ 'args': ['--output-format=text', '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg} [{msg_id}]"', '--reports=no'],
+\ 'errorformat': '%A%f:%l:%c:%t: %m,%A%f:%l: %m,%A%f:(%l): %m,%-Z%p^%.%#,%-G%.%#'
+\ }
 
 " vim-markdown
 let g:vim_markdown_conceal = 0
