@@ -1,92 +1,252 @@
 {
-  "title": "Miden Personal",
-  "rules": [
-    {
-      "description": "Change caps_lock to left_gui in kitty",
-      "manipulators": [
+    "title": "Miden Personal",
+    "rules": [
 	{
-	  "type": "basic",
-	  "from": {
-	    "key_code": "caps_lock",
-	    "modifiers": {
-	      "optional": [
-		"any"
-	      ]
-	    }
-	  },
-	  "to": [
-	    {
-	      "key_code": "left_control"
-	    }
-	  ],
-	  "conditions": [
-	    {
-	      "type": "frontmost_application_if",
-	      "bundle_identifiers": [
-		"net.kovidgoyal.kitty"
-	      ]
-	    }
-	  ]
-	}
-      ]
-    },
-    {
-      "description": "Change caps_lock to left_ctrl in kitty",
-      "manipulators": [
+	    "description": "Change caps_lock to left_ctrl in kitty",
+	    "manipulators": [
+		{
+		    "type": "basic",
+		    "from": {
+			"key_code": "caps_lock",
+			"modifiers": {
+			    "optional": [
+				"any"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "left_control"
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"net.kovidgoyal.kitty"
+			    ]
+			}
+		    ]
+		}
+	    ]
+	},
 	{
-	  "type": "basic",
-	  "from": {
-	    "key_code": "caps_lock",
-	    "modifiers": {
-	      "optional": [
-		"any"
-	      ]
-	    }
-	  },
-	  "to": [
-	    {
-	      "key_code": "left_control"
-	    }
-	  ],
-	  "conditions": [
-	    {
-	      "type": "frontmost_application_if",
-	      "bundle_identifiers": [
-		"net.kovidgoyal.kitty"
-	      ]
-	    }
-	  ]
-	}
-      ]
-    },
-    {
-      "description": "Change left_gui to left_ctrl in kitty",
-      "manipulators": [
+	    "description": "Change left_gui to left_ctrl in kitty",
+	    "manipulators": [
+		{
+		    "type": "basic",
+		    "from": {
+			"key_code": "left_gui",
+			"modifiers": {
+			    "optional": [
+				"any"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "left_control"
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"net.kovidgoyal.kitty"
+			    ]
+			}
+		    ]
+		}
+	    ]
+	},
 	{
-	  "type": "basic",
-	  "from": {
-	    "key_code": "left_gui",
-	    "modifiers": {
-	      "optional": [
-		"any"
-	      ]
-	    }
-	  },
-	  "to": [
-	    {
-	      "key_code": "left_control"
-	    }
-	  ],
-	  "conditions": [
-	    {
-	      "type": "frontmost_application_if",
-	      "bundle_identifiers": [
-		"net.kovidgoyal.kitty"
-	      ]
-	    }
-	  ]
+	    "description": "Alfred in kitty",
+	    "manipulators": [
+		{
+		    "type": "basic",
+		    "from": {
+			"key_code": "spacebar",
+			"modifiers": {
+			    "mandatory": [
+				"left_control"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "spacebar",
+			    "modifiers": [
+				"left_gui"
+			    ]
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"net.kovidgoyal.kitty"
+			    ]
+			}
+		    ]
+		}
+	    ]
+	},
+	{
+	    "description": "Lock in kitty",
+	    "manipulators": [
+		{
+		    "type": "basic",
+		    "from": {
+			"key_code": "l",
+			"modifiers": {
+			    "mandatory": [
+				"left_control",
+				"left_alt"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "l",
+			    "modifiers": [
+				"left_gui",
+				"left_alt"
+			    ]
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"net.kovidgoyal.kitty"
+			    ]
+			}
+		    ]
+		}
+	    ]
+	},
+	{
+	    "description": "Cmd+Tab to Alt+Tab",
+	    "manipulators": [
+		{
+		    "type": "basic",
+		    "from": {
+			"key_code": "tab",
+			"modifiers": {
+			    "mandatory": [
+				"left_alt"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "tab",
+			    "modifiers": [
+				"left_gui"
+			    ]
+			}
+		    ]
+		}
+	    ]
+	},
+	{
+	    "description": "Tab switch in Firefox",
+	    "manipulators": [
+		{
+		    "type": "basic",
+		    "from": {
+			"key_code": "tab",
+			"modifiers": {
+			    "mandatory": [
+				"left_gui"
+			    ],
+			    "optional": [
+				"left_shift"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "tab",
+			    "modifiers": [
+				"left_control"
+			    ]
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"org.mozilla.firefox"
+			    ]
+			}
+		    ]
+		}
+	    ]
+	},
+	{
+	    "description": "Vim page up nav in Firefox",
+	    "manipulators": [
+		{
+		    "type": "basic",
+		    "from": {
+			"key_code": "u",
+			"modifiers": {
+			    "mandatory": [
+				"left_gui"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "u",
+			    "modifiers": [
+				"left_control"
+			    ]
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"org.mozilla.firefox"
+			    ]
+			}
+		    ]
+		}
+	    ]
+	},
+	{
+	    "description": "Vim page down nav in Firefox",
+	    "manipulators": [
+		{
+		    "type": "basic",
+		    "from": {
+			"key_code": "d",
+			"modifiers": {
+			    "mandatory": [
+				"left_gui"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "d",
+			    "modifiers": [
+				"left_control"
+			    ]
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"org.mozilla.firefox"
+			    ]
+			}
+		    ]
+		}
+	    ]
 	}
-      ]
-    }
-  ]
+    ]
 }
