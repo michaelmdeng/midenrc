@@ -28,6 +28,7 @@
   "signature.hideOnTextChange": true,
   "python.linting.enabled": false,
   "python.autoComplete.addBrackets": true,
+  "python.workspaceSymbols.tagFilePath": "${workspaceFolder}/tags",
   "snippets.snipmate.enable": false,
   "snippets.loadFromExtensions": false,
   "snippets.userSnippetsDirectory": "~/.vim/ultisnips"
