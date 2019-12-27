@@ -515,7 +515,25 @@ endfunction
 command! -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
 command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 
-command! -bar -nargs=0 VimrcEdit :vs ~/.vimrc
+function! EditFile(file, mode)
+  if a:mode == 'e'
+    exec 'e' . a:file
+  elseif a:mode == 's'
+    exec 'sp' . a:file
+  else
+    exec 'vs' . a:file
+  end
+endfunction
+
+command! -bar -nargs=1 FtpluginEdit call EditFile('~/.vim/ftplugin/' . &filetype . '.vim', <q-args>)
+nnoremap <silent> <leader>fte :FtpluginEdit e<CR>
+nnoremap <silent> <leader>fts :FtpluginEdit s<CR>
+nnoremap <silent> <leader>ftv :FtpluginEdit v<CR>
+
+command! -bar -nargs=1 VimrcEdit call EditFile('~/.vimrc', <q-args>)
+nnoremap <silent> <leader>vre :VimrcEdit e<CR>
+nnoremap <silent> <leader>vrs :VimrcEdit s<CR>
+nnoremap <silent> <leader>vrv :VimrcEdit v<CR>
+
 command! -bar -nargs=0 VimrcReload :so $MYVIMRC
-nnoremap <leader>ve :VimrcEdit<CR>
-nnoremap <leader>vr :VimrcReload<CR>
+nnoremap <silent> <leader>vrr :VimrcReload<CR>
