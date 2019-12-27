@@ -1,5 +1,5 @@
-" VimPlug stuff
 call plug#begin('~/.vim/plugged')
+
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'SirVer/ultisnips'
 Plug 'Yggdroot/indentLine'
@@ -11,6 +11,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
+Plug 'ervandew/supertab'
 Plug 'haya14busa/incsearch.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -23,7 +24,6 @@ Plug 'mbbill/undotree'
 Plug 'mhartington/oceanic-next'
 Plug 'michaelmdeng/miden-vim'
 Plug 'myusuf3/numbers.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neomake/neomake'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'roxma/vim-tmux-clipboard'
@@ -37,6 +37,14 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'vimwiki/vimwiki'
+
+if has('nvim')
+  if has('lsp')
+    Plug 'neovim/nvim-lsp'
+    Plug 'ncm2/float-preview.nvim'
+  endif
+endif
+
 call plug#end()
 
 " ---------
@@ -138,7 +146,7 @@ set timeoutlen=300
 set cmdheight=2
 
 " Customize completion menu
-set completeopt="menu,noinsert,noselect"
+set completeopt=menuone,noinsert,noselect
 
 " Ignore some messages
 set shortmess+=c
@@ -418,41 +426,9 @@ let g:neomake_python_airflow_maker = {
 " vim-markdown
 let g:vim_markdown_conceal = 0
 
+" GitGutter
 nmap <leader>pf :set nonu nornu scl=no <bar> GitGutterSignsDisable <bar> IndentLinesDisable<CR>
 nmap <leader>fp :set nu rnu scl=yes <bar> GitGutterSignsEnable <bar> IndentLinesEnable<CR>
-
-" CoC settings
-
-nmap <C-r>r <Plug>(coc-rename)
-nmap <leader>df <Plug>(coc-definition)
-nmap <leader>dfs :call CocAction('jumpDefinition', 'split')<CR>
-nmap <leader>dfv :call CocAction('jumpDefinition', 'vsplit')<CR>
-nmap <leader>rs <Plug>(coc-references)
-nmap <leader>t :call CocAction('doHover')<CR>
-nmap <leader>cc :CocCommand<CR>
-nmap <leader>ci :CocList<CR>
-nmap <leader>ca :CocAction<CR>
-
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 " Undotree
 let g:undotree_SplitWidth = 35
@@ -478,6 +454,29 @@ let NERDTreeMapOpenVSplit='gv'
 let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 nnoremap gp :NERDTreeToggle<CR>
+
+" Nvim LSP
+lua << EOF
+require'nvim_lsp'.pyls.setup{}
+EOF
+
+function! HasLsp()
+  return luaeval('next(vim.lsp.get_active_clients()) ~= nil')
+endfunction
+
+nnoremap <silent> <leader>dc <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <leader>df <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <expr> <c-]> HasLsp() ? ":lua vim.lsp.buf.definition()<CR>" : "\<c-]\>"
+" nnoremap <silent> <leader>gDI    <cmd>lua vim.lsp.buf.implementation()<CR>
+" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+
+" Supertab
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
+" float-preview.nvim
+let g:float_preview#docked = 0
 
 " -----------------
 " Custom Functions
