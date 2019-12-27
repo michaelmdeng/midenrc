@@ -2,14 +2,27 @@
 
 sudo apt update
 
+# Basics
+sudo apt install curl zlib1g-dev
+sudo apt install vim neovim
+sudo apt install ddgr jq pandoc
+
+# Basic GUI
+sudo apt install baobab gnome-tweak-tool
+
+# Dropbox
+sudo apt install libatomic1
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86" | tar xzf -
+
+# Keepass
+sudo apt install xdotool keepass2
+
 sudo apt install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # configuration stuff
 git clone https://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
 $HOME/.homesick/repos/homeshick/bin/homeshick clone https://github.com/michaelmdeng/DotConfig.git
-
-sudo apt install ddgr jq pandoc
 
 # tmux
 sudo apt install tmux ruby

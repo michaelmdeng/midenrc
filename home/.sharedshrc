@@ -78,7 +78,11 @@ else
 fi
 
 if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
+    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
     source /usr/local/bin/virtualenvwrapper.sh
+elif [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
+    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+    source $HOME/.local/bin/virtualenvwrapper.sh
 else
     echo "warning: virtualenvwrapper.sh not found. Is it installed?"
 fi

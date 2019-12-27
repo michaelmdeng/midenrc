@@ -4,7 +4,9 @@ information on how to install them.
 
 # Applications
 
-| Name            | Description                        | Link                                  |
-| ---             | ---                                | ---                                   |
-| Postman         | API development tool.              | https://www.getpostman.com/           |
-| Anki            | Flashcards with spaced repetition. | https://apps.ankiweb.net/             |
+| Name    | Description                        | Link                                              |
+| ---     | ---                                | ---                                               |
+| Postman | API development tool.              | https://www.getpostman.com/                       |
+| Anki    | Flashcards with spaced repetition. | https://apps.ankiweb.net/                         |
+| Albert  | Alfred-like launcher for Linux.    | https://albertlauncher.github.io/docs/installing/ |
+| Kitty   | Lightweight shell.                 | https://sw.kovidgoyal.net/kitty/binary.html       |

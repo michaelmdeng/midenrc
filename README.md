@@ -18,7 +18,7 @@ git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
 Clone this repository as a homeshick repo by:
 
 ```bash
-$HOME/.homesick/repos/homeshick/bin/homeshick clone https://github.com/michaelmdeng/DotConfig.git
+$HOME/.homesick/repos/homeshick/bin/homeshick clone https://github.com/michaelmdeng/midenrc.git
 ```
 
 ## Adding files to a homeshick repo
