@@ -39,10 +39,8 @@ Plug 'tpope/vim-vinegar'
 Plug 'vimwiki/vimwiki'
 
 if has('nvim')
-  if has('lsp')
-    Plug 'neovim/nvim-lsp'
-    Plug 'ncm2/float-preview.nvim'
-  endif
+  Plug 'neovim/nvim-lsp'
+  Plug 'ncm2/float-preview.nvim'
 endif
 
 call plug#end()
@@ -122,8 +120,8 @@ set signcolumn=yes
 
 " Persistent undo
 try
-        set undodir=~/.vim/temp/undo
-        set undofile
+  set undodir=~/.vim/temp/undo
+  set undofile
 catch
 endtry
 
@@ -464,13 +462,16 @@ function! HasLsp()
   return luaeval('next(vim.lsp.get_active_clients()) ~= nil')
 endfunction
 
+nnoremap <silent> <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <leader>dc <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <leader>df <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <expr> <c-]> HasLsp() ? ":lua vim.lsp.buf.definition()<CR>" : "\<c-]\>"
-" nnoremap <silent> <leader>gDI    <cmd>lua vim.lsp.buf.implementation()<CR>
-" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-" nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> <leader>sg <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <leader>rf <cmd>lua vim.lsp.buf.references()<CR>
+
+" TODO: fix this
+nnoremap <c-r>r <cmd>lua vim.lsp.buf.rename()<CR>
+
+nnoremap <silent><expr> <c-]> HasLsp() ? ":lua vim.lsp.buf.definition()<CR>" : "\<c-]\>"
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
