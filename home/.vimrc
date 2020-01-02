@@ -6,6 +6,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'ajmwagar/vim-deus'
 Plug 'altercation/vim-colors-solarized'
+Plug 'blindFS/vim-taskwarrior'
 Plug 'chrisbra/csv.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala'
@@ -478,6 +479,10 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 " float-preview.nvim
 let g:float_preview#docked = 0
+
+" vim-taskwarrior
+let g:task_highlight_field = 0
+nnoremap <leader>tw :TW<CR>
 
 " -----------------
 " Custom Functions

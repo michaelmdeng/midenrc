@@ -4,8 +4,8 @@ sudo apt update
 
 # Basics
 sudo apt install curl zlib1g-dev
-sudo apt install vim neovim
-sudo apt install ddgr jq pandoc
+sudo apt install vim neovim exuberant-ctags
+sudo apt install ddgr jq pandoc taskwarrior
 
 # Basic GUI
 sudo apt install baobab gnome-tweak-tool

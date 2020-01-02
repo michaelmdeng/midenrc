@@ -1,7 +1,7 @@
-# ~/.tmuxinator/wiki-dev.yml
+# ~/.tmuxinator/notes-narr.yml
 
 name: notes
-root: ~/Dropbox/vimwiki
+root: ~/Dropbox/vimwiki/wiki
 
 # Optional tmux socket
 # socket_name: foo
@@ -28,11 +28,15 @@ root: ~/Dropbox/vimwiki
 # post: tmux -CC attach -t wiki-dev
 
 windows:
-  - editor:
+  - task:
+      layout: main-vertical
+      panes:
+        - nvim -c "TW"
+  - wiki:
       layout: main-vertical
       panes:
         - nvim -c "VimwikiIndex"
   - shell:
       layout: main-vertical
       panes:
-        - python ~/.dropbox/dropbox.py start; python ~/.dropbox/dropbox.py status
+        -
