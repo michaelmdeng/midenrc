@@ -5,7 +5,7 @@ sudo apt update
 # Basics
 sudo apt install curl zlib1g-dev
 sudo apt install vim neovim exuberant-ctags
-sudo apt install ddgr jq pandoc taskwarrior
+sudo apt install ddgr jq mpv pandoc powertop taskwarrior
 
 # Basic GUI
 sudo apt install baobab gnome-tweak-tool

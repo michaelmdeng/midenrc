@@ -1,10 +1,14 @@
 nmap <buffer> <leader>d <Plug>(taskwarrior_done)
-nmap <buffer> o <Plug>(taskwarrior_new)
+
 nmap <buffer> O <Plug>(taskwarrior_new)
+
 nmap <buffer> i <Plug>(taskwarrior_modify_field)
 nmap <buffer> I <Plug>(taskwarrior_modify_task)
+
 nmap <buffer> w <Plug>(taskwarrior_step_right)
-nmap <buffer> W <Plug>(taskwarrior_step_left)
+nmap <buffer> W <Plug>(taskwarrior_skip_right)
+
+nmap <buffer> b <Plug>(taskwarrior_step_left)
 
 " Sync on save
 ca <buffer> e TW
