@@ -67,6 +67,8 @@ plugins=(
   dotenv
   fzf
   git
+  nvm
+  rvm
   safe-paste
   sbt
   scala
@@ -112,6 +114,8 @@ autoload -U +X bashcompinit && bashcompinit
 
 # shared bashrc/zshrc commands
 source "$HOME/.sharedshrc"
+
+setopt auto_cd
 
 # zsh completions
 [ -f "$HOME/.completion/tmuxinator.zsh" ] && source "$HOME/.completion/tmuxinator.zsh"

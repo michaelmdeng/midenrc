@@ -2,7 +2,7 @@
     "title": "Miden Personal",
     "rules": [
 	{
-	    "description": "Change caps_lock to left_ctrl in kitty",
+	    "description": "Change caps_lock to left_ctrl in terminal",
 	    "manipulators": [
 		{
 		    "type": "basic",
@@ -23,6 +23,8 @@
 			{
 			    "type": "frontmost_application_if",
 			    "bundle_identifiers": [
+				"com.apple.Terminal",
+				"com.googlecode.iterm2",
 				"net.kovidgoyal.kitty"
 			    ]
 			}
@@ -31,7 +33,7 @@
 	    ]
 	},
 	{
-	    "description": "Change left_gui to left_ctrl in kitty",
+	    "description": "Change left_gui to left_ctrl in terminal",
 	    "manipulators": [
 		{
 		    "type": "basic",
@@ -52,6 +54,8 @@
 			{
 			    "type": "frontmost_application_if",
 			    "bundle_identifiers": [
+				"com.apple.Terminal",
+				"com.googlecode.iterm2",
 				"net.kovidgoyal.kitty"
 			    ]
 			}
@@ -126,7 +130,7 @@
 	    ]
 	},
 	{
-	    "description": "Cmd+Tab to Alt+Tab",
+	    "description": "Alt+Tab to Cmd+Tab",
 	    "manipulators": [
 		{
 		    "type": "basic",
@@ -177,7 +181,8 @@
 			{
 			    "type": "frontmost_application_if",
 			    "bundle_identifiers": [
-				"org.mozilla.firefox"
+				"org.mozilla.firefox",
+				"com.google.Chrome"
 			    ]
 			}
 		    ]

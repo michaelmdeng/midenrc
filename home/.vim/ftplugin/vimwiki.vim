@@ -7,6 +7,7 @@ setlocal textwidth=79
 setlocal colorcolumn=80
 setlocal foldlevel=99
 setlocal conceallevel=0
+setlocal spell
 
 syntax on
 

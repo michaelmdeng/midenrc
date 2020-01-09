@@ -33,3 +33,6 @@ export EDITOR='nvim'
 export PROJECT_HOME=$HOME/Documents
 export TERM=xterm-256color
 export WORKON_HOME=$HOME/.virtualenvs
+
+# Opt out of homebrew analytics collection
+export HOMEBREW_NO_ANALYTICS=1

@@ -256,6 +256,7 @@ nmap ]p :tabN<cr>
 nmap [P :tabfirst<cr>
 nmap ]P :tablast<cr>
 
+tnoremap <Esc><Esc> <C-\><C-n>
 
 " ---------
 " Autocmds
@@ -455,17 +456,18 @@ nnoremap gp :NERDTreeToggle<CR>
 " Nvim LSP
 lua << EOF
 require'nvim_lsp'.pyls.setup{}
+require'nvim_lsp'.solargraph.setup{}
 EOF
 
 function! HasLsp()
   return luaeval('vim.lsp and next(vim.lsp.get_active_clients()) ~= nil')
 endfunction
 
-nnoremap <silent> <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <leader>dc <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <leader>df <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>df <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <leader>sg <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <leader>rf <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <leader>rf <cmd>lua vim.lsp.buf.references()<CR>
 
 " TODO: fix this
 nnoremap <c-r>r <cmd>lua vim.lsp.buf.rename()<CR>
@@ -480,6 +482,9 @@ let g:float_preview#docked = 0
 
 " vim-taskwarrior
 let g:task_highlight_field = 0
+let g:task_rc_override = 'rc.defaultwidth=0'
+let g:task_report_name = 'ready'
+let g:task_default_prompt = ['description', 'project', 'due']
 nnoremap <leader>tw :TW<CR>
 
 " -----------------

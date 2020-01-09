@@ -12,6 +12,7 @@
 	st = status
 	ci = commit
 	cia = commit -a
+	cie = commit -e
 	br = branch
 	rb = rebase
 	lo = log
