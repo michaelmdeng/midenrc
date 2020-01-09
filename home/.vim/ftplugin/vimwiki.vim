@@ -10,8 +10,6 @@ setlocal conceallevel=0
 
 syntax on
 
-let g:indentLine_enabled=0
-
 nmap <Leader>wl <Plug>VimwikiFollowLink
 nmap <Leader>wls <Plug>VimwikiSplitLink
 nmap <Leader>wlv <Plug>VimwikiVSplitLink
@@ -47,8 +45,4 @@ nmap <leader><Space> <Plug>VimwikiToggleListItem
 nmap gwd <Plug>VimwikiDiaryPrevDay
 nmap gwD <Plug>VimwikiDiaryNextDay
 
-
-silent! nunmap <buffer> <CR>
-inoremap <silent><buffer><expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<Esc>:VimwikiReturn 1 5\<CR>"
-
-set conceallevel=0
+nmap <C-]> <Plug>VimwikiFollowLink

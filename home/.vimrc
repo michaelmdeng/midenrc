@@ -13,6 +13,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'haya14busa/incsearch.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -130,7 +131,7 @@ endtry
 set listchars=eol:$,tab:->,trail:~,extends:>,precedes:<,space:␣
 
 " Ctags file
-set tags=./tags;,tags;
+set tags=./tags,tags;$HOME
 
 " we have a statusline
 set noshowmode
@@ -332,6 +333,7 @@ map g# <Plug>(incsearch-nohl-g#)
 augroup indentLine
         au BufEnter * IndentLinesEnable
 augroup end
+let g:indentLine_setConceal = 0
 
 " vim-json config
 let g:vim_json_syntax_conceal = 0
@@ -415,12 +417,8 @@ let g:UltiSnipsJumpForwardTrigger = '<c-n>'
 
 " neomake
 let g:neomake_open_list = 2
-let g:neomake_python_enabled_makers = ['pylint', 'airflow']
-let g:neomake_python_airflow_maker = {
-\ 'exe': '/Users/michaeldeng/.virtualenvs/airflow/bin/pylint',
-\ 'args': ['--output-format=text', '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg} [{msg_id}]"', '--reports=no'],
-\ 'errorformat': '%A%f:%l:%c:%t: %m,%A%f:%l: %m,%A%f:(%l): %m,%-Z%p^%.%#,%-G%.%#'
-\ }
+let g:neomake_python_enabled_makers = ['pylint']
+let g:neomake_markdown_enabled_makers = ['mdl']
 
 " vim-markdown
 let g:vim_markdown_conceal = 0
@@ -460,7 +458,7 @@ require'nvim_lsp'.pyls.setup{}
 EOF
 
 function! HasLsp()
-  return luaeval('next(vim.lsp.get_active_clients()) ~= nil')
+  return luaeval('vim.lsp and next(vim.lsp.get_active_clients()) ~= nil')
 endfunction
 
 nnoremap <silent> <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
