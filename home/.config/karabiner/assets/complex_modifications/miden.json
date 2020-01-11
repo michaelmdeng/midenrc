@@ -2,38 +2,7 @@
     "title": "Miden Personal",
     "rules": [
 	{
-	    "description": "Change caps_lock to left_ctrl in terminal",
-	    "manipulators": [
-		{
-		    "type": "basic",
-		    "from": {
-			"key_code": "caps_lock",
-			"modifiers": {
-			    "optional": [
-				"any"
-			    ]
-			}
-		    },
-		    "to": [
-			{
-			    "key_code": "left_control"
-			}
-		    ],
-		    "conditions": [
-			{
-			    "type": "frontmost_application_if",
-			    "bundle_identifiers": [
-				"com.apple.Terminal",
-				"com.googlecode.iterm2",
-				"net.kovidgoyal.kitty"
-			    ]
-			}
-		    ]
-		}
-	    ]
-	},
-	{
-	    "description": "Change left_gui to left_ctrl in terminal",
+	    "description": "Change left_gui to left_ctrl in terminal apps",
 	    "manipulators": [
 		{
 		    "type": "basic",
@@ -64,9 +33,10 @@
 	    ]
 	},
 	{
-	    "description": "Alfred in kitty",
+	    "description": "Special case handling for terminal apps",
 	    "manipulators": [
 		{
+		    "description": "Enable Alfred shortcut",
 		    "type": "basic",
 		    "from": {
 			"key_code": "spacebar",
@@ -92,13 +62,69 @@
 			    ]
 			}
 		    ]
-		}
-	    ]
-	},
-	{
-	    "description": "Lock in kitty",
-	    "manipulators": [
+		},
 		{
+		    "description": "Enable switch to right space shortcut",
+		    "type": "basic",
+		    "from": {
+			"key_code": "right_arrow",
+			"modifiers": {
+			    "mandatory": [
+				"left_control"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "right_arrow",
+			    "modifiers": [
+				"left_gui"
+			    ]
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"com.apple.Terminal",
+				"com.googlecode.iterm2",
+				"net.kovidgoyal.kitty"
+			    ]
+			}
+		    ]
+		},
+		{
+		    "description": "Enable switch to left space shortcut",
+		    "type": "basic",
+		    "from": {
+			"key_code": "left_arrow",
+			"modifiers": {
+			    "mandatory": [
+				"left_control"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "left_arrow",
+			    "modifiers": [
+				"left_gui"
+			    ]
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"com.apple.Terminal",
+				"com.googlecode.iterm2",
+				"net.kovidgoyal.kitty"
+			    ]
+			}
+		    ]
+		},
+		{
+		    "description": "Enable lock computer shortcut",
 		    "type": "basic",
 		    "from": {
 			"key_code": "l",
@@ -122,6 +148,37 @@
 			{
 			    "type": "frontmost_application_if",
 			    "bundle_identifiers": [
+				"net.kovidgoyal.kitty"
+			    ]
+			}
+		    ]
+		}
+	    ]
+	},
+	{
+	    "description": "Change caps_lock to left_ctrl in terminal",
+	    "manipulators": [
+		{
+		    "type": "basic",
+		    "from": {
+			"key_code": "caps_lock",
+			"modifiers": {
+			    "optional": [
+				"any"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "left_control"
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"com.apple.Terminal",
+				"com.googlecode.iterm2",
 				"net.kovidgoyal.kitty"
 			    ]
 			}
@@ -154,9 +211,10 @@
 	    ]
 	},
 	{
-	    "description": "Tab switch in Firefox",
+	    "description": "Browser shortcuts",
 	    "manipulators": [
 		{
+		    "description": "Tab switch shortcut",
 		    "type": "basic",
 		    "from": {
 			"key_code": "tab",
@@ -190,9 +248,10 @@
 	    ]
 	},
 	{
-	    "description": "Vim page up nav in Firefox",
+	    "description": "Vim Vixen shortcuts Firefox",
 	    "manipulators": [
 		{
+		    "description": "Page Up shortcut",
 		    "type": "basic",
 		    "from": {
 			"key_code": "u",
@@ -218,13 +277,9 @@
 			    ]
 			}
 		    ]
-		}
-	    ]
-	},
-	{
-	    "description": "Vim page down nav in Firefox",
-	    "manipulators": [
+		},
 		{
+		    "description": "Page Up shortcut",
 		    "type": "basic",
 		    "from": {
 			"key_code": "d",
