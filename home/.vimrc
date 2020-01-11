@@ -30,6 +30,7 @@ Plug 'neomake/neomake'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
+Plug 'thinca/vim-visualstar'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -468,9 +469,8 @@ nnoremap <silent> <leader>dc <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <leader>df <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <leader>sg <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <leader>rf <cmd>lua vim.lsp.buf.references()<CR>
-
-" TODO: fix this
 nnoremap <c-r>r <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>= <cmd>lua vim.lsp.buf.formatting()<CR>
 
 nnoremap <silent><expr> <c-]> HasLsp() ? ":lua vim.lsp.buf.definition()<CR>" : "\<c-]\>"
 
