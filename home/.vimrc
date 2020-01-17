@@ -167,8 +167,8 @@ nnoremap <C-w>> :vert res +5<CR>
 nnoremap <C-w>< :vert res -5<CR>
 
 " leader<o> and leader<CR> for inserting lines without entering insert mode
-nmap <leader>o o<Esc>
-nmap <leader>O O<Esc>
+nmap <leader>o o<Esc>k
+nmap <leader>O O<Esc>j
 
 " Move within visual lines
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -335,7 +335,6 @@ map g# <Plug>(incsearch-nohl-g#)
 augroup indentLine
         au BufEnter * IndentLinesEnable
 augroup end
-let g:indentLine_setConceal = 0
 
 " vim-json config
 let g:vim_json_syntax_conceal = 0
@@ -379,10 +378,16 @@ let g:scala_use_default_keymappings = 0
 let g:scala_user_default_keymappings=0
 
 " fzf
-nmap <C-p> :GFiles<cr>
+function! HasGit()
+  let tmp = system('git rev-parse')
+  return !v:shell_error
+endfunction
+
+nnoremap <silent><expr> <C-p> HasGit() ? ":GFiles<CR>" : ":Files<CR>"
 nmap <leader>p :Files<cr>
 nmap <C-f> :Rg<cr>
 nmap <leader>* :Tags<cr>
+nmap <leader>: :Commands<cr>
 
 let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
