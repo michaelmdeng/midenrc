@@ -31,10 +31,14 @@ windows:
   - tasks:
       layout: main-vertical
       panes:
-        - workon nvim3 && nvim -c "TW"
+        - nvim:
+            - workon nvim3
+            - nvim -c "TW"
         -
   - wiki:
       layout: main-vertical
       panes:
-        - workon nvim3 && nvim -c "VimwikiIndex"
+        - nvim:
+            - workon nvim3
+            - nvim -c "VimwikiIndex"
         -

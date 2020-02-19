@@ -1,4 +1,9 @@
 setlocal foldmethod=indent
-setlocal foldlevel=99
+setlocal textwidth=80
+setlocal colorcolumn=81
 
 setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
+if HasLsp()
+  SetupLsp()
+end

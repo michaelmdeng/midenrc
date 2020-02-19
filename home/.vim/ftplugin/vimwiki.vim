@@ -3,17 +3,12 @@ setlocal shiftwidth=4
 setlocal expandtab
 setlocal autoindent
 setlocal smarttab
-setlocal textwidth=79
-setlocal colorcolumn=80
-setlocal foldlevel=99
+setlocal textwidth=80
+setlocal colorcolumn=81
 setlocal conceallevel=0
 setlocal spell
 
 syntax on
-
-nmap <Leader>wl <Plug>VimwikiFollowLink
-nmap <Leader>wls <Plug>VimwikiSplitLink
-nmap <Leader>wlv <Plug>VimwikiVSplitLink
 
 " Remove <Plug>VimwikiGoBackLink
 silent! nunmap <buffer> <BS>
@@ -40,10 +35,23 @@ silent! nunmap <buffer> [=
 silent! nunmap <buffer> ]u
 silent! nunmap <buffer> [u
 
-nmap <leader><Space> <Plug>VimwikiToggleListItem
+nmap <buffer> <leader><Space> <Plug>VimwikiToggleListItem
 
 " Restore <C-Up>, <C-Down>
-nmap gwd <Plug>VimwikiDiaryPrevDay
-nmap gwD <Plug>VimwikiDiaryNextDay
+nmap <buffer> gwd <Plug>VimwikiDiaryPrevDay
+nmap <buffer> gwD <Plug>VimwikiDiaryNextDay
 
-nmap <C-]> <Plug>VimwikiFollowLink
+nmap <buffer> <Leader>wl <Plug>VimwikiFollowLink
+nmap <buffer> <Leader>wls <Plug>VimwikiSplitLink
+nmap <buffer> <Leader>wlv <Plug>VimwikiVSplitLink
+
+nmap <buffer> <C-]> <Plug>VimwikiFollowLink
+nmap <buffer> <C-s>] <Plug>VimwikiSplitLink
+nmap <buffer> <C-v>] <Plug>VimwikiVSplitLink
+
+vmap <buffer> <C-]> <Plug>VimwikiNormalizeLinkVisual
+vmap <buffer> <C-s>] <Plug>VimwikiSplitLink
+vmap <buffer> <C-v>] <Plug>VimwikiVSplitLink
+
+" Remove <Plug>VimwikiDecreaseLevel
+inoremap <buffer> <C-d> <Del>

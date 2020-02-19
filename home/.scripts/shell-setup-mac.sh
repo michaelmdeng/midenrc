@@ -1,1 +1,1 @@
-brew install bat ripgrep
+brew install bat ripgrep pandoc ctags

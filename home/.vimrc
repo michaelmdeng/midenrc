@@ -152,6 +152,8 @@ set completeopt=menuone,noinsert,noselect
 " Ignore some messages
 set shortmess+=c
 
+set viewoptions-=options
+
 " ---------
 " Mappings
 " ---------
@@ -259,6 +261,11 @@ nmap ]P :tablast<cr>
 
 tnoremap <Esc><Esc> <C-\><C-n>
 
+nnoremap <C-s>] <C-w>]
+nnoremap <C-v>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+imap  <C-p> <C-r>
+
 " ---------
 " Autocmds
 " ---------
@@ -270,9 +277,11 @@ augroup InsertCursor
 augroup end
 
 " maintain folds
-augroup MaintainFolds
+augroup MaintainFoldMethod
   autocmd InsertLeave,WinEnter * let &l:foldmethod=g:oldfoldmethod
   autocmd InsertEnter,WinLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
+  autocmd BufWrite * mkview
+  autocmd BufRead * silent! loadview
 augroup end
 
 " --------------
@@ -297,6 +306,13 @@ let g:vimwiki_conceallevel=0
 let g:vimwiki_folding='expr:quick'
 let g:vimwiki_table_mappings=0
 
+function! BetterVimwikiDiaryGenerateLinks()
+  VimwikiDiaryGenerateLinks
+  :%s/\s\+\*/*/e
+  :%s/\(#\+\s.\+$\)/\1\r/e
+  :%s/\n\{3,}/\r\r/e
+endfunction
+
 " Syntastic config
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -309,10 +325,10 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " Rainbow Parens
 augroup RainbowParens
-        au VimEnter * RainbowParenthesesActivate
-        au Syntax * RainbowParenthesesLoadRound
-        au Syntax * RainbowParenthesesLoadSquare
-        au Syntax * RainbowParenthesesLoadBraces
+  au VimEnter * RainbowParenthesesActivate
+  au Syntax * RainbowParenthesesLoadRound
+  au Syntax * RainbowParenthesesLoadSquare
+  au Syntax * RainbowParenthesesLoadBraces
 augroup end
 
 " GitGutter
@@ -333,7 +349,7 @@ map g# <Plug>(incsearch-nohl-g#)
 
 " IndentLines config
 augroup indentLine
-        au BufEnter * IndentLinesEnable
+  au BufEnter * IndentLinesEnable
 augroup end
 
 " vim-json config
@@ -424,11 +440,10 @@ let g:UltiSnipsJumpForwardTrigger = '<c-n>'
 
 " neomake
 let g:neomake_open_list = 2
+let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_markdown_enabled_makers = ['mdl']
-
-" vim-markdown
-let g:vim_markdown_conceal = 0
+cnoreabbrev make Neomake
 
 " GitGutter
 nmap <leader>pf :set nonu nornu scl=no <bar> GitGutterSignsDisable <bar> IndentLinesDisable<CR>
@@ -463,24 +478,28 @@ nnoremap gp :NERDTreeToggle<CR>
 lua << EOF
 require'nvim_lsp'.pyls.setup{}
 require'nvim_lsp'.solargraph.setup{}
+require'nvim_lsp'.vimls.setup{}
+require'nvim_lsp'.yamlls.setup{}
 EOF
 
 function! HasLsp()
   return luaeval('vim.lsp and next(vim.lsp.get_active_clients()) ~= nil')
 endfunction
 
-nnoremap <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <leader>dc <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <leader>df <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <leader>sg <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <leader>rf <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <c-r>r <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <leader>= <cmd>lua vim.lsp.buf.formatting()<CR>
-
-nnoremap <silent><expr> <c-]> HasLsp() ? ":lua vim.lsp.buf.definition()<CR>" : "\<c-]\>"
+function SetupLsp()
+  nnoremap <buffer> <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
+  nnoremap <buffer><silent> <leader>dc <cmd>lua vim.lsp.buf.declaration()<CR>
+  nnoremap <buffer> <leader>df <cmd>lua vim.lsp.buf.definition()<CR>
+  nnoremap <buffer><silent> <leader>sg <cmd>lua vim.lsp.buf.signature_help()<CR>
+  nnoremap <buffer> <leader>rf <cmd>lua vim.lsp.buf.references()<CR>
+  nnoremap <buffer> <c-r>r <cmd>lua vim.lsp.buf.rename()<CR>
+  nnoremap <buffer> <leader>= <cmd>lua vim.lsp.buf.formatting()<CR>
+  nnoremap <buffer><silent><expr> <c-]> ":lua vim.lsp.buf.definition()<CR>"
+endfunction
 
 " Supertab
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 
 " float-preview.nvim
 let g:float_preview#docked = 0
