@@ -26,7 +26,7 @@ $HOME/.homesick/repos/homeshick/bin/homeshick clone https://github.com/michaelmd
 
 # tmux
 sudo apt install tmux ruby
-sudo gem install tmuxinator
+sudo gem install tmuxinator mdl
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # fzf

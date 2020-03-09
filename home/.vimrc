@@ -6,7 +6,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'ajmwagar/vim-deus'
 Plug 'altercation/vim-colors-solarized'
-Plug 'blindFS/vim-taskwarrior'
+Plug 'xarthurx/vim-taskwarrior'
 Plug 'chrisbra/csv.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala'
@@ -399,6 +399,12 @@ function! HasGit()
   return !v:shell_error
 endfunction
 
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=numbers,changes {}']}, <bang>0)
+
+command! -bang -nargs=? -complete=dir GFiles
+    \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=numbers,changes {}']}, <bang>0)
+
 nnoremap <silent><expr> <C-p> HasGit() ? ":GFiles<CR>" : ":Files<CR>"
 nmap <leader>p :Files<cr>
 nmap <C-f> :Rg<cr>
@@ -411,7 +417,7 @@ let g:fzf_action = {
 \ 'ctrl-v': 'vsplit' 
 \ }
 
-let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_layout = { 'down': '~30%' }
 "
 " Customize fzf colors to match your color scheme
 let g:fzf_colors = {
@@ -475,12 +481,29 @@ let g:NERDTreeMapJumpPrevSibling=''
 nnoremap gp :NERDTreeToggle<CR>
 
 " Nvim LSP
+if executable('bash-language-server')
+lua << EOF
+require'nvim_lsp'.bashls.setup{}
+EOF
+endif
+if executable('pyls')
 lua << EOF
 require'nvim_lsp'.pyls.setup{}
+EOF
+endif
+if executable('solargraph')
+lua << EOF
 require'nvim_lsp'.solargraph.setup{}
+EOF
+endif
+lua << EOF
 require'nvim_lsp'.vimls.setup{}
+EOF
+if executable('yamlls')
+lua << EOF
 require'nvim_lsp'.yamlls.setup{}
 EOF
+endif
 
 function! HasLsp()
   return luaeval('vim.lsp and next(vim.lsp.get_active_clients()) ~= nil')
@@ -506,10 +529,20 @@ let g:float_preview#docked = 0
 
 " vim-taskwarrior
 let g:task_highlight_field = 0
-let g:task_rc_override = 'rc.defaultwidth=0'
+let g:task_rc_override = 'rc.defaultwidth=999'
 let g:task_report_name = 'ready'
 let g:task_default_prompt = ['description', 'project', 'due']
+let g:task_info_size = 10
 nnoremap <leader>tw :TW<CR>
+
+" firenvim
+let g:firenvim_config = {
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'takeover': 'never'
+        \ },
+    \ }
+\ }
 
 " -----------------
 " Custom Functions
