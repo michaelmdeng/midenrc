@@ -1,2 +1,3 @@
 setlocal foldmethod=indent
-setlocal foldlevel=99
+setlocal expandtab
+setlocal shiftwidth=2

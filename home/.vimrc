@@ -154,6 +154,8 @@ set shortmess+=c
 
 set viewoptions-=options
 
+set nojoinspaces
+
 " ---------
 " Mappings
 " ---------
@@ -278,9 +280,7 @@ augroup end
 
 " maintain folds
 augroup MaintainFoldMethod
-  autocmd InsertLeave,WinEnter * let &l:foldmethod=g:oldfoldmethod
-  autocmd InsertEnter,WinLeave * let g:oldfoldmethod=&l:foldmethod | setlocal foldmethod=manual
-  autocmd BufWrite * mkview
+  autocmd BufWrite * mkview!
   autocmd BufRead * silent! loadview
 augroup end
 
@@ -361,26 +361,47 @@ let g:lightline = {
 \ 'active': {
 \   'left': [
 \     ['mode', 'paste', 'spell'],
-\     ['readonly', 'modified', 'gitbranch'],
-\     ['relativepath']
+\     ['readonly', 'lightmodified', 'lightgitbranch'],
+\     ['lightrelpath']
 \   ],
 \   'right': [
 \     ['lineinfo'],
-\     [ 'fileformat', 'fileencoding', 'filetype']
+\     ['lightfiletype'],
+\   ]
+\ },
+\ 'inactive': {
+\   'left': [
+\     ['lightgitbranch', 'lightrelpath']
+\   ],
+\   'right': [
+\     ['lineinfo'],
+\     ['lightfiletype']
 \   ]
 \ },
 \ 'component_function': {
-\   'gitbranch': 'LightGitbranch',
-\   'fileformat': 'LightFileformat',
-\   'filetype': 'LightFiletype' }
+\   'lightmodified': 'LightModified',
+\   'lightgitbranch': 'LightGitBranch',
+\   'lightrelpath': 'LightRelPath',
+\   'lightfiletype': 'LightFileType'
+\   }
 \ }
 
-function! LightGitbranch()
-  return winwidth(0) > 100 ? fugitive#head() : ''
+function! LightModified()
+  return &modifiable && &modified ? '+' : ''
 endfunction
 
-function! LightFiletype()
-  return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+function! LightGitBranch()
+  let head = fugitive#head()
+  return (winwidth(0) - strlen(head)) > 60 ? head : '...' . head[strlen(head) - 10:]
+endfunction
+
+function! LightRelPath()
+  let relpath = expand('%')
+  return (winwidth(0) - strlen(relpath)) > 40 ? expand('%') : pathshorten(expand('%'))
+endfunction
+
+function! LightFileType()
+  return winwidth(0) > 100 && &fileformat !=# '' ? &filetype : ''
 endfunction
 
 " vim-easy-align
@@ -537,11 +558,12 @@ nnoremap <leader>tw :TW<CR>
 
 " firenvim
 let g:firenvim_config = {
-    \ 'localSettings': {
-        \ '.*': {
-            \ 'takeover': 'never'
-        \ },
-    \ }
+  \ 'globalSettings': {
+    \ 'cmdline': 'workon nvim3 && nvim',
+    \ 'priority': 0,
+    \ 'selector': 'textarea',
+    \ 'takeover': 'never',
+  \  }
 \ }
 
 " -----------------
