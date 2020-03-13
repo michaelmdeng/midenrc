@@ -52,8 +52,6 @@ call plug#end()
 " Settings
 " ---------
 
-set nocompatible
-
 " Color stuff
 if !has('gui_running')
   set t_Co=256
@@ -63,15 +61,13 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-set background=dark
 colorscheme OceanicNext
 
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
 
-" Remove backup
-set nobackup
+" Remove swap
 set noswapfile
 
 " Space leader
@@ -84,8 +80,6 @@ syntax enable
 set autoread
 
 " Wild menu settings
-" Works like the shell
-set wildmenu
 set wildmode=longest,list
 set wildignore+=*swp,*.class,*.pyc,*.png,*.jpg,*.gif,*.zip
 set wildignore+=*.o,*.obj,*.so     " Unix
@@ -93,19 +87,9 @@ set wildignore+=*.exe            " Windows
 
 " Case settings for search
 set ignorecase
-set smartcase
-
-" Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
-
-" Regex stuff
-set magic
 
 " Show matching brackets when text indicator is over them
 set showmatch
@@ -141,7 +125,7 @@ set noshowmode
 set updatetime=500
 
 " Faster timeout for command sequences
-set timeoutlen=300
+set timeoutlen=500
 
 " More cmd bar
 set cmdheight=2
@@ -161,7 +145,7 @@ set nojoinspaces
 " ---------
 
 " Windows mappings
-nmap <C-a> ggvG$
+nmap <C-a> gg0vG$
 nmap <C-s> :w<cr>
 
 " window resize shortcuts
@@ -170,7 +154,7 @@ nnoremap <C-w>- :res -5<CR>
 nnoremap <C-w>> :vert res +5<CR>
 nnoremap <C-w>< :vert res -5<CR>
 
-" leader<o> and leader<CR> for inserting lines without entering insert mode
+" Insert lines without entering insert mode
 nmap <leader>o o<Esc>k
 nmap <leader>O O<Esc>j
 
@@ -194,7 +178,7 @@ nnoremap dL d$
 nnoremap yH y^
 nnoremap yL y$
 
-" Visual shifting (does not exit Visual mode)
+" Visual shifting
 vnoremap < <gv
 vnoremap > >gv
 
@@ -229,13 +213,7 @@ nmap <leader>cl :windo lcl<bar>ccl<CR>:windo lcl<bar>ccl<CR>
 " GTFO Ex mode
 nnoremap Q <Nop>
 
-nmap <leader>ve :VimrcEdit<cr>
-nmap <leader>vr :VimrcReload<cr>
-
 " Previous/next mappings
-" jumps
-nnoremap [j <C-o>
-nnoremap ]j <C-i>
 " changes handled by GitGutter
 " quickfix
 nnoremap [q :cp<CR>
@@ -257,16 +235,25 @@ nmap [B :bfirst<cr>
 nmap ]B :blast<cr>
 " tab page
 nmap [p :tablast<cr>
-nmap ]p :tabN<cr>
+nmap ]p :tabnext<cr>
 nmap [P :tabfirst<cr>
 nmap ]P :tablast<cr>
 
+" Esc in term mode
 tnoremap <Esc><Esc> <C-\><C-n>
 
+" Split tags
 nnoremap <C-s>] <C-w>]
 nnoremap <C-v>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
-imap  <C-p> <C-r>
+" Paste in insert mode
+imap <C-p> <C-r>
+
+" very-magic search
+nnoremap / /\V
+nnoremap ? ?\V
+vnoremap / /\V
+vnoremap ? ?\V
 
 " ---------
 " Autocmds
@@ -291,7 +278,7 @@ augroup end
 " Vim-tmux-navigator
 let g:BASH_Ctrl_j = 'off'
 
-" Vimwiki specific config
+" Vimwiki
 au FileType vimwiki set filetype=vimwiki.markdown
 let g:vimwiki_list = [{
 \ 'path':'~/Dropbox/vimwiki/wiki',
@@ -313,17 +300,10 @@ function! BetterVimwikiDiaryGenerateLinks()
   :%s/\n\{3,}/\r\r/e
 endfunction
 
-" Syntastic config
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['pylint', 'python', 'pep8']
-let g:syntastic_scala_checkers = ['ensime']
-
-" Editorconfig config
+" vim-editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-" Rainbow Parens
+" rainbow_parentheses
 augroup RainbowParens
   au VimEnter * RainbowParenthesesActivate
   au Syntax * RainbowParenthesesLoadRound
@@ -415,18 +395,18 @@ let g:scala_use_default_keymappings = 0
 let g:scala_user_default_keymappings=0
 
 " fzf
-function! HasGit()
-  let tmp = system('git rev-parse')
-  return !v:shell_error
-endfunction
-
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=numbers,changes {}']}, <bang>0)
 
 command! -bang -nargs=? -complete=dir GFiles
     \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=numbers,changes {}']}, <bang>0)
 
-nnoremap <silent><expr> <C-p> HasGit() ? ":GFiles<CR>" : ":Files<CR>"
+function! HasGit()
+  let tmp = system('git rev-parse')
+  return !v:shell_error
+endfunction
+
+nnoremap <expr> <C-p> HasGit() ? ":GFiles<CR>" : ":Files<CR>"
 nmap <leader>p :Files<cr>
 nmap <C-f> :Rg<cr>
 nmap <leader>* :Tags<cr>
@@ -530,7 +510,7 @@ function! HasLsp()
   return luaeval('vim.lsp and next(vim.lsp.get_active_clients()) ~= nil')
 endfunction
 
-function SetupLsp()
+function SetupLsp() abort
   nnoremap <buffer> <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
   nnoremap <buffer><silent> <leader>dc <cmd>lua vim.lsp.buf.declaration()<CR>
   nnoremap <buffer> <leader>df <cmd>lua vim.lsp.buf.definition()<CR>
