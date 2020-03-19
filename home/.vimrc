@@ -24,10 +24,9 @@ Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
 Plug 'mhartington/oceanic-next'
-Plug 'michaelmdeng/miden-vim'
+Plug 'michaelmdeng/miden-vim', {'do': ':UpdateRemotePlugins'}
 Plug 'myusuf3/numbers.vim'
 Plug 'neomake/neomake'
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
 Plug 'thinca/vim-visualstar'
@@ -106,11 +105,7 @@ set relativenumber
 set signcolumn=yes
 
 " Persistent undo
-try
-  set undodir=~/.vim/temp/undo
-  set undofile
-catch
-endtry
+set undofile
 
 " How to display whitespace
 set listchars=eol:$,tab:->,trail:~,extends:>,precedes:<,space:␣
@@ -399,7 +394,7 @@ command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=numbers,changes {}']}, <bang>0)
 
 command! -bang -nargs=? -complete=dir GFiles
-    \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=numbers,changes {}']}, <bang>0)
+    \ call fzf#vim#gitfiles(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=numbers,changes {}']}, <bang>0)
 
 function! HasGit()
   let tmp = system('git rev-parse')
