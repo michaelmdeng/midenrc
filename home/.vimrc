@@ -205,8 +205,8 @@ cnoremap <C-d> <Del>
 " Close list windows
 nmap <leader>cl :windo lcl<bar>ccl<CR>:windo lcl<bar>ccl<CR>
 
-" GTFO Ex mode
-nnoremap Q <Nop>
+nmap <leader>ve :VimrcEdit<cr>
+nmap <leader>vr :VimrcReload<cr>
 
 " Previous/next mappings
 " changes handled by GitGutter
@@ -234,7 +234,7 @@ nmap ]p :tabnext<cr>
 nmap [P :tabfirst<cr>
 nmap ]P :tablast<cr>
 
-" Esc in term mode
+" Esc for term mode
 tnoremap <Esc><Esc> <C-\><C-n>
 
 " Split tags
@@ -249,6 +249,14 @@ nnoremap / /\V
 nnoremap ? ?\V
 vnoremap / /\V
 vnoremap ? ?\V
+
+" delete without clobbering registers
+nnoremap s "_d
+nnoremap S "_D
+nnoremap ss "_dd
+
+" GTFO Ex mode
+nnoremap Q @@
 
 " ---------
 " Autocmds
@@ -367,12 +375,12 @@ endfunction
 
 function! LightGitBranch()
   let head = fugitive#head()
-  return (winwidth(0) - strlen(head)) > 60 ? head : '...' . head[strlen(head) - 10:]
+  return (winwidth(0) - strlen(head)) > 75 ? head : '...' . head[strlen(head) - 10:]
 endfunction
 
 function! LightRelPath()
   let relpath = expand('%')
-  return (winwidth(0) - strlen(relpath)) > 40 ? expand('%') : pathshorten(expand('%'))
+  return (winwidth(0) - strlen(relpath)) > 50 ? expand('%') : pathshorten(expand('%'))
 endfunction
 
 function! LightFileType()
