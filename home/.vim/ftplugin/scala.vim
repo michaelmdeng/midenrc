@@ -7,7 +7,6 @@ setlocal textwidth=80
 setlocal colorcolumn=81
 setlocal formatoptions=croql
 setlocal foldmethod=indent
-setlocal foldlevel=99
 syntax on
 
 nmap <leader>si :SortScalaImports<CR>

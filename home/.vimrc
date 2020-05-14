@@ -31,6 +31,7 @@ Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
 Plug 'thinca/vim-visualstar'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
@@ -156,6 +157,8 @@ nmap <leader>O O<Esc>j
 " Move within visual lines
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+vnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+vnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 
 " Move to the start of line
 nnoremap H ^
