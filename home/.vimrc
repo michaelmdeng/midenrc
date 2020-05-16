@@ -244,9 +244,6 @@ tnoremap <Esc><Esc> <C-\><C-n>
 nnoremap <C-s>] <C-w>]
 nnoremap <C-v>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
-" Paste in insert mode
-imap <C-p> <C-r>
-
 " very-magic search
 nnoremap / /\V
 nnoremap ? ?\V
@@ -447,7 +444,16 @@ let g:fzf_colors = {
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
 let g:UltiSnipsEditSplit = 'context'
 let g:UltiSnipsEnableSnipMate = 0
-let g:UltiSnipsExpandTrigger="<m-q>"
+let g:UltiSnipsExpandTrigger = "<nop>"
+let g:ulti_expand_or_jump_res = 0
+function ExpandSnippetOrCarriageReturn()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<CR>"
+    endif
+endfunction
 let g:UltiSnipsJumpBackwardTrigger = '<c-p>'
 let g:UltiSnipsJumpForwardTrigger = '<c-n>'
 

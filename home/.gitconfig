@@ -13,6 +13,8 @@
 	ci = commit
 	cia = commit -a
 	cie = commit -e
+	ciae = commit -ae
+	ciea = commit -ae
 	br = branch
 	rb = rebase
 	lo = log
