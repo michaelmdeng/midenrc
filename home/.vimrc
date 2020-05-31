@@ -444,18 +444,19 @@ let g:fzf_colors = {
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
 let g:UltiSnipsEditSplit = 'context'
 let g:UltiSnipsEnableSnipMate = 0
-let g:UltiSnipsExpandTrigger = "<nop>"
-let g:ulti_expand_or_jump_res = 0
-function ExpandSnippetOrCarriageReturn()
-    let snippet = UltiSnips#ExpandSnippetOrJump()
-    if g:ulti_expand_or_jump_res > 0
-        return snippet
-    else
-        return "\<CR>"
-    endif
-endfunction
 let g:UltiSnipsJumpBackwardTrigger = '<c-p>'
 let g:UltiSnipsJumpForwardTrigger = '<c-n>'
+let g:UltiSnipsExpandTrigger="<nop>"
+let g:ulti_expand_or_jump_res = 0
+function! <SID>ExpandSnippetOrReturn()
+  let snippet = UltiSnips#ExpandSnippetOrJump()
+  if g:ulti_expand_or_jump_res > 0
+    return snippet
+  else
+    return "\<CR>"
+  endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
 
 " neomake
 let g:neomake_open_list = 2
@@ -509,20 +510,38 @@ lua << EOF
 require'nvim_lsp'.solargraph.setup{}
 EOF
 endif
+if executable('vim-language-server')
 lua << EOF
 require'nvim_lsp'.vimls.setup{}
 EOF
+endif
 if executable('yamlls')
 lua << EOF
 require'nvim_lsp'.yamlls.setup{}
 EOF
 endif
+" cmd = {'java', '-Declipse.application=org.eclipse.jdt.ls.core.id1', '-Dosgi.bundles.defaultStartLevel=4', '-Declipse.product=org.eclipse.jdt.ls.core.product', '-noverify', '-Xms1G', '-jar', '~/Source/jdt-language-server-latest/plugins/org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar', '-configuration', '~/Source/jdt-language-server-latest/config_mac/', '-data', '~/Source/java-lsp'};
+" lua << EOF
+" require'nvim_lsp/configs'.javals = {
+"   default_config = {
+"     cmd = {'echo', '\'Hello World!\''};
+"     filetypes = {'java'};
+"     root_dir = function(fname)
+"       return nvim_lsp.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+"     end;
+"     settings = {};
+"   };
+" }
+" require'nvim_lsp'.javals.setup{}
+" EOF
 
 function! HasLsp()
-  return luaeval('vim.lsp and next(vim.lsp.get_active_clients()) ~= nil')
+  return luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients())')
 endfunction
 
-function SetupLsp() abort
+function! SetupLsp() abort
+  setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
   nnoremap <buffer> <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
   nnoremap <buffer><silent> <leader>dc <cmd>lua vim.lsp.buf.declaration()<CR>
   nnoremap <buffer> <leader>df <cmd>lua vim.lsp.buf.definition()<CR>

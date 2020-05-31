@@ -1,0 +1,17 @@
+snippet describe "RSpec describe" b
+describe "${1:description}" do
+  ${2:body}
+end
+endsnippet
+
+snippet context "RSpec context" b
+context "${1:context}" do
+  ${2:body}
+end
+endsnippet
+
+snippet it "RSpec it" b
+it "${1:should}" do
+  ${2:body}
+end
+endsnippet
