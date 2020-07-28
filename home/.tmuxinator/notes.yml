@@ -28,13 +28,6 @@ root: ~/Dropbox/vimwiki/wiki
 # post: tmux -CC attach -t wiki-dev
 
 windows:
-  - tasks:
-      layout: main-vertical
-      panes:
-        - nvim:
-            - workon nvim3
-            - nvim -c "TW"
-        -
   - wiki:
       layout: main-vertical
       panes:

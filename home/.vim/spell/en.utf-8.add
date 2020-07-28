@@ -10,3 +10,6 @@ middleware
 performant
 serializable
 unengaged
+automatable
+ciphertext
+plaintext

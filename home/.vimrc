@@ -27,6 +27,7 @@ Plug 'mhartington/oceanic-next'
 Plug 'michaelmdeng/miden-vim', {'do': ':UpdateRemotePlugins'}
 Plug 'myusuf3/numbers.vim'
 Plug 'neomake/neomake'
+Plug 'rhysd/vim-grammarous'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
 Plug 'thinca/vim-visualstar'
@@ -199,11 +200,12 @@ inoremap <C-d> <Del>
 
 " Command mode movements
 cnoremap <C-h> <Left>
-cnoremap <C-j> <Down>
-cnoremap <C-k> <Up>
 cnoremap <C-l> <Right>
 cnoremap <C-b> <BS>
 cnoremap <C-d> <Del>
+
+" Restore digraph
+inoremap <C-q> <C-k>
 
 " Close list windows
 nmap <leader>cl :windo lcl<bar>ccl<CR>:windo lcl<bar>ccl<CR>
@@ -576,6 +578,10 @@ let g:firenvim_config = {
     \ 'takeover': 'never',
   \  }
 \ }
+
+" grammarous
+let g:grammarous#use_vim_spelllang = 1
+let g:grammarous#use_location_list = 1
 
 " -----------------
 " Custom Functions
