@@ -50,3 +50,15 @@ windows:
             - workon nvim3
             - nvim .
         - git st
+  - mdeng-plugin:
+      layout: main-vertical
+      panes:
+        - vim:
+            - cd ~/Source/miden-vim
+            - workon nvim3
+            - nvim .
+        - git st
+  - plugins:
+      layout: main-vertical
+      panes:
+        - cd ~/.vim/plugged

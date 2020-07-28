@@ -30,6 +30,7 @@ Plug 'neomake/neomake'
 Plug 'rhysd/vim-grammarous'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
+Plug 'slim-template/vim-slim'
 Plug 'thinca/vim-visualstar'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-abolish'
@@ -62,6 +63,10 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
+syntax enable
+
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
 colorscheme OceanicNext
 
 " Enable filetype plugins
@@ -74,8 +79,6 @@ set noswapfile
 " Space leader
 let mapleader = " "
 let g:mapleader = " "
-
-syntax enable
 
 " Auto read when a file is changed from the outside
 set autoread

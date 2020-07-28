@@ -4,10 +4,12 @@ information on how to install them.
 
 # Applications
 
-| Name               | Description                | Link                                  |
-| ---                | ---                        | ---                                   |
-| Karabiner-Elements | Keyboard customizer.       | https://pqrs.org/osx/karabiner/       |
-| Alfred             | Application launcher.      | https://www.alfredapp.com/            |
-| Amethyst           | Tiling window manager.     | https://ianyh.com/amethyst/           |
-| Scroll Reverser    | Reverses scroll direction. | https://pilotmoon.com/scrollreverser/ |
-| MacPass            | KeePass client for MacOS.  | https://macpassapp.org/               |
+| Name                | Description                | Link                                  |
+| ---                 | ---                        | ---                                   |
+| Karabiner-Elements  | Keyboard customizer.       | https://pqrs.org/osx/karabiner/       |
+| Alfred              | Application launcher.      | https://www.alfredapp.com/            |
+| Amethyst            | Tiling window manager.     | https://ianyh.com/amethyst/           |
+| Scroll Reverser     | Reverses scroll direction. | https://pilotmoon.com/scrollreverser/ |
+| MacPass             | KeePass client for MacOS.  | https://macpassapp.org/               |
+| TurboBoost Switcher | Disable turbo boost.       | http://tbswitcher.rugarciap.com/      |
+| Clipy               | Clipboard manager.         | https://clipy-app.com/                |
