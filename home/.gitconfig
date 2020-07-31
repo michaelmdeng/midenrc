@@ -43,3 +43,5 @@
 	cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
 	tool = vimdiff
 	prompt = false
+[credential]
+	helper = store
