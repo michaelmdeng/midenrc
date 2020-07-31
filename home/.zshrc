@@ -128,3 +128,51 @@ function zle-line-init zle-keymap-select {
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+###########################################
+# START Square
+###########################################
+
+# Allow more open files than the OSX default of 256
+ulimit -n 4096
+
+# completion
+autoload -U compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
+typeset -U path
+# Check if a path exists
+function append_to_path {
+  if [ -d "$1" ]; then
+    path+=$1
+  fi
+}
+
+function prepend_to_path {
+  if [ -d "$1" ]; then
+    path=($1 $path)
+  fi
+}
+
+prepend_to_path /usr/local/bin
+prepend_to_path /usr/local/sbin
+prepend_to_path /usr/local/share/npm/bin
+prepend_to_path $HOME/bin
+append_to_path /usr/local/mysql/bin
+append_to_path /opt/nginx/sbin
+append_to_path /opt/local/bin
+append_to_path /opt/local/sbin
+
+source ~/.zsh/completion.zsh
+source ~/.zsh/functions.zsh
+source ~/.zsh/rake_completion.zsh
+
+# source the scripts in square/profile.d/
+source ~/Development/config_files/square/profile
+
+###########################################
+# END Square
+###########################################

@@ -36,3 +36,16 @@ export WORKON_HOME=$HOME/.virtualenvs
 
 # Opt out of homebrew analytics collection
 export HOMEBREW_NO_ANALYTICS=1
+
+###########################################
+# START Square
+###########################################
+
+# source the scripts in square/profile.d/
+for file in ~/Development/config_files/square/profile.d/*; do
+  source $file
+done
+
+###########################################
+# END Square
+###########################################

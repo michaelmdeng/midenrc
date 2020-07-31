@@ -1,3 +1,23 @@
+###########################################
+# START Square
+###########################################
+
+if [[ -f "$SQUARE_HOME/config_files/square/bundler-exec.sh" ]]; then
+  source $SQUARE_HOME/config_files/square/bundler-exec.sh
+fi
+
+# uncomment to automatically `bundle exec` common ruby commands
+if [ -z $SQUARE_HOME ] && [ -d "$HOME/Development" ]; then
+  export SQUARE_HOME=$HOME/Development
+fi
+
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+[[ -f "$HOME/.localaliases" ]] && source "$HOME/.localaliases"
+
+###########################################
+# END Square
+###########################################
+
 # --------
 # Aliases
 # --------
@@ -85,6 +105,8 @@ if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 elif [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
     source $HOME/.local/bin/virtualenvwrapper.sh
+elif [ -f "/opt/salt/bin/virtualenvwrapper.sh" ]; then
+    source /opt/salt/bin/virtualenvwrapper.sh
 else
     echo "warning: virtualenvwrapper.sh not found. Is it installed?"
 fi
