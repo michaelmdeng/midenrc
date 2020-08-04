@@ -50,3 +50,4 @@ sudo apt install xdotool libinput-tools
 sudo gem install fusuma
 
 sudo npm install vss-css-languageserver-bin
+sudo npm install vss-html-languageserver-bin

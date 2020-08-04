@@ -510,6 +510,11 @@ lua << EOF
 require'nvim_lsp'.cssls.setup{}
 EOF
 endif
+if executable('html-languageserver')
+lua << EOF
+require'nvim_lsp'.html.setup{}
+EOF
+endif
 if executable('pyls')
 lua << EOF
 require'nvim_lsp'.pyls.setup{}
