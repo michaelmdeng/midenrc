@@ -1,0 +1,3 @@
+if HasLsp()
+  SetupLsp()
+end

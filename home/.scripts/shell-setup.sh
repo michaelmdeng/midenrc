@@ -48,3 +48,5 @@ sudo apt install copyq
 # touchpad gestures
 sudo apt install xdotool libinput-tools
 sudo gem install fusuma
+
+sudo npm install vss-css-languageserver-bin
