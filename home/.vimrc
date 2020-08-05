@@ -6,7 +6,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'ajmwagar/vim-deus'
 Plug 'altercation/vim-colors-solarized'
-Plug 'xarthurx/vim-taskwarrior'
 Plug 'chrisbra/csv.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala'
@@ -15,6 +14,7 @@ Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/vim-asterisk'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -31,7 +31,6 @@ Plug 'rhysd/vim-grammarous'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'scrooloose/nerdtree'
 Plug 'slim-template/vim-slim'
-Plug 'thinca/vim-visualstar'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -42,6 +41,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'vimwiki/vimwiki'
+Plug 'xarthurx/vim-taskwarrior'
 
 if has('nvim')
   Plug 'neovim/nvim-lsp'
@@ -323,17 +323,18 @@ augroup end
 nmap <leader>sh :GitGutterStageHunk<CR>
 nmap <leader>uh :GitGutterUndoHunk<CR>
 
-" Incsearch
+" Incsearch and vim-asterisk
 let g:incsearch#auto_nohlsearch = 1
+let g:incsearch#do_not_save_error_message_history = 1
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
+map *  <Plug>(incsearch-nohl)<Plug>(asterisk-*)
+map g* <Plug>(incsearch-nohl)<Plug>(asterisk-g*)
+map #  <Plug>(incsearch-nohl)<Plug>(asterisk-#)
+map g# <Plug>(incsearch-nohl)<Plug>(asterisk-g#)
 
 " IndentLines config
 augroup indentLine
