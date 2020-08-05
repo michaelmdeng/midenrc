@@ -16,7 +16,7 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kien/rainbow_parentheses.vim'
@@ -28,8 +28,6 @@ Plug 'michaelmdeng/miden-vim', {'do': ':UpdateRemotePlugins'}
 Plug 'myusuf3/numbers.vim'
 Plug 'neomake/neomake'
 Plug 'rhysd/vim-grammarous'
-Plug 'roxma/vim-tmux-clipboard'
-Plug 'scrooloose/nerdtree'
 Plug 'slim-template/vim-slim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-abolish'
@@ -41,7 +39,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'vimwiki/vimwiki'
-Plug 'xarthurx/vim-taskwarrior'
 
 if has('nvim')
   Plug 'neovim/nvim-lsp'
@@ -574,14 +571,6 @@ let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 
 " float-preview.nvim
 let g:float_preview#docked = 0
-
-" vim-taskwarrior
-let g:task_highlight_field = 0
-let g:task_rc_override = 'rc.defaultwidth=999'
-let g:task_report_name = 'ready'
-let g:task_default_prompt = ['description', 'project', 'due']
-let g:task_info_size = 10
-nnoremap <leader>tw :TW<CR>
 
 " firenvim
 let g:firenvim_config = {
