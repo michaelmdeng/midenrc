@@ -284,7 +284,7 @@ augroup end
 let g:BASH_Ctrl_j = 'off'
 
 " Vimwiki
-au FileType vimwiki set filetype=vimwiki.markdown
+au FileType vimwiki set filetype=markdown
 let g:vimwiki_list = [{
 \ 'path':'~/Dropbox/vimwiki/wiki',
 \ 'path_html':'~/Dropbox/vimwiki/html/',
