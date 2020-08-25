@@ -316,10 +316,6 @@ augroup RainbowParens
   au Syntax * RainbowParenthesesLoadBraces
 augroup end
 
-" GitGutter
-nmap <leader>sh :GitGutterStageHunk<CR>
-nmap <leader>uh :GitGutterUndoHunk<CR>
-
 " Incsearch and vim-asterisk
 let g:incsearch#auto_nohlsearch = 1
 let g:incsearch#do_not_save_error_message_history = 1
@@ -467,10 +463,15 @@ let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_markdown_enabled_makers = ['mdl']
 cnoreabbrev make Neomake
+nnoremap <leader><leader>= :Neomake<CR>
 
 " GitGutter
-nmap <leader>pf :set nonu nornu scl=no <bar> GitGutterSignsDisable <bar> IndentLinesDisable<CR>
-nmap <leader>fp :set nu rnu scl=yes <bar> GitGutterSignsEnable <bar> IndentLinesEnable<CR>
+let g:gitgutter_use_location_list = 1
+nnoremap <leader>pf :set nonu nornu scl=no <bar> GitGutterSignsDisable <bar> IndentLinesDisable<CR>
+nnoremap <leader>fp :set nu rnu scl=yes <bar> GitGutterSignsEnable <bar> IndentLinesEnable<CR>
+nnoremap <leader>sh :GitGutterStageHunk<CR>
+nnoremap <leader>uh :GitGutterUndoHunk<CR>
+nnoremap <leader>hh :GitGutterQuickFix<bar> lopen<CR>
 
 " Undotree
 let g:undotree_SplitWidth = 35
