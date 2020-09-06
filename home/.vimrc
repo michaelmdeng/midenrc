@@ -38,6 +38,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
+Plug 'unblevable/quick-scope'
 Plug 'vimwiki/vimwiki'
 
 if has('nvim')
@@ -586,6 +587,11 @@ let g:firenvim_config = {
 " grammarous
 let g:grammarous#use_vim_spelllang = 1
 let g:grammarous#use_location_list = 1
+
+" quick-scope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+let g:qs_max_chars = 150
+let g:qs_buftype_blacklist = ['terminal', 'nofile', 'fzf', 'netrw']
 
 " -----------------
 " Custom Functions
