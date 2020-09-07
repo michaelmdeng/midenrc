@@ -53,11 +53,11 @@ windows:
           - workon nvim3
           - nvim .
         - git:
-          - cd engagement-google-functions
+          - cd engagement-backfill-worker
           - git st
         - console:
-          - cd engagement-google-functions
-          - workon engagement-backfill-workder
+          - cd engagement-backfill-worker
+          - workon engagement-backfill-worker
           - python
   - gcf:
       layout: main-vertical
