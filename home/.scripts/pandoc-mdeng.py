@@ -22,7 +22,7 @@ def vw_all_to_html(wiki, html, verbose=False, run_all=False):
         source_mod_time = os.path.getmtime(f)
         dest_mod_time = os.path.getmtime(of) if os.path.exists(of) else None
 
-        if run_all or (dest_mod_time and source_mod_time > dest_mod_time):
+        if run_all or (not dest_mod_time) or (dest_mod_time and source_mod_time > dest_mod_time):
             cmd = ["pandoc", "-r", "markdown", "-w", "html", f, "-o", of]
             if verbose:
                 print(f"Running {' '.join(cmd)}")
