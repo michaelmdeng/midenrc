@@ -1,7 +1,7 @@
 # /Users/mdeng/.tmuxinator/sq-dataflow.yml
 
 name: sq-dataflow
-root: ~/Development/dataflow_java/
+root: ~/Development/dataflow_java
 
 # Optional tmux socket
 # socket_name: foo
@@ -64,3 +64,15 @@ windows:
           - git st
         - console:
           - cd personas
+  - gcs-file-writer:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd snowflake/gcs-file-writer
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd snowflake/gcs-file-writer
+          - git st
+        - console:
+          - cd snowflake/gcs-file-writer
