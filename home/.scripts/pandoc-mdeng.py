@@ -8,15 +8,19 @@ DEFAULT_WIKI_PATH = '~/Dropbox/vimwiki/wiki'
 DEFAULT_HTML_PATH = '~/Dropbox/vimwiki/html'
 
 def vw_all_to_html(wiki, html, verbose=False, run_all=False):
-    vw_dir = os.path.expanduser('~/Dropbox/vimwiki/wiki')
+    vw_dir = os.path.expanduser(wiki)
+    html_dir = os.path.expanduser(html)
+
     files = glob(vw_dir + "/**/*.md") + glob(vw_dir + "/*.md")
     rel_paths = [f[len(vw_dir) + 1:] for f in files]
-    html_dir = os.path.expanduser('~/Dropbox/vimwiki/html')
     out_files = [f"{html_dir}/{rel_path[:len(rel_path) - 3]}.html" for rel_path in rel_paths]
 
-    out_dirs = set([os.path.dirname(out_file) for out_file in out_files])
+    out_dirs = {os.path.dirname(out_file) for out_file in out_files}
     dir_cmds = [["mkdir", "-p", out_dir] for out_dir in out_dirs]
-    [subprocess.run(args=dir_cmd) for dir_cmd in dir_cmds]
+    for dir_cmd in dir_cmds:
+        if verbose:
+            print(f"Running {' '.join(dir_cmd)}")
+        subprocess.run(args=dir_cmd, check=True)
 
     for (f, of) in zip(files, out_files):
         source_mod_time = os.path.getmtime(f)
@@ -26,7 +30,7 @@ def vw_all_to_html(wiki, html, verbose=False, run_all=False):
             cmd = ["pandoc", "-r", "markdown", "-w", "html", f, "-o", of]
             if verbose:
                 print(f"Running {' '.join(cmd)}")
-            subprocess.run(args=cmd)
+            subprocess.run(args=cmd, check=True)
         elif verbose:
             print(f"Did not convert {f} to {of} since it has not changed")
 
