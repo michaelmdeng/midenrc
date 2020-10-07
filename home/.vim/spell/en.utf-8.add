@@ -21,3 +21,5 @@ roundtrip
 roundtrips
 serializable
 unengaged
+destructors
+antipattern

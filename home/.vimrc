@@ -576,12 +576,20 @@ let g:float_preview#docked = 0
 
 " firenvim
 let g:firenvim_config = {
-  \ 'globalSettings': {
-    \ 'cmdline': 'workon nvim3 && nvim',
-    \ 'priority': 0,
-    \ 'selector': 'textarea',
-    \ 'takeover': 'never',
-  \  }
+\   'globalSettings': {
+\     'cmdline': 'workon nvim3 && nvim',
+\     'priority': 0,
+\     'selector': 'textarea',
+\     'takeover': 'never',
+\    },
+\   'localSettings': {
+\     '.*': {
+\       'cmdline': 'workon nvim3 && nvim',
+\       'priority': 0,
+\       'selector': 'textarea',
+\       'takeover': 'never',
+\     },
+\   }
 \ }
 
 " grammarous
@@ -592,6 +600,11 @@ let g:grammarous#use_location_list = 1
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:qs_max_chars = 150
 let g:qs_buftype_blacklist = ['terminal', 'nofile', 'fzf', 'netrw']
+let g:qs_second_highlight = 0
+let g:qs_lazy_highlight = 1
+
+" vim-tex
+let g:tex_flavor = 'latex'
 
 " -----------------
 " Custom Functions
