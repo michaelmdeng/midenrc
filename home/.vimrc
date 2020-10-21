@@ -261,6 +261,9 @@ nnoremap ss "_dd
 " GTFO Ex mode
 nnoremap Q @@
 
+" yank-quit
+nnoremap <leader>yq gg0vG$"+y:q!<cr>
+
 " ---------
 " Autocmds
 " ---------
@@ -569,7 +572,7 @@ endfunction
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 " float-preview.nvim
 let g:float_preview#docked = 0

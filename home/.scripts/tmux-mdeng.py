@@ -47,8 +47,10 @@ def convert_to_windows():
             continue
 
         extra_window = get_extra_window(window)
+        extra_window_created = False
         if extra_window not in curr_windows_extra():
             subprocess.run(["tmux", "new-window", "-d", "-n", extra_window], check=True)
+            extra_window_created = True
 
         while extra_panes:
             extra_pane = extra_panes[0]
@@ -66,9 +68,10 @@ def convert_to_windows():
             )
             extra_panes = panes(window)[1:]
 
-        subprocess.run(["tmux", "kill-pane", "-t", f"{extra_window}.1"], check=True)
+        if extra_window_created:
+            subprocess.run(["tmux", "kill-pane", "-t", f"{extra_window}.0"], check=True)
         subprocess.run(
-            ["tmux", "select-layout", "-t", f"{extra_window}.1", "even-horizontal"],
+            ["tmux", "select-layout", "-t", f"{extra_window}.0", "even-horizontal"],
             check=True,
         )
 
@@ -104,7 +107,7 @@ def convert_to_panes():
 
 def switch_extra():
     if not curr_windows_extra():
-        return
+        sys.exit(1)
 
     output = subprocess.run(
         ["tmux", "display-message", "-p", "'#S:#W'"], capture_output=True, check=True
