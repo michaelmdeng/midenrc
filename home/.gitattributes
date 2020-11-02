@@ -1,0 +1,9 @@
+*.css  diff=css
+*.go   diff=golang
+*.html diff=html
+*.java diff=java
+*.md   diff=markdown
+*.py   diff=python
+*.rb   diff=ruby
+*.rake diff=ruby
+*.tex  diff=tex

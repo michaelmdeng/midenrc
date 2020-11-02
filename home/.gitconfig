@@ -4,6 +4,7 @@
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore
+	attributesfile = /home/mdeng/.gitattributes
 [rerere]
 	enabled = true
 [alias]
