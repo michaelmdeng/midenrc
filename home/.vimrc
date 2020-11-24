@@ -264,6 +264,10 @@ nnoremap Q @@
 " yank-quit
 nnoremap <leader>yq gg0vG$"+y:q!<cr>
 
+" more natural paragraphs
+nnoremap <silent> } :call search('\(^$\n\s*\zs\S\)\<bar>\(\S\ze\n*\%$\)', 'sW')<CR>
+nnoremap <silent> { :call search('\(^$\n\s*\zs\S\)\<bar>\(^\%1l\s*\zs\S\)','sWb')<CR>
+
 " ---------
 " Autocmds
 " ---------

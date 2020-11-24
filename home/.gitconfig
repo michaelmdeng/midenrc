@@ -46,3 +46,7 @@
 	prompt = false
 [credential]
 	helper = store
+[checkout]
+	defaultRemote = origin
+[pull]
+	rebase = false

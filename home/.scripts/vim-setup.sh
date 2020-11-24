@@ -9,6 +9,7 @@ pip3 install sexpdata websocket-client
 mkvirtualenv --python=python3 nvim3
 workon nvim3
 pip3 install sexpdata websocket-client
+pip3 install pylint black
 deactivate
 
 # vim-plug
