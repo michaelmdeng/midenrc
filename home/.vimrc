@@ -299,7 +299,8 @@ let g:vimwiki_list = [{
 \ 'syntax': 'markdown',
 \ 'ext': '.md',
 \ 'auto_tags': 1,
-\ 'auto_toc': 1
+\ 'auto_toc': 1,
+\ 'custom_wiki2html': '~/.scripts/vimwiki-pandoc.py'
 \ }]
 let g:vimwiki_hl_cb_checked=1
 let g:vimwiki_conceallevel=0
@@ -418,6 +419,7 @@ endfunction
 
 nnoremap <expr> <C-p> HasGit() ? ":GFiles<CR>" : ":Files<CR>"
 nmap <leader>p :Files<cr>
+nmap <leader><C-p> :History<cr>
 nmap <C-f> :Rg<cr>
 nmap <leader>* :Tags<cr>
 nmap <leader>: :Commands<cr>
