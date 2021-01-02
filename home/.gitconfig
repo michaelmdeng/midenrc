@@ -1,10 +1,11 @@
 [user]
-	email = michaelmdeng@gmail.com
 	name = Michael Deng
+	email = mdeng@squareup.com
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
+	hooksPath = ~/Development/config_files/dot-files/git_template/hooks
 [rerere]
 	enabled = true
 [alias]

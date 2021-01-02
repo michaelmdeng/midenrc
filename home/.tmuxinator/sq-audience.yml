@@ -40,7 +40,7 @@ root: ~/Development/audience-gen/
 # attach: false
 
 windows:
-  - audience-gen:
+  - editor:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
