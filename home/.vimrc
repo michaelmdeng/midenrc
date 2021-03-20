@@ -6,6 +6,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'ajmwagar/vim-deus'
 Plug 'altercation/vim-colors-solarized'
+Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'chrisbra/csv.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala'
@@ -15,6 +16,7 @@ Plug 'ervandew/supertab'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/vim-asterisk'
+Plug 'isRuslan/vim-es6'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
@@ -27,6 +29,7 @@ Plug 'mhartington/oceanic-next'
 Plug 'michaelmdeng/miden-vim', {'do': ':UpdateRemotePlugins'}
 Plug 'myusuf3/numbers.vim'
 Plug 'neomake/neomake'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'rhysd/vim-grammarous'
 Plug 'slim-template/vim-slim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -40,6 +43,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'unblevable/quick-scope'
 Plug 'vimwiki/vimwiki'
+Plug 'voldikss/vim-floaterm'
 
 if has('nvim')
   Plug 'neovim/nvim-lsp'
@@ -65,7 +69,7 @@ syntax enable
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
-colorscheme OceanicNext
+colorscheme nightfly
 
 " Enable filetype plugins
 filetype plugin on
@@ -348,7 +352,7 @@ let g:vim_json_syntax_conceal = 0
 
 " Lightline
 let g:lightline = {
-\ 'colorscheme': 'wombat',
+\ 'colorscheme': 'nightfly',
 \ 'active': {
 \   'left': [
 \     ['mode', 'paste', 'spell'],

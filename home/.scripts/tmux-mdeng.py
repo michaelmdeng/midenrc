@@ -5,15 +5,9 @@ import sys
 BASE_PATTERN_STRING = r'^[a-f0-9]{4},(?P<hsize>\d+)x(?P<vsize>\d+),0,0'
 DIMENSIONS_PATTERN_STRING = r'\d+x\d+,\d+,\d+'
 LEFT_TOP_BOTTOM_LAYOUT_PATTERN = re.compile(
-    BASE_PATTERN_STRING +
-    '{' +
-        DIMENSIONS_PATTERN_STRING + r',(?P<leftPaneId>\d+),' +
-        DIMENSIONS_PATTERN_STRING +
-            r'\[' +
-                DIMENSIONS_PATTERN_STRING + r',(?P<topPaneId>\d+),' +
-                DIMENSIONS_PATTERN_STRING + r',(?P<bottomPaneId>\d+)' +
-            r'\]' +
-    '}'
+    f"{BASE_PATTERN_STRING}"
+    f"{{{DIMENSIONS_PATTERN_STRING},(?P<leftPaneId>\\d+),{DIMENSIONS_PATTERN_STRING}"
+    f"\[{DIMENSIONS_PATTERN_STRING},(?P<topPaneId>\\d+),{DIMENSIONS_PATTERN_STRING},(?P<bottomPaneId>\\d+)]}}$"
 )
 LEFT_RIGHT_LAYOUT_PATTERN = re.compile(
     BASE_PATTERN_STRING +
@@ -169,14 +163,36 @@ def convert_to_panes():
         )
 
     # set default layout
-    output = subprocess.run(
-        ["tmux", "display-message", "-p", "#{window_layout}"], capture_output=True, check=True
+    curr_win_output = subprocess.run(
+        ["tmux", "display-message", "-p", "#W"],
+        capture_output=True,
+        check=True
     )
-    layout = decode_stdout(output)[0]
-    new_layout = convert_layout(layout)
+    curr_win = decode_stdout(curr_win_output)[0]
+    for window in curr_windows_main():
+        subprocess.run(
+            ["tmux", "select-window", "-t", f"{window}"],
+            capture_output=True,
+            check=True
+        )
+        output = subprocess.run(
+            ["tmux", "display-message", "-p", "#{window_layout}"],
+            capture_output=True,
+            check=True,
+        )
+        layout = decode_stdout(output)[0]
+        new_layout = convert_layout(layout)
+        # print(f"layout for {window}: {layout} to new layout: {new_layout}")
+        # print(' '.join(["tmux", "select-layout", f"{new_layout}"]))
+        subprocess.run(
+            ["tmux", "select-layout", f"{new_layout}"], capture_output=True, check=True
+        )
     subprocess.run(
-        ["tmux", "select-layout", f"{new_layout}"], capture_output=True, check=True
+        ["tmux", "select-window", "-t", f"{curr_win}"],
+        capture_output=True,
+        check=True
     )
+
 
 
 def switch_extra():
