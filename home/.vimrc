@@ -515,7 +515,17 @@ nnoremap gp :NERDTreeToggle<CR>
 " Nvim LSP
 if executable('bash-language-server')
 lua << EOF
-require'nvim_lsp'.bashls.setup{}
+require'lspconfig'.bashls.setup{}
+EOF
+endif
+if executable('css-languageserver')
+lua << EOF
+require'lspconfig'.cssls.setup{}
+EOF
+endif
+if executable('html-languageserver')
+lua << EOF
+require'lspconfig'.html.setup{}
 EOF
 endif
 if executable('css-languageserver')
@@ -530,37 +540,37 @@ EOF
 endif
 if executable('pyls')
 lua << EOF
-require'nvim_lsp'.pyls.setup{}
+require'lspconfig'.pyls.setup{}
 EOF
 endif
 if executable('solargraph')
 lua << EOF
-require'nvim_lsp'.solargraph.setup{}
+require'lspconfig'.solargraph.setup{}
 EOF
 endif
 if executable('vim-language-server')
 lua << EOF
-require'nvim_lsp'.vimls.setup{}
+require'lspconfig'.vimls.setup{}
 EOF
 endif
 if executable('yamlls')
 lua << EOF
-require'nvim_lsp'.yamlls.setup{}
+require'lspconfig'.yamlls.setup{}
 EOF
 endif
 " cmd = {'java', '-Declipse.application=org.eclipse.jdt.ls.core.id1', '-Dosgi.bundles.defaultStartLevel=4', '-Declipse.product=org.eclipse.jdt.ls.core.product', '-noverify', '-Xms1G', '-jar', '~/Source/jdt-language-server-latest/plugins/org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar', '-configuration', '~/Source/jdt-language-server-latest/config_mac/', '-data', '~/Source/java-lsp'};
 " lua << EOF
-" require'nvim_lsp/configs'.javals = {
+" require'lspconfig/configs'.javals = {
 "   default_config = {
 "     cmd = {'echo', '\'Hello World!\''};
 "     filetypes = {'java'};
 "     root_dir = function(fname)
-"       return nvim_lsp.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+"       return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
 "     end;
 "     settings = {};
 "   };
 " }
-" require'nvim_lsp'.javals.setup{}
+" require'lspconfig'.javals.setup{}
 " EOF
 
 function! HasLsp()
