@@ -13,7 +13,6 @@ Plug 'derekwyatt/vim-scala'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'isRuslan/vim-es6'
@@ -26,7 +25,7 @@ Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
 Plug 'mhartington/oceanic-next'
-Plug 'michaelmdeng/miden-vim', {'do': ':UpdateRemotePlugins'}
+Plug 'michaelmdeng/miden-vim', {'branch': 'master', 'do': ':UpdateRemotePlugins'}
 Plug 'myusuf3/numbers.vim'
 Plug 'neomake/neomake'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -46,8 +45,11 @@ Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 
 if has('nvim')
-  Plug 'neovim/nvim-lsp'
+  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+  Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'ncm2/float-preview.nvim'
+  Plug 'neovim/nvim-lsp'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 
 call plug#end()
@@ -345,6 +347,7 @@ map g# <Plug>(incsearch-nohl)<Plug>(asterisk-g#)
 " IndentLines config
 augroup indentLine
   au BufEnter * IndentLinesEnable
+  au BufEnter * IndentBlanklineEnable
 augroup end
 
 " vim-json config
