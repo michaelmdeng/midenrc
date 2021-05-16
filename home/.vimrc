@@ -25,6 +25,7 @@ Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
 Plug 'mhartington/oceanic-next'
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'michaelmdeng/miden-vim', {'branch': 'master', 'do': ':UpdateRemotePlugins'}
 Plug 'myusuf3/numbers.vim'
 Plug 'neomake/neomake'
@@ -37,6 +38,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
@@ -496,6 +498,7 @@ let g:undotree_DiffpanelHeight = 15
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_RelativeTimestamp = 1
 let g:undotree_ShortIndicators = 1
+nnoremap <leader>uu :UndotreeToggle<CR>
 
 " Netwr settings
 let g:netrw_banner = 0
@@ -529,16 +532,6 @@ endif
 if executable('html-languageserver')
 lua << EOF
 require'lspconfig'.html.setup{}
-EOF
-endif
-if executable('css-languageserver')
-lua << EOF
-require'nvim_lsp'.cssls.setup{}
-EOF
-endif
-if executable('html-languageserver')
-lua << EOF
-require'nvim_lsp'.html.setup{}
 EOF
 endif
 if executable('pyls')
