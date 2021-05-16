@@ -34,4 +34,7 @@ windows:
         - nvim:
             - workon nvim3
             - nvim -c "VimwikiIndex"
+        - task:
+            - task sync
+            - task
         -

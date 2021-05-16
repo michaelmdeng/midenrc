@@ -39,5 +39,19 @@ taskd.credentials=WingTask\/michaelmdeng@gmail.com\/7351785a-4b32-406a-8587-7ba0
 
 editor=nvim
 
-report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.age,due.relative,until.remaining,description,urgency
-report.ready.columns=id,start.age,entry.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.age,due.relative,until.remaining,description,urgency
+report.next.labels=ID,Deps,P,Project,Tag,Recur,Due,Until,Tick,Description,Urg
+report.next.columns=id,depends,priority,project,tags,recur,due.relative,until.remaining,ticket,description,urgency
+
+report.ready.labels=ID,D,P,Project,Tags,R,Due,Until,Tick,Description,Urg
+report.ready.columns=id,depends.indicator,priority,project,tags,recur.indicator,due.relative,until.remaining,ticket,description,urgency
+
+uda.ticket.label=Tick
+uda.ticket.type=string
+
+report.work.labels=ID,Deps,P,Project,Tag,Recur,Due,Until,Tick,Descrip,Urg
+report.work.columns=id,depends,priority,project,tags,recur,due.relative,until.remaining,ticket,description,urgency
+report.work.filter=(project:cda or project:square) and status:pending
+
+report.personal.labels=ID,Deps,P,Project,Tag,Recur,Due,Until,Descrip,Urg
+report.personal.columns=id,depends,priority,project,tags,recur,due.relative,until.remaining,description,urgency
+report.personal.filter=project:personal and status:pending
