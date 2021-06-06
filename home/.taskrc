@@ -48,10 +48,12 @@ report.ready.columns=id,depends.indicator,priority,project,tags,recur.indicator,
 uda.ticket.label=Tick
 uda.ticket.type=string
 
-report.work.labels=ID,Deps,P,Project,Tag,Recur,Due,Until,Tick,Descrip,Urg
-report.work.columns=id,depends,priority,project,tags,recur,due.relative,until.remaining,ticket,description,urgency
-report.work.filter=(project:cda or project:square) and status:pending
+report.work.labels=ID,Deps,P,Project,Tag,Recur,Sched,Due,Until,Tick,Descrip,Urg
+report.work.columns=id,depends,priority,project,tags,recur,scheduled.age,due.relative,until.remaining,ticket,description,urgency
+report.work.filter=(project:cda or project:square) and status:pending and +READY
+report.work.sort=urgency-,due-
 
 report.personal.labels=ID,Deps,P,Project,Tag,Recur,Due,Until,Descrip,Urg
 report.personal.columns=id,depends,priority,project,tags,recur,due.relative,until.remaining,description,urgency
 report.personal.filter=project:personal and status:pending
+report.personal.sort=urgency-,due-
