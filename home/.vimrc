@@ -50,7 +50,7 @@ if has('nvim')
   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'ncm2/float-preview.nvim'
-  Plug 'neovim/nvim-lsp'
+  Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 
@@ -529,6 +529,11 @@ lua << EOF
 require'lspconfig'.cssls.setup{}
 EOF
 endif
+if executable('docker-langserver')
+lua << EOF
+require'lspconfig'.dockerls.setup{}
+EOF
+endif
 if executable('html-languageserver')
 lua << EOF
 require'lspconfig'.html.setup{}
@@ -544,6 +549,11 @@ lua << EOF
 require'lspconfig'.solargraph.setup{}
 EOF
 endif
+if executable('terraform-ls')
+lua << EOF
+require'lspconfig'.terraformls.setup{}
+EOF
+endif
 if executable('vim-language-server')
 lua << EOF
 require'lspconfig'.vimls.setup{}
@@ -554,20 +564,6 @@ lua << EOF
 require'lspconfig'.yamlls.setup{}
 EOF
 endif
-" cmd = {'java', '-Declipse.application=org.eclipse.jdt.ls.core.id1', '-Dosgi.bundles.defaultStartLevel=4', '-Declipse.product=org.eclipse.jdt.ls.core.product', '-noverify', '-Xms1G', '-jar', '~/Source/jdt-language-server-latest/plugins/org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar', '-configuration', '~/Source/jdt-language-server-latest/config_mac/', '-data', '~/Source/java-lsp'};
-" lua << EOF
-" require'lspconfig/configs'.javals = {
-"   default_config = {
-"     cmd = {'echo', '\'Hello World!\''};
-"     filetypes = {'java'};
-"     root_dir = function(fname)
-"       return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
-"     end;
-"     settings = {};
-"   };
-" }
-" require'lspconfig'.javals.setup{}
-" EOF
 
 function! HasLsp()
   return luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients())')
@@ -576,13 +572,13 @@ endfunction
 function! SetupLsp() abort
   setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
-  nnoremap <buffer> <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
+  nnoremap <buffer><silent> <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
   nnoremap <buffer><silent> <leader>dc <cmd>lua vim.lsp.buf.declaration()<CR>
-  nnoremap <buffer> <leader>df <cmd>lua vim.lsp.buf.definition()<CR>
+  nnoremap <buffer><silent> <leader>df <cmd>lua vim.lsp.buf.definition()<CR>
   nnoremap <buffer><silent> <leader>sg <cmd>lua vim.lsp.buf.signature_help()<CR>
-  nnoremap <buffer> <leader>rf <cmd>lua vim.lsp.buf.references()<CR>
-  nnoremap <buffer> <c-r>r <cmd>lua vim.lsp.buf.rename()<CR>
-  nnoremap <buffer> <leader>= <cmd>lua vim.lsp.buf.formatting()<CR>
+  nnoremap <buffer><silent> <leader>rf <cmd>lua vim.lsp.buf.references()<CR>
+  nnoremap <buffer><silent> <c-r>r <cmd>lua vim.lsp.buf.rename()<CR>
+  nnoremap <buffer><silent> <leader>= <cmd>lua vim.lsp.buf.formatting()<CR>
   nnoremap <buffer><silent><expr> <c-]> ":lua vim.lsp.buf.definition()<CR>"
 endfunction
 

@@ -11,3 +11,5 @@ setlocal foldmethod=indent
 setlocal foldlevel=99
 let python_highlight_all=1
 syntax on
+
+execute SetupLsp()
