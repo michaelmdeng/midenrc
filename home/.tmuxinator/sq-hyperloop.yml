@@ -40,7 +40,7 @@ root: ~/Development/hyperloop/
 # attach: false
 
 windows:
-  - hyperloop:
+  - editor:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
@@ -50,7 +50,7 @@ windows:
           - workon nvim3
           - nvim .
         - git st
-        - 
+        -
   - server:
       layout: tiled
       panes:

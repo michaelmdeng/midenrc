@@ -49,8 +49,10 @@ windows:
         - editor:
           - workon nvim3
           - nvim .
-        - git st
-        - rails console
+        - git:
+          - git st
+        - console:
+          - rails console
   - server:
       layout: tiled
       panes:

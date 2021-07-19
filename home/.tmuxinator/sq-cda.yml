@@ -79,3 +79,16 @@ windows:
         - console:
           - cd sme-google-cloud
           - workon sme-google-cloud
+  - orchestra-sq-sme:
+      layout: main-vertical
+      panes:
+        - nvim:
+          - cd orchestra-sq-sme
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd orchestra-sq-sme
+          - git st
+        - console:
+          - cd orchestra-sq-sme/containers/am_itd_assignment
+          - workon orchestra-sq-sme
