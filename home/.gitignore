@@ -127,3 +127,15 @@ tags
 *.code-workspace
 
 .nvimlog
+
+### Rake ###
+
+.rake_tasks
+
+### Mac ###
+
+.DS_Store
+
+### Lefthook ###
+
+lefthook.yml

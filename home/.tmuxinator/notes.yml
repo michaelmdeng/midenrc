@@ -38,3 +38,16 @@ windows:
             - task sync
             - task
         -
+  - scratch:
+      layout: main-vertical
+      panes:
+        - nvim:
+            - cd ~/scratchpad/
+            - workon nvim3
+            - nvim .
+        - git:
+            - cd ~/scratchpad/
+            - git st
+        - console:
+            - cd ~/scratchpad/
+            -

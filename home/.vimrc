@@ -534,6 +534,11 @@ lua << EOF
 require'lspconfig'.dockerls.setup{}
 EOF
 endif
+if executable('gopls')
+lua << EOF
+require'lspconfig'.gopls.setup{}
+EOF
+endif
 if executable('html-languageserver')
 lua << EOF
 require'lspconfig'.html.setup{}
