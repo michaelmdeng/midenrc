@@ -30,6 +30,7 @@ Plug 'michaelmdeng/miden-vim', {'branch': 'master', 'do': ':UpdateRemotePlugins'
 Plug 'myusuf3/numbers.vim'
 Plug 'neomake/neomake'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'rhysd/vim-grammarous'
 Plug 'slim-template/vim-slim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -517,75 +518,6 @@ let NERDTreeMapOpenVSplit='gv'
 let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 nnoremap gp :NERDTreeToggle<CR>
-
-" Nvim LSP
-if executable('bash-language-server')
-lua << EOF
-require'lspconfig'.bashls.setup{}
-EOF
-endif
-if executable('css-languageserver')
-lua << EOF
-require'lspconfig'.cssls.setup{}
-EOF
-endif
-if executable('docker-langserver')
-lua << EOF
-require'lspconfig'.dockerls.setup{}
-EOF
-endif
-if executable('gopls')
-lua << EOF
-require'lspconfig'.gopls.setup{}
-EOF
-endif
-if executable('html-languageserver')
-lua << EOF
-require'lspconfig'.html.setup{}
-EOF
-endif
-if executable('pyls')
-lua << EOF
-require'lspconfig'.pyls.setup{}
-EOF
-endif
-if executable('solargraph')
-lua << EOF
-require'lspconfig'.solargraph.setup{}
-EOF
-endif
-if executable('terraform-ls')
-lua << EOF
-require'lspconfig'.terraformls.setup{}
-EOF
-endif
-if executable('vim-language-server')
-lua << EOF
-require'lspconfig'.vimls.setup{}
-EOF
-endif
-if executable('yamlls')
-lua << EOF
-require'lspconfig'.yamlls.setup{}
-EOF
-endif
-
-function! HasLsp()
-  return luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients())')
-endfunction
-
-function! SetupLsp() abort
-  setlocal omnifunc=v:lua.vim.lsp.omnifunc
-
-  nnoremap <buffer><silent> <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
-  nnoremap <buffer><silent> <leader>dc <cmd>lua vim.lsp.buf.declaration()<CR>
-  nnoremap <buffer><silent> <leader>df <cmd>lua vim.lsp.buf.definition()<CR>
-  nnoremap <buffer><silent> <leader>sg <cmd>lua vim.lsp.buf.signature_help()<CR>
-  nnoremap <buffer><silent> <leader>rf <cmd>lua vim.lsp.buf.references()<CR>
-  nnoremap <buffer><silent> <c-r>r <cmd>lua vim.lsp.buf.rename()<CR>
-  nnoremap <buffer><silent> <leader>= <cmd>lua vim.lsp.buf.formatting()<CR>
-  nnoremap <buffer><silent><expr> <c-]> ":lua vim.lsp.buf.definition()<CR>"
-endfunction
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
