@@ -148,6 +148,8 @@ set viewoptions-=options
 
 set nojoinspaces
 
+set scrolloff=3
+
 " ---------
 " Mappings
 " ---------
@@ -277,6 +279,9 @@ nnoremap <leader>yq gg0vG$"+y:q!<cr>
 " more natural paragraphs
 nnoremap <silent> } :call search('\(^$\n\s*\zs\S\)\<bar>\(\S\ze\n*\%$\)', 'sW')<CR>
 nnoremap <silent> { :call search('\(^$\n\s*\zs\S\)\<bar>\(^\%1l\s*\zs\S\)','sWb')<CR>
+
+nnoremap <leader><C-u> mp<C-u>`p
+nnoremap <leader><C-d> mp<C-d>`p
 
 " ---------
 " Autocmds
@@ -420,10 +425,10 @@ let g:scala_user_default_keymappings=0
 
 " fzf
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=numbers,changes {}']}, <bang>0)
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
 
 command! -bang -nargs=? -complete=dir GFiles
-    \ call fzf#vim#gitfiles(<q-args>, {'options': ['--info=inline', '--preview', 'bat --color=always --style=numbers,changes {}']}, <bang>0)
+    \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
 
 function! HasGit()
   let tmp = system('git rev-parse')
@@ -566,13 +571,15 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
 " :W sudo saves the file
 command! W w !sudo tee % > /dev/null
 
-" Command for ripgrep
-command! -bang -nargs=* Rg
-\ call fzf#vim#grep(
-\   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-\   <bang>0 ? fzf#vim#with_preview('up:60%')
-\           : fzf#vim#with_preview('right:20%:hidden', '?'),
-\   <bang>0)
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
 " Command to show trailing whitespace
 function! ShowSpaces(...)
