@@ -2,8 +2,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'SirVer/ultisnips'
-Plug 'Yggdroot/indentLine'
-Plug 'airblade/vim-gitgutter'
 Plug 'ajmwagar/vim-deus'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bluz71/vim-nightfly-guicolors'
@@ -49,9 +47,11 @@ Plug 'voldikss/vim-floaterm'
 
 if has('nvim')
   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+  Plug 'lewis6991/gitsigns.nvim'
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'ncm2/float-preview.nvim'
   Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 
@@ -349,9 +349,11 @@ map g# <Plug>(incsearch-nohl)<Plug>(asterisk-g#)
 
 " IndentLines config
 augroup indentLine
-  au BufEnter * IndentLinesEnable
   au BufEnter * IndentBlanklineEnable
 augroup end
+let g:indent_blankline_space_char = ' '
+let g:indent_blankline_show_current_context = 1
+let g:indent_blankline_show_current_context_start = 1
 
 " vim-json config
 let g:vim_json_syntax_conceal = 0
@@ -484,14 +486,6 @@ let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_markdown_enabled_makers = ['mdl']
 cnoreabbrev make Neomake
 nnoremap <leader><leader>= :Neomake<CR>
-
-" GitGutter
-let g:gitgutter_use_location_list = 1
-nnoremap <leader>pf :set nonu nornu scl=no <bar> GitGutterSignsDisable <bar> IndentLinesDisable<CR>
-nnoremap <leader>fp :set nu rnu scl=yes <bar> GitGutterSignsEnable <bar> IndentLinesEnable<CR>
-nnoremap <leader>sh :GitGutterStageHunk<CR>
-nnoremap <leader>uh :GitGutterUndoHunk<CR>
-nnoremap <leader>hh :GitGutterQuickFix<bar> lopen<CR>
 
 " Undotree
 let g:undotree_SplitWidth = 35

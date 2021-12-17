@@ -125,6 +125,32 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+
+" gitsigns
+lua << EOF
+  require('gitsigns').setup {
+    keymaps = {
+      noremap = true,
+        ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'"},
+        ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'"},
+        ['n <leader>sh'] = '<cmd>Gitsigns stage_hunk<CR>',
+        ['n <leader>uh'] = '<cmd>Gitsigns undo_stage_hunk<CR>',
+        ['n <leader>rh'] = ':Gitsigns reset_hunk<CR>',
+        ['v <leader>rh'] = ':Gitsigns reset_hunk<CR>',
+        ['n <leader>bh'] = '<cmd>lua require"gitsigns".blame_line{full=true}<CR>',
+        ['n <leader>ph'] = '<cmd>Gitsigns preview_hunk<CR>',
+        ['n <leader>Sh'] = '<cmd>Gitsigns stage_buffer<CR>',
+        ['n <leader>Uh'] = '<cmd>Gitsigns reset_buffer_index<CR>',
+        ['o ih'] = ':<C-U>Gitsigns select_hunk<CR>',
+        ['x ih'] = ':<C-U>Gitsigns select_hunk<CR>',
+    }
+  }
+EOF
+
+nnoremap <leader>pf :set nonu nornu scl=no <bar> :luado require('gitsigns').toggle_signs() <bar> IndentBlanklineDisable<CR>
+nnoremap <leader>fp :set nu rnu scl=yes <bar> :luado require('gitsigns').toggle_signs() <bar> IndentBlanklineEnable<CR>
+nnoremap <leader>hh :luado require('gitsigns').setloclist(0)<CR>
+
 " Nvim LSP
 if executable('bash-language-server')
 lua << EOF
