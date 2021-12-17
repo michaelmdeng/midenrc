@@ -46,6 +46,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 
 if has('nvim')
+  Plug 'gelguy/wilder.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'lukas-reineke/indent-blankline.nvim'
@@ -551,6 +552,12 @@ let g:qs_lazy_highlight = 1
 
 " vim-tex
 let g:tex_flavor = 'latex'
+
+" wilder.nvim
+call wilder#setup({'modes': [':', '/', '?']})
+call wilder#set_option('renderer', wilder#popupmenu_renderer({
+\ 'highlighter': wilder#basic_highlighter(),
+\ }))
 
 " -----------------
 " Custom Functions
