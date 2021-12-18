@@ -85,6 +85,8 @@ require'nvim-treesitter.configs'.setup {
       enable = true,
       lookahead = true,
       keymaps = {
+        ["ak"] = "@block.outer",
+        ["ik"] = "@block.inner",
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
@@ -106,18 +108,22 @@ require'nvim-treesitter.configs'.setup {
       enable = true,
       set_jumps = true,
       goto_next_start = {
+        ["]k"] = "@block.outer",
         ["]f"] = "@function.outer",
         ["]a"] = "@parameter.inner",
       },
       goto_next_end = {
+        ["]K"] = "@block.outer",
         ["]F"] = "@function.outer",
         ["]A"] = "@parameter.inner",
       },
       goto_previous_start = {
+        ["[k"] = "@block.outer",
         ["[f"] = "@function.outer",
         ["[a"] = "@parameter.inner",
       },
       goto_previous_end = {
+        ["[K"] = "@block.outer",
         ["[F"] = "@function.outer",
         ["[A"] = "@parameter.inner",
       },
