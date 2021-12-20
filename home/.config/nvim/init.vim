@@ -11,6 +11,36 @@ set inccommand=nosplit
 " Treesitter config
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
+  ensure_installed={
+    "bash",
+    "comment",
+    "css",
+    "dockerfile",
+    "go",
+    "graphql",
+    "hcl",
+    "html",
+    "http",
+    "java",
+    "javascript",
+    "jsdoc",
+    "json",
+    "json5",
+    "jsonc",
+    "kotlin",
+    "latex",
+    "lua",
+    "make",
+    "markdown",
+    "python",
+    "regex",
+    "ruby",
+    "scala",
+    "toml",
+    "typescript",
+    "vim",
+    "yaml"
+  },
   textobjects = {
     select = {
       enable = true,
@@ -46,7 +76,7 @@ require'nvim-treesitter.configs'.setup {
       goto_next_end = {
         ["]K"] = "@block.outer",
         ["]F"] = "@function.outer",
-        ["]A"] = "@parameter.inner",
+        ["]A"] = "@parameter.outer",
       },
       goto_previous_start = {
         ["[k"] = "@block.outer",
@@ -56,7 +86,7 @@ require'nvim-treesitter.configs'.setup {
       goto_previous_end = {
         ["[K"] = "@block.outer",
         ["[F"] = "@function.outer",
-        ["[A"] = "@parameter.inner",
+        ["[A"] = "@parameter.outer",
       },
     },
   },
