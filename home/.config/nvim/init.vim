@@ -8,75 +8,6 @@ source ~/.vimrc
 " Cmd preview
 set inccommand=nosplit
 
-" Nvim LSP
-if executable('bash-language-server')
-lua << EOF
-require'lspconfig'.bashls.setup{}
-EOF
-endif
-if executable('css-languageserver')
-lua << EOF
-require'lspconfig'.cssls.setup{}
-EOF
-endif
-if executable('docker-langserver')
-lua << EOF
-require'lspconfig'.dockerls.setup{}
-EOF
-endif
-if executable('gopls')
-lua << EOF
-require'lspconfig'.gopls.setup{}
-EOF
-endif
-if executable('html-languageserver')
-lua << EOF
-require'lspconfig'.html.setup{}
-EOF
-endif
-if executable('pyls')
-lua << EOF
-require'lspconfig'.pyls.setup{}
-EOF
-endif
-if executable('solargraph')
-lua << EOF
-require'lspconfig'.solargraph.setup{}
-EOF
-endif
-if executable('terraform-ls')
-lua << EOF
-require'lspconfig'.terraformls.setup{}
-EOF
-endif
-if executable('vim-language-server')
-lua << EOF
-require'lspconfig'.vimls.setup{}
-EOF
-endif
-if executable('yamlls')
-lua << EOF
-require'lspconfig'.yamlls.setup{}
-EOF
-endif
-
-function! HasLsp()
-  return luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients())')
-endfunction
-
-function! SetupLsp() abort
-  setlocal omnifunc=v:lua.vim.lsp.omnifunc
-
-  nnoremap <buffer><silent> <leader>t  <cmd>lua vim.lsp.buf.hover()<CR>
-  nnoremap <buffer><silent> <leader>dc <cmd>lua vim.lsp.buf.declaration()<CR>
-  nnoremap <buffer><silent> <leader>df <cmd>lua vim.lsp.buf.definition()<CR>
-  nnoremap <buffer><silent> <leader>sg <cmd>lua vim.lsp.buf.signature_help()<CR>
-  nnoremap <buffer><silent> <leader>rf <cmd>lua vim.lsp.buf.references()<CR>
-  nnoremap <buffer><silent> <c-r>r <cmd>lua vim.lsp.buf.rename()<CR>
-  nnoremap <buffer><silent> <leader>= <cmd>lua vim.lsp.buf.formatting()<CR>
-  nnoremap <buffer><silent><expr> <c-]> ":lua vim.lsp.buf.definition()<CR>"
-endfunction
-
 " Treesitter config
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -158,53 +89,56 @@ nnoremap <leader>fp :set nu rnu scl=yes <bar> :luado require('gitsigns').toggle_
 nnoremap <leader>hh :luado require('gitsigns').setloclist(0)<CR>
 
 " Nvim LSP
-if executable('bash-language-server')
 lua << EOF
-require'lspconfig'.bashls.setup{}
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  local opts = { noremap=true, silent=true }
+
+  -- buffer
+  buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', '<leader>dc', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', '<leader>df', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<leader>t', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', '<leader>im', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<leader>rf', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<c-r>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>sg', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<leader>Df', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  -- diagnostics
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>dd', '<cmd>lua vim.lsp.diagnostic.setloclist()<CR>', opts)
+end
+
+local nvim_lsp = require('lspconfig')
+local servers = {
+  bashls = 'bash-language-server',
+  cssls = 'css-languageserver',
+  dockerls = 'docker-langserver',
+  gopls = 'gopls',
+  html = 'html-languageserver',
+  pylsp = 'pyls',
+  solargraph = 'solargraph',
+  terraformls = 'terraform-ls',
+  vimls = 'vim-language-server',
+  yamlls = 'yamlls'
+}
+for lsp, exec in pairs(servers) do
+  local cmd = string.format('executable(\'%s\')', exec)
+  if (vim.api.nvim_eval(cmd))
+  then
+    nvim_lsp[lsp].setup {
+      on_attach = on_attach,
+      flags = {
+        debounce_text_changes = 150,
+      }
+    }
+  end
+end
 EOF
-endif
-if executable('css-languageserver')
-lua << EOF
-require'lspconfig'.cssls.setup{}
-EOF
-endif
-if executable('docker-langserver')
-lua << EOF
-require'lspconfig'.dockerls.setup{}
-EOF
-endif
-if executable('gopls')
-lua << EOF
-require'lspconfig'.gopls.setup{}
-EOF
-endif
-if executable('html-languageserver')
-lua << EOF
-require'lspconfig'.html.setup{}
-EOF
-endif
-if executable('pyls')
-lua << EOF
-require'lspconfig'.pyls.setup{}
-EOF
-endif
-if executable('solargraph')
-lua << EOF
-require'lspconfig'.solargraph.setup{}
-EOF
-endif
-if executable('terraform-ls')
-lua << EOF
-require'lspconfig'.terraformls.setup{}
-EOF
-endif
-if executable('vim-language-server')
-lua << EOF
-require'lspconfig'.vimls.setup{}
-EOF
-endif
-if executable('yamlls')
-lua << EOF
-require'lspconfig'.yamlls.setup{}
-EOF
-endif

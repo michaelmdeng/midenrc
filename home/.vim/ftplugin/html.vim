@@ -1,3 +1,0 @@
-if HasLsp()
-  SetupLsp()
-end
