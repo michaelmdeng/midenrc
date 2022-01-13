@@ -1,7 +1,7 @@
-# /Users/mdeng/.tmuxinator/sq-engagement.yml
+# /Users/mdeng/.tmuxinator/signalform.yml
 
-name: sq-engagement
-root: ~/Development/mae-iterable-engagement/
+name: sq-signalform
+root: ~/Development/signalform
 
 # Optional tmux socket
 # socket_name: foo
@@ -45,43 +45,27 @@ root: ~/Development/mae-iterable-engagement/
 # attach: false
 
 windows:
-  - gcf:
+  - cda:
       layout: main-vertical
       panes:
         - editor:
-          - cd engagement-google-functions
+          - cd teams/customer-data-applications
           - workon nvim3
           - nvim .
         - git:
-          - cd engagement-google-functions
+          - cd teams/customer-data-applications
           - git st
         - console:
-          - cd engagement-google-functions
-          - workon engagement-google-functions
-          - python
-  - backfill:
+          -
+  - cdp:
       layout: main-vertical
       panes:
         - editor:
-          - cd engagement-backfill-worker
+          - cd teams/customer-data-platform
           - workon nvim3
           - nvim .
         - git:
-          - cd engagement-backfill-worker
+          - cd teams/customer-data-platform
           - git st
         - console:
-          - cd engagement-backfill-worker
-          - workon engagement-backfill-worker
-          - python
-  - webhook:
-      layout: main-vertical
-      panes:
-        - editor:
-          - cd engagement-webhook
-          - workon nvim3
-          - nvim .
-        - git:
-          - cd engagement-webhook
-          - git st
-        - console:
-          - cd engagement-webhook
+          -

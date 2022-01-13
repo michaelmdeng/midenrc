@@ -1,7 +1,7 @@
-# /Users/mdeng/.tmuxinator/sq-engagement.yml
+# /Users/mdeng/.tmuxinator/sq-java.yml
 
-name: sq-engagement
-root: ~/Development/mae-iterable-engagement/
+name: sq-java
+root: ~/Development/java
 
 # Optional tmux socket
 # socket_name: foo
@@ -45,43 +45,48 @@ root: ~/Development/mae-iterable-engagement/
 # attach: false
 
 windows:
-  - gcf:
+  - audience-sync:
       layout: main-vertical
       panes:
         - editor:
-          - cd engagement-google-functions
+          - bash
+          - cd audience-sync
           - workon nvim3
           - nvim .
-        - git:
-          - cd engagement-google-functions
-          - git st
         - console:
-          - cd engagement-google-functions
-          - workon engagement-google-functions
-          - python
-  - backfill:
+          - bash
+          - cd audience-sync
+        - git:
+          - bash
+          - cd audience-sync
+          - git st
+  - enricher:
       layout: main-vertical
       panes:
         - editor:
-          - cd engagement-backfill-worker
+          - bash
+          - cd enricher
           - workon nvim3
           - nvim .
-        - git:
-          - cd engagement-backfill-worker
-          - git st
         - console:
-          - cd engagement-backfill-worker
-          - workon engagement-backfill-worker
-          - python
-  - webhook:
+          - bash
+          - cd enricher
+        - git:
+          - bash
+          - cd enricher
+          - git st
+  - graphql:
       layout: main-vertical
       panes:
         - editor:
-          - cd engagement-webhook
+          - bash
+          - cd graphql/identities-graph
           - workon nvim3
           - nvim .
-        - git:
-          - cd engagement-webhook
-          - git st
         - console:
-          - cd engagement-webhook
+          - bash
+          - cd graphql/identities-graph
+        - git:
+          - bash
+          - cd graphql/identities-graph
+          - git st

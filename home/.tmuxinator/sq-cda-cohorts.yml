@@ -1,7 +1,7 @@
-# /Users/mdeng/.tmuxinator/sq-engagement.yml
+# /Users/mdeng/.tmuxinator/sq-cda-cohorts.yml
 
-name: sq-engagement
-root: ~/Development/mae-iterable-engagement/
+name: sq-cda-cohorts
+root: ~/Development/
 
 # Optional tmux socket
 # socket_name: foo
@@ -45,43 +45,27 @@ root: ~/Development/mae-iterable-engagement/
 # attach: false
 
 windows:
-  - gcf:
+  - cohorttransformer:
       layout: main-vertical
       panes:
-        - editor:
-          - cd engagement-google-functions
+        - nvim:
+          - cd cda-cohorts
           - workon nvim3
           - nvim .
         - git:
-          - cd engagement-google-functions
+          - cd cda-cohorts
           - git st
         - console:
-          - cd engagement-google-functions
-          - workon engagement-google-functions
-          - python
-  - backfill:
+          - cd cda-cohorts
+  - terraform:
       layout: main-vertical
       panes:
-        - editor:
-          - cd engagement-backfill-worker
+        - nvim:
+          - cd tf-cda-cohorts
           - workon nvim3
           - nvim .
         - git:
-          - cd engagement-backfill-worker
+          - cd tf-cda-cohorts
           - git st
         - console:
-          - cd engagement-backfill-worker
-          - workon engagement-backfill-worker
-          - python
-  - webhook:
-      layout: main-vertical
-      panes:
-        - editor:
-          - cd engagement-webhook
-          - workon nvim3
-          - nvim .
-        - git:
-          - cd engagement-webhook
-          - git st
-        - console:
-          - cd engagement-webhook
+          - cd tf-cda-cohorts

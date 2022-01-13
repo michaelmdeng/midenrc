@@ -1,7 +1,7 @@
-# /Users/mdeng/.tmuxinator/sq-engagement.yml
+# /Users/mdeng/.tmuxinator/sq-mae.yml
 
-name: sq-engagement
-root: ~/Development/mae-iterable-engagement/
+name: sq-mae
+root: ~/Development/mae-configuration
 
 # Optional tmux socket
 # socket_name: foo
@@ -45,43 +45,51 @@ root: ~/Development/mae-iterable-engagement/
 # attach: false
 
 windows:
-  - gcf:
+  - terraform:
       layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
       panes:
         - editor:
-          - cd engagement-google-functions
+          - cd terraform
           - workon nvim3
           - nvim .
         - git:
-          - cd engagement-google-functions
+          - cd terraform
           - git st
         - console:
-          - cd engagement-google-functions
-          - workon engagement-google-functions
-          - python
-  - backfill:
+          - cd terraform
+          -
+  - tf-pipelines:
       layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
       panes:
         - editor:
-          - cd engagement-backfill-worker
+          - cd ~/Development/tf-mae
           - workon nvim3
           - nvim .
         - git:
-          - cd engagement-backfill-worker
+          - cd ~/Development/tf-mae
           - git st
         - console:
-          - cd engagement-backfill-worker
-          - workon engagement-backfill-worker
-          - python
-  - webhook:
+          - cd ~/Development/tf-mae
+          -
+  - configuration:
       layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
       panes:
         - editor:
-          - cd engagement-webhook
+          - cd scripts
           - workon nvim3
           - nvim .
         - git:
-          - cd engagement-webhook
+          - cd scripts
           - git st
         - console:
-          - cd engagement-webhook
+          - cd scripts
+          -
