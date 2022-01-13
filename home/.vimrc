@@ -526,9 +526,7 @@ let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 nnoremap gp :NERDTreeToggle<CR>
 
-" Supertab
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
 
 " float-preview.nvim
 let g:float_preview#docked = 0
