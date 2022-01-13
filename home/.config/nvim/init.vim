@@ -169,7 +169,9 @@ for lsp, exec in pairs(servers) do
   local cmd = string.format('executable(\'%s\')', exec)
   if (vim.api.nvim_eval(cmd))
   then
+    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     nvim_lsp[lsp].setup {
+      capabilities = capabilities,
       on_attach = on_attach,
       flags = {
         debounce_text_changes = 150,
@@ -177,4 +179,58 @@ for lsp, exec in pairs(servers) do
     }
   end
 end
+EOF
+
+" nvim-cmp
+lua << EOF
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+end
+local cmp = require('cmp')
+cmp.setup {
+  sources = cmp.config.sources(
+    {
+      { name = 'nvim_lsp' },
+      { name = 'ultisnips' },
+    },
+    {
+      { name = 'buffer' },
+    }
+  ),
+  preselect = cmp.PreselectMode.Item,
+  mapping = {
+    ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    }),
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable,
+    ['<C-e>'] = cmp.mapping.abort(),
+  },
+  snippet = {
+    expand = function(args)
+      vim.fn["UltiSnips#Anon"](args.body)
+    end,
+  },
+}
+
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
 EOF
