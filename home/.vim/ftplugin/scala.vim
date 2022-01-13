@@ -9,6 +9,12 @@ setlocal formatoptions=croql
 setlocal foldmethod=indent
 syntax on
 
+" vim-scala
+let g:scala_scaladoc_indent = 1
+let g:scala_sort_across_groups=1
+let g:scala_use_default_keymappings = 0
+let g:scala_user_default_keymappings=0
+
 nmap <leader>si :SortScalaImports<CR>
 nmap <leader>ap :ScAddPackage<CR>
 nmap <leader>ac :ScAddClass<CR>

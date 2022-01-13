@@ -4,8 +4,8 @@ setlocal shiftwidth=4
 setlocal expandtab
 setlocal autoindent
 setlocal smarttab
-setlocal textwidth=79
-setlocal colorcolumn=80
+setlocal textwidth=88
+setlocal colorcolumn=89
 setlocal formatoptions=croql
 setlocal foldmethod=indent
 setlocal foldlevel=99

@@ -423,12 +423,6 @@ endfunction
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" vim-scala
-let g:scala_scaladoc_indent = 1
-let g:scala_sort_across_groups=1
-let g:scala_use_default_keymappings = 0
-let g:scala_user_default_keymappings=0
-
 " fzf
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
