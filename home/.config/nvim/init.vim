@@ -8,6 +8,12 @@ source ~/.vimrc
 " Cmd preview
 set inccommand=nosplit
 
+" Global status line
+set laststatus=3
+
+" Improved filetype detection
+let g:do_filetype_lua = 1
+
 " Treesitter config
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
