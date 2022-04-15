@@ -57,3 +57,15 @@ windows:
           - git st
         - console:
           - cd cdp/batch
+  - cdp-logs:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd cdp/cdp-logs
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd cdp/cdp-logs
+          - git st
+        - console:
+          - cd cdp/cdp-logs

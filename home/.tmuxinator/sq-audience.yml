@@ -1,7 +1,7 @@
 # /Users/mdeng/.tmuxinator/sq-audience.yml
 
 name: sq-audience
-root: ~/Development/audience-gen/
+root: ~/Development/mae-audience-gen/
 
 # Optional tmux socket
 # socket_name: foo

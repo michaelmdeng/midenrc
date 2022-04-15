@@ -1,7 +1,7 @@
 # /Users/mdeng/.tmuxinator/personas-api.yml
 
 name: sq-personas-api
-root: ~/Development/personas-api/
+root: ~/Development/mae-personas-api/
 
 # Optional tmux socket
 # socket_name: foo

@@ -53,19 +53,6 @@ windows:
         - console:
           - cd prospie
           - irb
-  - turnstile:
-      layout: main-vertical
-      panes:
-        - nvim:
-          - cd turnstile
-          - workon nvim3
-          - nvim .
-        - git:
-          - cd turnstile
-          - git st
-        - console:
-          - cd turnstile
-          - irb
   - sme-google-cloud:
       layout: main-vertical
       panes:
