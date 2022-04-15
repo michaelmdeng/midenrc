@@ -315,8 +315,8 @@ let g:BASH_Ctrl_j = 'off'
 " Vimwiki
 au FileType vimwiki set filetype=markdown
 let g:vimwiki_list = [{
-\ 'path':'~/Dropbox/vimwiki/wiki',
-\ 'path_html':'~/Dropbox/vimwiki/html/',
+\ 'path':'~/MyDrive/vimwiki/wiki',
+\ 'path_html':'~/MyDrive/vimwiki/html/',
 \ 'syntax': 'markdown',
 \ 'ext': '.md',
 \ 'auto_tags': 1,
