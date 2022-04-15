@@ -88,6 +88,10 @@ if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 elif [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
     source $HOME/.local/bin/virtualenvwrapper.sh
+elif [ -f "/opt/homebrew/bin/virtualenvwrapper.sh" ]; then
+    source /opt/homebrew/bin/virtualenvwrapper.sh
+elif [ -f "/opt/salt/bin/virtualenvwrapper.sh" ]; then
+    source /opt/salt/bin/virtualenvwrapper.sh
 else
     echo "warning: virtualenvwrapper.sh not found. Is it installed?"
 fi
@@ -103,7 +107,7 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 if type "pyenv" > /dev/null; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
-    eval "$(pyenv virtualenvwrapper)"
+    pyenv virtualenvwrapper
 else
     echo "warning: pyenv not found. Is it installed?"
 fi
