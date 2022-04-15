@@ -36,3 +36,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 
 # Opt out of homebrew analytics collection
 export HOMEBREW_NO_ANALYTICS=1
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+. "$HOME/.cargo/env"
