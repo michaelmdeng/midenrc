@@ -125,3 +125,6 @@ source "$HOME/.sharedshrc"
 [ -f "$HOME/.completion/tmuxinator.bash" ] && source "$HOME/.completion/tmuxinator.bash"
 [ -f "$HOME/.completion/.fzf.bash" ] && source "$HOME/.completion/.fzf.bash"
 [ -f "${HOME}/.completion/.iterm2_shell_integration.bash" ] && source "${HOME}/.completion/.iterm2_shell_integration.bash"
+PATH="$PATH:/home/mdeng/.conscript/bin"
+
+complete -C /usr/bin/terraform terraform

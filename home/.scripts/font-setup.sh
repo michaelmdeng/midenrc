@@ -2,7 +2,7 @@
 
 DOWNLOAD_DIR=~/"Downloads"
 FONT_DIR=~/"Library/Fonts"
-mkdir $FONT_DIR
+mkdir -p $FONT_DIR
 
 # Iosevka Term
 wget -P $DOWNLOAD_DIR https://github.com/be5invis/Iosevka/releases/download/v2.3.2/02-iosevka-term-2.3.2.zip

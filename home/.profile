@@ -26,8 +26,27 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-PATH="$HOME/um/bin:$PATH"
+export PATH="$HOME/um/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$PATH:/home/mdeng/.local/share/coursier/bin"
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+if type "pyenv" > /dev/null; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+    pyenv virtualenvwrapper
+else
+    echo "warning: pyenv not found. Is it installed?"
+fi
+
+export PATH="$HOME/.jenv/bin:$PATH"
+if type "jenv" > /dev/null; then
+    eval "$(jenv init -)"
+else
+    echo "warning: jenv not found. Is it installed?"
+fi
+
+export PATH="$PATH:/usr/local/go/bin"
 
 export EDITOR='nvim'
 export PROJECT_HOME=$HOME/Documents
@@ -38,6 +57,10 @@ export WORKON_HOME=$HOME/.virtualenvs
 # Opt out of homebrew analytics collection
 export HOMEBREW_NO_ANALYTICS=1
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -d "/opt/homebrew/bin/brew shellenv" ] ; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
-. "$HOME/.cargo/env"
+if [ -d "$HOME/.cargo/env" ] ; then
+    . "$HOME/.cargo/env"
+fi

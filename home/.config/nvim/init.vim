@@ -165,6 +165,7 @@ local servers = {
   dockerls = 'docker-langserver',
   gopls = 'gopls',
   html = 'html-languageserver',
+  metals = 'metals',
   pylsp = 'pyls',
   solargraph = 'solargraph',
   terraformls = 'terraform-ls',
