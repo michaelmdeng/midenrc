@@ -11,7 +11,6 @@ Plug 'derekwyatt/vim-scala'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
-Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'isRuslan/vim-es6'
 Plug 'itchyny/lightline.vim'
@@ -45,7 +44,6 @@ Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 
 if has('nvim')
-  Plug 'gelguy/wilder.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'lukas-reineke/indent-blankline.nvim'
@@ -266,10 +264,10 @@ nnoremap <C-s>] <C-w>]
 nnoremap <C-v>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " very-magic search
-nnoremap / /\V
-nnoremap ? ?\V
-vnoremap / /\V
-vnoremap ? ?\V
+nnoremap / /\v
+nnoremap ? ?\v
+vnoremap / /\v
+vnoremap ? ?\v
 
 " delete without clobbering registers
 nnoremap s "_d
@@ -345,19 +343,6 @@ augroup RainbowParens
   au Syntax * RainbowParenthesesLoadSquare
   au Syntax * RainbowParenthesesLoadBraces
 augroup end
-
-" Incsearch and vim-asterisk
-let g:incsearch#auto_nohlsearch = 1
-let g:incsearch#do_not_save_error_message_history = 1
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl)<Plug>(asterisk-*)
-map g* <Plug>(incsearch-nohl)<Plug>(asterisk-g*)
-map #  <Plug>(incsearch-nohl)<Plug>(asterisk-#)
-map g# <Plug>(incsearch-nohl)<Plug>(asterisk-g#)
 
 " IndentLines config
 augroup indentLine
@@ -556,12 +541,6 @@ let g:qs_lazy_highlight = 1
 
 " vim-tex
 let g:tex_flavor = 'latex'
-
-" wilder.nvim
-call wilder#setup({'modes': [':', '/', '?']})
-call wilder#set_option('renderer', wilder#popupmenu_renderer({
-\ 'highlighter': wilder#basic_highlighter(),
-\ }))
 
 " -----------------
 " Custom Functions
