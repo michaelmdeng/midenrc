@@ -5,6 +5,8 @@
 	editor = nvim
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
+	fsmonitor = true
+	untrackedcache = true
 [rerere]
 	enabled = true
 [alias]
@@ -27,10 +29,13 @@
 	pl = pull
 	ph = push
 	graph = log --oneline --decorate --graph --all
-	fix2 = rebase -i HEAD~2	
-	fix3 = rebase -i HEAD~3	
-	fix4 = rebase -i HEAD~4	
-	fix5 = rebase -i HEAD~5	
+	fix2 = rebase -i HEAD~2
+	fix3 = rebase -i HEAD~3
+	fix4 = rebase -i HEAD~4
+	fix5 = rebase -i HEAD~5
+	fix6 = rebase -i HEAD~6
+	fix7 = rebase -i HEAD~7
+	upstream = !git branch -u origin/$(git rev-parse --abbrev-ref HEAD) $(git rev-parse --abbrev-ref HEAD)
 
 [push]
 	default = simple

@@ -27,6 +27,11 @@ fi
 # x86_64 homebrew
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
+if type "gcloud" > /dev/null; then
+	alias gcloudauth='gcloud auth login | gcloud auth application-default login'
+	alias gcloudlogin='gcloud auth login | gcloud auth application-default login'
+fi
+
 # ----------
 # Functions
 # ----------
