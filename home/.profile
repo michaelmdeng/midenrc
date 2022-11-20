@@ -28,7 +28,13 @@ fi
 
 export PATH="$HOME/um/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$PATH:/home/mdeng/.local/share/coursier/bin"
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$PATH:$HOME/.local/share/coursier/bin"
+export PATH="/opt/homebrew/opt/libpq:$PATH"
+export PATH="$PATH:$HOME/.conscript/bin"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 export PATH="$HOME/.pyenv/bin:$PATH"
 if type "pyenv" > /dev/null; then

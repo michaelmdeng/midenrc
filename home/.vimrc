@@ -406,16 +406,16 @@ endfunction
 
 function! LightGitBranch()
   let head = FugitiveHead()
-  return (winwidth(0) - strlen(head)) > 75 ? head : '...' . head[strlen(head) - 10:]
+  return (&columns - strlen(head)) > 75 ? head : '...' . head[strlen(head) - 10:]
 endfunction
 
 function! LightRelPath()
   let relpath = expand('%')
-  return (winwidth(0) - strlen(relpath)) > 50 ? expand('%') : pathshorten(expand('%'))
+  return (&columns - strlen(relpath)) > 50 ? expand('%') : pathshorten(expand('%'))
 endfunction
 
 function! LightFileType()
-  return winwidth(0) > 100 && &fileformat !=# '' ? &filetype : ''
+  return &columns > 100 && &fileformat !=# '' ? &filetype : ''
 endfunction
 
 " vim-easy-align
