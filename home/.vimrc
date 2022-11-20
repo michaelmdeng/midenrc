@@ -405,7 +405,7 @@ function! LightModified()
 endfunction
 
 function! LightGitBranch()
-  let head = fugitive#head()
+  let head = FugitiveHead()
   return (winwidth(0) - strlen(head)) > 75 ? head : '...' . head[strlen(head) - 10:]
 endfunction
 

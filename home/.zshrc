@@ -122,6 +122,14 @@ setopt auto_cd
 [ -f "$HOME/.completion/.fzf.zsh" ] && source "$HOME/.completion/.fzf.zsh"
 [ -f "${HOME}/.completion/.iterm2_shell_integration.zsh" ] && source "${HOME}/.completion/.iterm2_shell_integration.zsh"
 
+complete -o nospace -C /usr/bin/terraform terraform
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/applications/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/applications/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/applications/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/applications/google-cloud-sdk/completion.zsh.inc"; fi
+
 # zsh functions
 function zle-line-init zle-keymap-select {
     zle reset-prompt
