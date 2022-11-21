@@ -40,18 +40,6 @@ root: ~/Development/dataflow_java
 # attach: false
 
 windows:
-  - dispatcher:
-      layout: main-vertical
-      panes:
-        - editor:
-          - cd dispatcher
-          - workon nvim3
-          - nvim .
-        - git:
-          - cd dispatcher
-          - git st
-        - console:
-          - cd dispatcher
   - personas:
       layout: main-vertical
       panes:

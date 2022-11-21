@@ -1,7 +1,7 @@
-# /Users/mdeng/.tmuxinator/sq-marketing-portal.yml
+# /Users/mdeng/.tmuxinator/sq-cdp-ingest.yml
 
-name: sq-marketing-portal
-root: ~/Development/marketing-portal
+name: sq-cdp-ingest
+root: ~/Development/
 
 # Optional tmux socket
 # socket_name: foo
@@ -10,14 +10,19 @@ root: ~/Development/marketing-portal
 # project hooks.
 
 # Project hooks
+
 # Runs on project start, always
 # on_project_start: command
+
 # Run on project start, the first time
 # on_project_first_start: command
+
 # Run on project start, after the first time
 # on_project_restart: command
+
 # Run on project exit ( detaching from tmux session )
 # on_project_exit: command
+
 # Run on project stop
 # on_project_stop: command
 
@@ -42,22 +47,37 @@ root: ~/Development/marketing-portal
 windows:
   - editor:
       layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
       panes:
         - editor:
+          - cd go-square/cdp/batch
           - workon nvim3
           - nvim .
-        - git st
-        -
-  - server:
-      layout: tiled
+        - git:
+          - cd go-square/cdp/batch
+          - git st
+        - console:
+          - cd go-square/cdp/batch
+  - cloud-cd:
+      layout: main-vertical
       panes:
-        - bundle exec rails server
-        - ./bin/webpack-dev-server
-  - console:
-      layout: tiled
+        - editor:
+          - cd ccd-cdp-ingest
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd ccd-cdp-ingest
+          - git st
+        - console:
+          - cd ccd-cdp-ingest
+  - tf-pipelines:
+      layout: main-vertical
       panes:
-        - bundle exec rails console
-        -
+        - editor:
+          - cd tf-cdp-ingest
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd tf-cdp-ingest
+          - git st
+        - console:
+          - cd tf-cdp-ingest

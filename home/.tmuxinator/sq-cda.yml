@@ -66,16 +66,15 @@ windows:
         - console:
           - cd sme-google-cloud
           - workon sme-google-cloud
-  - orchestra-sq-sme:
+  - cda-google-cloud-functions:
       layout: main-vertical
       panes:
         - nvim:
-          - cd orchestra-sq-sme
+          - cd cda-google-cloud-functions
           - workon nvim3
           - nvim .
         - git:
-          - cd orchestra-sq-sme
+          - cd cda-google-cloud-functions
           - git st
         - console:
-          - cd orchestra-sq-sme/containers/am_itd_assignment
-          - workon orchestra-sq-sme
+          - cd cda-google-cloud-functions

@@ -1,7 +1,7 @@
-# /Users/mdeng/.tmuxinator/sq-data-api.yml
+# /Users/mdeng/.tmuxinator/sq-marketing-portal.yml
 
-name: sq-data-api
-root: ~/Development/
+name: sq-cdp-console
+root: ~/Development/marketing-portal
 
 # Optional tmux socket
 # socket_name: foo
@@ -40,66 +40,44 @@ root: ~/Development/
 # attach: false
 
 windows:
-  - data-api-ruby:
+  - marketing-portal:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-          - cd data-api-ruby
           - workon nvim3
           - nvim .
-        - git:
-          - cd data-api-ruby
-          - git st
-        - console:
-          - cd data-api-ruby
-          - bundle console
-  - data-api-python:
+        - git st
+        -
+  - marketing-portal-server:
+      layout: tiled
+      panes:
+        - server:
+          - nvm use 14
+          - ./bin/dev
+        -
+  - square-console:
       layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
       panes:
         - editor:
-          - cd data-api-python
+          - cd ~/Development/square-console
           - workon nvim3
           - nvim .
         - git:
-          - cd data-api-python
+          - cd ~/Development/square-console
           - git st
-        - console:
-          - cd data-api-python
-          - workon data-api-python
-          - python
-  - data-api-js:
+        - shell:
+          - cd ~/Development/square-console/subapps/sqc-subapp-cdp
+  - square-console-server:
       layout: main-vertical
+      layout: tiled
       panes:
-        - editor:
-          - cd data-api.js-core
-          - workon nvim3
-          - nvim .
-        - git:
-          - cd data-api.js-core
-          - git st
-        - cd data-api.js-core
-  - data-api-java:
-      layout: main-vertical
-      panes:
-        - editor:
-          - cd mae-data-api-java
-          - workon nvim3
-          - nvim .
-        - git:
-          - cd mae-data-api-java
-          - git st
-        - cd mae-data-api-java
-  - data-api-go:
-      layout: main-vertical
-      panes:
-        - editor:
-          - cd data-api-go
-          - workon nvim3
-          - nvim .
-        - git:
-          - cd data-api-go
-          - git st
-        - cd data-api-go
+        - server:
+          - cd ~/Development/square-console
+          - SUBAPPS=cdp yarn dev
+        - cd ~/Development/square-console

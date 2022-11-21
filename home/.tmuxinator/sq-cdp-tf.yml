@@ -1,0 +1,153 @@
+# /Users/mdeng/.tmuxinator/sq-cdp-tf.yml
+
+name: sq-cdp-tf
+root: ~/Development
+
+# Optional tmux socket
+# socket_name: foo
+
+# Note that the pre and post options have been deprecated and will be replaced by
+# project hooks.
+
+# Project hooks
+
+# Runs on project start, always
+# on_project_start: command
+
+# Run on project start, the first time
+# on_project_first_start: command
+
+# Run on project start, after the first time
+# on_project_restart: command
+
+# Run on project exit ( detaching from tmux session )
+# on_project_exit: command
+
+# Run on project stop
+# on_project_stop: command
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: editor
+
+# Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
+# startup_pane: 1
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+windows:
+  - terraform:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+          - cd mae-configuration/terraform
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd mae-configuration/terraform
+          - git st
+        - console:
+          - cd mae-configuration/terraform
+          -
+  - mae-tf-pipelines:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+          - cd tf-mae
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd tf-mae
+          - export GODEBUG=asyncpreemptoff=1
+          - git st
+        - console:
+          - cd tf-mae
+          - export GODEBUG=asyncpreemptoff=1
+          -
+  - mae-monitoring-tf-pipelines:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+          - cd tf-mae/monitoring
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd tf-mae/monitoring
+          - export GODEBUG=asyncpreemptoff=1
+          - git st
+        - console:
+          - cd tf-mae/monitoring
+          - export GODEBUG=asyncpreemptoff=1
+          -
+  - sme-monitoring-tf-pipelines:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+          - cd tf-sme/monitoring
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd tf-sme/monitoring
+          - export GODEBUG=asyncpreemptoff=1
+          - git st
+        - console:
+          - cd tf-sme/monitoring
+          - export GODEBUG=asyncpreemptoff=1
+          -
+  - sme-tf-pipelines:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+          - cd tf-sme
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd tf-sme
+          - export GODEBUG=asyncpreemptoff=1
+          - git st
+        - console:
+          - cd tf-sme
+          - export GODEBUG=asyncpreemptoff=1
+          -
+  - tf-mod-datadog:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+          - cd tf-mod-datadog
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd tf-mod-datadog
+          - export GODEBUG=asyncpreemptoff=1
+          - git st
+        - console:
+          - cd tf-mod-datadog
+          - export GODEBUG=asyncpreemptoff=1
+          -

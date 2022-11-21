@@ -45,7 +45,7 @@ root: ~/Development/go-square
 # attach: false
 
 windows:
-  - batch:
+  - cdp-ingest:
       layout: main-vertical
       panes:
         - editor:
@@ -61,11 +61,23 @@ windows:
       layout: main-vertical
       panes:
         - editor:
-          - cd cdp/cdp-logs
+          - cd cdp/cdp-logs/worker
           - workon nvim3
           - nvim .
         - git:
-          - cd cdp/cdp-logs
+          - cd cdp/cdp-logs/worker
           - git st
         - console:
-          - cd cdp/cdp-logs
+          - cd cdp/cdp-logs/worker
+  - cdp-logs-ingest:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd cdp/cdp-logs/ingest
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd cdp/cdp-logs/ingest
+          - git st
+        - console:
+          - cd cdp/cdp-logs/ingest

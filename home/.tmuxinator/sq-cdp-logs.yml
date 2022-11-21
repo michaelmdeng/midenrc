@@ -1,6 +1,6 @@
-# /Users/mdeng/.tmuxinator/sq-data-api.yml
+# /Users/mdeng/.tmuxinator/sq-cdp-logs.yml
 
-name: sq-data-api
+name: sq-cdp-logs
 root: ~/Development/
 
 # Optional tmux socket
@@ -10,14 +10,19 @@ root: ~/Development/
 # project hooks.
 
 # Project hooks
+
 # Runs on project start, always
 # on_project_start: command
+
 # Run on project start, the first time
 # on_project_first_start: command
+
 # Run on project start, after the first time
 # on_project_restart: command
+
 # Run on project exit ( detaching from tmux session )
 # on_project_exit: command
+
 # Run on project stop
 # on_project_stop: command
 
@@ -40,66 +45,75 @@ root: ~/Development/
 # attach: false
 
 windows:
-  - data-api-ruby:
+  - worker:
       layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
       panes:
         - editor:
-          - cd data-api-ruby
+          - cd go-square/cdp/cdp-logs/worker
           - workon nvim3
           - nvim .
         - git:
-          - cd data-api-ruby
+          - cd go-square/cdp/cdp-logs/worker
           - git st
         - console:
-          - cd data-api-ruby
-          - bundle console
-  - data-api-python:
+          - cd go-square/cdp/cdp-logs/worker
+  - cloud-cd-worker:
       layout: main-vertical
       panes:
         - editor:
-          - cd data-api-python
+          - cd ccd-cdp-logs
           - workon nvim3
           - nvim .
         - git:
-          - cd data-api-python
+          - cd ccd-cdp-logs
           - git st
         - console:
-          - cd data-api-python
-          - workon data-api-python
-          - python
-  - data-api-js:
+          - cd ccd-cdp-logs
+  - tf-pipelines-worker:
       layout: main-vertical
       panes:
         - editor:
-          - cd data-api.js-core
+          - cd tf-cdp-logs
           - workon nvim3
           - nvim .
         - git:
-          - cd data-api.js-core
+          - cd tf-cdp-logs
           - git st
-        - cd data-api.js-core
-  - data-api-java:
+        - console:
+          - cd tf-cdp-logs
+  - ingest:
       layout: main-vertical
       panes:
         - editor:
-          - cd mae-data-api-java
+          - cd go-square/cdp/cdp-logs/ingest
           - workon nvim3
           - nvim .
         - git:
-          - cd mae-data-api-java
+          - cd go-square/cdp/cdp-logs/ingest
           - git st
-        - cd mae-data-api-java
-  - data-api-go:
+        - console:
+          - cd go-square/cdp/cdp-logs/ingest
+  - cloud-cd-ingest:
       layout: main-vertical
       panes:
         - editor:
-          - cd data-api-go
+          - cd ccd-cdp-logs-ingest
           - workon nvim3
           - nvim .
         - git:
-          - cd data-api-go
+          - cd ccd-cdp-logs-ingest
           - git st
-        - cd data-api-go
+        - console:
+          - cd ccd-cdp-logs-ingest
+  - tf-pipelines-ingest:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd tf-cdp-logs-ingest
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd tf-cdp-logs-ingest
+          - git st
+        - console:
+          - cd tf-cdp-logs-ingest

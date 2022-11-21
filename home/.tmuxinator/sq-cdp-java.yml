@@ -1,0 +1,66 @@
+# /Users/mdeng/.tmuxinator/sq-cdp-java.yml
+
+name: sq-cdp-java
+root: ~/Development/java
+on_project_exit: python3 ~/.scripts/tmux-mdeng.py switch || tmux last-window || tmux display-message \"No window to switch to\"
+windows:
+  - audience-sync:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd audience-sync
+          - workon nvim3
+          - nvim .
+        - console:
+          - cd audience-sync
+        - git:
+          - cd audience-sync
+          - git st
+  - cdp-subscriber:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd customer-data-platform/cdp-subscriber
+          - workon nvim3
+          - nvim .
+        - console:
+          - cd customer-data-platform/cdp-subscriber
+        - git:
+          - cd customer-data-platform/cdp-subscriber
+          - git st
+  - cdp-messages:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd customer-data-platform/cdp-messages
+          - workon nvim3
+          - nvim .
+        - console:
+          - cd customer-data-platform/cdp-messages
+        - git:
+          - cd customer-data-platform/cdp-messages
+          - git st
+  - data-api-client:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd customer-data-platform/data-api-client
+          - workon nvim3
+          - nvim .
+        - console:
+          - cd customer-data-platform/data-api-client
+        - git:
+          - cd customer-data-platform/data-api-client
+          - git st
+  - enricher:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd enricher
+          - workon nvim3
+          - nvim .
+        - console:
+          - cd enricher
+        - git:
+          - cd enricher
+          - git st
