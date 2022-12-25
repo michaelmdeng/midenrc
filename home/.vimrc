@@ -14,8 +14,6 @@ Plug 'ervandew/supertab'
 Plug 'haya14busa/vim-asterisk'
 Plug 'isRuslan/vim-es6'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'lervag/vimtex'
@@ -50,6 +48,7 @@ if has('nvim')
   Plug 'ncm2/float-preview.nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
   Plug 'hrsh7th/cmp-nvim-lsp'
@@ -408,49 +407,10 @@ endfunction
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" fzf
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
-
-command! -bang -nargs=? -complete=dir GFiles
-    \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
-
 function! HasGit()
   let tmp = system('git rev-parse')
   return !v:shell_error
 endfunction
-
-nnoremap <expr> <C-p> HasGit() ? ":GFiles<CR>" : ":Files<CR>"
-nmap <leader>p :Files<cr>
-nmap <leader><C-p> :History<cr>
-nmap <C-f> :Rg<cr>
-nmap <leader>* :Tags<cr>
-nmap <leader>: :Commands<cr>
-
-let g:fzf_action = {
-\ 'ctrl-t': 'tab split',
-\ 'ctrl-s': 'split',
-\ 'ctrl-v': 'vsplit' 
-\ }
-
-let g:fzf_layout = { 'down': '~30%' }
-"
-" Customize fzf colors to match your color scheme
-let g:fzf_colors = {
-\ 'fg':      ['fg', 'Normal'],
-\ 'bg':      ['bg', 'Normal'],
-\ 'hl':      ['fg', 'Comment'],
-\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-\ 'hl+':     ['fg', 'Statement'],
-\ 'info':    ['fg', 'PreProc'],
-\ 'border':  ['fg', 'Ignore'],
-\ 'prompt':  ['fg', 'Conditional'],
-\ 'pointer': ['fg', 'Exception'],
-\ 'marker':  ['fg', 'Keyword'],
-\ 'spinner': ['fg', 'Label'],
-\ 'header':  ['fg', 'Comment']
-\ }
 
 " ultisnips
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
