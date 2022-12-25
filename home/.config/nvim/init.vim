@@ -241,3 +241,20 @@ cmp.setup.cmdline(':', {
   })
 })
 EOF
+
+" nvim-telescope
+nnoremap <expr> <C-p> HasGit() ? ":Telescope git_files<CR>" : ":Telescope find_files<CR>"
+nnoremap <leader><C-p> <cmd>lua require'telescope.builtin'.oldfiles()<cr>
+nnoremap <C-f> <cmd>Telescope live_grep<cr>
+nnoremap <leader>* <cmd>Telescope tags<cr>
+nnoremap <leader>/ <cmd>Telescope search_history<cr>
+nnoremap <leader>: <cmd>Telescope commands<cr>
+
+lua << EOF
+require('telescope').setup{
+  defaults = {
+    layout_strategy = 'cursor',
+    results_title = false,
+  },
+}
+EOF

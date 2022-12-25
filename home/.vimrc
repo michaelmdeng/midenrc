@@ -10,12 +10,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
-Plug 'haya14busa/incsearch.vim'
+Plug 'ervandew/supertab'
 Plug 'haya14busa/vim-asterisk'
 Plug 'isRuslan/vim-es6'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'lervag/vimtex'
@@ -44,13 +42,13 @@ Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 
 if has('nvim')
-  Plug 'gelguy/wilder.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'ncm2/float-preview.nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
   Plug 'hrsh7th/cmp-nvim-lsp'
@@ -265,10 +263,10 @@ nnoremap <C-s>] <C-w>]
 nnoremap <C-v>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " very-magic search
-nnoremap / /\V
-nnoremap ? ?\V
-vnoremap / /\V
-vnoremap ? ?\V
+nnoremap / /\v
+nnoremap ? ?\v
+vnoremap / /\v
+vnoremap ? ?\v
 
 " delete without clobbering registers
 nnoremap s "_d
@@ -345,19 +343,6 @@ augroup RainbowParens
   au Syntax * RainbowParenthesesLoadBraces
 augroup end
 
-" Incsearch and vim-asterisk
-let g:incsearch#auto_nohlsearch = 1
-let g:incsearch#do_not_save_error_message_history = 1
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl)<Plug>(asterisk-*)
-map g* <Plug>(incsearch-nohl)<Plug>(asterisk-g*)
-map #  <Plug>(incsearch-nohl)<Plug>(asterisk-#)
-map g# <Plug>(incsearch-nohl)<Plug>(asterisk-g#)
-
 " IndentLines config
 augroup indentLine
   au BufEnter * IndentBlanklineEnable
@@ -422,49 +407,10 @@ endfunction
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" fzf
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
-
-command! -bang -nargs=? -complete=dir GFiles
-    \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
-
 function! HasGit()
   let tmp = system('git rev-parse')
   return !v:shell_error
 endfunction
-
-nnoremap <expr> <C-p> HasGit() ? ":GFiles<CR>" : ":Files<CR>"
-nmap <leader>p :Files<cr>
-nmap <leader><C-p> :History<cr>
-nmap <C-f> :Rg<cr>
-nmap <leader>* :Tags<cr>
-nmap <leader>: :Commands<cr>
-
-let g:fzf_action = {
-\ 'ctrl-t': 'tab split',
-\ 'ctrl-s': 'split',
-\ 'ctrl-v': 'vsplit' 
-\ }
-
-let g:fzf_layout = { 'down': '~30%' }
-"
-" Customize fzf colors to match your color scheme
-let g:fzf_colors = {
-\ 'fg':      ['fg', 'Normal'],
-\ 'bg':      ['bg', 'Normal'],
-\ 'hl':      ['fg', 'Comment'],
-\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-\ 'hl+':     ['fg', 'Statement'],
-\ 'info':    ['fg', 'PreProc'],
-\ 'border':  ['fg', 'Ignore'],
-\ 'prompt':  ['fg', 'Conditional'],
-\ 'pointer': ['fg', 'Exception'],
-\ 'marker':  ['fg', 'Keyword'],
-\ 'spinner': ['fg', 'Label'],
-\ 'header':  ['fg', 'Comment']
-\ }
 
 " ultisnips
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
@@ -555,12 +501,6 @@ let g:qs_lazy_highlight = 1
 
 " vim-tex
 let g:tex_flavor = 'latex'
-
-" wilder.nvim
-call wilder#setup({'modes': [':', '/', '?']})
-call wilder#set_option('renderer', wilder#popupmenu_renderer({
-\ 'highlighter': wilder#basic_highlighter(),
-\ }))
 
 " -----------------
 " Custom Functions
