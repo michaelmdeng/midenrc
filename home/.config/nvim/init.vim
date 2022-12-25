@@ -143,12 +143,10 @@ local on_attach = function(client, bufnr)
   -- buffer
   buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<leader>dc', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', '<leader>df', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   buf_set_keymap('n', '<leader>t', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', '<leader>im', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<leader>rf', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<c-r>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>sg', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<leader>Df', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
@@ -249,6 +247,10 @@ nnoremap <C-f> <cmd>Telescope live_grep<cr>
 nnoremap <leader>* <cmd>Telescope tags<cr>
 nnoremap <leader>/ <cmd>Telescope search_history<cr>
 nnoremap <leader>: <cmd>Telescope commands<cr>
+nnoremap <leader>H <cmd>Telescope git_bcommits<cr>
+
+nnoremap <leader>df <cmd>Telescope lsp_definitions<cr>
+nnoremap <leader>rf <cmd>Telescope lsp_references<cr>
 
 lua << EOF
 require('telescope').setup{
