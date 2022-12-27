@@ -562,3 +562,22 @@ nnoremap <silent> <leader>vrv :VimrcEdit v<CR>
 
 command! -bar -nargs=0 VimrcReload :so $MYVIMRC
 nnoremap <silent> <leader>vrr :VimrcReload<CR>
+
+" Clipboard syncing
+let s:clipboard_push_script = '~/.scripts/clipboard-push.sh'
+
+function! YankRegLines(regname)
+  return getreg(a:regname, 1, 1) + (getregtype(a:regname) ==# 'v' ? [] : [''])
+endfunction
+
+function! YankPush(regname)
+  if empty(a:regname)
+    let contents = YankRegLines(a:regname)
+    call system(s:clipboard_push_script, contents)
+  endif
+endfunction
+
+augroup clipmgmt
+  autocmd!
+  autocmd TextYankPost * call YankPush(v:event['regname'])
+augroup END
