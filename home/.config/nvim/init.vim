@@ -257,6 +257,11 @@ require('telescope').setup{
   defaults = {
     layout_strategy = 'cursor',
     results_title = false,
+    mappings = {
+      i = {
+        ["<C-s>"] = require('telescope.actions').file_split,
+      },
+    }
   },
 }
 EOF
