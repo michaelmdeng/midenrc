@@ -174,9 +174,7 @@ for lsp, exec in pairs(servers) do
   local cmd = string.format('executable(\'%s\')', exec)
   if (vim.api.nvim_eval(cmd))
   then
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     nvim_lsp[lsp].setup {
-      capabilities = capabilities,
       on_attach = on_attach,
       flags = {
         debounce_text_changes = 150,
