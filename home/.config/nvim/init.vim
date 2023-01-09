@@ -241,9 +241,9 @@ cmp.setup.cmdline(':', {
 EOF
 
 " nvim-telescope
-nnoremap <expr> <C-p> HasGit() ? ":Telescope git_files<CR>" : ":Telescope find_files<CR>"
-nnoremap <leader><C-p> <cmd>lua require'telescope.builtin'.oldfiles()<cr>
-nnoremap <C-f> <cmd>Telescope live_grep<cr>
+nnoremap <expr> <C-p> HasGit() ? "<cmd>Telescope git_files<cr>" : "<cmd>Telescope find_files<cr>"
+nnoremap <leader><C-p> <cmd>Telescope oldfiles<cr>
+nnoremap <C-f> <cmd>Telescope grep_string search="" only_sort_text=true<cr>
 nnoremap <leader>* <cmd>Telescope tags<cr>
 nnoremap <leader>/ <cmd>Telescope search_history<cr>
 nnoremap <leader>: <cmd>Telescope commands<cr>
@@ -263,5 +263,15 @@ require('telescope').setup{
       },
     }
   },
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
+  }
 }
+
+require('telescope').load_extension('fzf')
 EOF
