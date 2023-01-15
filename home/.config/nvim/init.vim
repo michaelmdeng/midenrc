@@ -240,6 +240,7 @@ EOF
 
 " nvim-telescope
 nnoremap <expr> <C-p> HasGit() ? "<cmd>Telescope git_files<cr>" : "<cmd>Telescope find_files<cr>"
+nnoremap <leader>p <cmd>lua require'telescope.builtin'.find_files()<cr>
 nnoremap <leader><C-p> <cmd>Telescope oldfiles<cr>
 nnoremap <C-f> <cmd>Telescope grep_string search="" only_sort_text=true<cr>
 nnoremap <leader>* <cmd>Telescope tags<cr>
