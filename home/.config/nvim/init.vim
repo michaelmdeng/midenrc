@@ -240,6 +240,7 @@ EOF
 
 " nvim-telescope
 nnoremap <expr> <C-p> HasGit() ? "<cmd>Telescope git_files<cr>" : "<cmd>Telescope find_files<cr>"
+nnoremap <leader>p <cmd>lua require'telescope.builtin'.find_files()<cr>
 nnoremap <leader><C-p> <cmd>Telescope oldfiles<cr>
 nnoremap <C-f> <cmd>Telescope grep_string search="" only_sort_text=true<cr>
 nnoremap <leader>* <cmd>Telescope tags<cr>
@@ -273,3 +274,54 @@ require('telescope').setup{
 
 require('telescope').load_extension('fzf')
 EOF
+
+" nvim-dap
+lua << EOF
+local dap = require("dap")
+require('dap-python').setup()
+require('dap-ruby').setup()
+
+dap.configurations.scala = {
+  {
+    type = "scala",
+    request = "launch",
+    name = "RunOrTest",
+    metals = {
+      runType = "runOrTestFile",
+      --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+    },
+  },
+  {
+    type = "scala",
+    request = "launch",
+    name = "Test Target",
+    metals = {
+      runType = "testTarget",
+    },
+  },
+}
+
+
+local metals_config = require("metals").bare_config()
+metals_config.on_attach = function(client, bufnr)
+  require("metals").setup_dap()
+end
+
+local dapui = require("dapui")
+dapui.setup()
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
+EOF
+
+nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
+nnoremap <silent> <F9> <Cmd>lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
+nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
+nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
