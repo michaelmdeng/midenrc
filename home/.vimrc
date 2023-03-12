@@ -27,7 +27,6 @@ Plug 'myusuf3/numbers.vim'
 Plug 'neomake/neomake'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'rhysd/vim-grammarous'
 Plug 'slim-template/vim-slim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -62,6 +61,7 @@ if has('nvim')
 
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-copilot'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
@@ -145,7 +145,7 @@ set noshowmode
 set updatetime=500
 
 " Faster timeout for command sequences
-set timeoutlen=500
+set timeoutlen=250
 
 " More cmd bar
 set cmdheight=2
@@ -496,10 +496,6 @@ let g:firenvim_config = {
 \     },
 \   }
 \ }
-
-" grammarous
-let g:grammarous#use_vim_spelllang = 1
-let g:grammarous#use_location_list = 1
 
 " quick-scope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
