@@ -45,7 +45,7 @@ root: ~/Development
 # attach: false
 
 windows:
-  - terraform:
+  - tf-mae-configuration:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
@@ -61,7 +61,7 @@ windows:
         - console:
           - cd mae-configuration/terraform
           -
-  - mae-tf-pipelines:
+  - tf-mae:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
@@ -79,7 +79,7 @@ windows:
           - cd tf-mae
           - export GODEBUG=asyncpreemptoff=1
           -
-  - mae-monitoring-tf-pipelines:
+  - tf-mae-monitoring:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
@@ -97,7 +97,7 @@ windows:
           - cd tf-mae/monitoring
           - export GODEBUG=asyncpreemptoff=1
           -
-  - sme-monitoring-tf-pipelines:
+  - tf-sme-monitoring:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
@@ -115,7 +115,7 @@ windows:
           - cd tf-sme/monitoring
           - export GODEBUG=asyncpreemptoff=1
           -
-  - sme-tf-pipelines:
+  - tf-sme:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
@@ -131,6 +131,24 @@ windows:
           - git st
         - console:
           - cd tf-sme
+          - export GODEBUG=asyncpreemptoff=1
+          -
+  - tf-mod-cdp-monitoring:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+          - cd tf-mod-cdp-monitoring
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd tf-mod-cdp-monitoring
+          - export GODEBUG=asyncpreemptoff=1
+          - git st
+        - console:
+          - cd tf-mod-cdp-monitoring
           - export GODEBUG=asyncpreemptoff=1
           -
   - tf-mod-datadog:

@@ -1,7 +1,7 @@
 # /Users/mdeng/.tmuxinator/sq-mae.yml
 
 name: sq-mae
-root: ~/Development/mae-configuration
+root: ~/Development
 
 # Optional tmux socket
 # socket_name: foo
@@ -45,51 +45,35 @@ root: ~/Development/mae-configuration
 # attach: false
 
 windows:
-  - terraform:
+  - mae-functions:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-          - cd terraform
+          - cd mae-functions
           - workon nvim3
           - nvim .
         - git:
-          - cd terraform
+          - cd mae-functions
           - git st
         - console:
-          - cd terraform
+          - cd mae-functions
           -
-  - tf-pipelines:
+  - preference-sync:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-          - cd ~/Development/tf-mae
+          - cd mae-preference-sync
           - workon nvim3
           - nvim .
         - git:
-          - cd ~/Development/tf-mae
+          - cd mae-preference-sync
           - git st
         - console:
-          - cd ~/Development/tf-mae
-          -
-  - configuration:
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - editor:
-          - cd scripts
-          - workon nvim3
-          - nvim .
-        - git:
-          - cd scripts
-          - git st
-        - console:
-          - cd scripts
+          - cd mae-preference-sync
           -

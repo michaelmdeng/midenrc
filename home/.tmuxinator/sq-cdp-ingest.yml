@@ -45,7 +45,7 @@ root: ~/Development/
 # attach: false
 
 windows:
-  - editor:
+  - go-cdp-ingest:
       layout: main-vertical
       panes:
         - editor:
@@ -57,7 +57,7 @@ windows:
           - git st
         - console:
           - cd go-square/cdp/batch
-  - cloud-cd:
+  - ccd-cdp-ingest:
       layout: main-vertical
       panes:
         - editor:
@@ -69,7 +69,7 @@ windows:
           - git st
         - console:
           - cd ccd-cdp-ingest
-  - tf-pipelines:
+  - tf-cdp-ingest:
       layout: main-vertical
       panes:
         - editor:

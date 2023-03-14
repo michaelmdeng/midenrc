@@ -57,7 +57,8 @@ windows:
         - server:
           - nvm use 14
           - ./bin/dev
-        -
+        - console:
+          - bundle exec rails console
   - square-console:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
