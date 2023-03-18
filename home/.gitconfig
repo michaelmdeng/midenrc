@@ -26,8 +26,11 @@
 	bl = blame
 	a = add
 	f = fetch
+	fo = fetch origin
 	pl = pull
+	plo = pull origin
 	ph = push
+	pho = push origin
 	graph = log --oneline --decorate --graph --all
 	fix2 = rebase -i HEAD~2
 	fix3 = rebase -i HEAD~3
