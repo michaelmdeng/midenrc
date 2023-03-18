@@ -327,7 +327,6 @@ let g:vimwiki_list = [{
 \ 'ext': '.md',
 \ 'auto_tags': 1,
 \ 'auto_toc': 1,
-\ 'custom_wiki2html': '~/.scripts/vimwiki-pandoc.py'
 \ }]
 let g:vimwiki_hl_cb_checked=1
 let g:vimwiki_conceallevel=0
@@ -473,8 +472,6 @@ let NERDTreeMapOpenVSplit='gv'
 let g:NERDTreeMapJumpNextSibling=''
 let g:NERDTreeMapJumpPrevSibling=''
 nnoremap gp :NERDTreeToggle<CR>
-
-
 
 " float-preview.nvim
 let g:float_preview#docked = 0

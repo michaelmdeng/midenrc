@@ -19,9 +19,9 @@ nmap <buffer> <leader><Space> <Plug>VimwikiToggleListItem
 nmap <buffer> gwd <Plug>VimwikiDiaryPrevDay
 nmap <buffer> gwD <Plug>VimwikiDiaryNextDay
 
-nmap <buffer> <leader>wr :Vimwiki2HTML<cr>
-nmap <buffer> <leader>wR :VimwikiAll2HTML<cr>
-nmap <buffer> <leader>wo :Vimwiki2HTMLBrowse<cr>
+nmap <buffer> <leader>wr :!mdcli wiki convert %:p<cr>
+nmap <buffer> <leader>wR :!mdcli wiki transform ~/MyDrive/vimwiki/wiki<cr>
+nmap <buffer> <leader>wo :!mdcli wiki open %:p<cr>
 
 nmap <buffer> <Leader>wl <Plug>VimwikiFollowLink
 nmap <buffer> <Leader>wls <Plug>VimwikiSplitLink
