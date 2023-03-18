@@ -29,6 +29,7 @@ $HOME/.homesick/repos/homeshick/bin/homeshick link midenrc
 sudo apt install tmux ruby
 sudo gem install tmuxinator mdl
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone git@github.com:michaelmdeng/mdcli.git ~/Source
 
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf

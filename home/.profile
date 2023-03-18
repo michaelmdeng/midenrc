@@ -32,6 +32,8 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$PATH:$HOME/.local/share/coursier/bin"
 export PATH="/opt/homebrew/opt/libpq:$PATH"
 export PATH="$PATH:$HOME/.conscript/bin"
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$HOME/Source/mdcli"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
