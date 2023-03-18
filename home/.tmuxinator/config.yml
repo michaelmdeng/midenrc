@@ -42,14 +42,23 @@ root: ~/.homesick/repos/midenrc/
 windows:
   - midenrc:
       layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
       panes:
         - editor:
             - workon nvim3
             - nvim .
         -
+  - mdcli:
+      layout: main-vertical
+      panes:
+        - editor:
+            - cd ~/Source/mdcli
+            - workon nvim3
+            - nvim .
+        - git:
+            - cd ~/Source/mdcli
+            - git st
+        - shell:
+            - cd ~/Source/mdcli
   - miden-vim:
       layout: main-vertical
       panes:
