@@ -247,20 +247,40 @@ nnoremap <leader>* <cmd>Telescope tags<cr>
 nnoremap <leader>/ <cmd>Telescope search_history<cr>
 nnoremap <leader>: <cmd>Telescope commands<cr>
 nnoremap <leader>H <cmd>Telescope git_bcommits<cr>
+nnoremap <leader>" <cmd>Telescope registers<cr>
+nnoremap <leader>z <cmd>Telescope spell_suggest<cr>
 
 nnoremap <leader>df <cmd>Telescope lsp_definitions<cr>
+nnoremap <leader>sy <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <leader>rf <cmd>Telescope lsp_references<cr>
 
 lua << EOF
 require('telescope').setup{
   defaults = {
-    layout_strategy = 'cursor',
+    layout_strategy = 'horizontal',
     results_title = false,
     mappings = {
       i = {
         ["<C-s>"] = require('telescope.actions').file_split,
       },
     }
+  },
+  pickers = {
+    lsp_definitions = {
+      layout_strategy = 'cursor',
+    },
+    lsp_document_symbols = {
+      layout_strategy = 'cursor',
+    },
+    lsp_references = {
+      layout_strategy = 'cursor',
+    },
+    registers = {
+      layout_strategy = 'cursor',
+    },
+    spell_suggest = {
+      layout_strategy = 'cursor',
+    },
   },
   extensions = {
     fzf = {
