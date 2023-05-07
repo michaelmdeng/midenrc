@@ -33,7 +33,7 @@ export PATH="$PATH:$HOME/.local/share/coursier/bin"
 export PATH="/opt/homebrew/opt/libpq:$PATH"
 export PATH="$PATH:$HOME/.conscript/bin"
 export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/Source/mdcli"
+export PATH="$PATH:$HOME/Source/mdcli/bin"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
@@ -63,6 +63,8 @@ export PROJECT_HOME=$HOME/Documents
 export TERM=screen-256color
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
+
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 # Opt out of homebrew analytics collection
 export HOMEBREW_NO_ANALYTICS=1
