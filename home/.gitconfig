@@ -5,7 +5,7 @@
 	editor = nvim
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
-	fsmonitor = true
+	fsmonitor = false
 	untrackedcache = true
 [rerere]
 	enabled = true
