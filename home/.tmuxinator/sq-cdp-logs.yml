@@ -81,6 +81,18 @@ windows:
           - git st
         - console:
           - cd tf-cdp-logs
+  - ccd-metrics-emitter:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd ccd-metrics-emitter
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd ccd-metrics-emitter
+          - git st
+        - console:
+          - cd ccd-metrics-emitter
   - cdp-logs-ingest:
       layout: main-vertical
       panes:

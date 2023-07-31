@@ -64,3 +64,33 @@ windows:
         - git:
           - cd enricher
           - git st
+  - identities-graph:
+      layout: main-vertical
+      panes:
+        - editor:
+          - bash
+          - cd graphql/identities-graph
+          - workon nvim3
+          - nvim .
+        - console:
+          - bash
+          - cd graphql/identities-graph
+        - git:
+          - bash
+          - cd graphql/identities-graph
+          - git st
+  - tracon-routes:
+      layout: main-vertical
+      panes:
+        - editor:
+          - bash
+          - cd tracon/routes
+          - workon nvim3
+          - nvim .
+        - console:
+          - bash
+          - cd tracon/routes
+        - git:
+          - bash
+          - cd tracon/routes
+          - git st

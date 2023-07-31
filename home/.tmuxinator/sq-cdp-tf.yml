@@ -169,3 +169,18 @@ windows:
           - cd tf-mod-datadog
           - export GODEBUG=asyncpreemptoff=1
           -
+  - tf-mod-datadog-monitors:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd tf-mod-datadog-monitors
+          - workon nvim3
+          - nvim .
+        - git:
+          - cd tf-mod-datadog-monitors
+          - export GODEBUG=asyncpreemptoff=1
+          - git st
+        - console:
+          - cd tf-mod-datadog-monitors
+          - export GODEBUG=asyncpreemptoff=1
+          -

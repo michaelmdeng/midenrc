@@ -1,6 +1,6 @@
-# /Users/mdeng/.tmuxinator/sq-java.yml
+# /Users/mdeng/.tmuxinator/sq-cdp-enricher.yml
 
-name: sq-java
+name: sq-cdp-enricher
 root: ~/Development/java
 
 # Optional tmux socket
@@ -45,63 +45,27 @@ root: ~/Development/java
 # attach: false
 
 windows:
-  - audience-sync:
-      layout: main-vertical
-      panes:
-        - editor:
-          - bash
-          - cd audience-sync
-          - workon nvim3
-          - nvim .
-        - console:
-          - bash
-          - cd audience-sync
-        - git:
-          - bash
-          - cd audience-sync
-          - git st
   - enricher:
       layout: main-vertical
       panes:
         - editor:
-          - bash
           - cd enricher
           - workon nvim3
           - nvim .
         - console:
-          - bash
           - cd enricher
         - git:
-          - bash
           - cd enricher
           - git st
   - identities-graph:
       layout: main-vertical
       panes:
         - editor:
-          - bash
           - cd graphql/identities-graph
           - workon nvim3
           - nvim .
         - console:
-          - bash
           - cd graphql/identities-graph
         - git:
-          - bash
           - cd graphql/identities-graph
-          - git st
-  - tracon-routes:
-      layout: main-vertical
-      panes:
-        - editor:
-          - bash
-          - cd tracon/routes
-          - workon nvim3
-          - nvim .
-        - console:
-          - bash
-          - cd tracon/routes
-        - git:
-          - bash
-          - cd tracon/routes
           - git st
