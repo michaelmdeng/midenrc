@@ -12,6 +12,10 @@ if type "bat" > /dev/null; then
 	alias cat='bat'
 fi
 
+if type "bat" > /dev/null; then
+	alias batcat='bat'
+fi
+
 if type "rg" > /dev/null; then
 	alias grep='rg'
 fi

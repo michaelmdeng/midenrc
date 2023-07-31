@@ -50,7 +50,7 @@ if has('nvim')
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+  Plug 'nvim-telescope/telescope.nvim', { 'branch': 'master' }
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
   Plug 'mfussenegger/nvim-dap'
@@ -104,7 +104,7 @@ let g:mapleader = " "
 set autoread
 
 " Wild menu settings
-set wildmode=longest,list
+set wildmode=full
 set wildignore+=*swp,*.class,*.pyc,*.png,*.jpg,*.gif,*.zip
 set wildignore+=*.o,*.obj,*.so     " Unix
 set wildignore+=*.exe            " Windows
@@ -325,7 +325,7 @@ let g:vimwiki_list = [{
 \ 'path_html':'~/MyDrive/vimwiki/html/',
 \ 'syntax': 'markdown',
 \ 'ext': '.md',
-\ 'auto_tags': 1,
+\ 'auto_tags': 0,
 \ 'auto_toc': 1,
 \ }]
 let g:vimwiki_hl_cb_checked=1
@@ -346,9 +346,9 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " rainbow_parentheses
 augroup RainbowParens
   au VimEnter * RainbowParenthesesActivate
-  au Syntax * RainbowParenthesesLoadRound
-  au Syntax * RainbowParenthesesLoadSquare
-  au Syntax * RainbowParenthesesLoadBraces
+  au Syntax * silent! RainbowParenthesesLoadRound
+  au Syntax * silent! RainbowParenthesesLoadSquare
+  au Syntax * silent! RainbowParenthesesLoadBraces
 augroup end
 
 " IndentLines config
@@ -510,16 +510,6 @@ let g:tex_flavor = 'latex'
 
 " :W sudo saves the file
 command! W w !sudo tee % > /dev/null
-
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-
-command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
 " Command to show trailing whitespace
 function! ShowSpaces(...)
