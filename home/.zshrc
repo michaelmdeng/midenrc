@@ -120,6 +120,7 @@ setopt auto_cd
 # zsh completions
 [ -f "$HOME/.completion/tmuxinator.zsh" ] && source "$HOME/.completion/tmuxinator.zsh"
 [ -f "$HOME/.completion/.fzf.zsh" ] && source "$HOME/.completion/.fzf.zsh"
+[ -f "$HOME/.completion/gh.zsh" ] && source "$HOME/.completion/gh.zsh"
 [ -f "${HOME}/.completion/.iterm2_shell_integration.zsh" ] && source "${HOME}/.completion/.iterm2_shell_integration.zsh"
 
 complete -o nospace -C /usr/bin/terraform terraform

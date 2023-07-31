@@ -45,7 +45,12 @@ def layout_checksum(layout):
     return '{:04x}'.format(csum)
 
 def convert_layout(layout):
-    (hsize, vsize, panes) = parse_layout(layout)
+    parsed = parse_layout(layout)
+    if parsed:
+        hsize, vsize, panes = parsed
+    else:
+        return layout
+
     left_pane = panes[0]
     top_pane = panes[1]
     bottom_pane = panes[2]

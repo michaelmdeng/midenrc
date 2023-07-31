@@ -124,6 +124,10 @@ source "$HOME/.sharedshrc"
 # bash completions
 [ -f "$HOME/.completion/tmuxinator.bash" ] && source "$HOME/.completion/tmuxinator.bash"
 [ -f "$HOME/.completion/.fzf.bash" ] && source "$HOME/.completion/.fzf.bash"
+[ -f "$HOME/.completion/gh.bash" ] && source "$HOME/.completion/gh.bash"
 [ -f "${HOME}/.completion/.iterm2_shell_integration.bash" ] && source "${HOME}/.completion/.iterm2_shell_integration.bash"
 
 complete -C /usr/bin/terraform terraform
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
