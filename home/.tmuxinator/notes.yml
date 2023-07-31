@@ -42,12 +42,12 @@ windows:
       layout: main-vertical
       panes:
         - nvim:
-            - cd ~/scratchpad/
+            - cd ~/scratch/
             - workon nvim3
             - nvim .
         - git:
-            - cd ~/scratchpad/
+            - cd ~/scratch/
             - git st
         - console:
-            - cd ~/scratchpad/
+            - cd ~/scratch/
             -
