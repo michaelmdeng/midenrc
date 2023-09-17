@@ -1,120 +1,152 @@
-html, body {
-  --headings: #74c0fc;
-  --links: #91A7FF;
-  --highlight: #41C7C7;
-  --bg: #1f242A;
-  --bg-secondary: #323945;
-  --text: #adb5bd;
-  --code-text: #91A7FF;
-  --share-text: #C4C4C4;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: var(--headings);
-}
-
-h2, h3, h4, h5 {
-  margin-top: 1.5em;
-}
-
-html, body {
-  background-color: var(--bg);
-  color: var(--text);
-}
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap");
 
 html {
-  height: 100%;
-}
-
-ul.horizontal-list {
-  display: flex;
-  margin-top: 0em;
-  margin-left: 0em;
-  flex-wrap: wrap;
-}
-
-ul.horizontal-list li {
-  display: inline;
-  margin-right: 1em;
-}
-
-ul.horizontal-list li a {
-  text-decoration: none;
-  font-weight: normal;
-}
-
-li {
-  margin: 0.4em 0;
+    height: 100%;
 }
 
 body {
   font-family: "IBM Plex Sans", -apple-system, "avenir next", avenir, roboto, noto, ubuntu, "helvetica neue", helvetica, sans-serif;
-  font-size: 1.0rem;
+  font-size: 1rem;
   line-height: 2;
-  max-width: 720px;
   min-height: 100%;
+  max-width: 720px;
   margin: 0 auto;
   padding: 1em 1em;
 }
 
-pre, code {
-  font-family: "IBM Plex Mono", "Courier New", monospace;
-  font-size: 0.9rem;
+code {
+    font-family: "IBM Plex Mono", "Courier New", monospace;
+    font-size: 0.9rem;
+}
+
+ul.horizontal-list {
+    display: flex;
+    margin-top: 0em;
+    margin-left: 0em; flex-wrap: wrap;
+}
+ul.horizontal-list li {
+    display: inline;
+    margin-right: 1em;
+}
+ul.horizontal-list li a {
+    text-decoration: none;
+    font-weight: normal;
+}
+
+pre,
+h2,
+h3,
+h4,
+h5 {
+    margin-top: 1.5em;
+}
+
+hr {
+    margin: 1em 0;
+}
+hr.page-break {
+    text-align: center;
+    border: 0;
+}
+hr.page-break:before {
+    content: "-----";
+}
+hr.page-break:after {
+    content: attr(data-content) "-----";
 }
 
 p {
-  margin: 1em 0;
+    margin: 1em 0;
 }
 
-table, th, td {
-  width: 100%;
-  border: thin solid black;
-  border-collapse: collapse;
-  padding: 0.4em;
+li {
+    margin: 0.4em 0;
 }
 
-div.highlighter-rouge pre code, pre code.highlighter-rouge {
-  display: block;
-  overflow-x: auto;
-  padding: 1em;
+table,
+th,
+td {
+    width: 100%;
+    border: thin solid black;
+    border-collapse: collapse;
+    padding: 0.4em;
 }
 
 blockquote {
-  font-style: italic;
-  border: thin solid black;
-  padding: 1em;
+    font-style: italic;
+    border: thin solid black;
+    padding: 1em;
 }
-
 blockquote p {
-  margin: 0;
+    margin: 0;
 }
 
 img {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
 }
 
-p, strong, b, em, small, li, hr, table, figcaption {
-  color: var(--text);
+html,
+body {
+    --headings: #74c0fc;
+    --links: #91a7ff;
+    --highlight: #41c7c7;
+    --bg: #1f242a;
+    --bg-secondary: #323945;
+    --text: #adb5bd;
+    --code-text: #91a7ff;
+    --share-text: #c4c4c4;
 }
 
-.highlight, pre code, blockquote {
-  border-radius: 0.5em;
+html,
+body {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--headings);
+}
+
+p,
+strong,
+b,
+em,
+small,
+li,
+hr,
+table,
+figcaption {
+    color: var(--text);
 }
 
 blockquote {
-  background-color: var(--bg-secondary);
-  border: 1px var(--border) solid;
+    background-color: var(--bg-secondary);
+    border: 1px var(--border) solid;
 }
 
 a {
-  color: var(--links);
+    color: var(--links);
 }
 
-p code, li code {
-  background-color: var(--bg-secondary);
-  padding: 0.2rem;
-  color: var(--code-text);
-  font-weight: bold;
+mark {
+    padding: 0.4em;
+    background-color: var(--highlight);
+    font-size: 0.6em;
+    letter-spacing: 1px;
+}
+
+p code,
+li code {
+    background-color: var(--bg-secondary);
+    padding: 0.2rem;
+    color: var(--code-text);
+    font-weight: bold;
 }
