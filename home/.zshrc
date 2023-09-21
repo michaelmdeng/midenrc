@@ -62,12 +62,17 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  autopep8
   bgnotify
   dotenv
   fzf
+  gh
   git
+  golang
+  jenv
+  kubectl
+  npm
   nvm
+  pip
   rvm
   safe-paste
   sbt
