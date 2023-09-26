@@ -7,10 +7,12 @@
 	attributesfile = ~/.gitattributes
 	fsmonitor = false
 	untrackedcache = true
+	precomposeunicode = true
 [rerere]
 	enabled = true
 [alias]
 	co = checkout
+	cob = checkout -b
 	cof = !git for-each-ref --format=\"%(refname:short)\" refs/heads | fzf | xargs git checkout
 	st = status
 	ci = commit
@@ -56,5 +58,8 @@
 	helper = store
 [checkout]
 	defaultRemote = origin
+	workers = 4
 [pull]
 	rebase = false
+[feature]
+	manyFiles = true
