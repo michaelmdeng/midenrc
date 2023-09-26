@@ -5,7 +5,7 @@
 	editor = nvim
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
-	fsmonitor = false
+	fsmonitor = true
 	untrackedcache = true
 	precomposeunicode = true
 [rerere]
@@ -43,7 +43,7 @@
 	upstream = !git branch -u origin/$(git rev-parse --abbrev-ref HEAD) $(git rev-parse --abbrev-ref HEAD)
 
 [push]
-	default = simple
+	default = current
 [merge]
 	tool = nvim
 	conflictstyle = diff3

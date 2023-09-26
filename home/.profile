@@ -74,3 +74,5 @@ fi
 if [ -d "$HOME/.cargo/env" ] ; then
     . "$HOME/.cargo/env"
 fi
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

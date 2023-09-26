@@ -116,3 +116,6 @@ fi
 # Completions
 # ------------
 [ -f "$HOME/.completion/.az.completion" ] && source "$HOME/.completion/.az.completion"
+
+export FZF_BASE=$(brew --prefix fzf)
+source ~/.airlab/shellhelper.sh
