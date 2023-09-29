@@ -102,27 +102,45 @@ EOF
 " gitsigns
 lua << EOF
   require('gitsigns').setup {
-    keymaps = {
-      noremap = true,
-        ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'"},
-        ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'"},
-        -- Stage
-        ['n <leader>sh'] = '<cmd>Gitsigns stage_hunk<CR>',
-        ['v <leader>sh'] = '<cmd>Gitsigns stage_hunk<CR>',
-        ['n <leader>Sh'] = '<cmd>Gitsigns stage_buffer<CR>',
-        -- Restore (undo stage)
-        ['n <leader>rh'] = '<cmd>Gitsigns undo_stage_hunk<CR>',
-        ['v <leader>rh'] = '<cmd>Gitsigns undo_stage_hunk<CR>',
-        -- Undo (reset)
-        ['n <leader>uh'] = ':Gitsigns reset_hunk<CR>',
-        ['v <leader>uh'] = ':Gitsigns reset_hunk<CR>',
-        ['n <leader>Uh'] = '<cmd>Gitsigns reset_buffer_index<CR>',
-        -- other
-        ['n <leader>bh'] = '<cmd>lua require"gitsigns".blame_line{full=true}<CR>',
-        ['n <leader>ph'] = '<cmd>Gitsigns preview_hunk<CR>',
-        ['o ih'] = ':<C-U>Gitsigns select_hunk<CR>',
-        ['x ih'] = ':<C-U>Gitsigns select_hunk<CR>',
-    }
+    on_attach = function(bufnr)
+      local gs = package.loaded.gitsigns
+
+      local function map(mode, l, r, opts)
+        opts = opts or {}
+        opts.buffer = bufnr
+        vim.keymap.set(mode, l, r, opts)
+      end
+
+      -- Navigation
+      map('n', ']c', function()
+        if vim.wo.diff then return ']c' end
+        vim.schedule(function() gs.next_hunk() end)
+        return '<Ignore>'
+      end, {expr=true})
+
+      map('n', '[c', function()
+        if vim.wo.diff then return '[c' end
+        vim.schedule(function() gs.prev_hunk() end)
+        return '<Ignore>'
+      end, {expr=true})
+      -- Stage
+      map('n', '<leader>sh', gs.stage_hunk)
+      map('v', '<leader>sh', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+      map('n', '<leader>Sh', gs.stage_buffer)
+      map('v', '<leader>Sh', gs.stage_buffer)
+      -- Restore (undo stage)
+      map('n', '<leader>rh', gs.undo_stage_hunk)
+      map('v', '<leader>rh', function() gs.undo_stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+      -- Undo (reset)
+      map('n', '<leader>uh', gs.reset_hunk)
+      map('v', '<leader>hh', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+      map('n', '<leader>Uh', gs.reset_buffer_index)
+      -- Misc
+      map('n', '<leader>bh', function() gs.blame_line{full=true} end)
+      map('n', '<leader>ph', gs.preview_hunk)
+      -- Text object
+      map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+    end
   }
 EOF
 
@@ -321,7 +339,6 @@ dap.configurations.scala = {
     },
   },
 }
-
 
 local metals_config = require("metals").bare_config()
 metals_config.on_attach = function(client, bufnr)
