@@ -140,3 +140,4 @@ fi
 
 export FZF_BASE=$(brew --prefix fzf)
 source ~/.airlab/shellhelper.sh
+source <(yak completion zsh)
