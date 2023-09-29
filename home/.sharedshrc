@@ -92,7 +92,6 @@ else
     echo "warning: z.sh not found. Is it installed?"
 fi
 
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 elif [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
@@ -105,11 +104,33 @@ else
     echo "warning: virtualenvwrapper.sh not found. Is it installed?"
 fi
 
+if type "pyenv" > /dev/null; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+    pyenv virtualenvwrapper
+else
+    echo "warning: pyenv not found. Is it installed?"
+fi
+
+if type "jenv" > /dev/null; then
+    eval "$(jenv init -)"
+else
+    echo "warning: jenv not found. Is it installed?"
+fi
+
 if [ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ]; then
     source "$HOME/.homesick/repos/homeshick/homeshick.sh"
     fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 else
     echo "warning: homeshick.sh not found. Is it installed?"
+fi
+
+if [ -f "/opt/homebrew/bin/brew" ] ; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if [ -d "$HOME/.cargo/env" ] ; then
+    . "$HOME/.cargo/env"
 fi
 
 # ------------
