@@ -138,6 +138,9 @@ fi
 # ------------
 [ -f "$HOME/.completion/.az.completion" ] && source "$HOME/.completion/.az.completion"
 
+# Airbnb
+
 export FZF_BASE=$(brew --prefix fzf)
 source ~/.airlab/shellhelper.sh
 source <(yak completion zsh)
+export ONETOUCHGEN_ACCEPT_EULA=y
