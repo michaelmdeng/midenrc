@@ -69,7 +69,6 @@ plugins=(
   git
   golang
   jenv
-  kubectl
   npm
   nvm
   pip
@@ -80,7 +79,6 @@ plugins=(
   themes
   vi-mode
   virtualenv
-  virtualenvwrapper
 )
 
 source $ZSH/oh-my-zsh.sh
