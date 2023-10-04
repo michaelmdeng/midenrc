@@ -26,7 +26,6 @@ export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/Source/mdcli/bin"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$HOME/.pyenv/bin:$PATH"
