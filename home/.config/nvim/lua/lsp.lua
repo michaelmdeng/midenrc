@@ -33,6 +33,7 @@ local servers = {
   dockerls = 'docker-langserver',
   gopls = 'gopls',
   html = 'html-languageserver',
+  lua_ls = 'lua-language-server',
   metals = 'metals',
   pylsp = 'pyls',
   solargraph = 'solargraph',

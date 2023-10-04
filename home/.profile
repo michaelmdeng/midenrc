@@ -35,6 +35,10 @@ export PATH="$PATH:$HOME/.jenv/bin"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
 
+if [ -d "$HOME/Source/lua-language-server" ] ; then
+    PATH="$PATH:$HOME/Source/lua-language-server/bin"
+fi
+
 export EDITOR='nvim'
 export PROJECT_HOME=$HOME/Source
 export TERM=screen-256color
