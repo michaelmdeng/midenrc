@@ -11,9 +11,8 @@ alias rm='rm -i'
 if type "bat" > /dev/null; then
 	alias cat='bat'
 fi
-
-if type "bat" > /dev/null; then
-	alias batcat='bat'
+if type "batcat" > /dev/null; then
+	alias cat='batcat'
 fi
 
 if type "rg" > /dev/null; then
