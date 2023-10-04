@@ -149,58 +149,7 @@ nnoremap <leader>fp :set nu rnu scl=yes <bar> :luado require('gitsigns').toggle_
 nnoremap <leader>hh :luado require('gitsigns').setloclist(0)<CR>
 
 " Nvim LSP
-lua << EOF
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  local opts = { noremap=true, silent=true }
-
-  -- buffer
-  buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', '<leader>dc', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  buf_set_keymap('n', '<leader>t', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<leader>im', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<c-r>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>sg', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<leader>Df', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  -- diagnostics
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>dd', '<cmd>lua vim.lsp.diagnostic.setloclist()<CR>', opts)
-end
-
-local nvim_lsp = require('lspconfig')
-local servers = {
-  bashls = 'bash-language-server',
-  cssls = 'css-languageserver',
-  dockerls = 'docker-langserver',
-  gopls = 'gopls',
-  html = 'html-languageserver',
-  metals = 'metals',
-  pylsp = 'pyls',
-  solargraph = 'solargraph',
-  terraformls = 'terraform-ls',
-  vimls = 'vim-language-server',
-  yamlls = 'yamlls'
-}
-for lsp, exec in pairs(servers) do
-  local cmd = string.format('executable(\'%s\')', exec)
-  if (vim.api.nvim_eval(cmd))
-  then
-    nvim_lsp[lsp].setup {
-      on_attach = on_attach,
-      flags = {
-        debounce_text_changes = 150,
-      }
-    }
-  end
-end
-EOF
+lua require('lsp')
 
 " nvim-cmp
 lua << EOF
