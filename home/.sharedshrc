@@ -25,6 +25,7 @@ fi
 
 if type "nvim" > /dev/null; then
 	alias vim='nvim'
+	alias vi='nvim'
 fi
 
 # x86_64 homebrew
