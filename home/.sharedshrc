@@ -128,13 +128,15 @@ if [ -f "/opt/homebrew/bin/brew" ] ; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-if [ -d "$HOME/.cargo/env" ] ; then
-    . "$HOME/.cargo/env"
-fi
-
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # ------------
 # Completions
 # ------------
 [ -f "$HOME/.completion/.az.completion" ] && source "$HOME/.completion/.az.completion"
+
+if type "npm" > /dev/null; then
+    source <(npm completion)
+fi
