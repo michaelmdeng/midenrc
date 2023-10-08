@@ -23,14 +23,18 @@ nmap <buffer> <leader>wr :!mdcli wiki convert "%:p"<cr>
 nmap <buffer> <leader>wR :!mdcli wiki transform ~/MyDrive/vimwiki/wiki<cr>
 nmap <buffer> <leader>wo :!mdcli wiki open -b open "%:p"<cr>
 
-nmap <buffer> <Leader>wl <Plug>VimwikiFollowLink
-nmap <buffer> <Leader>wls <Plug>VimwikiSplitLink
-nmap <buffer> <Leader>wlv <Plug>VimwikiVSplitLink
+nnoremap <buffer> <Leader>wl <Plug>VimwikiFollowLink
+nnoremap <buffer> <Leader>wls <cmd>VimwikiSplitLink<cr>
+nnoremap <buffer> <Leader>wlv <cmd>VimwikiVSplitLink<cr>
 
-nmap <buffer> <C-]> <Plug>VimwikiFollowLink
-nmap <buffer> <C-s>] <Plug>VimwikiSplitLink
-nmap <buffer> <C-v>] <Plug>VimwikiVSplitLink
+nnoremap <buffer> <C-]> <Plug>VimwikiFollowLink
+nnoremap <buffer> <C-s>] <cmd>VimwikiSplitLink<cr>
+nnoremap <buffer> <C-s><C-]> <cmd>VimwikiSplitLink<cr>
+nnoremap <buffer> <C-v>] <cmd>VimwikiVSplitLink<cr>
+nnoremap <buffer> <C-v><C-]> <cmd>VimwikiVSplitLink<cr>
 
-vmap <buffer> <C-]> <Plug>VimwikiNormalizeLinkVisual
-vmap <buffer> <C-s>] <Plug>VimwikiSplitLink
-vmap <buffer> <C-v>] <Plug>VimwikiVSplitLink
+vnoremap <buffer> <C-]> <Plug>VimwikiNormalizeLinkVisual
+vnoremap <buffer> <C-s>] <cmd>VimwikiSplitLink<cr>
+vnoremap <buffer> <C-s><C-]> <cmd>VimwikiSplitLink<cr>
+vnoremap <buffer> <C-v>] <cmd>VimwikiVSplitLink<cr>
+vnoremap <buffer> <C-v><C-]> <cmd>VimwikiVSplitLink<cr>

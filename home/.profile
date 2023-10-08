@@ -38,6 +38,8 @@ if [ -d "$HOME/Source/lua-language-server" ] ; then
     PATH="$PATH:$HOME/Source/lua-language-server/bin"
 fi
 
+export PATH="$PATH:$HOME/.rvm/bin"
+
 export EDITOR='nvim'
 export PROJECT_HOME=$HOME/Source
 export TERM=screen-256color

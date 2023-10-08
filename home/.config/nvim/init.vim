@@ -149,7 +149,7 @@ nnoremap <leader>fp :set nu rnu scl=yes <bar> :luado require('gitsigns').toggle_
 nnoremap <leader>hh :luado require('gitsigns').setloclist(0)<CR>
 
 " Nvim LSP
-lua require('lsp')
+lua require('md-lsp')
 
 " nvim-cmp
 lua << EOF
@@ -206,61 +206,8 @@ cmp.setup.cmdline(':', {
 EOF
 
 " nvim-telescope
-nnoremap <expr> <C-p> HasGit() ? "<cmd>Telescope git_files<cr>" : "<cmd>Telescope find_files<cr>"
-nnoremap <leader>p <cmd>lua require'telescope.builtin'.find_files()<cr>
-nnoremap <leader><C-p> <cmd>Telescope oldfiles<cr>
-nnoremap <leader>P <cmd>Telescope oldfiles<cr>
-nnoremap <C-f> <cmd>Telescope grep_string search="" only_sort_text=true<cr>
-nnoremap <leader>* <cmd>Telescope tags<cr>
-nnoremap <leader>/ <cmd>Telescope search_history<cr>
-nnoremap <leader>: <cmd>Telescope commands<cr>
-nnoremap <leader>H <cmd>Telescope git_bcommits<cr>
-nnoremap <leader>" <cmd>Telescope registers<cr>
-nnoremap <leader>z <cmd>Telescope spell_suggest<cr>
-
-nnoremap <leader>df <cmd>Telescope lsp_definitions<cr>
-nnoremap <leader>sy <cmd>Telescope lsp_document_symbols<cr>
-nnoremap <leader>rf <cmd>Telescope lsp_references<cr>
-
 lua << EOF
-require('telescope').setup{
-  defaults = {
-    layout_strategy = 'horizontal',
-    results_title = false,
-    mappings = {
-      i = {
-        ["<C-s>"] = require('telescope.actions').file_split,
-      },
-    }
-  },
-  pickers = {
-    lsp_definitions = {
-      layout_strategy = 'cursor',
-    },
-    lsp_document_symbols = {
-      layout_strategy = 'cursor',
-    },
-    lsp_references = {
-      layout_strategy = 'cursor',
-    },
-    registers = {
-      layout_strategy = 'cursor',
-    },
-    spell_suggest = {
-      layout_strategy = 'cursor',
-    },
-  },
-  extensions = {
-    fzf = {
-      fuzzy = true,
-      override_generic_sorter = true,
-      override_file_sorter = true,
-      case_mode = "smart_case",
-    }
-  }
-}
-
-require('telescope').load_extension('fzf')
+require('md-telescope')
 EOF
 
 " nvim-dap

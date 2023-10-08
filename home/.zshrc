@@ -64,19 +64,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
   bgnotify
   dotenv
-  fzf
-  gh
-  git
-  golang
-  jenv
-  npm
-  nvm
-  pip
-  rvm
-  safe-paste
   sbt
   scala
-  themes
   vi-mode
   virtualenv
 )
@@ -125,6 +114,18 @@ setopt auto_cd
 [ -f "$HOME/.completion/.fzf.zsh" ] && source "$HOME/.completion/.fzf.zsh"
 [ -f "$HOME/.completion/gh.zsh" ] && source "$HOME/.completion/gh.zsh"
 [ -f "${HOME}/.completion/.iterm2_shell_integration.zsh" ] && source "${HOME}/.completion/.iterm2_shell_integration.zsh"
+
+__pip() {{
+	eval $(pip completion --zsh)
+        }}
+if [[ $zsh_eval_context[-1] == loadautofunc ]]; then
+    # autoload from fpath, call function directly
+    __pip "$@"
+else
+    # eval/source/. command, register function for later
+    compdef __pip -P pip
+    compdef __pip -P pip3
+fi
 
 complete -o nospace -C /usr/bin/terraform terraform
 

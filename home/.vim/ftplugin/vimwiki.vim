@@ -46,12 +46,8 @@ nmap <buffer> <Leader>wls <Plug>VimwikiSplitLink
 nmap <buffer> <Leader>wlv <Plug>VimwikiVSplitLink
 
 nmap <buffer> <C-]> <Plug>VimwikiFollowLink
-nmap <buffer> <C-s>] <Plug>VimwikiSplitLink
-nmap <buffer> <C-v>] <Plug>VimwikiVSplitLink
 
 vmap <buffer> <C-]> <Plug>VimwikiNormalizeLinkVisual
-vmap <buffer> <C-s>] <Plug>VimwikiSplitLink
-vmap <buffer> <C-v>] <Plug>VimwikiVSplitLink
 
 " Remove <Plug>VimwikiDecreaseLevel
 inoremap <buffer> <C-d> <Del>
