@@ -1,6 +1,8 @@
+local api = vim.api
+
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  local function buf_set_keymap(...) api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) api.nvim_buf_set_option(bufnr, ...) end
 
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -13,7 +15,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   buf_set_keymap('n', '<leader>t', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', '<leader>im', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<leader>rf', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<c-r>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>sg', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<leader>Df', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
@@ -21,7 +22,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>dd', '<cmd>lua vim.lsp.diagnostic.setloclist()<CR>', opts)
-
   -- help
   buf_set_keymap('n', '<leader>?', '<cmd>LspCapabilities<CR>', opts)
 end
@@ -43,7 +43,7 @@ local servers = {
 }
 for lsp, exec in pairs(servers) do
   local cmd = string.format('executable(\'%s\')', exec)
-  if (vim.api.nvim_eval(cmd))
+  if (api.nvim_eval(cmd))
   then
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
@@ -54,8 +54,8 @@ for lsp, exec in pairs(servers) do
   end
 end
 
-vim.api.nvim_create_user_command("LspCapabilities", function()
-  local curBuf = vim.api.nvim_get_current_buf()
+api.nvim_create_user_command("LspCapabilities", function()
+  local curBuf = api.nvim_get_current_buf()
   local clients = vim.lsp.get_active_clients { bufnr = curBuf }
 
   local msg = "Press q or <Esc> to close this window.\n\n"
@@ -79,8 +79,8 @@ vim.api.nvim_create_user_command("LspCapabilities", function()
   local top = math.floor(((vim.o.lines - height) / 2))
   local left = math.floor((vim.o.columns - width) / 2)
 
-  local bufnr = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, vim.fn.split(msg, "\n"))
+  local bufnr = api.nvim_create_buf(false, true)
+  api.nvim_buf_set_lines(bufnr, 0, -1, false, vim.fn.split(msg, "\n"))
   local opts = {
     style = 'minimal',
     relative = 'editor',
@@ -91,12 +91,12 @@ vim.api.nvim_create_user_command("LspCapabilities", function()
     focusable = true
   }
 
-  local win_id = vim.api.nvim_open_win(bufnr, true, opts)
-  vim.api.nvim_win_set_buf(win_id, bufnr)
+  local win_id = api.nvim_open_win(bufnr, true, opts)
+  api.nvim_win_set_buf(win_id, bufnr)
 
   local function close()
-    if vim.api.nvim_win_is_valid(win_id) then
-      vim.api.nvim_win_close(win_id, true)
+    if api.nvim_win_is_valid(win_id) then
+      api.nvim_win_close(win_id, true)
     end
   end
   vim.keymap.set('n', '<ESC>', close, { buffer = bufnr, nowait = true })
