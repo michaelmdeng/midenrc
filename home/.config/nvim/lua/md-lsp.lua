@@ -22,8 +22,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>dd', '<cmd>lua vim.lsp.diagnostic.setloclist()<CR>', opts)
-  -- help
-  buf_set_keymap('n', '<leader>?', '<cmd>LspCapabilities<CR>', opts)
 end
 
 local nvim_lsp = require('lspconfig')
@@ -32,6 +30,7 @@ local servers = {
   cssls = 'css-languageserver',
   dockerls = 'docker-langserver',
   gopls = 'gopls',
+  helm_ls = 'helm_ls',
   html = 'html-languageserver',
   lua_ls = 'lua-language-server',
   metals = 'metals',

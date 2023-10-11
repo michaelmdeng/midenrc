@@ -18,15 +18,22 @@ vim.api.nvim_set_keymap('n', '<leader>sy', '<cmd>Telescope lsp_document_symbols<
 vim.api.nvim_set_keymap('n', '<leader>rf', '<cmd>Telescope lsp_references<cr>', { noremap = true, silent = true })
 
 
+local actions = require('telescope.actions')
+local action_layout = require('telescope.actions.layout')
 require('telescope').setup{
   defaults = {
     layout_strategy = 'horizontal',
     results_title = false,
     mappings = {
       i = {
-        ["<C-s>"] = require('telescope.actions').file_split,
+        ["<esc>"] = actions.close,
+        ["<C-s>"] = actions.file_split,
+        ["<C-e>"] = action_layout.toggle_preview
       },
-    }
+    },
+    preview = {
+        filesize_limit = 0.1, -- MB
+    },
   },
   pickers = {
     lsp_definitions = {
@@ -59,4 +66,3 @@ require('telescope').setup{
 }
 
 require('telescope').load_extension('fzf')
-
