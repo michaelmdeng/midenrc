@@ -27,4 +27,4 @@ ZSH_THEME_VIRTUALENV_SUFFIX=")"
 
 PROMPT='
 %{$fg_bold[white]%}[%T]%{$reset_color%} %n@%m:%~ %{$fg_bold[magenta]%}$(git_prompt_info) $(git_prompt_status)%{$reset_color%}
-%{$fg_bold[cyan]%}%!%{$reset_color%} %{$fg_bold[white]%}${${KEYMAP/vicmd/(:)}/(main|viins)/(+)}%{$reset_color%} $(virtualenv_prompt_info)$ '
+%{$fg_bold[cyan]%}%!%{$reset_color%} %{$fg_bold[white]%}${${KEYMAP/vicmd/(:)}/(main|viins)/(+)}%{$reset_color%} $(virtualenv_prompt_info)${$(virtualenv_prompt_info):+" "}$ '
