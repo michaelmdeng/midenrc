@@ -1,3 +1,9 @@
+# ----------
+# Functions
+# ----------
+
+source $HOME/.mdeng/functions.sh
+
 # --------
 # Aliases
 # --------
@@ -7,23 +13,20 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
-# use better cmd-line tools if they are installed
-if type "bat" > /dev/null; then
+# alias better cmd-line tools if they are installed
+if check_cmd_exists "bat"; then
 	alias cat='bat'
 fi
-if type "batcat" > /dev/null; then
+
+if check_cmd_exists "batcat"; then
 	alias cat='batcat'
 fi
 
-if type "rg" > /dev/null; then
+if check_cmd_exists "rg"; then
 	alias grep='rg'
 fi
 
-if type "python3" > /dev/null; then
-	alias python='python3'
-fi
-
-if type "nvim" > /dev/null; then
+if check_cmd_exists "nvim"; then
 	alias vim='nvim'
 	alias vi='nvim'
 fi
@@ -31,56 +34,14 @@ fi
 # x86_64 homebrew
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
-if type "gcloud" > /dev/null; then
+if check_cmd_exists "gcloud"; then
 	alias gcloudauth='gcloud auth login | gcloud auth application-default login'
 	alias gcloudlogin='gcloud auth login | gcloud auth application-default login'
 fi
 
-# ----------
-# Functions
-# ----------
-
-# Custom functions
-mkcdir ()
-{
-    mkdir -p -- "$1" &&
-      cd -P -- "$1"
-}
-
-# fzf functions
-# fzf into history
-fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]*\** *//')
-}
-
-# fzf cd into dir
-fcd() {
-  local dir
-  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
-}
-
-# fzf file content
-# using ripgrep combined with preview
-# find-in-file - usage: fif <searchTerm>
-ff() {
-  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
-  rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
-}
-
-# fkill - kill processes - list only the ones you can kill. Modified the earlier script.
-fkill() {
-    local pid
-    if [ "$UID" != "0" ]; then
-        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
-    else
-        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-    fi
-
-    if [ "x$pid" != "x" ]
-    then
-        echo $pid | xargs kill -${1:-9}
-    fi
-}
+if check_cmd_exists "kubectx" && check_cmd_exists "kubens" && check_cmd_exists "k9s"; then
+	alias kk9s='kubectx && kubens && k9s'
+fi
 
 # --------
 # Sources
@@ -104,7 +65,7 @@ else
     echo "warning: virtualenvwrapper.sh not found. Is it installed?"
 fi
 
-if type "pyenv" > /dev/null; then
+if check_cmd_exists "pyenv"; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
     pyenv virtualenvwrapper
@@ -112,7 +73,7 @@ else
     echo "warning: pyenv not found. Is it installed?"
 fi
 
-if type "jenv" > /dev/null; then
+if check_cmd_exists "jenv"; then
     eval "$(jenv init -)"
 else
     echo "warning: jenv not found. Is it installed?"
@@ -138,6 +99,6 @@ fi
 # ------------
 [ -f "$HOME/.completion/.az.completion" ] && source "$HOME/.completion/.az.completion"
 
-if type "npm" > /dev/null; then
+if check_cmd_exists "npm"; then
     source <(npm completion)
 fi
