@@ -43,6 +43,11 @@ if check_cmd_exists "kubectx" && check_cmd_exists "kubens" && check_cmd_exists "
 	alias kk9s='kubectx && kubens && k9s'
 fi
 
+if ! check_cmd_exists "pbcopy" > /dev/null; then
+	alias pbcopy='xclip -selection clipboard'
+	alias pbpaste='xclip -selection clipboard -o'
+fi
+
 # --------
 # Sources
 # --------
