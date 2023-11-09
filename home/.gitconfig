@@ -41,6 +41,28 @@
 	fix6 = rebase -i HEAD~6
 	fix7 = rebase -i HEAD~7
 	upstream = !git branch -u origin/$(git rev-parse --abbrev-ref HEAD) $(git rev-parse --abbrev-ref HEAD)
+	continue = "!f() { \
+		if git rev-parse --verify CHERRY_PICK_HEAD >/dev/null 2>&1; then \
+		    git cherry-pick --continue; \
+		elif git rev-parse --verify REBASE_HEAD >/dev/null 2>&1; then \
+		    git rebase --continue; \
+		elif git rev-parse --verify MERGE_HEAD >/dev/null 2>&1; then \
+		    git commit; \
+		else \
+		    echo 'No operation in-progress to continue'; \
+		fi; \
+	}; f"
+	abort = "!f() { \
+		if git rev-parse --verify CHERRY_PICK_HEAD >/dev/null 2>&1; then \
+		    git cherry-pick --abort; \
+		elif git rev-parse --verify REBASE_HEAD >/dev/null 2>&1; then \
+		    git rebase --abort; \
+		elif git rev-parse --verify MERGE_HEAD >/dev/null 2>&1; then \
+		    git merge --abort; \
+		else \
+		    echo 'No operation in-progress to abort'; \
+		fi; \
+	}; f"
 
 [push]
 	default = current

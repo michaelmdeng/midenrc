@@ -2,7 +2,7 @@ vim.api.nvim_set_keymap('n', '<C-p>', 'HasGit() ? "<cmd>Telescope git_files<cr>"
 vim.api.nvim_set_keymap('n', '<leader>p', '<cmd>lua require"telescope.builtin".find_files()<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader><C-p>', '<cmd>Telescope oldfiles<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>P', '<cmd>Telescope oldfiles<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-f>', '<cmd>Telescope grep_string search="" only_sort_text=true<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-f>', '<cmd>Telescope live_grep<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>*', '<cmd>Telescope tags<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>/', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', '<cmd>Telescope search_history<cr>', { noremap = true, silent = true })
@@ -22,7 +22,10 @@ local actions = require('telescope.actions')
 local action_layout = require('telescope.actions.layout')
 require('telescope').setup{
   defaults = {
-    layout_strategy = 'horizontal',
+    layout_strategy = 'vertical',
+    layout_config = {
+        prompt_position = 'top',
+    },
     results_title = false,
     mappings = {
       i = {

@@ -147,7 +147,7 @@ set noshowmode
 set updatetime=500
 
 " Faster timeout for command sequences
-set timeoutlen=250
+set timeoutlen=500
 
 " More cmd bar
 set cmdheight=2
@@ -167,10 +167,6 @@ set scrolloff=3
 " ---------
 " Mappings
 " ---------
-
-" Windows mappings
-nmap <C-a> gg0vG$
-nmap <C-s> :w<cr>
 
 " window resize shortcuts
 nnoremap <C-w>+ :res +5<CR>
@@ -271,7 +267,9 @@ tnoremap <Esc><Esc> <C-\><C-n>
 
 " Split tags
 nnoremap <C-s>] <C-w>]
-nnoremap <C-v>] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+nnoremap <C-s><c-]> <C-w>]
+nnoremap <C-v>] <cmd>vsp <bar> execute "tag" expand("<cword>")<cr>
+nnoremap <C-v><c-]> <cmd>vsp <bar> execute "tag" expand("<cword>")<cr>
 
 " very-magic search
 nnoremap / /\v
