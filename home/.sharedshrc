@@ -39,8 +39,18 @@ if check_cmd_exists "gcloud"; then
 	alias gcloudlogin='gcloud auth login | gcloud auth application-default login'
 fi
 
+if check_cmd_exists "kubectx"; then
+	alias kctx='kubectx'
+fi
+if check_cmd_exists "kubens"; then
+	alias kns='kubens'
+fi
+if check_cmd_exists "kubectl"; then
+	alias kctl='kubectl'
+	alias kkctl='KCTX=$(yq eval '"'"'.contexts[].name'"'"' ~/.kube/config | fzf) && KNS=$(kubectl --context $KCTX get ns -o json | jq -r '"'"'.items[].metadata.name'"'"' | fzf) && kubectl -n $KNS --context $KCTX'
+fi
 if check_cmd_exists "kubectx" && check_cmd_exists "kubens" && check_cmd_exists "k9s"; then
-	alias kk9s='kubectx && kubens && k9s'
+	alias kk9s='KCTX=$(yq eval '"'"'.contexts[].name'"'"' ~/.kube/config | fzf) && KNS=$(kubectl --context $KCTX get ns -o json | jq -r '"'"'.items[].metadata.name'"'"' | fzf) && k9s -n $KNS --context $KCTX'
 fi
 
 if ! check_cmd_exists "pbcopy" > /dev/null; then
