@@ -127,6 +127,10 @@ else
     compdef __pip -P pip3
 fi
 
+if check_cmd_exists "k9s"; then
+    eval $(k9s completion zsh)
+fi
+
 complete -o nospace -C /usr/bin/terraform terraform
 
 # The next line updates PATH for the Google Cloud SDK.
