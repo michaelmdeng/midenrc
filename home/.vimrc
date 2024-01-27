@@ -25,8 +25,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'michaelmdeng/miden-vim', {'branch': 'master', 'do': ':UpdateRemotePlugins'}
 Plug 'myusuf3/numbers.vim'
 Plug 'neomake/neomake'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'slim-template/vim-slim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -49,7 +47,9 @@ if has('nvim')
   Plug 'ncm2/float-preview.nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/plenary.nvim'
+
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
   Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
