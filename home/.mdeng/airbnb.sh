@@ -18,7 +18,8 @@ function tidb_mysql_local_cmd() {
 function tidb_mysql_connect() {
 	CONTEXT="m-tidb-$1-ea1-us" 
 	NS="tidb-$2" 
-	TIDB_POD="$2-tidb-0"
+	POD_NUM=${3:-0}
+	TIDB_POD="$2-tidb-$POD_NUM"
 	PASS=$(kubectl get secret -n "$NS" --context "$CONTEXT" tidb-secret -o json | jq .data.root -r | base64 -d | tr -d '\n')
 	kubectl port-forward -n "$NS" --context "$CONTEXT" "$TIDB_POD" 4000:4000 &
 	bg_pid=$!
@@ -30,7 +31,7 @@ function tidb_mysql_connect() {
 	printf "\n"
 	sleep 1
 
-	echo "Connecting to mysql on $2-tidb-0 in $NS on $CONTEXT"
+	echo "Connecting to mysql on $2-tidb-$POD_NUM in $NS on $CONTEXT"
 	mysql -uroot -"p$PASS" -P 4000 -A -h 127.0.0.1
 
 	# Terminate the first background command
@@ -60,8 +61,15 @@ function tidb_kctl() {
 	NS="tidb-$2" 
 
 	COMMAND="kctl --context \"$CONTEXT\" -n \"$NS\" ${@:3}"
-	echo "$COMMAND"
+
+	if [ -t 1 ]; then
+		echo "$COMMAND"
+	fi
 	eval "$COMMAND"
+}
+
+function tidb_kc() {
+	tidb_kctl "$@"
 }
 
 function aurora_mysql_connect() {
@@ -69,4 +77,19 @@ function aurora_mysql_connect() {
 
 	echo "Connecting to Aurora $INSTANCE"
 	ssh dbadmin.musta.ch -t "dbadmin_mysql --aurora-ro \"$INSTANCE\""
+}
+
+function tidb_k9s() {
+	CONTEXT="m-tidb-$1-ea1-us"
+	NS="tidb-$2"
+
+	COMMAND="k9s --context \"$CONTEXT\" -n \"$NS\""
+	if [ -t 1 ]; then
+		echo "$COMMAND"
+	fi
+	eval "$COMMAND"
+}
+
+function aws_select_role() {
+	eval $(aws-creds select-role)
 }

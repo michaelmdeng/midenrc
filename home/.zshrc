@@ -150,3 +150,7 @@ if [ -f '/home/mdeng/Applications/google-cloud-sdk/path.zsh.inc' ]; then . '/hom
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/mdeng/Applications/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/mdeng/Applications/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Airbnb
+
+[ -f "$HOME/.completion/aws-creds.zsh" ] && source "$HOME/.completion/aws-creds.zsh"
