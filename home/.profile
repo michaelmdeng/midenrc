@@ -46,7 +46,5 @@ export TERM=screen-256color
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 export WORKON_HOME=$HOME/.virtualenvs
 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
 # Opt out of homebrew analytics collection
 export HOMEBREW_NO_ANALYTICS=1

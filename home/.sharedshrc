@@ -16,10 +16,12 @@ alias rm='rm -i'
 # alias better cmd-line tools if they are installed
 if check_cmd_exists "bat"; then
 	alias cat='bat'
+	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 
 if check_cmd_exists "batcat"; then
 	alias cat='batcat'
+	export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 fi
 
 if check_cmd_exists "rg"; then
