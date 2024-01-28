@@ -114,6 +114,7 @@ setopt auto_cd
 [ -f "$HOME/.completion/.fzf.zsh" ] && source "$HOME/.completion/.fzf.zsh"
 [ -f "$HOME/.completion/gh.zsh" ] && source "$HOME/.completion/gh.zsh"
 [ -f "${HOME}/.completion/.iterm2_shell_integration.zsh" ] && source "${HOME}/.completion/.iterm2_shell_integration.zsh"
+[ -f "${HOME}/.completion/docker.zsh" ] && source "${HOME}/.completion/docker.zsh"
 
 __pip() {{
 	eval $(pip completion --zsh)

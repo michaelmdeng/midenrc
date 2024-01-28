@@ -126,6 +126,7 @@ source "$HOME/.sharedshrc"
 [ -f "$HOME/.completion/.fzf.bash" ] && source "$HOME/.completion/.fzf.bash"
 [ -f "$HOME/.completion/gh.bash" ] && source "$HOME/.completion/gh.bash"
 [ -f "${HOME}/.completion/.iterm2_shell_integration.bash" ] && source "${HOME}/.completion/.iterm2_shell_integration.bash"
+[ -f "${HOME}/.completion/docker.bash" ] && source "${HOME}/.completion/docker.bash"
 PATH="$PATH:/home/mdeng/.conscript/bin"
 
 if check_cmd_exists "gh"; then
