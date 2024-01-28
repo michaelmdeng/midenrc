@@ -119,3 +119,5 @@ fi
 if check_cmd_exists "npm"; then
     source <(npm completion)
 fi
+
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
