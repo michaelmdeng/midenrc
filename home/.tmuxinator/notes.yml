@@ -34,20 +34,18 @@ windows:
         - nvim:
             - workon nvim3
             - nvim -c "VimwikiIndex"
-        - task:
-            - task sync
-            - task
-        -
+        - console:
+            - 
   - scratch:
       layout: main-vertical
       panes:
         - nvim:
-            - cd ~/scratch/
+            - cd ~/scratchpad/
             - workon nvim3
             - nvim .
         - git:
-            - cd ~/scratch/
+            - cd ~/Source/scratchpad/
             - git st
         - console:
-            - cd ~/scratch/
+            - cd ~/Source/scratchpad/
             -

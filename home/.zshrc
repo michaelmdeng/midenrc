@@ -114,6 +114,7 @@ setopt auto_cd
 [ -f "$HOME/.completion/.fzf.zsh" ] && source "$HOME/.completion/.fzf.zsh"
 [ -f "$HOME/.completion/gh.zsh" ] && source "$HOME/.completion/gh.zsh"
 [ -f "${HOME}/.completion/.iterm2_shell_integration.zsh" ] && source "${HOME}/.completion/.iterm2_shell_integration.zsh"
+[ -f "${HOME}/.completion/docker.zsh" ] && source "${HOME}/.completion/docker.zsh"
 
 __pip() {{
 	eval $(pip completion --zsh)
@@ -131,13 +132,11 @@ if check_cmd_exists "k9s"; then
     eval $(k9s completion zsh)
 fi
 
+if check_cmd_exists "gh"; then
+    eval "$(gh completion -s zsh)"
+fi
+
 complete -o nospace -C /usr/bin/terraform terraform
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/applications/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/applications/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/applications/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/applications/google-cloud-sdk/completion.zsh.inc"; fi
 
 # zsh functions
 function zle-line-init zle-keymap-select {
@@ -145,3 +144,9 @@ function zle-line-init zle-keymap-select {
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/mdeng/Applications/google-cloud-sdk/path.zsh.inc' ]; then . '/home/mdeng/Applications/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/mdeng/Applications/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/mdeng/Applications/google-cloud-sdk/completion.zsh.inc'; fi
