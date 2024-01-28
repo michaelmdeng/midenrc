@@ -41,6 +41,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 
 if has('nvim')
+  Plug 'folke/tokyonight.nvim'
+
   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'lukas-reineke/indent-blankline.nvim', { 'tag': 'v2.20.8' }
@@ -89,7 +91,7 @@ syntax enable
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
-colorscheme nightfly
+colorscheme tokyonight-moon
 
 " Enable filetype plugins
 filetype plugin on
