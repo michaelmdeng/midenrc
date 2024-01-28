@@ -128,6 +128,10 @@ source "$HOME/.sharedshrc"
 [ -f "${HOME}/.completion/.iterm2_shell_integration.bash" ] && source "${HOME}/.completion/.iterm2_shell_integration.bash"
 PATH="$PATH:/home/mdeng/.conscript/bin"
 
+if check_cmd_exists "gh"; then
+    eval "$(gh completion -s bash)"
+fi
+
 complete -C /usr/bin/terraform terraform
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
