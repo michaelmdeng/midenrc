@@ -60,21 +60,6 @@ windows:
             - git st
         - shell:
             - cd tidb-prod
-  - tidb-migration-operator:
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - editor:
-            - cd tidb-tools/tidb-migration-operator
-            - workon nvim3
-            - nvim .
-        - git:
-            - cd tidb-tools/tidb-migration-operator
-            - git st
-        - shell:
-            - cd tidb-tools/tidb-migration-operator
   - tidb-release:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
@@ -90,18 +75,4 @@ windows:
             - git st
         - shell:
             - cd tidb-release
-  - internalCA:
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - editor:
-            - cd internalCA
-            - workon nvim3
-            - nvim .
-        - git:
-            - cd internalCA
-            - git st
-        - shell:
-            - cd internalCA
+            - workon tidb-release

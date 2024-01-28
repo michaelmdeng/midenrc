@@ -90,3 +90,63 @@ windows:
             - git st
         - shell:
             - cd tidb-tidb-tools
+  - tidb-operator:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+            - cd tidb-operator
+            - workon nvim3
+            - nvim .
+        - git:
+            - cd tidb-operator
+            - git st
+        - shell:
+            - cd tidb-operator
+  - tidb-db:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+            - cd tidb-db
+            - workon nvim3
+            - nvim .
+        - git:
+            - cd tidb-db
+            - git st
+        - shell:
+            - cd tidb-db
+  - tidb-pd:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+            - cd tidb-pd
+            - workon nvim3
+            - nvim .
+        - git:
+            - cd tidb-pd
+            - git st
+        - shell:
+            - cd tidb-pd
+  - tidb-kv:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+            - cd tidb-kv
+            - workon nvim3
+            - nvim .
+        - git:
+            - cd tidb-kv
+            - git st
+        - shell:
+            - cd tidb-kv
