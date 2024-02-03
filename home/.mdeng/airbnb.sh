@@ -93,3 +93,10 @@ function tidb_k9s() {
 function aws_select_role() {
 	eval $(aws-creds select-role)
 }
+
+function gh_prs() {
+        prs=$(gh search prs --team-mentions "airbnb/tidb-dev" --state open --json number,title,author,url,repository)
+        pr=$(echo "$prs" | jq -r '.[] | [.number, .title, .author.login, .repository.name, .url] | @tsv' | fzf)
+        pr_url=$(echo "$pr" | cut -f5)
+        open "$pr_url"
+}
