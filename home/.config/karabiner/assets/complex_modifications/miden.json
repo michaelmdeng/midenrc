@@ -66,6 +66,38 @@
 		    ]
 		},
 		{
+		    "description": "Enable Clipy shortcut",
+		    "type": "basic",
+		    "from": {
+			"key_code": "v",
+			"modifiers": {
+			    "mandatory": [
+				"left_control",
+                                "left_alt"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "v",
+			    "modifiers": [
+				"left_gui",
+				"left_option"
+			    ]
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"com.apple.Terminal",
+				"com.googlecode.iterm2",
+				"net.kovidgoyal.kitty"
+			    ]
+			}
+		    ]
+		},
+		{
 		    "description": "Enable lock computer shortcut",
 		    "type": "basic",
 		    "from": {
