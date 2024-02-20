@@ -8,8 +8,50 @@
 	fsmonitor = true
 	untrackedcache = true
 	precomposeunicode = true
+[branch]
+	sort = -committerdate
+[checkout]
+	defaultRemote = origin
+	workers = 4
+[commit]
+	verbose = true
+[credential]
+	helper = store
+[diff]
+	algorithm = histogram
+	submodule = log
+[feature]
+	manyFiles = true
+[fetch]
+	prune = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[help]
+	defaultBranch = main
+[init]
+	autocorrect = prompt
+[merge]
+	tool = nvim
+	conflictstyle = diff3
+[mergetool "nvim"]
+	cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+	tool = vimdiff
+	prompt = false
+[mergetool "vimdiff"]
+	tool = vimdiff
+	prompt = false
+[oh-my-zsh]
+	hide-status = 1
+	hide-dirty = 1
+[push]
+	default = current
 [rerere]
 	enabled = true
+[status]
+	submoduleSummary = true
 [alias]
 	co = checkout
 	cob = checkout -b
@@ -76,33 +118,3 @@
 		    echo 'No operation in-progress to abort'; \
 		fi; \
 	}; f"
-
-[push]
-	default = current
-[merge]
-	tool = nvim
-	conflictstyle = diff3
-[mergetool "vimdiff"]
-	tool = vimdiff
-	prompt = false
-[mergetool "nvim"]
-	cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
-	tool = vimdiff
-	prompt = false
-[credential]
-	helper = store
-[checkout]
-	defaultRemote = origin
-	workers = 4
-[pull]
-	rebase = false
-[feature]
-	manyFiles = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[oh-my-zsh]
-	hide-status = 1
-	hide-dirty = 1

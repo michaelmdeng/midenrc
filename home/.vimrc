@@ -166,6 +166,8 @@ set nojoinspaces
 
 set scrolloff=3
 
+set guicursor=a:blinkon1000-blinkoff1000
+
 " ---------
 " Mappings
 " ---------
