@@ -101,3 +101,16 @@ function gh_prs() {
         pr_url=$(echo "$pr" | cut -f5)
         open "$pr_url"
 }
+
+function tidb_tmux() {
+	tmuxinator start abb-tidb --no-attach && \
+	tmuxinator start abb-k8s --no-attach && \
+	tmuxinator start abb-tidb-tools --no-attach && \
+	tmuxinator start abb-tidb-upstream --no-attach && \
+	tmuxinator start abb-tidb-infra --no-attach
+	mdcli tmux layout -s abb-tidb && \
+	mdcli tmux layout -s abb-k8s && \
+	mdcli tmux layout -s abb-tidb-tools && \
+	mdcli tmux layout -s abb-tidb-upstream && \
+	mdcli tmux layout -s abb-tidb-infra
+}
