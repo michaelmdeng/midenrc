@@ -71,13 +71,13 @@ else
 fi
 
 if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
-    source /usr/local/bin/virtualenvwrapper.sh
+    source /usr/local/bin/virtualenvwrapper_lazy.sh
 elif [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
-    source $HOME/.local/bin/virtualenvwrapper.sh
+    source $HOME/.local/bin/virtualenvwrapper_lazy.sh
 elif [ -f "/opt/homebrew/bin/virtualenvwrapper.sh" ]; then
-    source /opt/homebrew/bin/virtualenvwrapper.sh
-elif [ -f "/opt/salt/bin/virtualenvwrapper.sh" ]; then
-    source /opt/salt/bin/virtualenvwrapper.sh
+    source /opt/homebrew/bin/virtualenvwrapper_lazy.sh
+elif [ -f "/opt/salt/bin/virtualenvwrapper_lazy.sh" ]; then
+    source /opt/salt/bin/virtualenvwrapper_lazy.sh
 else
     echo "warning: virtualenvwrapper.sh not found. Is it installed?"
 fi
@@ -85,7 +85,7 @@ fi
 if check_cmd_exists "pyenv"; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
-    pyenv virtualenvwrapper
+    pyenv virtualenvwrapper_lazy
 else
     echo "warning: pyenv not found. Is it installed?"
 fi
@@ -107,9 +107,8 @@ if [ -f "/opt/homebrew/bin/brew" ] ; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+source $HOME/.mdeng/nvm.sh
+source $HOME/.mdeng/rvm.sh
 
 # ------------
 # Completions
