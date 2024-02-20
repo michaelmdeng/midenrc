@@ -83,7 +83,8 @@ function tidb_k9s() {
 	CONTEXT="m-tidb-$1-ea1-us"
 	NS="tidb-$2"
 
-	COMMAND="k9s --context \"$CONTEXT\" -n \"$NS\""
+	shift 2
+	COMMAND="k9s --context \"$CONTEXT\" -n \"$NS\" $@"
 	if [ -t 1 ]; then
 		echo "$COMMAND"
 	fi

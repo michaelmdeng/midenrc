@@ -150,3 +150,18 @@ windows:
             - git st
         - shell:
             - cd tidb-kv
+  - tidb-artifacts:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+            - cd tidb-artifacts
+            - workon nvim3
+            - nvim .
+        - git:
+            - cd tidb-artifacts
+            - git st
+        - shell:
+            - cd tidb-artifacts
