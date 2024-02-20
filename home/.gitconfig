@@ -8,8 +8,42 @@
 	fsmonitor = false
 	untrackedcache = true
 	precomposeunicode = true
+[branch]
+	sort = -committerdate
+[checkout]
+	defaultRemote = origin
+	workers = 4
+[commit]
+	verbose = true
+[credential]
+	helper = store
+[diff]
+	algorithm = histogram
+	submodule = log
+[feature]
+	manyFiles = true
+[fetch]
+	prune = true
+[help]
+	defaultBranch = main
+[init]
+	autocorrect = prompt
+[merge]
+	tool = nvim
+	conflictstyle = diff3
+[mergetool "nvim"]
+	cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+	tool = vimdiff
+	prompt = false
+[mergetool "vimdiff"]
+	tool = vimdiff
+	prompt = false
+[push]
+	default = current
 [rerere]
 	enabled = true
+[status]
+	submoduleSummary = true
 [alias]
 	co = checkout
 	cob = checkout -b
@@ -76,25 +110,3 @@
 		    echo 'No operation in-progress to abort'; \
 		fi; \
 	}; f"
-
-[push]
-	default = simple
-[merge]
-	tool = nvim
-	conflictstyle = diff3
-[mergetool "vimdiff"]
-	tool = vimdiff
-	prompt = false
-[mergetool "nvim"]
-	cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
-	tool = vimdiff
-	prompt = false
-[credential]
-	helper = store
-[checkout]
-	defaultRemote = origin
-	workers = 4
-[pull]
-	rebase = false
-[feature]
-	manyFiles = true
