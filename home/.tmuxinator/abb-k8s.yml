@@ -45,19 +45,27 @@ root: ~/airlab/repos/tidb-prod
 # attach: false
 
 windows:
-  - k9s:
+  - k9s-prod:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - k9s
-        - 
-  - mysql:
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
+        - k9s --context m-tidb-prod-a-ea1-us
         -
+  - k9s-stg:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - k9s --context m-tidb-stg-a-ea1-us
+        -
+  - k9s-test:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - k9s --context m-tidb-test-a-ea1-us
         -
