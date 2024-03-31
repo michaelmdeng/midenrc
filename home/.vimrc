@@ -6,28 +6,28 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'mhartington/oceanic-next'
 
-Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'SirVer/ultisnips'
+" Language
 Plug 'chrisbra/csv.vim'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
+Plug 'isRuslan/vim-es6'
+Plug 'lervag/vimtex'
+Plug 'slim-template/vim-slim'
+Plug 'towolf/vim-helm'
+
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'ervandew/supertab'
 Plug 'github/copilot.vim'
 Plug 'haya14busa/vim-asterisk'
-Plug 'isRuslan/vim-es6'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'lervag/vimtex'
-Plug 'majutsushi/tagbar'
-Plug 'mbbill/undotree'
+Plug 'mbbill/undotree', { 'tag': 'rel_6.1' }
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'michaelmdeng/miden-vim', {'branch': 'master', 'do': ':UpdateRemotePlugins'}
 Plug 'myusuf3/numbers.vim'
 Plug 'neomake/neomake'
-Plug 'slim-template/vim-slim'
+Plug 'preservim/tagbar', { 'tag': 'v3.1.1' }
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -37,28 +37,27 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
-Plug 'towolf/vim-helm'
 Plug 'unblevable/quick-scope'
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', { 'tag': 'v2024.01.24' }
 Plug 'voldikss/vim-floaterm'
 
 if has('nvim')
   Plug 'folke/tokyonight.nvim'
 
-  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-  Plug 'lewis6991/gitsigns.nvim'
+  Plug 'lewis6991/gitsigns.nvim', { 'tag': 'v0.7' }
   Plug 'lukas-reineke/indent-blankline.nvim', { 'tag': 'v2.20.8' }
   Plug 'ncm2/float-preview.nvim'
   Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-lua/plenary.nvim', { 'tag': 'v0.1.4' }
 
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter', { 'tag': 'v0.9.2', 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
   Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   Plug 'nvim-telescope/telescope-symbols.nvim'
 
+  Plug 'nvim-neotest/nvim-nio', { 'tag': 'v1.8.1' }
   Plug 'mfussenegger/nvim-dap'
   Plug 'mfussenegger/nvim-dap-python'
   Plug 'scalameta/nvim-metals'
@@ -71,7 +70,6 @@ if has('nvim')
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
-  Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 endif
 
 call plug#end()
