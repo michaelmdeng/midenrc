@@ -516,6 +516,11 @@ let g:qs_lazy_highlight = 1
 " vim-tex
 let g:tex_flavor = 'latex'
 
+" tagbar
+let g:tagbar_width = 50
+let g:tagbar_sort = 0
+let g:tagbar_compact = 2
+
 " -----------------
 " Custom Functions
 " -----------------
