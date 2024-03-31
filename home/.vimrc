@@ -1,10 +1,13 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'SirVer/ultisnips'
+" Colors
 Plug 'ajmwagar/vim-deus'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'mhartington/oceanic-next'
+
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'SirVer/ultisnips'
 Plug 'chrisbra/csv.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala'
@@ -20,7 +23,6 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
-Plug 'mhartington/oceanic-next'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'michaelmdeng/miden-vim', {'branch': 'master', 'do': ':UpdateRemotePlugins'}
 Plug 'myusuf3/numbers.vim'
@@ -91,7 +93,11 @@ syntax enable
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
-colorscheme tokyonight-moon
+if has('nvim')
+  colorscheme tokyonight-moon
+else
+  colorscheme solarized
+endif
 
 " Enable filetype plugins
 filetype plugin on
@@ -356,12 +362,14 @@ augroup RainbowParens
 augroup end
 
 " IndentLines config
-augroup indentLine
-  au BufEnter * IndentBlanklineEnable
-augroup end
-let g:indent_blankline_space_char = ' '
-let g:indent_blankline_show_current_context = 1
-let g:indent_blankline_show_current_context_start = 1
+if has('nvim')
+  augroup indentLine
+    au BufEnter * IndentBlanklineEnable
+  augroup end
+  let g:indent_blankline_space_char = ' '
+  let g:indent_blankline_show_current_context = 1
+  let g:indent_blankline_show_current_context_start = 1
+endif
 
 " vim-json config
 let g:vim_json_syntax_conceal = 0
