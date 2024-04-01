@@ -259,3 +259,11 @@ nnoremap <silent> <F9> <Cmd>lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
 nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
 nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
+
+" indent-blankline
+augroup indentLine
+  au BufEnter * IndentBlanklineEnable
+augroup end
+let g:indent_blankline_space_char = ' '
+let g:indent_blankline_show_current_context = 1
+let g:indent_blankline_show_current_context_start = 1

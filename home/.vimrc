@@ -359,16 +359,6 @@ augroup RainbowParens
   au Syntax * silent! RainbowParenthesesLoadBraces
 augroup end
 
-" IndentLines config
-if has('nvim')
-  augroup indentLine
-    au BufEnter * IndentBlanklineEnable
-  augroup end
-  let g:indent_blankline_space_char = ' '
-  let g:indent_blankline_show_current_context = 1
-  let g:indent_blankline_show_current_context_start = 1
-endif
-
 " vim-json config
 let g:vim_json_syntax_conceal = 0
 
