@@ -415,35 +415,11 @@ endfunction
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-function! HasGit()
-  let tmp = system('git rev-parse')
-  return !v:shell_error
-endfunction
-
-" ultisnips
-let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
-let g:UltiSnipsEditSplit = 'context'
-let g:UltiSnipsEnableSnipMate = 0
-let g:UltiSnipsJumpBackwardTrigger = '<c-p>'
-let g:UltiSnipsJumpForwardTrigger = '<c-n>'
-let g:UltiSnipsExpandTrigger="<nop>"
-let g:ulti_expand_or_jump_res = 0
-function! <SID>ExpandSnippetOrReturn()
-  let snippet = UltiSnips#ExpandSnippetOrJump()
-  if g:ulti_expand_or_jump_res > 0
-    return snippet
-  else
-    return "\<CR>"
-  endif
-endfunction
-inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
-
 " neomake
 let g:neomake_open_list = 2
 let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_markdown_enabled_makers = ['mdl']
-cnoreabbrev make Neomake
 nnoremap <leader><leader>= :Neomake<CR>
 
 " Undotree
@@ -459,40 +435,8 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_bufsettings = "noma nomod nobl nowrap ro nu rnu"
 
-" Nerdtree settings
-let NERDTreeDirArrows = 1
-let NERDTreeHighlightCursorline = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeMouseMode = 2
-let NERDTreeQuitOnOpen = 1
-let NERDTreeShowHidden = 1
-let NERDTreeShowLineNumbers = 1
-let NERDTreeMapOpenSplit='gs'
-let NERDTreeMapOpenVSplit='gv'
-let g:NERDTreeMapJumpNextSibling=''
-let g:NERDTreeMapJumpPrevSibling=''
-nnoremap gp :NERDTreeToggle<CR>
-
 " float-preview.nvim
 let g:float_preview#docked = 0
-
-" firenvim
-let g:firenvim_config = {
-\   'globalSettings': {
-\     'cmdline': 'workon nvim3 && nvim',
-\     'priority': 0,
-\     'selector': 'textarea',
-\     'takeover': 'never',
-\    },
-\   'localSettings': {
-\     '.*': {
-\       'cmdline': 'workon nvim3 && nvim',
-\       'priority': 0,
-\       'selector': 'textarea',
-\       'takeover': 'never',
-\     },
-\   }
-\ }
 
 " quick-scope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -505,13 +449,18 @@ let g:qs_lazy_highlight = 1
 let g:tex_flavor = 'latex'
 
 " tagbar
-let g:tagbar_width = 50
+let g:tagbar_width = 45
 let g:tagbar_sort = 0
 let g:tagbar_compact = 2
 
 " -----------------
 " Custom Functions
 " -----------------
+
+function! HasGit()
+  let tmp = system('git rev-parse')
+  return !v:shell_error
+endfunction
 
 " :W sudo saves the file
 command! W w !sudo tee % > /dev/null
