@@ -1,31 +1,33 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'SirVer/ultisnips'
+" Colors
 Plug 'ajmwagar/vim-deus'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'mhartington/oceanic-next'
+
+" Language
 Plug 'chrisbra/csv.vim'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
+Plug 'isRuslan/vim-es6'
+Plug 'lervag/vimtex'
+Plug 'slim-template/vim-slim'
+Plug 'towolf/vim-helm'
+
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'ervandew/supertab'
 Plug 'github/copilot.vim'
 Plug 'haya14busa/vim-asterisk'
-Plug 'isRuslan/vim-es6'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'lervag/vimtex'
-Plug 'majutsushi/tagbar'
-Plug 'mbbill/undotree'
-Plug 'mhartington/oceanic-next'
+Plug 'mbbill/undotree', { 'tag': 'rel_6.1' }
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'michaelmdeng/miden-vim', {'branch': 'master', 'do': ':UpdateRemotePlugins'}
 Plug 'myusuf3/numbers.vim'
 Plug 'neomake/neomake'
-Plug 'slim-template/vim-slim'
+Plug 'preservim/tagbar', { 'tag': 'v3.1.1' }
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -35,28 +37,27 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
-Plug 'towolf/vim-helm'
 Plug 'unblevable/quick-scope'
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', { 'tag': 'v2024.01.24' }
 Plug 'voldikss/vim-floaterm'
 
 if has('nvim')
   Plug 'folke/tokyonight.nvim'
 
-  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-  Plug 'lewis6991/gitsigns.nvim'
+  Plug 'lewis6991/gitsigns.nvim', { 'tag': 'v0.7' }
   Plug 'lukas-reineke/indent-blankline.nvim', { 'tag': 'v2.20.8' }
   Plug 'ncm2/float-preview.nvim'
   Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-lua/plenary.nvim', { 'tag': 'v0.1.4' }
 
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter', { 'tag': 'v0.9.2', 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
   Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   Plug 'nvim-telescope/telescope-symbols.nvim'
 
+  Plug 'nvim-neotest/nvim-nio', { 'tag': 'v1.8.1' }
   Plug 'mfussenegger/nvim-dap'
   Plug 'mfussenegger/nvim-dap-python'
   Plug 'scalameta/nvim-metals'
@@ -69,7 +70,6 @@ if has('nvim')
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
-  Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 endif
 
 call plug#end()
@@ -91,7 +91,11 @@ syntax enable
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
-colorscheme tokyonight-moon
+if has('nvim')
+  colorscheme tokyonight-moon
+else
+  colorscheme solarized
+endif
 
 " Enable filetype plugins
 filetype plugin on
@@ -355,14 +359,6 @@ augroup RainbowParens
   au Syntax * silent! RainbowParenthesesLoadBraces
 augroup end
 
-" IndentLines config
-augroup indentLine
-  au BufEnter * IndentBlanklineEnable
-augroup end
-let g:indent_blankline_space_char = ' '
-let g:indent_blankline_show_current_context = 1
-let g:indent_blankline_show_current_context_start = 1
-
 " vim-json config
 let g:vim_json_syntax_conceal = 0
 
@@ -419,35 +415,11 @@ endfunction
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-function! HasGit()
-  let tmp = system('git rev-parse')
-  return !v:shell_error
-endfunction
-
-" ultisnips
-let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/ultisnips']
-let g:UltiSnipsEditSplit = 'context'
-let g:UltiSnipsEnableSnipMate = 0
-let g:UltiSnipsJumpBackwardTrigger = '<c-p>'
-let g:UltiSnipsJumpForwardTrigger = '<c-n>'
-let g:UltiSnipsExpandTrigger="<nop>"
-let g:ulti_expand_or_jump_res = 0
-function! <SID>ExpandSnippetOrReturn()
-  let snippet = UltiSnips#ExpandSnippetOrJump()
-  if g:ulti_expand_or_jump_res > 0
-    return snippet
-  else
-    return "\<CR>"
-  endif
-endfunction
-inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
-
 " neomake
 let g:neomake_open_list = 2
 let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_markdown_enabled_makers = ['mdl']
-cnoreabbrev make Neomake
 nnoremap <leader><leader>= :Neomake<CR>
 
 " Undotree
@@ -463,40 +435,8 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_bufsettings = "noma nomod nobl nowrap ro nu rnu"
 
-" Nerdtree settings
-let NERDTreeDirArrows = 1
-let NERDTreeHighlightCursorline = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeMouseMode = 2
-let NERDTreeQuitOnOpen = 1
-let NERDTreeShowHidden = 1
-let NERDTreeShowLineNumbers = 1
-let NERDTreeMapOpenSplit='gs'
-let NERDTreeMapOpenVSplit='gv'
-let g:NERDTreeMapJumpNextSibling=''
-let g:NERDTreeMapJumpPrevSibling=''
-nnoremap gp :NERDTreeToggle<CR>
-
 " float-preview.nvim
 let g:float_preview#docked = 0
-
-" firenvim
-let g:firenvim_config = {
-\   'globalSettings': {
-\     'cmdline': 'workon nvim3 && nvim',
-\     'priority': 0,
-\     'selector': 'textarea',
-\     'takeover': 'never',
-\    },
-\   'localSettings': {
-\     '.*': {
-\       'cmdline': 'workon nvim3 && nvim',
-\       'priority': 0,
-\       'selector': 'textarea',
-\       'takeover': 'never',
-\     },
-\   }
-\ }
 
 " quick-scope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -508,9 +448,19 @@ let g:qs_lazy_highlight = 1
 " vim-tex
 let g:tex_flavor = 'latex'
 
+" tagbar
+let g:tagbar_width = 45
+let g:tagbar_sort = 0
+let g:tagbar_compact = 2
+
 " -----------------
 " Custom Functions
 " -----------------
+
+function! HasGit()
+  let tmp = system('git rev-parse')
+  return !v:shell_error
+endfunction
 
 " :W sudo saves the file
 command! W w !sudo tee % > /dev/null
