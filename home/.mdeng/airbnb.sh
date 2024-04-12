@@ -38,6 +38,19 @@ function tidb_mysql_connect() {
 	trap kill_port_forward EXIT
 }
 
+function tidb_ticdc_exec() {
+	CONTEXT="m-tidb-$1-ea1-us"
+	NS="tidb-$2"
+	CDC_POD="$2-ticdc-1"
+	PD_ENDPOINT="https://$2-pd:2379"
+	shift 2
+
+	echo "Connecting to $CDC_POD in $NS on $CONTEXT"
+	cmd="kctl --context \"$CONTEXT\" -n "$NS" exec -it \"$CDC_POD\" -c ticdc -- bin/sh -c \"/cdc cli --pd $PD_ENDPOINT --cert /var/lib/cluster-client-tls/tls.crt --key /var/lib/cluster-client-tls/tls.key --ca /var/lib/cluster-client-tls/ca.crt ${@}\""
+	echo $cmd
+	eval "$cmd"
+}
+
 function tidb_dmctl_connect() {
 	CONTEXT="m-tidb-$1-ea1-us" 
 	NS="tidb-$2" 
@@ -53,22 +66,32 @@ function tidb_pdctl_connect() {
 	PD_POD="$2-pd-0" 
 
 	echo "Connecting to $PD_POD in $NS on $CONTEXT"
-	kctl --context "$CONTEXT" -n "$NS" exec -it "$PD_POD" -c pd -- bin/sh -c "./pd-ctl -u https://127.0.0.1:2379 --cert /var/lib/cluster-client-tls/tls.crt --key /var/lib/cluster-client-tls/tls.key --cacert /var/lib/cluster-client-tls/ca.crt  -i"
+	kctl --context "$CONTEXT" -n "$NS" exec -it "$PD_POD" -c pd -- bin/sh -c "./pd-ctl -u https://127.0.0.1:2379 --cert /var/lib/cluster-client-tls/tls.crt --key /var/lib/cluster-client-tls/tls.key --cacert /var/lib/cluster-client-tls/ca.crt -i"
 }
 
 function tidb_kctl() {
-	CONTEXT="m-tidb-$1-ea1-us" 
-	NS="tidb-$2" 
-
-	COMMAND="kctl --context \"$CONTEXT\" -n \"$NS\" ${@:3}"
+	DEBUG_COMMAND="mdcli k tk -d ${@}"
+	COMMAND="mdcli k tk ${@}"
 
 	if [ -t 1 ]; then
-		echo "$COMMAND"
+		eval "$DEBUG_COMMAND"
 	fi
 	eval "$COMMAND"
 }
 
 function tidb_kc() {
+	tidb_kctl "$@"
+}
+
+function tidbkc() {
+	tidb_kctl "$@"
+}
+
+function tikc() {
+	tidb_kctl "$@"
+}
+
+function tkc() {
 	tidb_kctl "$@"
 }
 
@@ -80,15 +103,25 @@ function aurora_mysql_connect() {
 }
 
 function tidb_k9s() {
-	CONTEXT="m-tidb-$1-ea1-us"
-	NS="tidb-$2"
+	DEBUG_COMMAND="mdcli k tk9s -d ${@}"
+	COMMAND="mdcli k tk9s ${@}"
 
-	shift 2
-	COMMAND="k9s --context \"$CONTEXT\" -n \"$NS\" $@"
 	if [ -t 1 ]; then
-		echo "$COMMAND"
+		eval "$DEBUG_COMMAND"
 	fi
 	eval "$COMMAND"
+}
+
+function tidbk9s() {
+	tidb_k9s "$@"
+}
+
+function tik9s() {
+	tidb_k9s "$@"
+}
+
+function tk9s() {
+	tidb_k9s "$@"
 }
 
 function aws_select_role() {
