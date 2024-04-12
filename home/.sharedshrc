@@ -60,6 +60,8 @@ if ! check_cmd_exists "pbcopy" > /dev/null; then
 	alias pbpaste='xclip -selection clipboard -o'
 fi
 
+alias be="bundle exec"
+
 # --------
 # Sources
 # --------
