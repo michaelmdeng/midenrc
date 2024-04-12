@@ -76,3 +76,19 @@ windows:
         - shell:
             - cd tidb-release
             - workon tidb-release
+  - tidb-scratch:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+            - cd tidb-scratch
+            - workon nvim3
+            - nvim .
+        - git:
+            - cd tidb-scratch
+            - git st
+        - shell:
+            - cd tidb-scratch
+            -

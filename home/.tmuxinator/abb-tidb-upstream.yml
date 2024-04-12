@@ -150,6 +150,36 @@ windows:
             - git st
         - shell:
             - cd tidb-kv
+  - rust-rocksdb:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+            - cd rust-rocksdb
+            - workon nvim3
+            - nvim .
+        - git:
+            - cd rust-rocksdb
+            - git st
+        - shell:
+            - cd rust-rocksdb
+  - rocksdb:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+            - cd rocksdb
+            - workon nvim3
+            - nvim .
+        - git:
+            - cd rocksdb
+            - git st
+        - shell:
+            - cd rocksdb
   - tidb-artifacts:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
