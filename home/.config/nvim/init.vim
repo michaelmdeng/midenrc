@@ -144,8 +144,8 @@ lua << EOF
   }
 EOF
 
-nnoremap <leader>pf :set nonu nornu scl=no <bar> :luado require('gitsigns').toggle_signs() <bar> IndentBlanklineDisable<CR>
-nnoremap <leader>fp :set nu rnu scl=yes <bar> :luado require('gitsigns').toggle_signs() <bar> IndentBlanklineEnable<CR>
+nnoremap <leader>pf :set nonu nornu scl=no <bar> luado require('gitsigns').toggle_signs() <bar> IndentBlanklineDisable<CR>
+nnoremap <leader>fp :set nu rnu scl=yes <bar> luado require('gitsigns').toggle_signs() <bar> IndentBlanklineEnable<CR>
 nnoremap <leader>hh :luado require('gitsigns').setloclist(0)<CR>
 
 " Nvim LSP
@@ -268,3 +268,6 @@ augroup end
 let g:indent_blankline_space_char = ' '
 let g:indent_blankline_show_current_context = 1
 let g:indent_blankline_show_current_context_start = 1
+
+" nvim-tree
+lua require('md-nvim-tree')
