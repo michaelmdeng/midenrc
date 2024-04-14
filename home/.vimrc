@@ -449,7 +449,7 @@ let g:qs_lazy_highlight = 1
 let g:tex_flavor = 'latex'
 
 " tagbar
-let g:tagbar_width = 45
+let g:tagbar_width = 50
 let g:tagbar_sort = 0
 let g:tagbar_compact = 2
 

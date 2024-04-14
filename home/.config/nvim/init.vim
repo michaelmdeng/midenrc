@@ -264,6 +264,7 @@ nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
 augroup indentLine
   au BufEnter * IndentBlanklineEnable
 augroup end
+
 let g:indent_blankline_space_char = ' '
 let g:indent_blankline_show_current_context = 1
 let g:indent_blankline_show_current_context_start = 1
