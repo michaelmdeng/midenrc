@@ -94,8 +94,9 @@ let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 if has('nvim')
   colorscheme tokyonight-moon
+  highlight WinSeparator guifg=LightGreen
 else
-  colorscheme solarized
+  colorscheme OceanicNext
 endif
 
 " Enable filetype plugins
@@ -320,6 +321,12 @@ augroup MaintainFoldMethod
   autocmd BufRead * silent! loadview
 augroup end
 
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set cul
+    autocmd WinLeave * set nocul
+augroup END
+
 " --------------
 " Plugin Config
 " --------------
@@ -365,7 +372,7 @@ let g:vim_json_syntax_conceal = 0
 
 " Lightline
 let g:lightline = {
-\ 'colorscheme': 'nightfly',
+\ 'colorscheme': 'tokyonight',
 \ 'active': {
 \   'left': [
 \     ['mode', 'paste', 'spell'],
