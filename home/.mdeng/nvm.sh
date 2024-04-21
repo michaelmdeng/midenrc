@@ -1,5 +1,5 @@
 function setup_nvm() {
-  local binaries=(nvm node npm pnpm yarn tern eslint)
+  local binaries=(nvm node npm pnpm yarn tern eslint npx)
 
   for binary in $binaries; do
     source /dev/stdin <<EOF
@@ -9,7 +9,6 @@ function ${binary}() {
   done
 
   if [[ !(-v "\$nvm_loaded") || "\$nvm_loaded" -eq false ]]; then
-    export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
     nvm_loaded=true
   fi

@@ -26,6 +26,9 @@ export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/Source/mdcli/bin"
 
 export NVM_DIR="$HOME/.nvm"
+if [ -d "/opt/homebrew/opt/node@18/bin" ] ; then
+    export PATH="$PATH:/opt/homebrew/opt/node@18/bin"
+fi
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$HOME/.pyenv/bin:$PATH"
