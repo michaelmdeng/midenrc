@@ -16,26 +16,17 @@ function tidb_mysql_local_cmd() {
 }
 
 function tidb_mysql_connect() {
-	CONTEXT="m-tidb-$1-ea1-us" 
-	NS="tidb-$2" 
-	POD_NUM=${3:-0}
-	TIDB_POD="$2-tidb-$POD_NUM"
-	PASS=$(kubectl get secret -n "$NS" --context "$CONTEXT" tidb-secret -o json | jq .data.root -r | base64 -d | tr -d '\n')
-	kubectl port-forward -n "$NS" --context "$CONTEXT" "$TIDB_POD" 4000:4000 &
-	bg_pid=$!
+	COMMAND="mdcli tidb tmysql ${@}"
 
-	function kill_port_forward() {
-		kill "$bg_pid"
-	}
+	eval "$COMMAND"
+}
 
-	printf "\n"
-	sleep 1
+function tidb_mysql() {
+    tidb_mysql_connect "$@"
+}
 
-	echo "Connecting to mysql on $2-tidb-$POD_NUM in $NS on $CONTEXT"
-	mysql -uroot -"p$PASS" -P 4000 -A -h 127.0.0.1
-
-	# Terminate the first background command
-	trap kill_port_forward EXIT
+function tmysql() {
+    tidb_mysql_connect "$@"
 }
 
 function tidb_ticdc_exec() {
@@ -52,26 +43,36 @@ function tidb_ticdc_exec() {
 }
 
 function tidb_dmctl_connect() {
-	CONTEXT="m-tidb-$1-ea1-us" 
-	NS="tidb-$2" 
-	DM_POD="$2-dm-master-0" 
+	COMMAND="mdcli tidb dmctl ${@}"
 
-	echo "Connecting to $DM_POD in $NS on $CONTEXT"
-	kctl --context "$CONTEXT" -n "$NS" exec -it "$DM_POD" -c dm-master -- bin/sh -c "./dmctl --master-addr https://127.0.0.1:8261 --ssl-cert /var/lib/dm-master-tls/tls.crt --ssl-key /var/lib/dm-master-tls/tls.key --ssl-ca /var/lib/dm-master-tls/ca.crt"
+	eval "$COMMAND"
+}
+
+function tidb_dmctl() {
+	tidb_dmctl_connect "$@"
+}
+
+function tdmctl() {
+	tidb_dmctl_connect "$@"
 }
 
 function tidb_pdctl_connect() {
-	CONTEXT="m-tidb-$1-ea1-us" 
-	NS="tidb-$2" 
-	PD_POD="$2-pd-0" 
+	COMMAND="mdcli tidb pdctl ${@}"
 
-	echo "Connecting to $PD_POD in $NS on $CONTEXT"
-	kctl --context "$CONTEXT" -n "$NS" exec -it "$PD_POD" -c pd -- bin/sh -c "./pd-ctl -u https://127.0.0.1:2379 --cert /var/lib/cluster-client-tls/tls.crt --key /var/lib/cluster-client-tls/tls.key --cacert /var/lib/cluster-client-tls/ca.crt -i"
+	eval "$COMMAND"
+}
+
+function tidb_pdctl() {
+    tidb_pdctl_connect "$@"
+}
+
+function tpdctl() {
+    tidb_pdctl_connect "$@"
 }
 
 function tidb_kctl() {
-	DEBUG_COMMAND="mdcli k tk -d ${@}"
-	COMMAND="mdcli k tk ${@}"
+	DEBUG_COMMAND="mdcli tidb tk -d ${@}"
+	COMMAND="mdcli tidb tk ${@}"
 
 	if [ -t 1 ]; then
 		eval "$DEBUG_COMMAND"
@@ -103,8 +104,8 @@ function aurora_mysql_connect() {
 }
 
 function tidb_k9s() {
-	DEBUG_COMMAND="mdcli k tk9s -d ${@}"
-	COMMAND="mdcli k tk9s ${@}"
+	DEBUG_COMMAND="mdcli tidb tk9s -d ${@}"
+	COMMAND="mdcli tidb tk9s ${@}"
 
 	if [ -t 1 ]; then
 		eval "$DEBUG_COMMAND"

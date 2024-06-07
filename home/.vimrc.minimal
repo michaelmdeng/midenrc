@@ -1,0 +1,297 @@
+" ---------
+" Settings
+" ---------
+
+" Color stuff
+if !has('gui_running')
+  set t_Co=256
+endif
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+syntax enable
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Remove swap
+set noswapfile
+
+" Space leader
+let mapleader = " "
+let g:mapleader = " "
+
+" Auto read when a file is changed from the outside
+set autoread
+
+" Wild menu settings
+set wildmode=full
+set wildignore+=*swp,*.class,*.pyc,*.png,*.jpg,*.gif,*.zip
+set wildignore+=*.o,*.obj,*.so     " Unix
+set wildignore+=*.exe            " Windows
+
+" Case settings for search
+set ignorecase
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" Show matching brackets when text indicator is over them
+set showmatch
+
+" Window split settings
+set splitright
+set splitbelow
+
+" Line number settings
+set number
+set relativenumber
+
+" always show SignColumn
+set signcolumn=yes
+
+" Persistent undo
+set undofile
+
+" How to display whitespace
+set listchars=eol:$,tab:->,trail:~,extends:>,precedes:<,space:␣
+
+" Ctags file
+set tags=./tags,tags;$HOME
+
+" we have a statusline
+set noshowmode
+
+" Update CursorHold quickly
+set updatetime=500
+
+" Faster timeout for command sequences
+set timeoutlen=500
+
+" More cmd bar
+set cmdheight=2
+
+" Customize completion menu
+set completeopt=menuone,noinsert,noselect
+
+" Ignore some messages
+set shortmess+=c
+
+set viewoptions-=options
+
+set nojoinspaces
+
+set scrolloff=3
+
+set guicursor=a:blinkon1000-blinkoff1000
+
+set shellcmdflag=-lc
+
+" ---------
+" Mappings
+" ---------
+
+" window resize shortcuts
+nnoremap <C-w>+ :res +5<CR>
+nnoremap <C-w>- :res -5<CR>
+nnoremap <C-w>> :vert res +5<CR>
+nnoremap <C-w>< :vert res -5<CR>
+
+" Insert lines without entering insert mode
+nmap <leader>o o<Esc>k
+nmap <leader>O O<Esc>j
+
+" Move within visual lines
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+vnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+vnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+
+" Move to the start of line
+nnoremap H ^
+vnoremap H ^
+
+" Move to the end of line
+nnoremap L $
+vnoremap L $
+
+" D to line ends
+nnoremap dH d^
+nnoremap dL d$
+
+" Y to line ends
+nnoremap yH y^
+nnoremap yL y$
+
+" Visual shifting
+vnoremap < <gv
+vnoremap > >gv
+
+" Bubble lines up and down
+nmap <C-Up> :m .-2<CR>
+nmap <C-Down> :m .+1<CR>
+vnoremap <silent> <C-Up> @='"zxk"zP`[V`]'<CR>
+vnoremap <silent> <C-Down> @='"zx"zp`[V`]'<CR>
+
+" Insert mode movements
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+inoremap <C-b> <BS>
+inoremap <C-d> <Del>
+
+" Command mode movements
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+cnoremap <C-b> <BS>
+cnoremap <C-d> <Del>
+
+" Restore digraph
+inoremap <C-q> <C-k>
+
+" Close list windows
+nmap <leader>cl :windo lcl<bar>ccl<CR>:windo lcl<bar>ccl<CR>
+
+nmap <leader>ve :VimrcEdit<cr>
+nmap <leader>vr :VimrcReload<cr>
+
+" Previous/next mappings
+" changes handled by GitGutter
+" quickfix
+nnoremap [q :cp<CR>
+nnoremap ]q :cn<CR>
+nnoremap [Q :cfir<CR>
+nnoremap ]Q :cla<CR>
+" locations
+nnoremap [l :lp<CR>
+nnoremap ]l :lne<CR>
+nnoremap [L :lfir<CR>
+nnoremap ]L :lla<CR>
+" tagstack
+nnoremap [t <C-t>
+nnoremap ]t :tag<CR>
+" buffers
+nmap [b :bprevious<cr>
+nmap ]b :bnext<cr>
+nmap [B :bfirst<cr>
+nmap ]B :blast<cr>
+" tab page
+nmap [p :tablast<cr>
+nmap ]p :tabnext<cr>
+nmap [P :tabfirst<cr>
+nmap ]P :tablast<cr>
+
+" Esc for term mode
+tnoremap <Esc><Esc> <C-\><C-n>
+
+" Split tags
+nnoremap <C-s>] <C-w>]
+nnoremap <C-s><c-]> <C-w>]
+nnoremap <C-v>] <cmd>vsp <bar> execute "tag" expand("<cword>")<cr>
+nnoremap <C-v><c-]> <cmd>vsp <bar> execute "tag" expand("<cword>")<cr>
+
+" very-magic search
+nnoremap / /\v
+nnoremap ? ?\v
+vnoremap / /\v
+vnoremap ? ?\v
+
+" delete without clobbering registers
+nnoremap s "_d
+nnoremap S "_D
+nnoremap ss "_dd
+
+" GTFO Ex mode
+nnoremap Q @@
+
+" yank-quit
+nnoremap <leader>yq gg0vG$"+y:q!<cr>
+
+" more natural paragraphs
+nnoremap <silent> } :call search('\(^$\n\s*\zs\S\)\<bar>\(\S\ze\n*\%$\)', 'sW')<CR>
+nnoremap <silent> { :call search('\(^$\n\s*\zs\S\)\<bar>\(^\%1l\s*\zs\S\)','sWb')<CR>
+
+nnoremap <leader><C-u> mp<C-u>`p
+nnoremap <leader><C-d> mp<C-d>`p
+
+" ---------
+" Autocmds
+" ---------
+
+" insert/normal cursor
+augroup InsertCursor
+  autocmd InsertEnter * set cul
+  autocmd InsertLeave * set nocul
+augroup end
+
+" maintain folds
+augroup MaintainFoldMethod
+  autocmd BufWrite * mkview!
+  autocmd BufRead * silent! loadview
+augroup end
+
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set cul
+    autocmd WinLeave * set nocul
+augroup END
+
+" -----------------
+" Custom Functions
+" -----------------
+
+function! HasGit()
+  let tmp = system('git rev-parse')
+  return !v:shell_error
+endfunction
+
+" :W sudo saves the file
+command! W w !sudo tee % > /dev/null
+
+" Command to show trailing whitespace
+function! ShowSpaces(...)
+  let @/='\v(\s+$)|( +\ze\t)'
+  let oldhlsearch=&hlsearch
+  if !a:0
+    let &hlsearch=!&hlsearch
+  else
+    let &hlsearch=a:1
+  end
+  return oldhlsearch
+endfunction
+
+function! TrimSpaces() range
+  let oldhlsearch=ShowSpaces(1)
+  execute a:firstline.",".a:lastline."substitute ///gec"
+  let &hlsearch=oldhlsearch
+endfunction
+
+command! -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
+command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
+
+function! EditFile(file, mode)
+  if a:mode == 'e'
+    exec 'e' . a:file
+  elseif a:mode == 's'
+    exec 'sp' . a:file
+  else
+    exec 'vs' . a:file
+  end
+endfunction
+
+command! -bar -nargs=1 FtpluginEdit call EditFile('~/.vim/ftplugin/' . &filetype . '.vim', <q-args>)
+nnoremap <silent> <leader>fte :FtpluginEdit e<CR>
+nnoremap <silent> <leader>fts :FtpluginEdit s<CR>
+nnoremap <silent> <leader>ftv :FtpluginEdit v<CR>
+
+command! -bar -nargs=1 VimrcEdit call EditFile('~/.vimrc', <q-args>)
+nnoremap <silent> <leader>vre :VimrcEdit e<CR>
+nnoremap <silent> <leader>vrs :VimrcEdit s<CR>
+nnoremap <silent> <leader>vrv :VimrcEdit v<CR>
+
+command! -bar -nargs=0 VimrcReload :so $MYVIMRC
+nnoremap <silent> <leader>vrr :VimrcReload<CR>
