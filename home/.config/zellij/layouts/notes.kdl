@@ -1,0 +1,32 @@
+layout {
+    tab name="wiki" cwd="/home/mdeng/MyDrive/vimwiki/wiki" focus=true {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane split_direction="vertical" {
+            pane name="editor" size="67%" focus=true {
+                command "zsh"
+                args "-ci" "workon nvim3 && nvim ."
+            }
+            pane stacked=true {
+                pane name="shell"
+                pane name="shell"
+            }
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="chat" {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane name="ollama" {
+            command "ollama"
+            args "run" "llama3"
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+}
