@@ -48,6 +48,7 @@
 	hide-dirty = 1
 [push]
 	default = current
+	autoSetupRemote = true
 [rerere]
 	enabled = true
 [status]
@@ -87,14 +88,18 @@
 	ph = push
 	pho = push origin
 
+	discard = "!f() { git restore --staged \"$1\" && git restore \"$1\"; }; f"
+
 	fix2 = rebase -i HEAD~2
 	fix3 = rebase -i HEAD~3
 	fix4 = rebase -i HEAD~4
 	fix5 = rebase -i HEAD~5
 	fix6 = rebase -i HEAD~6
 	fix7 = rebase -i HEAD~7
+	fix8 = rebase -i HEAD~8
+	fix9 = rebase -i HEAD~9
 
-	upstream = !git branch -u origin/$(git rev-parse --abbrev-ref HEAD) $(git rev-parse --abbrev-ref HEAD)
+	upstream = !sh -c 'git branch -u ${1:-origin}/$(git rev-parse --abbrev-ref HEAD) $(git rev-parse --abbrev-ref HEAD)'
 
 	continue = "!f() { \
 		if git rev-parse --verify CHERRY_PICK_HEAD >/dev/null 2>&1; then \

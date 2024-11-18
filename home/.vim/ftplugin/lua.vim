@@ -1,2 +1,3 @@
-set expandtab
-set sw=4
+setlocal foldmethod=indent
+setlocal expandtab
+setlocal sw=2

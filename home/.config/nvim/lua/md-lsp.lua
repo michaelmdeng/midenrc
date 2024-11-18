@@ -1,6 +1,6 @@
 local api = vim.api
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   local function buf_set_keymap(...) api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) api.nvim_buf_set_option(bufnr, ...) end
 

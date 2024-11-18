@@ -31,6 +31,7 @@ require("nvim-tree").setup({
   },
   view = {
     width = 50,
+    relativenumber = true,
   },
   filters = {
     custom = { "^.git$" },
