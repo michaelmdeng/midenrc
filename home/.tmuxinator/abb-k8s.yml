@@ -51,7 +51,7 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - k9s --context m-tidb-prod-a-ea1-us
+        - tk9s -c proda -A
         -
   - k9s-stg:
       layout: main-vertical
@@ -59,7 +59,7 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - k9s --context m-tidb-stg-a-ea1-us
+        - tk9s -c stga -A
         -
   - k9s-test:
       layout: main-vertical
@@ -67,5 +67,5 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - k9s --context m-tidb-test-a-ea1-us
+        - tk9s -c testa -A
         -

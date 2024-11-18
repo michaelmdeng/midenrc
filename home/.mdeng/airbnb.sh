@@ -16,7 +16,7 @@ function tidb_mysql_local_cmd() {
 }
 
 function tidb_mysql_connect() {
-	COMMAND="mdcli tidb tmysql ${@}"
+	COMMAND="mdcli tidb mysql -d ${@}"
 
 	eval "$COMMAND"
 }
@@ -43,7 +43,7 @@ function tidb_ticdc_exec() {
 }
 
 function tidb_dmctl_connect() {
-	COMMAND="mdcli tidb dmctl ${@}"
+	COMMAND="mdcli tidb dmctl -d ${@}"
 
 	eval "$COMMAND"
 }
@@ -57,7 +57,7 @@ function tdmctl() {
 }
 
 function tidb_pdctl_connect() {
-	COMMAND="mdcli tidb pdctl ${@}"
+	COMMAND="mdcli tidb pdctl -d ${@}"
 
 	eval "$COMMAND"
 }
@@ -71,13 +71,7 @@ function tpdctl() {
 }
 
 function tidb_kctl() {
-	DEBUG_COMMAND="mdcli tidb tk -d ${@}"
-	COMMAND="mdcli tidb tk ${@}"
-
-	if [ -t 1 ]; then
-		eval "$DEBUG_COMMAND"
-	fi
-	eval "$COMMAND"
+	mdcli tidb tk -d "$@"
 }
 
 function tidb_kc() {
@@ -93,7 +87,7 @@ function tikc() {
 }
 
 function tkc() {
-	tidb_kctl "$@"
+	tidb_kctl "${@}"
 }
 
 function aurora_mysql_connect() {
@@ -104,12 +98,8 @@ function aurora_mysql_connect() {
 }
 
 function tidb_k9s() {
-	DEBUG_COMMAND="mdcli tidb tk9s -d ${@}"
-	COMMAND="mdcli tidb tk9s ${@}"
+	COMMAND="mdcli tidb tk9s -d ${@}"
 
-	if [ -t 1 ]; then
-		eval "$DEBUG_COMMAND"
-	fi
 	eval "$COMMAND"
 }
 
