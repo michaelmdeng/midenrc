@@ -271,3 +271,10 @@ let g:indent_blankline_show_current_context_start = 1
 
 " nvim-tree
 lua require('md-nvim-tree')
+
+lua << EOF
+require("nvim-lightbulb").setup({
+  sign = { enabled = false },
+  virtual_text = { enabled = true },
+})
+EOF

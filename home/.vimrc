@@ -54,6 +54,9 @@ if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter', { 'tag': 'v0.9.2', 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
+  Plug 'kosayoda/nvim-lightbulb', { 'tag': 'v1.0.0' }
+  Plug 'aznhe21/actions-preview.nvim'
+
   Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   Plug 'nvim-telescope/telescope-symbols.nvim'
@@ -114,13 +117,14 @@ let g:mapleader = " "
 set autoread
 
 " Wild menu settings
-set wildmode=full
+set wildmode=longest,full
 set wildignore+=*swp,*.class,*.pyc,*.png,*.jpg,*.gif,*.zip
 set wildignore+=*.o,*.obj,*.so     " Unix
 set wildignore+=*.exe            " Windows
 
 " Case settings for search
 set ignorecase
+set smartcase
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -173,6 +177,8 @@ set nojoinspaces
 set scrolloff=3
 
 set guicursor=a:blinkon1000-blinkoff1000
+
+set shellcmdflag=-lc
 
 " ---------
 " Mappings
