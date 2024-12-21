@@ -1,5 +1,5 @@
 {
-    "title": "Miden Personal",
+    "title": "Mdeng Personal",
     "rules": [
 	{
 	    "description": "Change left_gui to left_ctrl in terminal apps",
@@ -33,10 +33,10 @@
 	    ]
 	},
 	{
-	    "description": "Special case handling for terminal apps",
+	    "description": "Hotkeys for terminal apps",
 	    "manipulators": [
 		{
-		    "description": "Enable Alfred shortcut",
+		    "description": "Enable spotlight shortcut",
 		    "type": "basic",
 		    "from": {
 			"key_code": "spacebar",
@@ -82,7 +82,38 @@
 			    "key_code": "v",
 			    "modifiers": [
 				"left_gui",
-				"left_option"
+			    ]
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"com.apple.Terminal",
+				"com.googlecode.iterm2",
+				"net.kovidgoyal.kitty"
+			    ]
+			}
+		    ]
+		},
+		{
+		    "description": "Enable ChatGPT shortcut",
+		    "type": "basic",
+		    "from": {
+			"key_code": "spacebar",
+			"modifiers": {
+			    "mandatory": [
+				"left_control",
+                                "left_alt"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "spacebar",
+			    "modifiers": [
+				"left_gui",
+                                "left_alt"
 			    ]
 			}
 		    ],
@@ -228,6 +259,68 @@
 			    ]
 			}
 		    ]
+		},
+		{
+		    "description": "Mission control shortcut for terminal apps",
+		    "type": "basic",
+		    "from": {
+			"key_code": "up_arrow",
+			"modifiers": {
+			    "mandatory": [
+				"left_control",
+                                "left_shift"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "up_arrow",
+			    "modifiers": [
+				"left_gui"
+			    ]
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"com.apple.Terminal",
+				"com.googlecode.iterm2",
+				"net.kovidgoyal.kitty"
+			    ]
+			}
+		    ]
+		},
+		{
+		    "description": "Show desktop shortcut for terminal apps",
+		    "type": "basic",
+		    "from": {
+			"key_code": "down_arrow",
+			"modifiers": {
+			    "mandatory": [
+				"left_control",
+                                "left_shift"
+			    ]
+			}
+		    },
+		    "to": [
+			{
+			    "key_code": "down_arrow",
+			    "modifiers": [
+				"left_gui"
+			    ]
+			}
+		    ],
+		    "conditions": [
+			{
+			    "type": "frontmost_application_if",
+			    "bundle_identifiers": [
+				"com.apple.Terminal",
+				"com.googlecode.iterm2",
+				"net.kovidgoyal.kitty"
+			    ]
+			}
+		    ]
 		}
 	    ]
 	},
@@ -289,67 +382,6 @@
 			    "bundle_identifiers": [
 				"org.mozilla.firefox",
 				"com.google.Chrome"
-			    ]
-			}
-		    ]
-		}
-	    ]
-	},
-	{
-	    "description": "Vim Vixen shortcuts Firefox",
-	    "manipulators": [
-		{
-		    "description": "Page Up shortcut",
-		    "type": "basic",
-		    "from": {
-			"key_code": "u",
-			"modifiers": {
-			    "mandatory": [
-				"left_gui"
-			    ]
-			}
-		    },
-		    "to": [
-			{
-			    "key_code": "u",
-			    "modifiers": [
-				"left_control"
-			    ]
-			}
-		    ],
-		    "conditions": [
-			{
-			    "type": "frontmost_application_if",
-			    "bundle_identifiers": [
-				"org.mozilla.firefox"
-			    ]
-			}
-		    ]
-		},
-		{
-		    "description": "Page Up shortcut",
-		    "type": "basic",
-		    "from": {
-			"key_code": "d",
-			"modifiers": {
-			    "mandatory": [
-				"left_gui"
-			    ]
-			}
-		    },
-		    "to": [
-			{
-			    "key_code": "d",
-			    "modifiers": [
-				"left_control"
-			    ]
-			}
-		    ],
-		    "conditions": [
-			{
-			    "type": "frontmost_application_if",
-			    "bundle_identifiers": [
-				"org.mozilla.firefox"
 			    ]
 			}
 		    ]
