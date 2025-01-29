@@ -1,7 +1,7 @@
 # /Users/michael_deng/.tmuxinator/abb-tidb-upstream.yml
 
 name: abb-tidb-upstream
-root: ~/airlab/repos
+root: ~/Source
 
 # Optional tmux socket
 # socket_name: foo

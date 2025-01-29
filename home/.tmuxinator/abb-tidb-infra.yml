@@ -1,6 +1,6 @@
-# /Users/michael_deng/.tmuxinator/tidb.yml
+# /Users/michael_deng/.tmuxinator/abb-tidb-infra.yml
 
-name: abb-tidb
+name: abb-tidb-infra
 root: ~/Source
 
 # Optional tmux socket
@@ -45,63 +45,93 @@ root: ~/Source
 # attach: false
 
 windows:
-  - tidb-prod:
+  - internalCA:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-prod
+            - cd internalCA
             - workon nvim3
             - nvim .
         - git:
-            - cd tidb-prod
+            - cd internalCA
             - git st
         - shell:
-            - cd tidb-prod
-  - tidb-release:
+            - cd internalCA
+  - terrarium:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-release
+            - cd terrarium
             - workon nvim3
             - nvim .
         - git:
-            - cd tidb-release
+            - cd terrarium
             - git st
         - shell:
-            - cd tidb-release
-            - workon tidb-release
-  - tidb-scratch:
+            - cd terrarium
+  - caws:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-scratch
+            - cd alerts/caws
             - workon nvim3
             - nvim .
         - git:
-            - cd tidb-scratch
+            - cd alerts/caws
             - git st
         - shell:
-            - cd tidb-scratch
-            -
-  - tidb-logs:
+            - cd alerts/caws
+  - grantador:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-prod/scripts/tidb-log-collector
+            - cd grantador-ot
             - workon nvim3
             - nvim .
+        - git:
+            - cd grantador-ot
+            - git st
         - shell:
-            - cd tidb-prod/scripts/tidb-log-collector
-            -
+            - cd grantador-ot
+  - telescope:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+            - cd telescope
+            - workon nvim3
+            - nvim .
+        - git:
+            - cd telescope
+            - git st
+        - shell:
+            - cd telescope
+  - chaos-mesh:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+            - cd chaos-mesh
+            - workon nvim3
+            - nvim .
+        - git:
+            - cd chaos-mesh
+            - git st
+        - shell:
+            - cd chaos-mesh

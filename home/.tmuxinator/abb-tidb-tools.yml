@@ -1,7 +1,7 @@
 # /Users/michael_deng/.tmuxinator/tidb.yml
 
-name: abb-tidb
-root: ~/Source
+name: abb-tidb-tools
+root: ~/Source/tidb-tools
 
 # Optional tmux socket
 # socket_name: foo
@@ -45,63 +45,63 @@ root: ~/Source
 # attach: false
 
 windows:
-  - tidb-prod:
+  - tidb-migration-operator:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-prod
+            - cd tidb-migration-operator
             - workon nvim3
             - nvim .
         - git:
-            - cd tidb-prod
+            - cd tidb-migration-operator
             - git st
         - shell:
-            - cd tidb-prod
-  - tidb-release:
+            - cd tidb-migration-operator
+  - tidb-restore-operator:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-release
+            - cd tidb-restore-operator
             - workon nvim3
             - nvim .
         - git:
-            - cd tidb-release
+            - cd tidb-restore-operator
             - git st
         - shell:
-            - cd tidb-release
-            - workon tidb-release
-  - tidb-scratch:
+            - cd tidb-restore-operator
+  - tidb-tictl:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-scratch
+            - cd tictl
             - workon nvim3
             - nvim .
         - git:
-            - cd tidb-scratch
+            - cd tictl
             - git st
         - shell:
-            - cd tidb-scratch
-            -
-  - tidb-logs:
+            - cd tictl
+  - tidb-toolbox:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-prod/scripts/tidb-log-collector
+            - cd tidb-toolbox
             - workon nvim3
             - nvim .
+        - git:
+            - cd tidb-toolbox
+            - git st
         - shell:
-            - cd tidb-prod/scripts/tidb-log-collector
-            -
+            - cd tidb-toolbox

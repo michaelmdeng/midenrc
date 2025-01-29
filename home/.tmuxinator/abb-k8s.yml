@@ -1,7 +1,7 @@
 # /Users/michael_deng/.tmuxinator/abb-k8s.yml
 
 name: abb-k8s
-root: ~/airlab/repos/tidb-prod
+root: ~/Source/tidb-prod
 
 # Optional tmux socket
 # socket_name: foo
