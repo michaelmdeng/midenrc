@@ -62,12 +62,10 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  bgnotify
   dotenv
-  sbt
-  scala
   vi-mode
   virtualenv
+  virtualenvwrapper
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -111,10 +109,6 @@ setopt auto_cd
 
 # zsh completions
 [ -f "$HOME/.completion/tmuxinator.zsh" ] && source "$HOME/.completion/tmuxinator.zsh"
-[ -f "$HOME/.completion/.fzf.zsh" ] && source "$HOME/.completion/.fzf.zsh"
-[ -f "$HOME/.completion/gh.zsh" ] && source "$HOME/.completion/gh.zsh"
-[ -f "${HOME}/.completion/.iterm2_shell_integration.zsh" ] && source "${HOME}/.completion/.iterm2_shell_integration.zsh"
-[ -f "${HOME}/.completion/docker.zsh" ] && source "${HOME}/.completion/docker.zsh"
 
 __pip() {{
 	eval $(pip completion --zsh)
@@ -134,6 +128,14 @@ fi
 
 if check_cmd_exists "gh"; then
     eval "$(gh completion -s zsh)"
+fi
+
+if check_cmd_exists "docker"; then
+    eval "$(docker completion zsh)"
+fi
+
+if check_cmd_exists "fzf"; then
+    source <(fzf --zsh)
 fi
 
 if check_cmd_exists "mise"; then
