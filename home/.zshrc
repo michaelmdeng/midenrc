@@ -161,3 +161,7 @@ if [ -f '/home/mdeng/Applications/google-cloud-sdk/completion.zsh.inc' ]; then .
 # Airbnb
 
 [ -f "$HOME/.completion/aws-creds.zsh" ] && source "$HOME/.completion/aws-creds.zsh"
+
+if check_cmd_exists "yak"; then
+    eval "$(yak completion bash)"
+fi
