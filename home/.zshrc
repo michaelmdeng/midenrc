@@ -136,6 +136,10 @@ if check_cmd_exists "gh"; then
     eval "$(gh completion -s zsh)"
 fi
 
+if check_cmd_exists "mise"; then
+    eval "$(mise activate zsh)"
+fi
+
 complete -o nospace -C /usr/bin/terraform terraform
 
 # zsh functions

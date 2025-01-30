@@ -133,6 +133,10 @@ if check_cmd_exists "gh"; then
     eval "$(gh completion -s bash)"
 fi
 
+if check_cmd_exists "mise"; then
+    eval "$(mise activate bash)"
+fi
+
 complete -C /usr/bin/terraform terraform
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
