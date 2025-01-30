@@ -92,6 +92,7 @@
 	fix9 = rebase -i HEAD~9
 
 	upstream = !sh -c 'git branch -u ${1:-origin}/$(git rev-parse --abbrev-ref HEAD) $(git rev-parse --abbrev-ref HEAD)'
+	sync = !git fetch origin && git rebase origin/${1:-master}
 
 	continue = "!f() { \
 		if git rev-parse --verify CHERRY_PICK_HEAD >/dev/null 2>&1; then \
