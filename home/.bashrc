@@ -123,14 +123,29 @@ source "$HOME/.sharedshrc"
 
 # bash completions
 [ -f "$HOME/.completion/tmuxinator.bash" ] && source "$HOME/.completion/tmuxinator.bash"
-[ -f "$HOME/.completion/.fzf.bash" ] && source "$HOME/.completion/.fzf.bash"
-[ -f "$HOME/.completion/gh.bash" ] && source "$HOME/.completion/gh.bash"
-[ -f "${HOME}/.completion/.iterm2_shell_integration.bash" ] && source "${HOME}/.completion/.iterm2_shell_integration.bash"
-[ -f "${HOME}/.completion/docker.bash" ] && source "${HOME}/.completion/docker.bash"
-PATH="$PATH:/home/mdeng/.conscript/bin"
 
 if check_cmd_exists "gh"; then
     eval "$(gh completion -s bash)"
+fi
+
+if check_cmd_exists "k9s"; then
+    eval $(k9s completion zsh)
+fi
+
+if check_cmd_exists "gh"; then
+    eval "$(gh completion -s zsh)"
+fi
+
+if check_cmd_exists "docker"; then
+    eval "$(docker completion zsh)"
+fi
+
+if check_cmd_exists "fzf"; then
+    source <(fzf --zsh)
+fi
+
+if check_cmd_exists "mise"; then
+    eval "$(mise activate bash)"
 fi
 
 complete -C /usr/bin/terraform terraform

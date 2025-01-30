@@ -1,0 +1,10 @@
+black
+flake8
+mypy
+neovim
+pylint
+pyls
+sexpdata
+websocket-client
+virtualenv
+virtualenvwrapper

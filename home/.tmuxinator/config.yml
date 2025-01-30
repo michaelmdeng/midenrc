@@ -44,7 +44,6 @@ windows:
       layout: main-vertical
       panes:
         - editor:
-            - workon nvim3
             - nvim .
         -
   - mdcli:
@@ -52,7 +51,6 @@ windows:
       panes:
         - editor:
             - cd ~/Source/mdcli
-            - workon nvim3
             - nvim .
         - git:
             - cd ~/Source/mdcli
