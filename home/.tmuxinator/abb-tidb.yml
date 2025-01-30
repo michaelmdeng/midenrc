@@ -53,7 +53,6 @@ windows:
       panes:
         - editor:
             - cd tidb-prod
-            - workon nvim3
             - nvim .
         - git:
             - cd tidb-prod
@@ -68,14 +67,12 @@ windows:
       panes:
         - editor:
             - cd tidb-release
-            - workon nvim3
             - nvim .
         - git:
             - cd tidb-release
             - git st
         - shell:
             - cd tidb-release
-            - workon tidb-release
   - tidb-scratch:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
@@ -84,7 +81,6 @@ windows:
       panes:
         - editor:
             - cd tidb-scratch
-            - workon nvim3
             - nvim .
         - git:
             - cd tidb-scratch
@@ -100,7 +96,6 @@ windows:
       panes:
         - editor:
             - cd tidb-prod/scripts/tidb-log-collector
-            - workon nvim3
             - nvim .
         - shell:
             - cd tidb-prod/scripts/tidb-log-collector

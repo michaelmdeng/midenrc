@@ -71,7 +71,7 @@ function tpdctl() {
 }
 
 function tidb_kctl() {
-	mdcli tidb tk -d "$@"
+	mdcli tidb tkc -d "$@"
 }
 
 function tidb_kc() {

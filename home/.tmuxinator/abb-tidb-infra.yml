@@ -53,7 +53,6 @@ windows:
       panes:
         - editor:
             - cd internalCA
-            - workon nvim3
             - nvim .
         - git:
             - cd internalCA
@@ -68,7 +67,6 @@ windows:
       panes:
         - editor:
             - cd terrarium
-            - workon nvim3
             - nvim .
         - git:
             - cd terrarium
@@ -83,7 +81,6 @@ windows:
       panes:
         - editor:
             - cd alerts/caws
-            - workon nvim3
             - nvim .
         - git:
             - cd alerts/caws
@@ -98,7 +95,6 @@ windows:
       panes:
         - editor:
             - cd grantador-ot
-            - workon nvim3
             - nvim .
         - git:
             - cd grantador-ot
@@ -113,7 +109,6 @@ windows:
       panes:
         - editor:
             - cd telescope
-            - workon nvim3
             - nvim .
         - git:
             - cd telescope
@@ -128,7 +123,6 @@ windows:
       panes:
         - editor:
             - cd chaos-mesh
-            - workon nvim3
             - nvim .
         - git:
             - cd chaos-mesh
