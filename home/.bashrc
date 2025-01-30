@@ -129,15 +129,15 @@ if check_cmd_exists "gh"; then
 fi
 
 if check_cmd_exists "k9s"; then
-    eval $(k9s completion zsh)
+    eval $(k9s completion bash)
 fi
 
 if check_cmd_exists "gh"; then
-    eval "$(gh completion -s zsh)"
+    eval "$(gh completion -s bash)"
 fi
 
 if check_cmd_exists "docker"; then
-    eval "$(docker completion zsh)"
+    eval "$(docker completion bash)"
 fi
 
 if check_cmd_exists "fzf"; then
@@ -149,8 +149,9 @@ if check_cmd_exists "mise"; then
 fi
 
 complete -C /usr/bin/terraform terraform
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+
+# Airbnb
 
 source <(yak completion bash)
