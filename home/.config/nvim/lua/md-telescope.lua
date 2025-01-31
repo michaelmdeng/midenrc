@@ -7,10 +7,12 @@ vim.api.nvim_set_keymap('n', '<leader>*', '<cmd>Telescope tags<cr>', { noremap =
 vim.api.nvim_set_keymap('n', '<leader>/', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', '<cmd>Telescope search_history<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>:', '<cmd>Telescope command_history<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-r>', '<cmd>Telescope command_history<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader><leader>:', '<cmd>Telescope commands<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>H', '<cmd>Telescope git_bcommits<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>"', '<cmd>Telescope registers<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>z', '<cmd>Telescope spell_suggest<cr>', { noremap = true, silent = true })
+
 -- LSP
 vim.api.nvim_set_keymap('n', '<leader>im', '<cmd>Telescope lsp_implementations<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>df', '<cmd>Telescope lsp_definitions<cr>', { noremap = true, silent = true })
@@ -24,6 +26,10 @@ require('telescope').setup{
   defaults = {
     layout_strategy = 'vertical',
     layout_config = {
+        height = 0.9,
+        width = 0.9,
+        preview_cutoff = 35,
+        preview_height = 0.4,
         prompt_position = 'top',
     },
     results_title = false,
@@ -35,7 +41,7 @@ require('telescope').setup{
       },
     },
     preview = {
-        filesize_limit = 0.1, -- MB
+        filesize_limit = 0.2, -- MB
     },
   },
   pickers = {
