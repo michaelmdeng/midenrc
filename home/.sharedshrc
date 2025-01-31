@@ -33,8 +33,6 @@ if check_cmd_exists "nvim"; then
 	alias vi='nvim'
 fi
 
-export FZF_BASE=$(brew --prefix fzf)
-
 # x86_64 homebrew
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
@@ -108,8 +106,10 @@ else
 fi
 
 if [ -f "/opt/homebrew/bin/brew" ] ; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    source <(/opt/homebrew/bin/brew shellenv)
 fi
+
+export FZF_BASE=$(brew --prefix fzf)
 
 if [ -d "$HOME/.nvm" ]; then
     export NVM_DIR="$HOME/.nvm"
@@ -126,7 +126,7 @@ fi
 [ -f "$HOME/.completion/.az.completion" ] && source "$HOME/.completion/.az.completion"
 
 if check_cmd_exists "npm"; then
-    eval "$(npm completion)"
+    source <(npm completion)
 fi
 
 [[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

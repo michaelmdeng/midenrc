@@ -57,7 +57,7 @@ if has('nvim')
   Plug 'kosayoda/nvim-lightbulb', { 'tag': 'v1.0.0' }
   Plug 'aznhe21/actions-preview.nvim'
 
-  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   Plug 'nvim-telescope/telescope-symbols.nvim'
 

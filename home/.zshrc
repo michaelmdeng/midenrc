@@ -142,6 +142,8 @@ if check_cmd_exists "mise"; then
     eval "$(mise activate zsh)"
 fi
 
+source virtualenvwrapper.sh
+
 [ -s "$NVM_DIR/zsh_completion" ] && . "$NVM_DIR/zsh_completion"
 complete -o nospace -C /usr/bin/terraform terraform
 

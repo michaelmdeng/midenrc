@@ -125,19 +125,19 @@ source "$HOME/.sharedshrc"
 [ -f "$HOME/.completion/tmuxinator.bash" ] && source "$HOME/.completion/tmuxinator.bash"
 
 if check_cmd_exists "gh"; then
-    eval "$(gh completion -s bash)"
+    source <(gh completion -s bash)
 fi
 
 if check_cmd_exists "k9s"; then
-    eval $(k9s completion bash)
+    source <(k9s completion bash)
 fi
 
 if check_cmd_exists "gh"; then
-    eval "$(gh completion -s bash)"
+    source <(gh completion -s bash)
 fi
 
 if check_cmd_exists "docker"; then
-    eval "$(docker completion bash)"
+    source <(docker completion bash)
 fi
 
 if check_cmd_exists "fzf"; then
