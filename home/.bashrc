@@ -145,7 +145,7 @@ if check_cmd_exists "fzf"; then
 fi
 
 if check_cmd_exists "mise"; then
-    eval "$(mise activate bash)"
+    source <(mise activate bash)
 fi
 
 complete -C /usr/bin/terraform terraform
