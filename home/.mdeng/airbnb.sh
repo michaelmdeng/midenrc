@@ -90,6 +90,42 @@ function tkc() {
 	tidb_kctl "${@}"
 }
 
+function tkcpa() {
+	tidb_kctl -c proda "${@}"
+}
+
+function tkcpb() {
+	tidb_kctl -c prodb "${@}"
+}
+
+function tkcpc() {
+	tidb_kctl -c prodc "${@}"
+}
+
+function tkcsa() {
+	tidb_kctl -c stga "${@}"
+}
+
+function tkcsb() {
+	tidb_kctl -c stgb "${@}"
+}
+
+function tkcsc() {
+	tidb_kctl -c stgc "${@}"
+}
+
+function tkcta() {
+	tidb_kctl -c testa "${@}"
+}
+
+function tkctb() {
+	tidb_kctl -c testb "${@}"
+}
+
+function tkctc() {
+	tidb_kctl -c testc "${@}"
+}
+
 function aurora_mysql_connect() {
 	INSTANCE="$1"
 

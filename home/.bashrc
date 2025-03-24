@@ -155,5 +155,5 @@ complete -C /usr/bin/terraform terraform
 # Airbnb
 
 if check_cmd_exists "yak"; then
-    eval "$(yak completion bash)"
+    source <(yak completion bash)
 fi
