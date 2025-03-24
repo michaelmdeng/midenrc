@@ -7,7 +7,6 @@ vim.api.nvim_set_keymap('n', '<leader>*', '<cmd>Telescope tags<cr>', { noremap =
 vim.api.nvim_set_keymap('n', '<leader>/', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', '<cmd>Telescope search_history<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>:', '<cmd>Telescope command_history<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-r>', '<cmd>Telescope command_history<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader><leader>:', '<cmd>Telescope commands<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>H', '<cmd>Telescope git_bcommits<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>"', '<cmd>Telescope registers<cr>', { noremap = true, silent = true })
@@ -29,7 +28,6 @@ require('telescope').setup{
         height = 0.9,
         width = 0.9,
         preview_cutoff = 35,
-        preview_height = 0.4,
         prompt_position = 'top',
     },
     results_title = false,
@@ -47,21 +45,39 @@ require('telescope').setup{
   pickers = {
     lsp_definitions = {
       layout_strategy = 'cursor',
+      layout_config = {
+        preview_height = nil,
+      },
     },
     lsp_document_symbols = {
       layout_strategy = 'cursor',
+      layout_config = {
+        preview_height = nil,
+      },
     },
     lsp_implementations = {
       layout_strategy = 'cursor',
+      layout_config = {
+        preview_height = nil,
+      },
     },
     lsp_references = {
       layout_strategy = 'cursor',
+      layout_config = {
+        preview_height = nil,
+      },
     },
     registers = {
       layout_strategy = 'cursor',
+      layout_config = {
+        preview_height = nil,
+      },
     },
     spell_suggest = {
       layout_strategy = 'cursor',
+      layout_config = {
+        preview_height = nil,
+      },
     },
   },
   extensions = {

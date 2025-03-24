@@ -20,6 +20,9 @@
 [diff]
 	algorithm = histogram
 	submodule = log
+	tool = nvim
+[difftool "nvim"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
 [feature]
 	manyFiles = true
 [fetch]
@@ -93,6 +96,8 @@
 
 	upstream = !sh -c 'git branch -u ${1:-origin}/$(git rev-parse --abbrev-ref HEAD) $(git rev-parse --abbrev-ref HEAD)'
 	sync = !git fetch origin && git rebase origin/${1:-master}
+
+	cpick = cherry-pick -x
 
 	continue = "!f() { \
 		if git rev-parse --verify CHERRY_PICK_HEAD >/dev/null 2>&1; then \
