@@ -150,8 +150,6 @@ fi
 
 complete -C /usr/bin/terraform terraform
 
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-
 # Airbnb
 
 if check_cmd_exists "yak"; then

@@ -1,0 +1,11 @@
+font-family = "Iosevka Term"
+font-style = "Light"
+font-style-bold = "SemiBold"
+font-style-italic = "Italic"
+font-style-bold-italic = "SemiBold Italic"
+font-size = 19
+adjust-cell-width = "-15%"
+
+theme = "catppuccin-frappe"
+
+keybind = ctrl+shift+v=paste_from_clipboard

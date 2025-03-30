@@ -61,12 +61,14 @@ if has('nvim')
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   Plug 'nvim-telescope/telescope-symbols.nvim'
 
-  Plug 'nvim-neotest/nvim-nio', { 'tag': 'v1.8.1' }
-  Plug 'mfussenegger/nvim-dap'
+  Plug 'nvim-neotest/nvim-nio', { 'tag': 'v1.8.191' }
+  Plug 'mfussenegger/nvim-dap', { 'tag': '0.10.0' }
+  Plug 'rcarriga/nvim-dap-ui', { 'tag': 'v4.0.0' }
+
+  Plug 'leoluz/nvim-dap-go'
   Plug 'mfussenegger/nvim-dap-python'
   Plug 'scalameta/nvim-metals'
   Plug 'suketa/nvim-dap-ruby'
-  Plug 'rcarriga/nvim-dap-ui'
 
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
@@ -179,6 +181,8 @@ set scrolloff=3
 set guicursor=a:blinkon1000-blinkoff1000
 
 set shellcmdflag=-lc
+
+silent! aunmenu PopUp.How-to\ disable\ mouse
 
 " ---------
 " Mappings

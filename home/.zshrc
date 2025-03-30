@@ -144,7 +144,6 @@ fi
 
 source virtualenvwrapper.sh
 
-[ -s "$NVM_DIR/zsh_completion" ] && . "$NVM_DIR/zsh_completion"
 complete -o nospace -C /usr/bin/terraform terraform
 
 # zsh functions
