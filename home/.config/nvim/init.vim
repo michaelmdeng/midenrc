@@ -208,11 +208,22 @@ EOF
 " nvim-telescope
 lua << EOF
 require('md-telescope')
+
+vim.cmd.amenu([[PopUp.Rename <Cmd>lua vim.lsp.buf.rename()<CR>]])
+vim.cmd.amenu([[PopUp.Format <Cmd>lua vim.lsp.buf.formatting()<CR>]])
+vim.cmd.amenu([[PopUp.Go-to\ Definition <Cmd>Telescope lsp_definitions<CR>]])
+vim.cmd.amenu([[PopUp.References <Cmd>Telescope lsp_references<CR>]])
+vim.cmd.amenu([[PopUp.Code\ Action <Cmd>lua vim.lsp.buf.code_action()<CR>]])
+vim.cmd.amenu([[PopUp.-SEP1- <cmd>]])
+vim.cmd.amenu([[PopUp.GitFiles <Cmd>Telescope git_files<CR>]])
+vim.cmd.amenu([[PopUp.Files <Cmd>lua require"telescope.builtin".find_files()<CR>]])
+vim.cmd.amenu([[PopUp.Recent\Files <Cmd>Telescope old_files<CR>]])
 EOF
 
 " nvim-dap
 lua << EOF
 local dap = require("dap")
+require('dap-go').setup()
 require('dap-python').setup()
 require('dap-ruby').setup()
 
@@ -252,6 +263,10 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
+
+vim.cmd.amenu([[PopUp.-SEP2- <cmd>]])
+vim.cmd.amenu([[PopUp.Debug <Cmd>lua require'dap'.continue()<CR>]])
+vim.cmd.amenu([[PopUp.Toggle\ Breakpoint <Cmd>lua require'dap'.toggle_breakpoint()<CR>]])
 EOF
 
 nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
