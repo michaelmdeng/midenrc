@@ -9,7 +9,7 @@ local on_attach = function(_, bufnr)
   local opts = { noremap=true, silent=true }
 
   -- buffer
-  buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', '<leader>a', '<cmd>lua require("actions-preview").code_actions()<CR>', opts)
   buf_set_keymap('n', '<leader>dc', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   buf_set_keymap('n', '<leader>t', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -34,6 +34,7 @@ local servers = {
   lua_ls = 'lua-language-server',
   metals = 'metals',
   pylsp = 'pyls',
+  rust_analyzer = 'rust-analyzer',
   solargraph = 'solargraph',
   terraformls = 'terraform-ls',
   vimls = 'vim-language-server',

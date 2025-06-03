@@ -149,7 +149,9 @@ nnoremap <leader>fp :set nu rnu scl=yes <bar> luado require('gitsigns').toggle_s
 nnoremap <leader>hh :luado require('gitsigns').setloclist(0)<CR>
 
 " Nvim LSP
-lua require('md-lsp')
+lua << EOF
+require('md-lsp')
+EOF
 
 " nvim-cmp
 lua << EOF
@@ -212,6 +214,7 @@ require('md-telescope')
 vim.cmd.amenu([[PopUp.Rename <Cmd>lua vim.lsp.buf.rename()<CR>]])
 vim.cmd.amenu([[PopUp.Format <Cmd>lua vim.lsp.buf.formatting()<CR>]])
 vim.cmd.amenu([[PopUp.Go-to\ Definition <Cmd>Telescope lsp_definitions<CR>]])
+vim.cmd.amenu([[PopUp.Implementations <Cmd>Telescope lsp_implementations<CR>]])
 vim.cmd.amenu([[PopUp.References <Cmd>Telescope lsp_references<CR>]])
 vim.cmd.amenu([[PopUp.Code\ Action <Cmd>lua vim.lsp.buf.code_action()<CR>]])
 vim.cmd.amenu([[PopUp.-SEP1- <cmd>]])
@@ -290,6 +293,24 @@ lua require('md-nvim-tree')
 lua << EOF
 require("nvim-lightbulb").setup({
   sign = { enabled = false },
-  virtual_text = { enabled = true },
+  virtual_text = {
+    enabled = true,
+  },
 })
+
+require('actions-preview').setup {
+  telescope = {
+    sorting_strategy = "ascending",
+    layout_strategy = "vertical",
+    layout_config = {
+      width = 0.8,
+      height = 0.9,
+      prompt_position = "top",
+      preview_cutoff = 20,
+      preview_height = function(_, _, max_lines)
+        return max_lines - 15
+      end,
+    },
+  },
+}
 EOF

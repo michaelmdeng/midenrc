@@ -3,8 +3,8 @@ setlocal shiftwidth=4
 setlocal expandtab
 setlocal autoindent
 setlocal smarttab
-setlocal textwidth=80
-setlocal colorcolumn=81
+setlocal textwidth=90
+setlocal colorcolumn=91
 setlocal conceallevel=0
 setlocal spell
 
