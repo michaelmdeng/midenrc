@@ -1,6 +1,6 @@
-# /Users/michael_deng/.tmuxinator/abb-tidb-upstream.yml
+# /Users/michael_deng/.tmuxinator/abb-tidb-uncommon.yml
 
-name: abb-tidb-upstream
+name: abb-tidb-uncommon
 root: ~/Source
 
 # Optional tmux socket
@@ -45,87 +45,101 @@ root: ~/Source
 # attach: false
 
 windows:
-  - tidb-tiflow:
+  - telescope:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-tiflow
+            - cd telescope
             - nvim .
         - git:
-            - cd tidb-tiflow
+            - cd telescope
             - git st
         - shell:
-            - cd tidb-tiflow
-  - tidb-tools:
+            - cd telescope
+  - chaos-mesh:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-tidb-tools
+            - cd chaos-mesh
             - nvim .
         - git:
-            - cd tidb-tidb-tools
+            - cd chaos-mesh
             - git st
         - shell:
-            - cd tidb-tidb-tools
-  - tidb-operator:
+            - cd chaos-mesh
+  - spfy:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-operator
+            - cd spfy
             - nvim .
         - git:
-            - cd tidb-operator
+            - cd spfy
             - git st
         - shell:
-            - cd tidb-operator
-  - tidb-db:
+            - cd spfy
+  - tidb-images:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-db
+            - cd tidb-images
             - nvim .
         - git:
-            - cd tidb-db
+            - cd tidb-images
             - git st
         - shell:
-            - cd tidb-db
-  - tidb-pd:
+            - cd tidb-images
+  - rust-rocksdb:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-pd
+            - cd rust-rocksdb
             - nvim .
         - git:
-            - cd tidb-pd
+            - cd rust-rocksdb
             - git st
         - shell:
-            - cd tidb-pd
-  - tidb-kv:
+            - cd rust-rocksdb
+  - rocksdb:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - editor:
-            - cd tidb-kv
+            - cd rocksdb
             - nvim .
         - git:
-            - cd tidb-kv
+            - cd rocksdb
             - git st
         - shell:
-            - cd tidb-kv
+            - cd rocksdb
+  - tidb-artifacts:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+            - cd tidb-artifacts
+            - nvim .
+        - git:
+            - cd tidb-artifacts
+            - git st
+        - shell:
+            - cd tidb-artifacts
