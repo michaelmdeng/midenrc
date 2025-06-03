@@ -26,7 +26,7 @@ require('telescope').setup{
     layout_strategy = 'vertical',
     layout_config = {
         height = 0.9,
-        width = 0.9,
+        width = 0.8,
         preview_cutoff = 35,
         prompt_position = 'top',
     },
@@ -44,40 +44,16 @@ require('telescope').setup{
   },
   pickers = {
     lsp_definitions = {
-      layout_strategy = 'cursor',
-      layout_config = {
-        preview_height = nil,
-      },
     },
     lsp_document_symbols = {
-      layout_strategy = 'cursor',
-      layout_config = {
-        preview_height = nil,
-      },
     },
     lsp_implementations = {
-      layout_strategy = 'cursor',
-      layout_config = {
-        preview_height = nil,
-      },
     },
     lsp_references = {
-      layout_strategy = 'cursor',
-      layout_config = {
-        preview_height = nil,
-      },
     },
     registers = {
-      layout_strategy = 'cursor',
-      layout_config = {
-        preview_height = nil,
-      },
     },
     spell_suggest = {
-      layout_strategy = 'cursor',
-      layout_config = {
-        preview_height = nil,
-      },
     },
   },
   extensions = {
@@ -91,3 +67,4 @@ require('telescope').setup{
 }
 
 require('telescope').load_extension('fzf')
+require("telescope").load_extension("ui-select")

@@ -17,15 +17,15 @@ Plug 'towolf/vim-helm'
 
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ervandew/supertab'
+Plug 'ervandew/supertab', { 'branch': 'main' }
 Plug 'github/copilot.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align', { 'tag': '2.10.0' }
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'mbbill/undotree', { 'tag': 'rel_6.1' }
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'myusuf3/numbers.vim'
+Plug 'michaeljsmith/vim-indent-object', { 'tag': '1.1.2' }
+Plug 'myusuf3/numbers.vim', { 'tag': 'v0.6.1' }
 Plug 'neomake/neomake'
 Plug 'preservim/tagbar', { 'tag': 'v3.1.1' }
 Plug 'tpope/vim-abolish'
@@ -37,9 +37,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
-Plug 'unblevable/quick-scope'
+Plug 'unblevable/quick-scope', { 'tag': 'v2.7.0' }
 Plug 'vimwiki/vimwiki', { 'tag': 'v2024.01.24' }
-Plug 'voldikss/vim-floaterm'
 
 if has('nvim')
   Plug 'folke/tokyonight.nvim'
@@ -47,7 +46,7 @@ if has('nvim')
   Plug 'lewis6991/gitsigns.nvim', { 'tag': 'v0.7' }
   Plug 'lukas-reineke/indent-blankline.nvim', { 'tag': 'v2.20.8' }
   Plug 'ncm2/float-preview.nvim'
-  Plug 'neovim/nvim-lspconfig'
+  Plug 'neovim/nvim-lspconfig', { 'tag': 'v2.2.0' }
   Plug 'nvim-lua/plenary.nvim', { 'tag': 'v0.1.4' }
   Plug 'nvim-tree/nvim-tree.lua', { 'tag': 'nvim-tree-v1.3.0' }
 
@@ -60,8 +59,9 @@ if has('nvim')
   Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   Plug 'nvim-telescope/telescope-symbols.nvim'
+  Plug 'nvim-telescope/telescope-ui-select.nvim'
 
-  Plug 'nvim-neotest/nvim-nio', { 'tag': 'v1.8.191' }
+  Plug 'nvim-neotest/nvim-nio', { 'tag': 'v1.10.1' }
   Plug 'mfussenegger/nvim-dap', { 'tag': '0.10.0' }
   Plug 'rcarriga/nvim-dap-ui', { 'tag': 'v4.0.0' }
 
