@@ -296,6 +296,11 @@ require("nvim-lightbulb").setup({
   virtual_text = {
     enabled = true,
   },
+  action_kinds = { "quickfix", "refactor" },
+  autocmd = { enabled = true },
+  ignore = {
+    actions_without_kind = true,
+  },
 })
 
 require('actions-preview').setup {

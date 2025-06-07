@@ -10,14 +10,18 @@ Plug 'mhartington/oceanic-next'
 Plug 'chrisbra/csv.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'elzr/vim-json'
-Plug 'isRuslan/vim-es6'
-Plug 'lervag/vimtex'
 Plug 'slim-template/vim-slim'
 Plug 'towolf/vim-helm'
 
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ervandew/supertab', { 'branch': 'main' }
+" if !exists('g:llama_config')
+"   let g:llama_config = { 'show_info': 0 }
+" else
+"   let g:llama_config.show_info = 0
+" endif
+" Plug 'ggml-org/llama.vim'
 Plug 'github/copilot.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'itchyny/lightline.vim'
@@ -26,7 +30,6 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'mbbill/undotree', { 'tag': 'rel_6.1' }
 Plug 'michaeljsmith/vim-indent-object', { 'tag': '1.1.2' }
 Plug 'myusuf3/numbers.vim', { 'tag': 'v0.6.1' }
-Plug 'neomake/neomake'
 Plug 'preservim/tagbar', { 'tag': 'v3.1.1' }
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -72,7 +75,6 @@ if has('nvim')
 
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
-  Plug 'hrsh7th/cmp-copilot'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
@@ -343,6 +345,7 @@ augroup END
 
 " Vim-tmux-navigator
 let g:BASH_Ctrl_j = 'off'
+let g:tmux_navigator_disable_when_zoomed = 1
 
 " Vimwiki
 au FileType vimwiki set filetype=markdown
@@ -448,7 +451,7 @@ let g:undotree_RelativeTimestamp = 1
 let g:undotree_ShortIndicators = 1
 nnoremap <leader>uu :UndotreeToggle<CR>
 
-" Netwr settings
+" Netrw settings
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_bufsettings = "noma nomod nobl nowrap ro nu rnu"
