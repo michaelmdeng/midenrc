@@ -548,3 +548,36 @@ augroup clipmgmt
   autocmd!
   autocmd TextYankPost * call YankPush(v:event['regname'])
 augroup END
+
+function! LLM() range
+  let l:target = trim(system('mdcli tmux shell'))
+
+  let l:start = getpos("'<")
+  let l:end = getpos("'>")
+  let l:start_line = l:start[1]
+  let l:end_line = l:end[1]
+  let l:start_col = l:start[2]
+  let l:end_col = l:end[2]
+
+  let l:lines = getline(l:start_line, l:end_line)
+  if len(l:lines) == 1
+    let l:lines[0] = l:lines[0][l:start_col - 1 : l:end_col - 1]
+  else
+    let l:lines[0] = l:lines[0][l:start_col - 1 :]
+    let l:lines[-1] = l:lines[-1][: l:end_col - 1]
+  endif
+
+  let l:text = join(l:lines, "\n")
+  let l:escaped = shellescape(l:text)
+  let l:llm_escaped = shellescape("llm " .. l:escaped)
+  echo l:llm_escaped
+
+  let l:cmd = 'tmux send-keys -t ' .. l:target .. " -l -- " .. l:llm_escaped
+  let l:send_cmd = 'tmux send-keys -t ' .. l:target .. ' Enter'
+
+  call system(l:cmd)
+  call system(l:send_cmd)
+endfunction
+
+" Create a command to use in visual mode:
+command! -range -nargs=* LLM call LLM()
