@@ -36,11 +36,6 @@ windows:
             - nvim -c "VimwikiIndex"
         - console:
             - 
-  - chat:
-      layout: main-vertical
-      panes:
-        - ollama:
-            - ollama run mistral
   - scratch:
       layout: main-vertical
       panes:

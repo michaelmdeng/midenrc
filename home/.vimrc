@@ -10,14 +10,18 @@ Plug 'mhartington/oceanic-next'
 Plug 'chrisbra/csv.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'elzr/vim-json'
-Plug 'isRuslan/vim-es6'
-Plug 'lervag/vimtex'
 Plug 'slim-template/vim-slim'
 Plug 'towolf/vim-helm'
 
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ervandew/supertab', { 'branch': 'main' }
+" if !exists('g:llama_config')
+"   let g:llama_config = { 'show_info': 0 }
+" else
+"   let g:llama_config.show_info = 0
+" endif
+" Plug 'ggml-org/llama.vim'
 Plug 'github/copilot.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'itchyny/lightline.vim'
@@ -26,7 +30,6 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'mbbill/undotree', { 'tag': 'rel_6.1' }
 Plug 'michaeljsmith/vim-indent-object', { 'tag': '1.1.2' }
 Plug 'myusuf3/numbers.vim', { 'tag': 'v0.6.1' }
-Plug 'neomake/neomake'
 Plug 'preservim/tagbar', { 'tag': 'v3.1.1' }
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -72,7 +75,6 @@ if has('nvim')
 
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
-  Plug 'hrsh7th/cmp-copilot'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
@@ -343,6 +345,7 @@ augroup END
 
 " Vim-tmux-navigator
 let g:BASH_Ctrl_j = 'off'
+let g:tmux_navigator_disable_when_zoomed = 1
 
 " Vimwiki
 au FileType vimwiki set filetype=markdown
@@ -448,7 +451,7 @@ let g:undotree_RelativeTimestamp = 1
 let g:undotree_ShortIndicators = 1
 nnoremap <leader>uu :UndotreeToggle<CR>
 
-" Netwr settings
+" Netrw settings
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_bufsettings = "noma nomod nobl nowrap ro nu rnu"
@@ -545,3 +548,36 @@ augroup clipmgmt
   autocmd!
   autocmd TextYankPost * call YankPush(v:event['regname'])
 augroup END
+
+function! LLM() range
+  let l:target = trim(system('mdcli tmux shell'))
+
+  let l:start = getpos("'<")
+  let l:end = getpos("'>")
+  let l:start_line = l:start[1]
+  let l:end_line = l:end[1]
+  let l:start_col = l:start[2]
+  let l:end_col = l:end[2]
+
+  let l:lines = getline(l:start_line, l:end_line)
+  if len(l:lines) == 1
+    let l:lines[0] = l:lines[0][l:start_col - 1 : l:end_col - 1]
+  else
+    let l:lines[0] = l:lines[0][l:start_col - 1 :]
+    let l:lines[-1] = l:lines[-1][: l:end_col - 1]
+  endif
+
+  let l:text = join(l:lines, "\n")
+  let l:escaped = shellescape(l:text)
+  let l:llm_escaped = shellescape("llm " .. l:escaped)
+  echo l:llm_escaped
+
+  let l:cmd = 'tmux send-keys -t ' .. l:target .. " -l -- " .. l:llm_escaped
+  let l:send_cmd = 'tmux send-keys -t ' .. l:target .. ' Enter'
+
+  call system(l:cmd)
+  call system(l:send_cmd)
+endfunction
+
+" Create a command to use in visual mode:
+command! -range -nargs=* LLM call LLM()

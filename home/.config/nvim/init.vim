@@ -45,6 +45,7 @@ require'nvim-treesitter.configs'.setup {
     "toml",
     "typescript",
     "vim",
+    "vimdoc",
     "yaml"
   },
   textobjects = {
@@ -295,6 +296,11 @@ require("nvim-lightbulb").setup({
   sign = { enabled = false },
   virtual_text = {
     enabled = true,
+  },
+  action_kinds = { "quickfix", "refactor" },
+  autocmd = { enabled = true },
+  ignore = {
+    actions_without_kind = true,
   },
 })
 
