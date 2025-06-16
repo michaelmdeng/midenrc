@@ -45,6 +45,7 @@ require'nvim-treesitter.configs'.setup {
     "toml",
     "typescript",
     "vim",
+    "vimdoc",
     "yaml"
   },
   textobjects = {
