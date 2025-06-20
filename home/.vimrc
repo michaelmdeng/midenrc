@@ -530,6 +530,8 @@ nnoremap <silent> <leader>vrv :VimrcEdit v<CR>
 command! -bar -nargs=0 VimrcReload :so $MYVIMRC
 nnoremap <silent> <leader>vrr :VimrcReload<CR>
 
+nnoremap <silent> <leader>~ <cmd>UndotreeToggle<bar>TagbarToggle<CR>
+
 " Clipboard syncing
 let s:clipboard_push_script = '~/.scripts/clipboard-push.sh'
 
