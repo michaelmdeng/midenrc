@@ -232,3 +232,30 @@ require('actions-preview').setup {
   },
 }
 EOF
+
+lua << EOF
+require('minuet').setup {
+  provider = 'codestral',
+  throttle = 750,
+  debounce = 300,
+  request_timeout = 5,
+  n_completions = 1,
+  context_window = 10000,
+  virtualtext = {
+    auto_trigger_ft = { '*' },
+    auto_trigger_ignore_ft = { 'telescope' },
+    keymap = {
+      accept = '<Tab>',
+      next = '<A-]>',
+    },
+  },
+  provider_options = {
+    codestral = {
+      optional = {
+        max_tokens = 256,
+        stop = { '\n\n' },
+      },
+    },
+  }
+}
+EOF
