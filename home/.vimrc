@@ -54,6 +54,7 @@ if has('nvim')
   Plug 'nvim-tree/nvim-tree.lua', { 'tag': 'nvim-tree-v1.3.0' }
 
   Plug 'nvim-treesitter/nvim-treesitter', { 'tag': 'v0.9.2', 'do': ':TSUpdate' }
+  Plug 'nvim-treesitter/nvim-treesitter-context', { 'tag': 'v1.0.0', 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
   Plug 'kosayoda/nvim-lightbulb', { 'tag': 'v1.0.0' }

@@ -114,6 +114,20 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+lua <<EOF
+require'treesitter-context'.setup{
+  enable = true,
+  max_lines = 4,
+  min_window_height = 10,
+  trim_scope = 'inner',
+  separator = '-',
+}
+
+vim.keymap.set("n", "[x", function()
+  require("treesitter-context").go_to_context(vim.v.count1)
+end, { silent = true })
+EOF
+
 " gitsigns
 lua << EOF
   require('gitsigns').setup {
