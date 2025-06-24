@@ -15,7 +15,7 @@ Plug 'towolf/vim-helm'
 
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ervandew/supertab', { 'branch': 'main' }
+Plug 'ervandew/supertab', { 'commit': '6ce7793' }
 " if !exists('g:llama_config')
 "   let g:llama_config = { 'show_info': 0 }
 " else

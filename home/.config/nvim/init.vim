@@ -179,7 +179,6 @@ cmp.setup {
   sources = cmp.config.sources(
     {
       { name = 'nvim_lsp' },
-      { name = 'ultisnips' },
     },
     {
       { name = 'buffer' },
@@ -199,11 +198,6 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<C-y>'] = cmp.config.disable,
     ['<C-e>'] = cmp.mapping.abort(),
-  },
-  snippet = {
-    expand = function(args)
-      vim.fn["UltiSnips#Anon"](args.body)
-    end,
   },
 }
 
