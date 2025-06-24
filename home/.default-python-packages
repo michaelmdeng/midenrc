@@ -4,6 +4,7 @@ mypy
 neovim
 pylint
 pyls
+python-lsp-server[all]
 sexpdata
 websocket-client
 virtualenv

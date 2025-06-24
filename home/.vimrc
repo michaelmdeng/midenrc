@@ -15,7 +15,7 @@ Plug 'towolf/vim-helm'
 
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ervandew/supertab', { 'branch': 'main' }
+Plug 'ervandew/supertab', { 'commit': '6ce7793' }
 " if !exists('g:llama_config')
 "   let g:llama_config = { 'show_info': 0 }
 " else
@@ -54,6 +54,7 @@ if has('nvim')
   Plug 'nvim-tree/nvim-tree.lua', { 'tag': 'nvim-tree-v1.3.0' }
 
   Plug 'nvim-treesitter/nvim-treesitter', { 'tag': 'v0.9.2', 'do': ':TSUpdate' }
+  Plug 'nvim-treesitter/nvim-treesitter-context', { 'tag': 'v1.0.0', 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
   Plug 'kosayoda/nvim-lightbulb', { 'tag': 'v1.0.0' }
@@ -78,6 +79,8 @@ if has('nvim')
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
+
+  Plug 'milanglacier/minuet-ai.nvim'
 endif
 
 call plug#end()
@@ -529,6 +532,8 @@ nnoremap <silent> <leader>vrv :VimrcEdit v<CR>
 
 command! -bar -nargs=0 VimrcReload :so $MYVIMRC
 nnoremap <silent> <leader>vrr :VimrcReload<CR>
+
+nnoremap <silent> <leader>~ <cmd>UndotreeToggle<bar>TagbarToggle<CR>
 
 " Clipboard syncing
 let s:clipboard_push_script = '~/.scripts/clipboard-push.sh'

@@ -18,9 +18,10 @@ local on_attach = function(_, bufnr)
   buf_set_keymap('n', '<leader>sg', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<leader>Df', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   -- diagnostics
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<leader>dd', '<cmd>lua vim.lsp.diagnostic.setloclist()<CR>', opts)
+  buf_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<leader>dd', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 end
 
 local nvim_lsp = require('lspconfig')

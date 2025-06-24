@@ -1,3 +1,4 @@
-setlocal foldmethod=indent
 setlocal expandtab
-setlocal sw=2
+setlocal foldexpr=v:lua.vim.treesitter.foldexpr()
+setlocal foldmethod=expr
+setlocal shiftwidth=2

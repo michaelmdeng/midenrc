@@ -14,90 +14,8 @@ set laststatus=3
 " Improved filetype detection
 let g:do_filetype_lua = 1
 
-" Treesitter config
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed={
-    "bash",
-    "comment",
-    "css",
-    "dockerfile",
-    "go",
-    "graphql",
-    "hcl",
-    "html",
-    "http",
-    "java",
-    "javascript",
-    "jsdoc",
-    "json",
-    "json5",
-    "jsonc",
-    "kotlin",
-    "latex",
-    "lua",
-    "make",
-    "markdown",
-    "python",
-    "regex",
-    "ruby",
-    "scala",
-    "toml",
-    "typescript",
-    "vim",
-    "vimdoc",
-    "yaml"
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        ["ak"] = "@block.outer",
-        ["ik"] = "@block.inner",
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-        ["aa"] = "@parameter.outer",
-        ["ia"] = "@parameter.inner",
-      },
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ["<leader><Right>"] = "@parameter.inner",
-      },
-      swap_previous = {
-        ["<leader><Left>"] = "@parameter.inner",
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true,
-      goto_next_start = {
-        ["]k"] = "@block.outer",
-        ["]f"] = "@function.outer",
-        ["]a"] = "@parameter.inner",
-      },
-      goto_next_end = {
-        ["]K"] = "@block.outer",
-        ["]F"] = "@function.outer",
-        ["]A"] = "@parameter.outer",
-      },
-      goto_previous_start = {
-        ["[k"] = "@block.outer",
-        ["[f"] = "@function.outer",
-        ["[a"] = "@parameter.inner",
-      },
-      goto_previous_end = {
-        ["[K"] = "@block.outer",
-        ["[F"] = "@function.outer",
-        ["[A"] = "@parameter.outer",
-      },
-    },
-  },
-}
+lua << EOF
+require('md-treesitter')
 EOF
 
 " gitsigns
@@ -165,7 +83,6 @@ cmp.setup {
   sources = cmp.config.sources(
     {
       { name = 'nvim_lsp' },
-      { name = 'ultisnips' },
     },
     {
       { name = 'buffer' },
@@ -185,11 +102,6 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<C-y>'] = cmp.config.disable,
     ['<C-e>'] = cmp.mapping.abort(),
-  },
-  snippet = {
-    expand = function(args)
-      vim.fn["UltiSnips#Anon"](args.body)
-    end,
   },
 }
 
@@ -318,5 +230,32 @@ require('actions-preview').setup {
       end,
     },
   },
+}
+EOF
+
+lua << EOF
+require('minuet').setup {
+  provider = 'codestral',
+  throttle = 750,
+  debounce = 300,
+  request_timeout = 5,
+  n_completions = 1,
+  context_window = 10000,
+  virtualtext = {
+    auto_trigger_ft = { '*' },
+    auto_trigger_ignore_ft = { 'telescope' },
+    keymap = {
+      accept = '<Tab>',
+      next = '<A-]>',
+    },
+  },
+  provider_options = {
+    codestral = {
+      optional = {
+        max_tokens = 256,
+        stop = { '\n\n' },
+      },
+    },
+  }
 }
 EOF

@@ -1,5 +1,6 @@
-setlocal foldmethod=indent
-setlocal tabstop=2
-setlocal shiftwidth=2
-setlocal noexpandtab
 setlocal colorcolumn=90
+setlocal foldexpr=v:lua.vim.treesitter.foldexpr()
+setlocal foldmethod=expr
+setlocal noexpandtab
+setlocal shiftwidth=2
+setlocal tabstop=2

@@ -1,12 +1,10 @@
-" Python specific settings.
-setlocal tabstop=4
-setlocal shiftwidth=4
-setlocal expandtab
 setlocal autoindent
-setlocal smarttab
-setlocal textwidth=88
 setlocal colorcolumn=89
+setlocal expandtab
+setlocal foldexpr=v:lua.vim.treesitter.foldexpr()
+setlocal foldmethod=expr
 setlocal formatoptions=croql
-setlocal foldmethod=indent
-let python_highlight_all=1
-syntax on
+setlocal shiftwidth=4
+setlocal smarttab
+setlocal tabstop=4
+setlocal textwidth=88

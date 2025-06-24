@@ -124,10 +124,6 @@ source "$HOME/.sharedshrc"
 # bash completions
 [ -f "$HOME/.completion/tmuxinator.bash" ] && source "$HOME/.completion/tmuxinator.bash"
 
-if check_cmd_exists "gh"; then
-    source <(gh completion -s bash)
-fi
-
 if check_cmd_exists "k9s"; then
     source <(k9s completion bash)
 fi
