@@ -84,18 +84,7 @@ system-ruby: | apt
 	sudo apt-get -y install ruby ruby-dev
 	sudo gem install lefthook tmuxinator solargraph neovim
 
-~/.rvm/bin: | apt-core
-	sudo apt-get install gnupg2
-	gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-	curl -sSL https://get.rvm.io | bash -s stable
-	~/.rvm/bin/rvm get stable
-	~/.rvm/bin/rvm reload
 
-~/.rvm/rubies/ruby-3.2.*: | ~/.rvm/bin
-	~/.rvm/bin/rvm install 3.2.1
-
-.PHONY: ruby-dev
-ruby-dev: | system-ruby ~/.rvm/rubies/ruby-3.2.*
 
 
 ~/.tmux/plugins/tpm: | apt-core
