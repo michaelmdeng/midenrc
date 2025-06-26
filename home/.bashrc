@@ -137,7 +137,7 @@ if check_cmd_exists "docker"; then
 fi
 
 if check_cmd_exists "fzf"; then
-    source <(fzf --zsh)
+    source <(fzf --bash)
 fi
 
 if check_cmd_exists "mise"; then
