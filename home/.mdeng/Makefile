@@ -108,9 +108,6 @@ ruby-dev: | system-ruby ~/.rvm/rubies/ruby-3.2.*
 
 # Java/Scala
 
-~/.jenv/bin: | apt-core
-	git clone https://github.com/jenv/jenv.git ~/.jenv
-
 # Golang
 
 /usr/local/go/bin:
