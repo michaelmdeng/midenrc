@@ -129,6 +129,28 @@ windows:
             - git st
         - shell:
             - cd rocksdb
+  - tidb-dashboard:
+      layout: main-vertical
+      panes:
+        - editor:
+            - cd tidb-dashboard
+            - nvim .
+        - git:
+            - cd tidb-dashboard
+            - git st
+        - shell:
+            - cd tidb-dashboard
+  - ng-monitoring:
+      layout: main-vertical
+      panes:
+        - editor:
+            - cd ng-monitoring
+            - nvim .
+        - git:
+            - cd ng-monitoring
+            - git st
+        - shell:
+            - cd ng-monitoring
   - tidb-artifacts:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
