@@ -200,6 +200,9 @@ let g:indent_blankline_space_char = ' '
 let g:indent_blankline_show_current_context = 1
 let g:indent_blankline_show_current_context_start = 1
 
+" float-preview.nvim
+let g:float_preview#docked = 0
+
 " nvim-tree
 lua require('md-nvim-tree')
 
