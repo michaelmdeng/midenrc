@@ -9,7 +9,6 @@ Plug 'mhartington/oceanic-next'
 " Language
 Plug 'chrisbra/csv.vim'
 Plug 'derekwyatt/vim-scala'
-Plug 'elzr/vim-json'
 Plug 'slim-template/vim-slim'
 Plug 'towolf/vim-helm'
 
@@ -30,7 +29,6 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'mbbill/undotree', { 'tag': 'rel_6.1' }
 Plug 'michaeljsmith/vim-indent-object', { 'tag': '1.1.2' }
 Plug 'myusuf3/numbers.vim', { 'tag': 'v0.6.1' }
-Plug 'preservim/tagbar', { 'tag': 'v3.1.1' }
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -100,12 +98,12 @@ endif
 
 syntax enable
 
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
 if has('nvim')
   colorscheme tokyonight-moon
   highlight WinSeparator guifg=LightGreen
 else
+  let g:oceanic_next_terminal_bold = 1
+  let g:oceanic_next_terminal_italic = 1
   colorscheme OceanicNext
 endif
 
@@ -155,9 +153,6 @@ set undofile
 
 " How to display whitespace
 set listchars=eol:$,tab:->,trail:~,extends:>,precedes:<,space:␣
-
-" Ctags file
-set tags=./tags,tags;$HOME
 
 " we have a statusline
 set noshowmode
@@ -228,9 +223,6 @@ nnoremap yL y$
 " Visual shifting
 vnoremap < <gv
 vnoremap > >gv
-
-" Generate ctags quickly
-nnoremap <leader><leader>* :!ctags -R -f ./.git/tags .<cr><cr>
 
 " Bubble lines up and down
 nmap <C-Up> :m .-2<CR>
@@ -310,13 +302,11 @@ nnoremap ss "_dd
 " GTFO Ex mode
 nnoremap Q @@
 
-" yank-quit
-nnoremap <leader>yq gg0vG$"+y:q!<cr>
-
 " more natural paragraphs
 nnoremap <silent> } :call search('\(^$\n\s*\zs\S\)\<bar>\(\S\ze\n*\%$\)', 'sW')<CR>
 nnoremap <silent> { :call search('\(^$\n\s*\zs\S\)\<bar>\(^\%1l\s*\zs\S\)','sWb')<CR>
 
+" PgUp/Dn w/out moving cursor
 nnoremap <leader><C-u> mp<C-u>`p
 nnoremap <leader><C-d> mp<C-d>`p
 
@@ -365,16 +355,6 @@ let g:vimwiki_conceallevel=0
 let g:vimwiki_folding='expr:quick'
 let g:vimwiki_table_mappings=0
 
-function! BetterVimwikiDiaryGenerateLinks()
-  VimwikiDiaryGenerateLinks
-  :%s/\s\+\*/*/e
-  :%s/\(#\+\s.\+$\)/\1\r/e
-  :%s/\n\{3,}/\r\r/e
-endfunction
-
-" vim-editorconfig
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-
 " rainbow_parentheses
 augroup RainbowParens
   au VimEnter * RainbowParenthesesActivate
@@ -382,9 +362,6 @@ augroup RainbowParens
   au Syntax * silent! RainbowParenthesesLoadSquare
   au Syntax * silent! RainbowParenthesesLoadBraces
 augroup end
-
-" vim-json config
-let g:vim_json_syntax_conceal = 0
 
 " Lightline
 let g:lightline = {
@@ -439,13 +416,6 @@ endfunction
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" neomake
-let g:neomake_open_list = 2
-let g:neomake_ruby_enabled_makers = ['rubocop']
-let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_markdown_enabled_makers = ['mdl']
-nnoremap <leader><leader>= :Neomake<CR>
-
 " Undotree
 let g:undotree_SplitWidth = 35
 let g:undotree_DiffpanelHeight = 15
@@ -459,23 +429,12 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_bufsettings = "noma nomod nobl nowrap ro nu rnu"
 
-" float-preview.nvim
-let g:float_preview#docked = 0
-
 " quick-scope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:qs_max_chars = 150
 let g:qs_buftype_blacklist = ['terminal', 'nofile', 'fzf', 'netrw']
 let g:qs_second_highlight = 0
 let g:qs_lazy_highlight = 1
-
-" vim-tex
-let g:tex_flavor = 'latex'
-
-" tagbar
-let g:tagbar_width = 50
-let g:tagbar_sort = 0
-let g:tagbar_compact = 2
 
 " -----------------
 " Custom Functions
@@ -533,8 +492,6 @@ nnoremap <silent> <leader>vrv :VimrcEdit v<CR>
 command! -bar -nargs=0 VimrcReload :so $MYVIMRC
 nnoremap <silent> <leader>vrr :VimrcReload<CR>
 
-nnoremap <silent> <leader>~ <cmd>UndotreeToggle<bar>TagbarToggle<CR>
-
 " Clipboard syncing
 let s:clipboard_push_script = '~/.scripts/clipboard-push.sh'
 
@@ -575,7 +532,6 @@ function! LLM() range
   let l:text = join(l:lines, "\n")
   let l:escaped = shellescape(l:text)
   let l:llm_escaped = shellescape("llm " .. l:escaped)
-  echo l:llm_escaped
 
   let l:cmd = 'tmux send-keys -t ' .. l:target .. " -l -- " .. l:llm_escaped
   let l:send_cmd = 'tmux send-keys -t ' .. l:target .. ' Enter'
