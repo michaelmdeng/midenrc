@@ -30,7 +30,6 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'mbbill/undotree', { 'tag': 'rel_6.1' }
 Plug 'michaeljsmith/vim-indent-object', { 'tag': '1.1.2' }
 Plug 'myusuf3/numbers.vim', { 'tag': 'v0.6.1' }
-Plug 'preservim/tagbar', { 'tag': 'v3.1.1' }
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -156,9 +155,6 @@ set undofile
 " How to display whitespace
 set listchars=eol:$,tab:->,trail:~,extends:>,precedes:<,space:␣
 
-" Ctags file
-set tags=./tags,tags;$HOME
-
 " we have a statusline
 set noshowmode
 
@@ -228,9 +224,6 @@ nnoremap yL y$
 " Visual shifting
 vnoremap < <gv
 vnoremap > >gv
-
-" Generate ctags quickly
-nnoremap <leader><leader>* :!ctags -R -f ./.git/tags .<cr><cr>
 
 " Bubble lines up and down
 nmap <C-Up> :m .-2<CR>
@@ -472,11 +465,6 @@ let g:qs_lazy_highlight = 1
 " vim-tex
 let g:tex_flavor = 'latex'
 
-" tagbar
-let g:tagbar_width = 50
-let g:tagbar_sort = 0
-let g:tagbar_compact = 2
-
 " -----------------
 " Custom Functions
 " -----------------
@@ -532,8 +520,6 @@ nnoremap <silent> <leader>vrv :VimrcEdit v<CR>
 
 command! -bar -nargs=0 VimrcReload :so $MYVIMRC
 nnoremap <silent> <leader>vrr :VimrcReload<CR>
-
-nnoremap <silent> <leader>~ <cmd>UndotreeToggle<bar>TagbarToggle<CR>
 
 " Clipboard syncing
 let s:clipboard_push_script = '~/.scripts/clipboard-push.sh'
