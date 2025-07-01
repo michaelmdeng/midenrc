@@ -10,8 +10,6 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-
-# set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
@@ -23,25 +21,19 @@ export PATH="$PATH:$HOME/.local/share/coursier/bin"
 export PATH="/opt/homebrew/opt/libpq:$PATH"
 export PATH="$PATH:$HOME/.conscript/bin"
 export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/Source/mdcli/bin"
 
-export NVM_DIR="$HOME/.nvm"
-if [ -d "/opt/homebrew/opt/node@18/bin" ] ; then
-    export PATH="$PATH:/opt/homebrew/opt/node@18/bin"
+if [ -d "$HOME/Source/mdcli/bin" ] ; then
+    export PATH="$PATH:$HOME/Source/mdcli/bin"
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$HOME/.pyenv/bin:$PATH"
-
-export PATH="$PATH:$HOME/.jenv/bin"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
 
 if [ -d "$HOME/Source/lua-language-server" ] ; then
     PATH="$PATH:$HOME/Source/lua-language-server/bin"
 fi
-
-export PATH="$PATH:$HOME/.rvm/bin"
 
 export EDITOR='nvim'
 export PROJECT_HOME=$HOME/Source

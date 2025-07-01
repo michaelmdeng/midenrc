@@ -15,13 +15,6 @@ Plug 'towolf/vim-helm'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ervandew/supertab', { 'commit': '6ce7793' }
-" if !exists('g:llama_config')
-"   let g:llama_config = { 'show_info': 0 }
-" else
-"   let g:llama_config.show_info = 0
-" endif
-" Plug 'ggml-org/llama.vim'
-Plug 'github/copilot.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/vim-easy-align', { 'tag': '2.10.0' }
