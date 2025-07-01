@@ -142,6 +142,10 @@ if check_cmd_exists "mise"; then
     eval "$(mise activate zsh)"
 fi
 
+if check_cmd_exists "mdcli"; then
+    eval "$(mdcli completion --zsh)"
+fi
+
 source virtualenvwrapper.sh
 
 complete -o nospace -C /usr/bin/terraform terraform
