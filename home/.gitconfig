@@ -57,7 +57,7 @@
 	stage = diff --staged
 	staged = diff --staged
 
-	ciai = !"git commit -e -m \"$(git diff --staged | llm -t git-commit)\""
+	ciai = !git commit -e -m \"$(git diff --staged | llm -t git-commit-test -p branch $(git rev-parse --abbrev-ref HEAD))\"
 	ci = commit
 	cia = commit -a
 	cie = commit -e
