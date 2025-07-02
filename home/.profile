@@ -8,28 +8,36 @@ fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    PATH="$PATH:$HOME/bin"
 fi
 if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+    PATH="$PATH:$HOME/.local/bin"
 fi
 
-export PATH="$HOME/um/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="$PATH:$HOME/.local/share/coursier/bin"
-export PATH="/opt/homebrew/opt/libpq:$PATH"
-export PATH="$PATH:$HOME/.conscript/bin"
-export PATH="$PATH:/usr/local/go/bin"
-
+if [ -d "$HOME/.yarn/bin" ] ; then
+    export PATH="$PATH:$HOME/.yarn/bin"
+fi
+if [ -d "$HOME/.config/yarn/global/node_modules/.bin" ] ; then
+    export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+fi
+if [ -d "/opt/homebrew/opt/libpq" ] ; then
+    export PATH="$PATH:/opt/homebrew/opt/libpq"
+fi
 if [ -d "$HOME/Source/mdcli/bin" ] ; then
     export PATH="$PATH:$HOME/Source/mdcli/bin"
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$HOME/.pyenv/bin:$PATH"
-export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/go/bin"
+if [ -d "$HOME/.pyenv/bin" ] ; then
+    export PATH="$PATH:$HOME/.pyenv/bin"
+fi
+
+if [ -d "/usr/local/go/bin" ] ; then
+    export PATH="$PATH:/usr/local/go/bin"
+fi
+if [ -d "$HOME/go/bin" ] ; then
+    export PATH="$PATH:$HOME/go/bin"
+fi
 
 if [ -d "$HOME/Source/lua-language-server" ] ; then
     PATH="$PATH:$HOME/Source/lua-language-server/bin"
