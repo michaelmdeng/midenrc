@@ -1,0 +1,13 @@
+{
+  "autoAccept": true,
+  "contextFileName": [
+    "AGENTS.md",
+    "CONVENTIONS.md",
+    "CLAUDE.md",
+    "GEMINI.md"
+  ],
+  "hideTips": "false",
+  "preferredEditor": "nvim",
+  "theme": "GitHub",
+  "selectedAuthType": "oauth-personal"
+}

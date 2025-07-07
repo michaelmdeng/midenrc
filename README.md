@@ -38,8 +38,23 @@ homeshick track midenrc <filePath>
 Once files are tracked and added, you can use git to manage commits to this
 repo and pushing/pulling changes to/from this remote.
 
+## Link
+
+Symlink the repo to the home directory
+
+```bash
+make link
+```
+
+## Cleanup
+
+Clean up orphaned symlinks from this homeshick repo
+
+```bash
+make clean
+```
+
 # Reference
 
 For more information, see [homeshick
 Wiki](https://github.com/andsens/homeshick/wiki/Tutorials).
-

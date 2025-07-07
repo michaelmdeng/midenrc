@@ -250,7 +250,7 @@ if api_key and api_key ~= "" then
       auto_trigger_ft = { '*' },
       auto_trigger_ignore_ft = { 'TelescopePrompt', 'TelescopeResults' },
       keymap = {
-        accept = '<Tab>',
+        accept = '<C-y>',
         next = '<A-]>',
       },
     },
