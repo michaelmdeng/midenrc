@@ -1,4 +1,5 @@
 {
+  "autoAccept": true,
   "contextFileName": [
     "AGENTS.md",
     "CONVENTIONS.md",
