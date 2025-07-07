@@ -7,9 +7,6 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$PATH:$HOME/bin"
-fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$PATH:$HOME/.local/bin"
 fi
@@ -23,10 +20,6 @@ fi
 if [ -d "/opt/homebrew/opt/libpq" ] ; then
     export PATH="$PATH:/opt/homebrew/opt/libpq"
 fi
-if [ -d "$HOME/Source/mdcli/bin" ] ; then
-    export PATH="$PATH:$HOME/Source/mdcli/bin"
-fi
-
 export PYENV_ROOT="$HOME/.pyenv"
 if [ -d "$HOME/.pyenv/bin" ] ; then
     export PATH="$PATH:$HOME/.pyenv/bin"
