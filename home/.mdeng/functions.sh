@@ -58,3 +58,15 @@ ubuntu_update() {
   sudo apt-get autoremove -y
   sudo apt-get autoclean -y
 }
+
+llmedit() {
+  local tmp=$(mktemp)
+  "${EDITOR:-nvim}" "$tmp" || return
+  llm "$@" "$(cat "$tmp")"
+  local ec=$?
+  if [ $ec -ne 0 ]; then
+    echo "llm failed with exit code: $ec. Prompt saved at: $tmp"
+  else
+    rm -f "$tmp"
+  fi
+}
