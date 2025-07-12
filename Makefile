@@ -27,5 +27,8 @@ llm-git-commit: ## Configure llm for git commits
 	cp -f home/.mdeng/llm/git-commit.yaml "$$(llm templates path)"
 
 llm: llm-git-commit ## Install and configure llm models
-	llm install llm-gemini llm-openrouter llm-cmd llm-anthropic llm-deepseek llm-gguf llm-ollama llm-mistral
+	llm install llm-gemini llm-cmd llm-anthropic llm-gguf llm-ollama llm-mistral
+	llm uninstall -y llm-openrouter llm-deepseek
+	llm install 'https://github.com/michaelmdeng/llm-openrouter/archive/refs/tags/v0.4.1-mdeng.zip'
+	llm install 'https://github.com/michaelmdeng/llm-deepseek/archive/refs/tags/v0.1.4-mdeng.zip'
 	llm models default $(DEFAULT_MODEL)
