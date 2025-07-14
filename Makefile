@@ -26,9 +26,22 @@ llm-git-commit: ## Configure llm for git commits
 	llm aliases set git-commit $(GIT_COMMIT_MODEL)
 	cp -f home/.mdeng/llm/git-commit.yaml "$$(llm templates path)"
 
-llm: llm-git-commit ## Install and configure llm models
+llm-plugins: ## Install llm plugins
 	llm install llm-gemini llm-cmd llm-anthropic llm-gguf llm-ollama llm-mistral
 	llm uninstall -y llm-openrouter llm-deepseek
 	llm install 'https://github.com/michaelmdeng/llm-openrouter/archive/refs/tags/v0.4.1-mdeng.zip'
 	llm install 'https://github.com/michaelmdeng/llm-deepseek/archive/refs/tags/v0.1.4-mdeng.zip'
+
+llm-options: ## Configure model options for llm CLI
+	home/.mdeng/llm/apply-model-options.sh home/.mdeng/llm/model-options.json
+
+llm: llm-git-commit llm-plugins ## Install llm CLI and dependencies
+	llm aliases set default-free openrouter/deepseek/deepseek-chat-v3-0324:free
+	llm aliases set fast-free openrouter/deepseek/deepseek-chat-v3-0324:free
+	llm aliases set tool-free openrouter/moonshotai/kimi-k2:free
+	llm aliases set reason-free openrouter/deepseek/deepseek-r1-0528:free
+	llm aliases set default-open openrouter/deepseek/deepseek-chat-v3-0324
+	llm aliases set fast-open openrouter/deepseek/deepseek-chat-v3-0324
+	llm aliases set tool-open openrouter/moonshotai/kimi-k2
+	llm aliases set reason-open openrouter/deepseek/deepseek-r1-0528
 	llm models default $(DEFAULT_MODEL)

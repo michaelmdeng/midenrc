@@ -1,0 +1,14 @@
+{
+    "openrouter/deepseek/deepseek-r1-0528": {
+        "provider": "{\"ignore\": [\"klusterai\", \"baseten\", \"together\", \"fireworks\", \"sambanova\"]}"
+    },
+    "openrouter/deepseek/deepseek-chat-v3-0324": {
+        "provider": "{\"ignore\": [\"gmicloud\", \"baseten\", \"parasail\", \"hyperbolic\", \"together\", \"fireworks\", \"sambanova\"]}"
+    },
+    "openrouter/moonshotai/kimi-k2": {
+        "provider": "{\"ignore\": [\"parasail\"]}"
+    },
+    "openrouter/qwen/qwen3-235b-a22b": {
+        "provider": "{\"ignore\": [\"cerebras\"]}"
+    }
+}
