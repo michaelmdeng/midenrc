@@ -18,6 +18,9 @@ link: ## Link dotfiles using homeshick
 clean: ## Clean broken symlinks
 	./scripts/clean.sh
 
+shellcheck: ## Run shellcheck on shell scripts
+	git ls-files "**/*.sh" | xargs shellcheck
+
 DEFAULT_MODEL = openrouter/deepseek/deepseek-chat-v3-0324:free
 GIT_COMMIT_MODEL = openrouter/deepseek/deepseek-chat-v3-0324:free
 

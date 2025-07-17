@@ -1,9 +1,8 @@
 #!/bin/bash
-# Find a filename to use as a temp file
-TEMPFILE="`tempfile 2>/dev/null`"
-if [ $? -ne 0 ]; then
-	TEMPFILE="/tmp/_clip_temp_yssh$USER"
-fi
+set -euo pipefail
+TEMPFILE=$(mktemp)
+trap 'rm -f "${TEMPFILE}"' EXIT
+
 # Save stdin to file
 cat > "$TEMPFILE"
 
@@ -11,7 +10,4 @@ cat > "$TEMPFILE"
 tmux load-buffer "$TEMPFILE"
 
 # Push to system clipboard
-cat "$TEMPFILE" | pbcopy
-
-# Remove file
-rm -f "$TEMPFILE"
+pbcopy < "$TEMPFILE"
