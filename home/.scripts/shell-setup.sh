@@ -1,32 +1,33 @@
 #!/bin/bash
+set -euo pipefail
 
 sudo apt update
 
 # Basics
-sudo apt install curl zlib1g-dev
-sudo apt install vim neovim exuberant-ctags
-sudo apt install ddgr jq mpv pandoc powertop
+sudo apt install -y curl zlib1g-dev
+sudo apt install -y vim neovim exuberant-ctags
+sudo apt install -y ddgr jq mpv pandoc powertop
 
 # Basic GUI
-sudo apt install baobab gnome-tweak-tool
+sudo apt install -y baobab gnome-tweak-tool
 
 # Dropbox
-sudo apt install libatomic1
+sudo apt install -y libatomic1
 cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86" | tar xzf -
 
 # Keepass
-sudo apt install xdotool keepass2
+sudo apt install -y xdotool keepass2
 
-sudo apt install zsh
+sudo apt install -y zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # configuration stuff
-git clone https://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
-$HOME/.homesick/repos/homeshick/bin/homeshick clone https://github.com/michaelmdeng/midenrc.git
-$HOME/.homesick/repos/homeshick/bin/homeshick link midenrc
+git clone https://github.com/andsens/homeshick.git "$HOME/.homesick/repos/homeshick"
+"$HOME/.homesick/repos/homeshick/bin/homeshick" clone https://github.com/michaelmdeng/midenrc.git
+"$HOME/.homesick/repos/homeshick/bin/homeshick" link midenrc
 
 # tmux
-sudo apt install tmux ruby
+sudo apt install -y tmux ruby
 sudo gem install tmuxinator mdl
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone git@github.com:michaelmdeng/mdcli.git ~/Source
@@ -44,10 +45,10 @@ curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_
 sudo dpkg -i ripgrep_11.0.2_amd64.deb
 
 # CopyQ clipboard manager
-sudo apt install copyq
+sudo apt install -y copyq
 
 # touchpad gestures
-sudo apt install xdotool libinput-tools
+sudo apt install -y xdotool libinput-tools
 sudo gem install fusuma
 
 sudo npm install vss-css-languageserver-bin

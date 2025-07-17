@@ -1,6 +1,7 @@
 #!/bin/bash
+set -euo pipefail
 
-sudo apt install neovim python3-neovim
+sudo apt install -y neovim python3-neovim
 
 # nvim on global Python
 pip3 install sexpdata websocket-client

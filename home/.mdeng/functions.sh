@@ -1,20 +1,22 @@
+#!/bin/bash
 # Custom functions
 
 mkcdir ()
 {
     mkdir -p -- "$1" &&
-      cd -P -- "$1"
+      cd -P -- "$1" || exit
 }
 
 # fzf command history
 fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]*\** *//')
+  # shellcheck disable=SC2015
+  print -z "$( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]*\** *//')"
 }
 
 # fzf cd dir
 fcd() {
   local dir
-  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+  dir=$(find "${1:-.}" -type d 2> /dev/null | fzf +m) && cd "$dir" || exit
 }
 
 # fzf file content
@@ -40,7 +42,7 @@ fkill() {
 
     if [ "x$pid" != "x" ]
     then
-        echo $pid | xargs kill -${1:-9}
+        echo "$pid" | xargs kill -"${1:-9}"
     fi
 }
 
@@ -60,7 +62,8 @@ ubuntu_update() {
 }
 
 llmedit() {
-  local tmp=$(mktemp)
+  local tmp
+  tmp=$(mktemp)
   "${EDITOR:-nvim}" "$tmp" || return
   llm "$@" "$(cat "$tmp")"
   local ec=$?

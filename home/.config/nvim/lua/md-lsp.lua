@@ -11,7 +11,7 @@ local on_attach = function(_, bufnr)
   -- buffer
   buf_set_keymap('n', '<leader>a', '<cmd>lua require("actions-preview").code_actions()<CR>', opts)
   buf_set_keymap('n', '<leader>dc', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<leader>=', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
   buf_set_keymap('n', '<leader>t', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', '<leader>im', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<c-r>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -25,6 +25,18 @@ local on_attach = function(_, bufnr)
 end
 
 local nvim_lsp = require('lspconfig')
+
+local function deep_merge(t1, t2)
+  for k, v in pairs(t2) do
+    if type(v) == "table" and type(t1[k]) == "table" then
+      t1[k] = deep_merge(t1[k], v)
+    else
+      t1[k] = v
+    end
+  end
+  return t1
+end
+
 local servers = {
   bashls = 'bash-language-server',
   cssls = 'css-languageserver',
@@ -34,23 +46,53 @@ local servers = {
   html = 'html-languageserver',
   lua_ls = 'lua-language-server',
   metals = 'metals',
-  pylsp = 'pyls',
+  pylsp = 'pylsp',
   rust_analyzer = 'rust-analyzer',
   solargraph = 'solargraph',
   terraformls = 'terraform-ls',
   vimls = 'vim-language-server',
   yamlls = 'yamlls'
 }
+
+local custom_configs = {
+  pylsp = {
+    settings = {
+      pylsp = {
+        plugins = {
+          autopep8 = { enabled = false },
+          flake8 = { enabled = false },
+          mccabe = { enabled = false },
+          pydocstyle = { enabled = false },
+          pycodestyle = { enabled = false },
+          pyflakes = { enabled = false },
+          pylint = { enabled = false },
+          rope_autoimport = { enabled = true },
+          rope_completion = { enabled = true },
+          ruff = { enabled = true },
+          yapf = { enabled = false },
+        }
+      }
+    }
+  }
+}
+
 for lsp, exec in pairs(servers) do
   local cmd = string.format('executable(\'%s\')', exec)
   if (api.nvim_eval(cmd))
   then
-    nvim_lsp[lsp].setup {
+    local lsp_opts = {
       on_attach = on_attach,
       flags = {
         debounce_text_changes = 150,
       }
     }
+
+    local custom_lsp_opts = custom_configs[lsp]
+    if custom_lsp_opts then
+      lsp_opts = deep_merge(lsp_opts, custom_lsp_opts)
+    end
+
+    nvim_lsp[lsp].setup(lsp_opts)
   end
 end
 

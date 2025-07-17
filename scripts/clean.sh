@@ -2,9 +2,14 @@
 
 # macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  if ! command -v grealpath &> /dev/null || ! command -v gfind &> /dev/null; then
-    echo "Error: 'grealpath' or 'gfind' not found. Please install coreutils:" >&2
+  if ! command -v grealpath &> /dev/null; then
+    echo "Error: 'grealpath' not found. Please install coreutils:" >&2
     echo "  brew install coreutils" >&2
+    exit 1
+  fi
+  if ! command -v gfind &> /dev/null; then
+    echo "Error: 'gfind' not found. Please install findutils:" >&2
+    echo "  brew install findutils" >&2
     exit 1
   fi
   REALPATH_CMD="grealpath"
@@ -17,7 +22,7 @@ fi
 DRY_RUN=0
 INTERACTIVE=0
 
-while [[ $# -gt 0 ]]; do
+while [ $# -gt 0 ]; do
   case "$1" in
     --dry-run|-n)
       DRY_RUN=1
