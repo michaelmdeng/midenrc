@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function tidb_mysql_cmd() {
 	CONTEXT="m-tidb-$1-ea1-us" 
 	NS="tidb-$2" 
@@ -16,7 +18,7 @@ function tidb_mysql_local_cmd() {
 }
 
 function tidb_mysql_connect() {
-	COMMAND="mdcli tidb mysql -d ${@}"
+	COMMAND="mdcli tidb mysql -d ${*}"
 
 	eval "$COMMAND"
 }
@@ -30,20 +32,25 @@ function tmysql() {
 }
 
 function tidb_ticdc_exec() {
-	CONTEXT="m-tidb-$1-ea1-us"
-	NS="tidb-$2"
-	CDC_POD="$2-ticdc-1"
-	PD_ENDPOINT="https://$2-pd:2379"
-	shift 2
+    COMMAND="mdcli tidb ticdc -d ${*}"
 
-	echo "Connecting to $CDC_POD in $NS on $CONTEXT"
-	cmd="kctl --context \"$CONTEXT\" -n "$NS" exec -it \"$CDC_POD\" -c ticdc -- bin/sh -c \"/cdc cli --pd $PD_ENDPOINT --cert /var/lib/cluster-client-tls/tls.crt --key /var/lib/cluster-client-tls/tls.key --ca /var/lib/cluster-client-tls/ca.crt ${@}\""
-	echo $cmd
-	eval "$cmd"
+    eval "$COMMAND"
+}
+
+function tidb_ticdc() {
+    COMMAND="mdcli tidb ticdc -d ${*}"
+
+    eval "$COMMAND"
+}
+
+function tcdc() {
+    COMMAND="mdcli tidb ticdc -d ${*}"
+
+    eval "$COMMAND"
 }
 
 function tidb_dmctl_connect() {
-	COMMAND="mdcli tidb dmctl -d ${@}"
+	COMMAND="mdcli tidb dmctl -d ${*}"
 
 	eval "$COMMAND"
 }
@@ -57,7 +64,7 @@ function tdmctl() {
 }
 
 function tidb_pdctl_connect() {
-	COMMAND="mdcli tidb pdctl -d ${@}"
+	COMMAND="mdcli tidb pdctl -d ${*}"
 
 	eval "$COMMAND"
 }
@@ -79,10 +86,6 @@ function tidb_kc() {
 }
 
 function tidbkc() {
-	tidb_kctl "$@"
-}
-
-function tikc() {
 	tidb_kctl "$@"
 }
 
@@ -134,17 +137,9 @@ function aurora_mysql_connect() {
 }
 
 function tidb_k9s() {
-	COMMAND="mdcli tidb tk9s -d ${@}"
+	COMMAND="mdcli tidb tk9s -d ${*}"
 
 	eval "$COMMAND"
-}
-
-function tidbk9s() {
-	tidb_k9s "$@"
-}
-
-function tik9s() {
-	tidb_k9s "$@"
 }
 
 function tk9s() {
@@ -152,7 +147,7 @@ function tk9s() {
 }
 
 function aws_select_role() {
-	eval $(aws-creds select-role)
+	eval "$(aws-creds select-role)"
 }
 
 function gh_prs() {
@@ -160,17 +155,4 @@ function gh_prs() {
         pr=$(echo "$prs" | jq -r '.[] | [.number, .title, .author.login, .repository.name, .url] | @tsv' | fzf)
         pr_url=$(echo "$pr" | cut -f5)
         open "$pr_url"
-}
-
-function tidb_tmux() {
-	tmuxinator start abb-tidb --no-attach && \
-	tmuxinator start abb-k8s --no-attach && \
-	tmuxinator start abb-tidb-tools --no-attach && \
-	tmuxinator start abb-tidb-upstream --no-attach && \
-	tmuxinator start abb-tidb-infra --no-attach
-	mdcli tmux layout -s abb-tidb && \
-	mdcli tmux layout -s abb-k8s && \
-	mdcli tmux layout -s abb-tidb-tools && \
-	mdcli tmux layout -s abb-tidb-upstream && \
-	mdcli tmux layout -s abb-tidb-infra
 }

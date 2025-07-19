@@ -2,11 +2,11 @@
 
 set -eu pipefail -x
 
-git clone https://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
-$HOME/.homesick/repos/homeshick/bin/homeshick -q clone https://github.com/michaelmdeng/midenrc.git
-cd $HOME/.homesick/repos/midenrc && git checkout airbnb
+git clone https://github.com/andsens/homeshick.git "$HOME"/.homesick/repos/homeshick
+"$HOME"/.homesick/repos/homeshick/bin/homeshick -q clone https://github.com/michaelmdeng/midenrc.git
+cd "$HOME"/.homesick/repos/midenrc && git checkout airbnb
 
-cd $HOME
+cd "$HOME"
 mkdir apps
 
 # nvim
@@ -24,15 +24,15 @@ sudo dpkg -i apps/ripgrep_13.0.0_amd64.deb
 
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
-git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf && $HOME/.fzf/install --all
+git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME"/.fzf && "$HOME"/.fzf/install --all
 
 # vim-plug
-curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
+curl -fLo "$HOME"/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # mdcli
 mkdir Source
-git clone https://github.com/michaelmdeng/mdcli.git $HOME/Source
+git clone https://github.com/michaelmdeng/mdcli.git "$HOME"/Source
 
 # gopls
 go install golang.org/x/tools/gopls@latest
@@ -48,11 +48,11 @@ workon nvim3
 pip3 install neovim sexpdata websocket-client
 deactivate
 
-$HOME/apps/nvim-linux64/bin/nvim +PlugInstall
-$HOME/apps/nvim-linux64/bin/nvim +UpdateRemotePlugins
+"$HOME"/apps/nvim-linux64/bin/nvim +PlugInstall
+"$HOME"/apps/nvim-linux64/bin/nvim +UpdateRemotePlugins
 
-$HOME/.homesick/repos/homeshick/bin/homeshick link midenrc -f
+"$HOME"/.homesick/repos/homeshick/bin/homeshick link midenrc -f
 
 # tpm
-git clone https://github.com/tmux-plugins/tpm $HOME/tmux/plugins/tpm
-$HOME/tmux/plugins/tpm/bin/install_plugins
+git clone https://github.com/tmux-plugins/tpm "$HOME"/tmux/plugins/tpm
+"$HOME"/tmux/plugins/tpm/bin/install_plugins
