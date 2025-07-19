@@ -144,55 +144,9 @@ vim.cmd.amenu([[PopUp.Files <Cmd>lua require"telescope.builtin".find_files()<CR>
 vim.cmd.amenu([[PopUp.Recent\Files <Cmd>Telescope old_files<CR>]])
 EOF
 
-" nvim-dap
 lua << EOF
-local dap = require("dap")
-require('dap-go').setup()
-require('dap-python').setup()
-require('dap-ruby').setup()
-
-dap.configurations.scala = {
-  {
-    type = "scala",
-    request = "launch",
-    name = "RunOrTest",
-    metals = {
-      runType = "runOrTestFile",
-      --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
-    },
-  },
-  {
-    type = "scala",
-    request = "launch",
-    name = "Test Target",
-    metals = {
-      runType = "testTarget",
-    },
-  },
-}
-
-local dapui = require("dapui")
-dapui.setup()
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
-end
-
-vim.cmd.amenu([[PopUp.-SEP2- <cmd>]])
-vim.cmd.amenu([[PopUp.Debug <Cmd>lua require'dap'.continue()<CR>]])
-vim.cmd.amenu([[PopUp.Toggle\ Breakpoint <Cmd>lua require'dap'.toggle_breakpoint()<CR>]])
+require('md-dap')
 EOF
-
-nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
-nnoremap <silent> <F9> <Cmd>lua require'dap'.toggle_breakpoint()<CR>
-nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
-nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
-nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
 
 " indent-blankline
 augroup indentLine
