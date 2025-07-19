@@ -23,11 +23,24 @@ fcd() {
 ff() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
 
+  h=$(tput lines)
+  w=$(tput cols)
+
+  if [ "$h" -lt 10 ]; then
+    preview_window="right:50%"
+  elif [ "$w" -gt 200 ]; then
+    preview_window="right:65%"
+  elif [ "$w" -gt 100 ]; then
+    preview_window="right:50%"
+  else
+    preview_window="down:65%"
+  fi
+
   if [ "$#" -eq 1 ]; then
-    rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+    rg --files-with-matches --no-messages "$1" | fzf --preview-window=$preview_window --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
     return
   else
-      rg --files-with-matches --no-messages "$1" "$2" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+      rg --files-with-matches --no-messages "$1" "$2" | fzf --preview-window=$preview_window --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
   fi
 }
 
