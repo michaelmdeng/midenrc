@@ -7,11 +7,6 @@ Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'mhartington/oceanic-next'
 
 " Language
-Plug 'chrisbra/csv.vim'
-Plug 'derekwyatt/vim-scala'
-Plug 'slim-template/vim-slim'
-Plug 'towolf/vim-helm'
-
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ervandew/supertab', { 'commit': '6ce7793' }
@@ -51,7 +46,7 @@ if has('nvim')
   Plug 'kosayoda/nvim-lightbulb', { 'tag': 'v1.0.0' }
   Plug 'aznhe21/actions-preview.nvim'
 
-  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+  Plug 'nvim-telescope/telescope.nvim', { 'commit': 'b4da76b' }
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   Plug 'nvim-telescope/telescope-symbols.nvim'
   Plug 'nvim-telescope/telescope-ui-select.nvim'
@@ -62,7 +57,6 @@ if has('nvim')
 
   Plug 'leoluz/nvim-dap-go'
   Plug 'mfussenegger/nvim-dap-python'
-  Plug 'scalameta/nvim-metals'
   Plug 'suketa/nvim-dap-ruby'
 
   Plug 'hrsh7th/cmp-nvim-lsp'
@@ -71,7 +65,7 @@ if has('nvim')
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
 
-  Plug 'milanglacier/minuet-ai.nvim'
+  Plug 'milanglacier/minuet-ai.nvim', { 'tag': 'v0.5.2' }
 endif
 
 call plug#end()
