@@ -38,7 +38,6 @@ local function deep_merge(t1, t2)
 end
 
 local servers = {
-  bashls = 'bash-language-server',
   cssls = 'css-languageserver',
   dockerls = 'docker-langserver',
   gopls = 'gopls',
