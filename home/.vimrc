@@ -60,10 +60,11 @@ if has('nvim')
   Plug 'suketa/nvim-dap-ruby'
 
   Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-nvim-lsp-document-symbol'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
-  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/nvim-cmp', { 'tag': 'v0.0.2' }
 
   Plug 'milanglacier/minuet-ai.nvim', { 'tag': 'v0.5.2' }
 endif
@@ -274,12 +275,6 @@ nnoremap <C-s>] <C-w>]
 nnoremap <C-s><c-]> <C-w>]
 nnoremap <C-v>] <cmd>vsp <bar> execute "tag" expand("<cword>")<cr>
 nnoremap <C-v><c-]> <cmd>vsp <bar> execute "tag" expand("<cword>")<cr>
-
-" very-magic search
-nnoremap / /\v
-nnoremap ? ?\v
-vnoremap / /\v
-vnoremap ? ?\v
 
 " delete without clobbering registers
 nnoremap s "_d
