@@ -1,6 +1,3 @@
-let g:python_host_prog="~/.virtualenvs/nvim2/bin/python"
-let g:python3_host_prog="~/.virtualenvs/nvim3/bin/python"
-
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
@@ -14,53 +11,52 @@ set laststatus=3
 " Improved filetype detection
 let g:do_filetype_lua = 1
 
-lua << EOF
-require('md-treesitter')
-EOF
+" treesitter
+lua require('md-treesitter')
 
 " gitsigns
 lua << EOF
-  require('gitsigns').setup {
-    on_attach = function(bufnr)
-      local gs = package.loaded.gitsigns
+require('gitsigns').setup {
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
 
-      local function map(mode, l, r, opts)
-        opts = opts or {}
-        opts.buffer = bufnr
-        vim.keymap.set(mode, l, r, opts)
-      end
-
-      -- Navigation
-      map('n', ']c', function()
-        if vim.wo.diff then return ']c' end
-        vim.schedule(function() gs.next_hunk() end)
-        return '<Ignore>'
-      end, {expr=true})
-
-      map('n', '[c', function()
-        if vim.wo.diff then return '[c' end
-        vim.schedule(function() gs.prev_hunk() end)
-        return '<Ignore>'
-      end, {expr=true})
-      -- Stage
-      map('n', '<leader>sh', gs.stage_hunk)
-      map('v', '<leader>sh', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-      map('n', '<leader>Sh', gs.stage_buffer)
-      map('v', '<leader>Sh', gs.stage_buffer)
-      -- Restore (undo stage)
-      map('n', '<leader>rh', gs.undo_stage_hunk)
-      map('v', '<leader>rh', function() gs.undo_stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-      -- Undo (reset)
-      map('n', '<leader>uh', gs.reset_hunk)
-      map('v', '<leader>hh', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-      map('n', '<leader>Uh', gs.reset_buffer_index)
-      -- Misc
-      map('n', '<leader>bh', function() gs.blame_line{full=true} end)
-      map('n', '<leader>ph', gs.preview_hunk)
-      -- Text object
-      map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
     end
-  }
+
+    -- Navigation
+    map('n', ']c', function()
+      if vim.wo.diff then return ']c' end
+      vim.schedule(function() gs.next_hunk() end)
+      return '<Ignore>'
+    end, {expr=true})
+
+    map('n', '[c', function()
+      if vim.wo.diff then return '[c' end
+      vim.schedule(function() gs.prev_hunk() end)
+      return '<Ignore>'
+    end, {expr=true})
+    -- Stage
+    map('n', '<leader>sh', gs.stage_hunk)
+    map('v', '<leader>sh', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    map('n', '<leader>Sh', gs.stage_buffer)
+    map('v', '<leader>Sh', gs.stage_buffer)
+    -- Restore (undo stage)
+    map('n', '<leader>rh', gs.undo_stage_hunk)
+    map('v', '<leader>rh', function() gs.undo_stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    -- Undo (reset)
+    map('n', '<leader>uh', gs.reset_hunk)
+    map('v', '<leader>hh', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    map('n', '<leader>Uh', gs.reset_buffer_index)
+    -- Misc
+    map('n', '<leader>bh', function() gs.blame_line{full=true} end)
+    map('n', '<leader>ph', gs.preview_hunk)
+    -- Text object
+    map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+  end
+}
 EOF
 
 nnoremap <leader>pf :set nonu nornu scl=no <bar> luado require('gitsigns').toggle_signs() <bar> IndentBlanklineDisable<CR>
@@ -68,9 +64,7 @@ nnoremap <leader>fp :set nu rnu scl=yes <bar> luado require('gitsigns').toggle_s
 nnoremap <leader>hh :luado require('gitsigns').setloclist(0)<CR>
 
 " Nvim LSP
-lua << EOF
-require('md-lsp')
-EOF
+lua require('md-lsp')
 
 " nvim-cmp
 lua << EOF
@@ -138,15 +132,14 @@ vim.cmd.amenu([[PopUp.Go-to\ Definition <Cmd>Telescope lsp_definitions<CR>]])
 vim.cmd.amenu([[PopUp.Implementations <Cmd>Telescope lsp_implementations<CR>]])
 vim.cmd.amenu([[PopUp.References <Cmd>Telescope lsp_references<CR>]])
 vim.cmd.amenu([[PopUp.Code\ Action <Cmd>lua vim.lsp.buf.code_action()<CR>]])
-vim.cmd.amenu([[PopUp.-SEP1- <cmd>]])
+vim.cmd.amenu([[PopUp.-SEP1- <CR>]])
 vim.cmd.amenu([[PopUp.GitFiles <Cmd>Telescope git_files<CR>]])
 vim.cmd.amenu([[PopUp.Files <Cmd>lua require"telescope.builtin".find_files()<CR>]])
 vim.cmd.amenu([[PopUp.Recent\Files <Cmd>Telescope old_files<CR>]])
 EOF
 
-lua << EOF
-require('md-dap')
-EOF
+" nvim-dap
+lua require('md-dap')
 
 " indent-blankline
 augroup indentLine
@@ -163,6 +156,7 @@ let g:float_preview#docked = 0
 " nvim-tree
 lua require('md-nvim-tree')
 
+" nvim-lightbulb and actions-preview
 lua << EOF
 require("nvim-lightbulb").setup({
   sign = { enabled = false },
@@ -193,6 +187,7 @@ require('actions-preview').setup {
 }
 EOF
 
+" minuet
 lua << EOF
 local api_key = os.getenv("CODESTRAL_API_KEY")
 if api_key and api_key ~= "" then

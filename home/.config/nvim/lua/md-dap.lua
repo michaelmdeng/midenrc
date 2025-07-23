@@ -8,6 +8,25 @@ vim.fn.sign_define('DapBreakpointRejected', {text='◌', texthl='', linehl='', n
 require('dap-python').setup()
 require('dap-ruby').setup()
 
+require('dap-go').setup {
+  dap_configurations = {
+    {
+      type = "go",
+      name = "Attach remote",
+      mode = "remote",
+      request = "attach",
+      connect = {
+        host = "127.0.0.1",
+        port = "38697"
+      }
+    },
+  },
+  delve = {
+    initialize_timeout_sec = 10,
+    port = "38697",
+  },
+}
+
 local dapui = require("dapui")
 dapui.setup()
 dap.listeners.after.event_initialized["dapui_config"] = function()

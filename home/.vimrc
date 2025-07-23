@@ -6,7 +6,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'mhartington/oceanic-next'
 
-" Language
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ervandew/supertab', { 'commit': '6ce7793' }
@@ -35,10 +34,10 @@ if has('nvim')
   Plug 'lewis6991/gitsigns.nvim', { 'tag': 'v0.7' }
   Plug 'lukas-reineke/indent-blankline.nvim', { 'tag': 'v2.20.8' }
   Plug 'ncm2/float-preview.nvim'
-  Plug 'neovim/nvim-lspconfig', { 'tag': 'v2.2.0' }
-  Plug 'nvim-lua/plenary.nvim', { 'tag': 'v0.1.4' }
+  Plug 'nvim-lua/plenary.nvim', { 'commit': '857c5ac' }
   Plug 'nvim-tree/nvim-tree.lua', { 'tag': 'nvim-tree-v1.3.0' }
 
+  Plug 'neovim/nvim-lspconfig', { 'tag': 'v2.3.0' }
   Plug 'nvim-treesitter/nvim-treesitter', { 'tag': 'v0.9.2', 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-context', { 'tag': 'v1.0.0', 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -64,7 +63,7 @@ if has('nvim')
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
-  Plug 'hrsh7th/nvim-cmp', { 'tag': 'v0.0.2' }
+  Plug 'hrsh7th/nvim-cmp', { 'commit': 'b5311ab' }
 
   Plug 'milanglacier/minuet-ai.nvim', { 'tag': 'v0.5.2' }
 endif
@@ -112,8 +111,8 @@ set autoread
 " Wild menu settings
 set wildmode=longest,full
 set wildignore+=*swp,*.class,*.pyc,*.png,*.jpg,*.gif,*.zip
-set wildignore+=*.o,*.obj,*.so     " Unix
-set wildignore+=*.exe            " Windows
+set wildignore+=*.o,*.obj,*.so
+set wildignore+=*.exe
 
 " Case settings for search
 set ignorecase
@@ -300,12 +299,6 @@ nnoremap <leader><C-d> mp<C-d>`p
 augroup InsertCursor
   autocmd InsertEnter * set cul
   autocmd InsertLeave * set nocul
-augroup end
-
-" maintain folds
-augroup MaintainFoldMethod
-  autocmd BufWrite * mkview!
-  autocmd BufRead * silent! loadview
 augroup end
 
 augroup BgHighlight

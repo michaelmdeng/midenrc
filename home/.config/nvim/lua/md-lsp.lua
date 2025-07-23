@@ -69,10 +69,10 @@ local custom_configs = {
           rope_completion = { enabled = true },
           ruff = { enabled = true },
           yapf = { enabled = false },
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 }
 
 for lsp, exec in pairs(servers) do

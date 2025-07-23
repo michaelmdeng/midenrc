@@ -1,8 +1,6 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.api.nvim_set_keymap('n', '<leader>~', '<cmd>luado require("nvim-tree.api").tree.toggle({path=".", find_file=false, update_root=false, focus=false})<cr><cmd>TagbarToggle<cr>', { expr = false, noremap = true, silent = true })
-
 local function nvimtree_on_attach(bufnr)
   local api = require "nvim-tree.api"
 
@@ -26,6 +24,17 @@ end
 -- OR setup with some options
 require("nvim-tree").setup({
   on_attach = nvimtree_on_attach,
+  actions = {
+    change_dir = {
+      enable = false,
+    },
+  },
+  update_focused_file = {
+    enable = false,
+    update_root = false,
+  },
+  respect_buf_cwd = false,
+  sync_root_with_cwd = false,
   sort = {
     sorter = "name",
   },
