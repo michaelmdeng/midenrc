@@ -34,7 +34,7 @@ llm-plugins: ## Install llm plugins
 	llm uninstall -y llm-openrouter llm-deepseek llm-mdeng
 	llm install 'https://github.com/michaelmdeng/llm-openrouter/archive/refs/tags/v0.4.1-mdeng0.1.zip'
 	llm install 'https://github.com/michaelmdeng/llm-deepseek/archive/refs/tags/v0.1.4-mdeng.zip'
-	llm install 'https://github.com/michaelmdeng/llm-mdeng/archive/refs/tags/v0.0.1.zip'
+	llm install 'https://github.com/michaelmdeng/llm-mdeng/archive/refs/tags/v0.0.2.zip'
 
 llm-options: ## Configure model options for llm CLI
 	home/.mdeng/llm/apply-model-options.sh home/.mdeng/llm/model-options.json
