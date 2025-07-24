@@ -21,8 +21,8 @@ clean: ## Clean broken symlinks
 shellcheck: ## Run shellcheck on shell scripts
 	git ls-files "**/*.sh" | xargs shellcheck
 
-DEFAULT_MODEL = openrouter/deepseek/deepseek-chat-v3-0324:free
-GIT_COMMIT_MODEL = openrouter/deepseek/deepseek-chat-v3-0324:free
+DEFAULT_MODEL = openrouter/qwen/qwen3-235b-a22b-07-25:free
+GIT_COMMIT_MODEL = openrouter/qwen/qwen3-235b-a22b-07-25:free
 
 .PHONY: llm llm-git-commit
 llm-git-commit: ## Configure llm for git commits
@@ -40,12 +40,11 @@ llm-options: ## Configure model options for llm CLI
 	home/.mdeng/llm/apply-model-options.sh home/.mdeng/llm/model-options.json
 
 llm: llm-git-commit llm-plugins ## Install llm CLI and dependencies
-	llm aliases set default-free openrouter/deepseek/deepseek-chat-v3-0324:free
-	llm aliases set fast-free openrouter/deepseek/deepseek-chat-v3-0324:free
-	llm aliases set tool-free openrouter/moonshotai/kimi-k2:free
+	llm aliases set fast-free openrouter/qwen/qwen3-235b-a22b-07-25:free
+	llm aliases set tool-free openrouter/qwen/qwen3-coder:free
 	llm aliases set reason-free openrouter/deepseek/deepseek-r1-0528:free
 	llm aliases set default-open openrouter/deepseek/deepseek-chat-v3-0324
-	llm aliases set fast-open openrouter/deepseek/deepseek-chat-v3-0324
-	llm aliases set tool-open openrouter/moonshotai/kimi-k2
+	llm aliases set fast-open openrouter/qwen/qwen3-235b-a22b-07-25
+	llm aliases set tool-open openrouter/qwen/qwen3-coder
 	llm aliases set reason-open openrouter/deepseek/deepseek-r1-0528
 	llm models default $(DEFAULT_MODEL)
