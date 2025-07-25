@@ -65,12 +65,14 @@
 	stage = diff --staged
 	staged = diff --staged
 
-	ciai = !git commit -e -m \"$(git diff --staged | llm -t git-commit -p branch $(git rev-parse --abbrev-ref HEAD))\"
 	ci = commit
 	cia = commit -a
 	cie = commit -e
 	ciae = commit -ae
 	ciea = commit -ae
+
+	ciai = !git commit -e -m \"$(git diff --staged | llm -t git-commit -p branch $(git rev-parse --abbrev-ref HEAD))\"
+	cillm = !git commit -e -m \"$(git diff --staged | llm -t git-commit -p branch $(git rev-parse --abbrev-ref HEAD))\"
 
 	br = branch
 	rb = rebase

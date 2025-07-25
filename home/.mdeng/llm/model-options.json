@@ -5,10 +5,10 @@
     "openrouter/deepseek/deepseek-chat-v3-0324": {
         "provider": "{\"ignore\": [\"gmicloud\", \"baseten\", \"parasail\", \"hyperbolic\", \"together\", \"fireworks\", \"sambanova\"]}"
     },
-    "openrouter/moonshotai/kimi-k2": {
-        "provider": "{\"ignore\": [\"parasail\"]}"
+    "openrouter/qwen/qwen3-coder": {
+        "provider": "{\"order\": [\"chutes\"], \"ignore\": [\"novita\", \"hyperbolic\", \"parasail\"]}"
     },
-    "openrouter/qwen/qwen3-235b-a22b": {
-        "provider": "{\"ignore\": [\"cerebras\"]}"
+    "openrouter/qwen/qwen3-235b-a22b-07-25": {
+        "provider": "{\"ignore\":[\"alibaba\"]}"
     }
 }

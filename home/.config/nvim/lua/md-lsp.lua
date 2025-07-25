@@ -38,7 +38,6 @@ local function deep_merge(t1, t2)
 end
 
 local servers = {
-  bashls = 'bash-language-server',
   cssls = 'css-languageserver',
   dockerls = 'docker-langserver',
   gopls = 'gopls',
@@ -70,10 +69,10 @@ local custom_configs = {
           rope_completion = { enabled = true },
           ruff = { enabled = true },
           yapf = { enabled = false },
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 }
 
 for lsp, exec in pairs(servers) do
