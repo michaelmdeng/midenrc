@@ -5,6 +5,9 @@
     "openrouter/deepseek/deepseek-chat-v3-0324": {
         "provider": "{\"ignore\": [\"gmicloud\", \"baseten\", \"parasail\", \"hyperbolic\", \"together\", \"fireworks\", \"sambanova\"]}"
     },
+    "openrouter/deepseek/deepseek-chat-v3-0324:free": {
+        "provider": "{\"ignore\": [\"targon\"]}"
+    },
     "openrouter/moonshotai/kimi-k2": {
         "provider": "{\"ignore\": [\"parasail\", \"together\", \"groq\", \"gmicloud\"]}"
     },
