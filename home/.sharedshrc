@@ -105,6 +105,11 @@ fi
 
 export FZF_BASE=$(brew --prefix fzf)
 
+if check_cmd_exists "llm"; then
+	export CODESTRAL_API_KEY=$(llm keys get codestral)
+	export OPENROUTER_API_KEY=$(llm keys get openrouter)
+fi
+
 # ------------
 # Completions
 # ------------

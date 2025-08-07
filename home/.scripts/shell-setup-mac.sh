@@ -1,5 +1,39 @@
 #!/bin/bash
 set -euo pipefail
 
-brew install bat ripgrep pandoc ctags
-brew install findutils coreutils
+# Basics
+brew install \
+    bat \
+    coreutils \
+    ctags \
+    findutils \
+    fzf \
+    gh \
+    git \
+    git-filter-repo \
+    go \
+    helm \
+    jq \
+    k9s \
+    kubectx \
+    kustomize \
+    lefthook \
+    make \
+    mise \
+    node \
+    pandoc \
+    python@3.13 \
+    ripgrep \
+    ruby \
+    shellcheck \
+    sqlite \
+    terraform \
+    terraform-ls \
+    tflint \
+    tmux \
+    universal-ctags \
+    virtualenv \
+    virtualenvwrapper \
+    yq \
+    z \
+    zellij

@@ -24,11 +24,16 @@ shellcheck: ## Run shellcheck on shell scripts
 DEFAULT_MODEL = openrouter/deepseek/deepseek-chat-v3-0324:free
 GIT_COMMIT_MODEL = openrouter/deepseek/deepseek-chat-v3-0324:free
 
-.PHONY: llm llm-git-commit
+.PHONY: llm-install
+llm-install: ## Reinstall the llm tool
+	uv tool install --reinstall "git+ssh://git@github.com/michaelmdeng/llm.git@mdeng/main"
+
+.PHONY: llm llm-git-commit 
 llm-git-commit: ## Configure llm for git commits
 	llm aliases set git-commit $(GIT_COMMIT_MODEL)
 	cp -f home/.mdeng/llm/git-commit.yaml "$$(llm templates path)"
 
+.PHONY: llm-plugins
 llm-plugins: ## Install llm plugins
 	llm install llm-gemini llm-cmd llm-anthropic llm-gguf llm-ollama llm-mistral
 	llm uninstall -y llm-openrouter llm-deepseek llm-mdeng
@@ -36,9 +41,11 @@ llm-plugins: ## Install llm plugins
 	llm install 'https://github.com/michaelmdeng/llm-deepseek/archive/refs/tags/v0.1.4-mdeng.zip'
 	llm install 'git+ssh://git@github.com/michaelmdeng/llm-mdeng.git@v0.0.4'
 
+.PHONY: llm-options
 llm-options: ## Configure model options for llm CLI
 	home/.mdeng/llm/apply-model-options.sh home/.mdeng/llm/model-options.json
 
+.PHONY: llm-aliases
 llm-aliases: llm-plugins ## Install llm CLI and dependencies
 	llm aliases set fast-free openrouter/deepseek/deepseek-chat-v3-0324:free
 	llm aliases set tool-free openrouter/moonshotai/kimi-k2:free
@@ -49,4 +56,5 @@ llm-aliases: llm-plugins ## Install llm CLI and dependencies
 	llm aliases set reason-open openrouter/deepseek/deepseek-r1-0528
 	llm models default $(DEFAULT_MODEL)
 
+.PHONY: llm
 llm: llm-aliases llm-git-commit llm-plugins ## Install llm CLI and dependencies

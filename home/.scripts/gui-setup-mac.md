@@ -13,3 +13,10 @@ information on how to install them.
 | MacPass             | KeePass client for MacOS.  | https://macpassapp.org/               |
 | TurboBoost Switcher | Disable turbo boost.       | http://tbswitcher.rugarciap.com/      |
 | Clipy               | Clipboard manager.         | https://clipy-app.com/                |
+
+* Homerow
+* Ollama
+* Be Focused
+* Bartender
+* Itsycal
+* Monokle
