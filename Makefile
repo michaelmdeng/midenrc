@@ -39,7 +39,7 @@ llm-plugins: ## Install llm plugins
 	llm install llm-gemini llm-cmd llm-anthropic llm-ollama
 	llm uninstall -y llm-openrouter llm-mdeng
 	llm install 'https://github.com/michaelmdeng/llm-openrouter/archive/refs/tags/v0.4.1-mdeng0.1.zip'
-	llm install 'git+ssh://git@github.com/michaelmdeng/llm-mdeng.git@v0.1.0'
+	llm install 'git+ssh://git@github.com/michaelmdeng/llm-mdeng.git@v0.1.1'
 
 .PHONY: llm-options
 llm-options: ## Configure llm model options
