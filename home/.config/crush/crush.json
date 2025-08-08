@@ -1,0 +1,19 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "options": {
+      "disable_auto_summarize": true,
+      "tui": {
+          "compact_mode": true
+      }
+  },
+  "permissions": {
+    "allowed_tools": [
+      "cat",
+      "grep",
+      "jq",
+      "ls",
+      "rg",
+      "yq"
+    ]
+  }
+}
