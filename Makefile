@@ -39,7 +39,7 @@ llm-plugins: ## Install llm plugins
 	llm uninstall -y llm-openrouter llm-deepseek llm-mdeng
 	llm install 'https://github.com/michaelmdeng/llm-openrouter/archive/refs/tags/v0.4.1-mdeng0.1.zip'
 	llm install 'https://github.com/michaelmdeng/llm-deepseek/archive/refs/tags/v0.1.4-mdeng.zip'
-	llm install 'git+ssh://git@github.com/michaelmdeng/llm-mdeng.git@v0.0.4'
+	llm install 'git+ssh://git@github.com/michaelmdeng/llm-mdeng.git@v0.0.5'
 
 .PHONY: llm-options
 llm-options: ## Configure model options for llm CLI
@@ -48,7 +48,7 @@ llm-options: ## Configure model options for llm CLI
 .PHONY: llm-aliases
 llm-aliases: llm-plugins ## Install llm CLI and dependencies
 	llm aliases set fast-free openrouter/deepseek/deepseek-chat-v3-0324:free
-	llm aliases set tool-free openrouter/moonshotai/kimi-k2:free
+	llm aliases set tool-free openrouter/qwen/qwen3-coder:free
 	llm aliases set reason-free openrouter/deepseek/deepseek-r1-0528:free
 	llm aliases set default-open openrouter/qwen/qwen3-235b-a22b-2507
 	llm aliases set fast-open openrouter/qwen/qwen3-235b-a22b-2507
