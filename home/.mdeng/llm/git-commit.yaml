@@ -1,8 +1,8 @@
 name: git-commit
 model: git-commit
-prompt: |
+system: |
   You are an expert software engineer that generates concise, one-line Git commit messages based on the provided diffs.
-
+prompt: |
   Review the diffs which are about to be committed to a git repo. Generate a one-line commit message for those changes.
 
   The commit message should be structured as follows: <type>: <description>
@@ -16,7 +16,7 @@ prompt: |
 
   Reply only with the one-line commit message, without any additional text, explanations, or line breaks.
 
-  The commit will be merged into the branch: $branch
+  The commit will be made to the branch: $branch
 
   Review the diffs carefully.
 

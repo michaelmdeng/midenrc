@@ -26,35 +26,38 @@ GIT_COMMIT_MODEL = openrouter/deepseek/deepseek-chat-v3-0324:free
 
 .PHONY: llm-install
 llm-install: ## Reinstall the llm tool
-	uv tool install --reinstall "git+ssh://git@github.com/michaelmdeng/llm.git@mdeng/main"
+	uv tool install --python=python3.13 --reinstall "git+ssh://git@github.com/michaelmdeng/llm.git@mdeng/main"
 
-.PHONY: llm llm-git-commit 
-llm-git-commit: ## Configure llm for git commits
+.PHONY: llm llm-templates
+llm-templates: ## Configure llm templates
 	llm aliases set git-commit $(GIT_COMMIT_MODEL)
 	cp -f home/.mdeng/llm/git-commit.yaml "$$(llm templates path)"
+	cp -f home/.mdeng/llm/agent.yaml "$$(llm templates path)"
 
 .PHONY: llm-plugins
 llm-plugins: ## Install llm plugins
-	llm install llm-gemini llm-cmd llm-anthropic llm-gguf llm-ollama llm-mistral
-	llm uninstall -y llm-openrouter llm-deepseek llm-mdeng
+	llm install llm-gemini llm-cmd llm-anthropic llm-ollama
+	llm uninstall -y llm-openrouter llm-mdeng
 	llm install 'https://github.com/michaelmdeng/llm-openrouter/archive/refs/tags/v0.4.1-mdeng0.1.zip'
-	llm install 'https://github.com/michaelmdeng/llm-deepseek/archive/refs/tags/v0.1.4-mdeng.zip'
-	llm install 'git+ssh://git@github.com/michaelmdeng/llm-mdeng.git@v0.0.5'
+	llm install 'git+ssh://git@github.com/michaelmdeng/llm-mdeng.git@v0.1.0'
 
 .PHONY: llm-options
-llm-options: ## Configure model options for llm CLI
+llm-options: ## Configure llm model options
 	home/.mdeng/llm/apply-model-options.sh home/.mdeng/llm/model-options.json
 
 .PHONY: llm-aliases
-llm-aliases: llm-plugins ## Install llm CLI and dependencies
+llm-aliases: llm-plugins ## Configure llm model aliases
+	llm aliases set default-free openrouter/deepseek/deepseek-chat-v3-0324:free
 	llm aliases set fast-free openrouter/deepseek/deepseek-chat-v3-0324:free
-	llm aliases set tool-free openrouter/qwen/qwen3-coder:free
+	llm aliases set tool-free openrouter/moonshotai/kimi-k2:free
 	llm aliases set reason-free openrouter/deepseek/deepseek-r1-0528:free
-	llm aliases set default-open openrouter/qwen/qwen3-235b-a22b-2507
-	llm aliases set fast-open openrouter/qwen/qwen3-235b-a22b-2507
-	llm aliases set tool-open openrouter/moonshotai/kimi-k2
-	llm aliases set reason-open openrouter/deepseek/deepseek-r1-0528
+
+	llm aliases set default-paid openrouter/openai/gpt-5-mini
+	llm aliases set fast-paid openrouter/openai/gpt-oss-120b
+	llm aliases set tool-paid openrouter/openai/gpt-5
+	llm aliases set reason-paid openrouter/openai/gpt-5
+
 	llm models default $(DEFAULT_MODEL)
 
 .PHONY: llm
-llm: llm-aliases llm-git-commit llm-plugins ## Install llm CLI and dependencies
+llm: llm-aliases llm-templates llm-plugins ## Install llm CLI and dependencies
