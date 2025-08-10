@@ -146,8 +146,6 @@ if check_cmd_exists "mdcli"; then
     eval "$(mdcli completion --zsh)"
 fi
 
-source virtualenvwrapper.sh
-
 complete -o nospace -C /usr/bin/terraform terraform
 
 # zsh functions

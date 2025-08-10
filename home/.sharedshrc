@@ -72,24 +72,10 @@ else
     echo "warning: z.sh not found. Is it installed?"
 fi
 
-if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
-    source /usr/local/bin/virtualenvwrapper_lazy.sh
-elif [ -f "$HOME/.local/bin/virtualenvwrapper.sh" ]; then
-    source $HOME/.local/bin/virtualenvwrapper_lazy.sh
-elif [ -f "/opt/homebrew/bin/virtualenvwrapper.sh" ]; then
-    source /opt/homebrew/bin/virtualenvwrapper_lazy.sh
-elif [ -f "/opt/salt/bin/virtualenvwrapper_lazy.sh" ]; then
-    source /opt/salt/bin/virtualenvwrapper_lazy.sh
+if virtualenvwrapperpath=$(which virtualenvwrapper_lazy.sh 2>/dev/null); then
+    source "$virtualenvwrapperpath"
 else
-    echo "warning: virtualenvwrapper.sh not found. Is it installed?"
-fi
-
-if check_cmd_exists "pyenv"; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-    pyenv virtualenvwrapper_lazy
-else
-    echo "warning: pyenv not found. Is it installed?"
+    echo "warning: virtualenvwrapper_lazy.sh not found in PATH" >&2
 fi
 
 if [ -f "$HOME/.homesick/repos/homeshick/homeshick.sh" ]; then
