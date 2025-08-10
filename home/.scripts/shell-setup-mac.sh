@@ -6,6 +6,7 @@ brew install \
     bat \
     coreutils \
     ctags \
+    fd \
     findutils \
     fzf \
     gh \
