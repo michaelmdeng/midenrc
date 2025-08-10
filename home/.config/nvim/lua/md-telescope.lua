@@ -7,7 +7,6 @@ vim.api.nvim_set_keymap('n', '<C-p>', 'HasGit() ? "<cmd>Telescope git_files<cr>"
 vim.api.nvim_set_keymap('n', '<leader>p', '<cmd>lua require"telescope.builtin".find_files()<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader><C-p>', '<cmd>Telescope oldfiles<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>P', '<cmd>Telescope oldfiles<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-f>', '<cmd>Telescope live_grep<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>*', '<cmd>Telescope tags<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>/', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', '<cmd>Telescope search_history<cr>', { noremap = true, silent = true })
@@ -17,6 +16,11 @@ vim.api.nvim_set_keymap('n', '<leader>H', '<cmd>Telescope git_bcommits<cr>', { n
 vim.api.nvim_set_keymap('n', '<leader>"', '<cmd>Telescope registers<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>z', '<cmd>Telescope spell_suggest<cr>', { noremap = true, silent = true })
 
+vim.keymap.set('n', '<C-f>', function()
+  builtin.live_grep({
+    additional_args = function() return { "--hidden" } end,
+  })
+end, { noremap = true, silent = true })
 local function pick_dir_and_grep()
   builtin.find_files({
     prompt_title = "Pick search directory",
@@ -27,7 +31,10 @@ local function pick_dir_and_grep()
         local entry = action_state.get_selected_entry()
         actions.close(prompt_bufnr)
         if entry and entry[1] then
-          builtin.live_grep({ search_dirs = { entry[1] } })
+          builtin.live_grep({ 
+            additional_args = function() return { "--hidden" } end,
+            search_dirs = { entry[1] },
+          })
         end
       end
       map("i", "<CR>", on_select)
