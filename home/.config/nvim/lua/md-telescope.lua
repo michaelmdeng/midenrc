@@ -18,11 +18,19 @@ vim.api.nvim_set_keymap('n', '<leader>z', '<cmd>Telescope spell_suggest<cr>', { 
 
 vim.keymap.set('n', '<C-f>', function()
   builtin.live_grep({
-    additional_args = function() return { "--hidden" } end,
+    additional_args = function() return { "--hidden", "--glob=!**/.git/*" } end,
   })
 end, { noremap = true, silent = true })
 local function pick_dir_and_grep()
   builtin.find_files({
+    layout_strategy = 'vertical',
+    layout_config = {
+        height = 0.7,
+        width = 0.8,
+        preview_height = 0.4,
+        preview_cutoff = 15,
+        prompt_position = 'top',
+    },
     prompt_title = "Pick search directory",
     cwd = vim.loop.cwd(),
     find_command = { "fd", "--type", "d" },
@@ -32,7 +40,7 @@ local function pick_dir_and_grep()
         actions.close(prompt_bufnr)
         if entry and entry[1] then
           builtin.live_grep({ 
-            additional_args = function() return { "--hidden" } end,
+            additional_args = function() return { "--hidden", "--glob=!**/.git/*" } end,
             search_dirs = { entry[1] },
           })
         end
