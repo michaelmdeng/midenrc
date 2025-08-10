@@ -24,18 +24,6 @@ if check_cmd_exists "batcat"; then
 	export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 fi
 
-if check_cmd_exists "rg"; then
-	alias grep='rg'
-fi
-
-if check_cmd_exists "nvim"; then
-	alias vim='nvim'
-	alias vi='nvim'
-fi
-
-# x86_64 homebrew
-alias ibrew='arch -x86_64 /usr/local/bin/brew'
-
 if check_cmd_exists "gcloud"; then
 	alias gcloudauth='gcloud auth login | gcloud auth application-default login'
 	alias gcloudlogin='gcloud auth login | gcloud auth application-default login'
@@ -89,11 +77,13 @@ if [ -f "/opt/homebrew/bin/brew" ] ; then
     source <(/opt/homebrew/bin/brew shellenv)
 fi
 
-export FZF_BASE=$(brew --prefix fzf)
+if check_cmd_exists "brew"; then
+    export FZF_BASE=$(brew --prefix fzf)
+fi
 
 if check_cmd_exists "llm"; then
-	export CODESTRAL_API_KEY=$(llm keys get codestral)
-	export OPENROUTER_API_KEY=$(llm keys get openrouter)
+    export CODESTRAL_API_KEY=$(llm keys get codestral)
+    export OPENROUTER_API_KEY=$(llm keys get openrouter)
 fi
 
 # ------------
