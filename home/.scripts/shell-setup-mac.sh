@@ -19,6 +19,7 @@ brew install \
     kubectx \
     kustomize \
     lefthook \
+    lua-language-server \
     make \
     mise \
     node \
