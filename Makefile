@@ -22,7 +22,6 @@ shellcheck: ## Run shellcheck on shell scripts
 	git ls-files "**/*.sh" | xargs shellcheck
 
 DEFAULT_MODEL = openrouter/deepseek/deepseek-chat-v3-0324:free
-GIT_COMMIT_MODEL = openrouter/deepseek/deepseek-chat-v3-0324:free
 
 .PHONY: llm-install
 llm-install: ## Reinstall the llm tool
@@ -30,7 +29,6 @@ llm-install: ## Reinstall the llm tool
 
 .PHONY: llm llm-templates
 llm-templates: ## Configure llm templates
-	llm aliases set git-commit $(GIT_COMMIT_MODEL)
 	cp -f home/.mdeng/llm/git-commit.yaml "$$(llm templates path)"
 	cp -f home/.mdeng/llm/agent.yaml "$$(llm templates path)"
 
