@@ -119,6 +119,9 @@ if ! shopt -oq posix; then
 fi
 
 # shared bashrc/zshrc commands
+if [ -f "$HOME/.pre-sharedshrc" ]; then
+  source "$HOME/.pre-sharedshrc"
+fi
 source "$HOME/.sharedshrc"
 
 # bash completions

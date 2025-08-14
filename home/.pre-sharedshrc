@@ -1,0 +1,5 @@
+if virtualenvwrapperpath=$(which virtualenvwrapper_lazy.sh 2>/dev/null); then
+    source "$virtualenvwrapperpath"
+else
+    echo "warning: virtualenvwrapper_lazy.sh not found in PATH" >&2
+fi
