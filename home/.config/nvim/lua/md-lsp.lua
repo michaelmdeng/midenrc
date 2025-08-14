@@ -1,27 +1,24 @@
 local api = vim.api
 
 local on_attach = function(_, bufnr)
-  local function buf_set_keymap(...) api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) api.nvim_buf_set_option(bufnr, ...) end
+  vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
 
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
 
   -- buffer
-  buf_set_keymap('n', '<leader>a', '<cmd>lua require("actions-preview").code_actions()<CR>', opts)
-  buf_set_keymap('n', '<leader>dc', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', '<leader>=', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
-  buf_set_keymap('n', '<leader>t', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<leader>im', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<c-r>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>sg', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<leader>Df', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.keymap.set('n', '<leader>a', function() require("actions-preview").code_actions() end, opts)
+  vim.keymap.set('n', '<leader>dc', function() vim.lsp.buf.declaration() end, opts)
+  vim.keymap.set('n', '<leader>=', function() vim.lsp.buf.format() end, opts)
+  vim.keymap.set('n', '<leader>t', function() vim.lsp.buf.hover() end, opts)
+  vim.keymap.set('n', '<leader>im', function() vim.lsp.buf.implementation() end, opts)
+  vim.keymap.set('n', '<c-r>r', function() vim.lsp.buf.rename() end, opts)
+  vim.keymap.set('n', '<leader>sg', function() vim.lsp.buf.signature_help() end, opts)
+  vim.keymap.set('n', '<leader>Df', function() vim.lsp.buf.type_definition() end, opts)
   -- diagnostics
-  buf_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<leader>dd', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  vim.keymap.set('n', '<leader>d', function() vim.diagnostic.open_float() end, opts)
+  vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end, opts)
+  vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end, opts)
+  vim.keymap.set('n', '<leader>dd', function() vim.diagnostic.setloclist() end, opts)
 end
 
 local nvim_lsp = require('lspconfig')

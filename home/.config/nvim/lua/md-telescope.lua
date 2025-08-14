@@ -3,18 +3,24 @@ local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 local action_layout = require('telescope.actions.layout')
 
-vim.api.nvim_set_keymap('n', '<C-p>', 'HasGit() ? "<cmd>Telescope git_files<cr>" : "<cmd>Telescope find_files<cr>"', { expr = true, noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>p', '<cmd>lua require"telescope.builtin".find_files()<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader><C-p>', '<cmd>Telescope oldfiles<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>P', '<cmd>Telescope oldfiles<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>/', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>?', '<cmd>Telescope search_history<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>:', '<cmd>Telescope command_history<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader><leader>:', '<cmd>Telescope commands<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>h', '<cmd>Telescope help_tags<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>H', '<cmd>Telescope git_bcommits<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>"', '<cmd>Telescope registers<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>z', '<cmd>Telescope spell_suggest<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-p>', function()
+  if vim.fn.HasGit() == 1 then
+    builtin.git_files()
+  else
+    builtin.find_files()
+  end
+end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>p', function() builtin.find_files() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader><C-p>', function() builtin.oldfiles() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>P', function() builtin.oldfiles() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>/', function() builtin.current_buffer_fuzzy_find() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>?', function() builtin.search_history() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>:', function() builtin.command_history() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader><leader>:', function() builtin.commands() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>h', function() builtin.help_tags() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>H', function() builtin.git_bcommits() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>"', function() builtin.registers() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>z', function() builtin.spell_suggest() end, { noremap = true, silent = true })
 
 vim.keymap.set('n', '<C-f>', function()
   builtin.live_grep({
@@ -54,12 +60,12 @@ end
 vim.keymap.set('n', '<leader><C-f>', pick_dir_and_grep, { desc = "Live grep in chosen directory" })
 
 -- LSP
-vim.api.nvim_set_keymap('n', '<leader>im', '<cmd>Telescope lsp_implementations<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>df', '<cmd>Telescope lsp_definitions<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>sy', '<cmd>Telescope lsp_document_symbols<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>rf', '<cmd>Telescope lsp_references<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>*', '<cmd>Telescope lsp_workspace_symbols<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>qf', '<cmd>Telescope diagnostics<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>im', function() builtin.lsp_implementations() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>df', function() builtin.lsp_definitions() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>sy', function() builtin.lsp_document_symbols() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>rf', function() builtin.lsp_references() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>*', function() builtin.lsp_workspace_symbols() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>qf', function() builtin.diagnostics() end, { noremap = true, silent = true })
 
 require('telescope').setup{
   defaults = {
