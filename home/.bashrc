@@ -127,6 +127,14 @@ source "$HOME/.sharedshrc"
 # bash completions
 [ -f "$HOME/.completion/tmuxinator.bash" ] && source "$HOME/.completion/tmuxinator.bash"
 
+if check_cmd_exists "uv"; then
+    eval "$(uv generate-shell-completion bash)"
+fi
+
+if check_cmd_exists "uvx"; then
+    eval "$(uvx --generate-shell-completion bash)"
+fi
+
 if check_cmd_exists "k9s"; then
     source <(k9s completion bash)
 fi

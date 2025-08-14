@@ -129,6 +129,14 @@ else
     compdef __pip -P pip3
 fi
 
+if check_cmd_exists "uv"; then
+    eval "$(uv generate-shell-completion zsh)"
+fi
+
+if check_cmd_exists "uvx"; then
+    eval "$(uvx --generate-shell-completion zsh)"
+fi
+
 if check_cmd_exists "k9s"; then
     eval $(k9s completion zsh)
 fi
