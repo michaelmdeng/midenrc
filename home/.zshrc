@@ -24,7 +24,7 @@ ZSH_THEME="miden"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 DISABLE_COMPFIX="true"
 
@@ -117,16 +117,8 @@ setopt auto_cd
 # zsh completions
 [ -f "$HOME/.completion/tmuxinator.zsh" ] && source "$HOME/.completion/tmuxinator.zsh"
 
-__pip() {{
-	eval $(pip completion --zsh)
-        }}
-if [[ $zsh_eval_context[-1] == loadautofunc ]]; then
-    # autoload from fpath, call function directly
-    __pip "$@"
-else
-    # eval/source/. command, register function for later
-    compdef __pip -P pip
-    compdef __pip -P pip3
+if check_cmd_exists "mise"; then
+    eval "$(mise activate zsh)"
 fi
 
 if check_cmd_exists "uv"; then
@@ -151,10 +143,6 @@ fi
 
 if check_cmd_exists "fzf"; then
     source <(fzf --zsh)
-fi
-
-if check_cmd_exists "mise"; then
-    eval "$(mise activate zsh)"
 fi
 
 if check_cmd_exists "mdcli"; then
