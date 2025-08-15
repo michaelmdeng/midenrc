@@ -60,11 +60,7 @@ fkill() {
 }
 
 check_cmd_exists() {
-  if command -v "$1" &> /dev/null; then
-    return 0
-  else
-    return 1
-  fi
+  command -v "$1" >/dev/null 2>&1
 }
 
 ubuntu_update() {
