@@ -1,5 +1,22 @@
 {
   "$schema": "https://charm.land/crush.json",
+  "lsp": {
+    "go": {
+      "command": "gopls"
+    },
+    "lua": {
+      "command": "lua-language-server"
+    }
+  },
+  "mcp": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer $GITHUB_PAT"
+      }
+    }
+  },
   "options": {
       "disable_auto_summarize": true,
       "tui": {
@@ -13,7 +30,55 @@
       "jq",
       "ls",
       "rg",
-      "yq"
+      "yq",
+      "mcp_github_get_job_logs",
+      "mcp_github_get_workflow_run",
+      "mcp_github_get_workflow_run_logs",
+      "mcp_github_list_workflow_jobs",
+      "mcp_github_list_workflow_run_artifacts",
+      "mcp_github_list_workflow_runs",
+      "mcp_github_list_workflows",
+      "mcp_github_rerun_failed_jobs",
+      "mcp_github_rerun_workflow_run",
+      "mcp_github_run_workflow",
+      "mcp_github_get_code_scanning_alert",
+      "mcp_github_list_code_scanning_alerts",
+      "mcp_github_get_me",
+      "mcp_github_get_team_members",
+      "mcp_github_get_teams",
+      "mcp_github_get_dependabot_alert",
+      "mcp_github_list_dependabot_alerts",
+      "mcp_github_get_discussion",
+      "mcp_github_get_discussion_comments",
+      "mcp_github_list_discussion_categories",
+      "mcp_github_list_discussions",
+      "mcp_github_create_gist",
+      "mcp_github_list_gists",
+      "mcp_github_update_gist",
+      "mcp_github_add_issue_comment",
+      "mcp_github_add_sub_issue",
+      "mcp_github_assign_copilot_to_issue",
+      "mcp_github_create_issue",
+      "mcp_github_get_issue",
+      "mcp_github_get_issue_comments",
+      "mcp_github_list_issue_types",
+      "mcp_github_list_issues",
+      "mcp_github_list_sub_issues",
+      "mcp_github_reprioritize_sub_issue",
+      "mcp_github_search_issues",
+      "mcp_github_update_issue",
+      "mcp_github_create_pull_request",
+      "mcp_github_get_pull_request",
+      "mcp_github_get_pull_request_comments",
+      "mcp_github_get_pull_request_diff",
+      "mcp_github_get_pull_request_files",
+      "mcp_github_get_pull_request_reviews",
+      "mcp_github_get_pull_request_status",
+      "mcp_github_list_pull_requests",
+      "mcp_github_request_copilot_review",
+      "mcp_github_search_pull_requests",
+      "mcp_github_update_pull_request",
+      "mcp_github_update_pull_request_branch"
     ]
   }
 }
